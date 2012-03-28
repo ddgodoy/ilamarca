@@ -1,0 +1,247 @@
+detect_relations: true
+actAs: [Timestampable]
+options:
+  collate: utf8_general_ci
+  charset: utf8
+
+#
+# COMPANY
+#
+Company:
+  tableName: company
+  columns:
+    id:       { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:     { type: string(50), notnull: true }
+    email:    { type: string(200) }
+    address:  { type: string(100) }
+    phone:    { type: string(50) }
+    logo:     { type: string(50) }
+
+#
+# APP_USER
+#
+AppUser:
+  tableName: app_user
+  columns:
+    id:            { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:          { type: string(100) }
+    email:         { type: string(200), notnull: true }
+    photo:         { type: string(50) }
+    salt:          { type: string(100) }
+    password:      { type: string(100) }
+    recover_token: { type: string(100) }
+    enabled:       { type: boolean, default: true }
+    last_access:   { type: datetime }
+    company_id:    { type: integer(4), notnull: true }
+    user_role_id:  { type: integer(4), notnull: true }
+
+  relations:
+    Company:  { class: Company, local: company_id, foreign: id, foreignAlias: Company, onDelete: CASCADE }
+    UserRole: { class: UserRole, local: user_role_id, foreign: id, foreignAlias: UserRole, onDelete: CASCADE }
+
+#
+# USER_ROLE
+#
+UserRole:
+  tableName: user_role
+  columns:
+    id:          { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:        { type: string(50), notnull: true }
+    credentials: { type: string(250) }
+    code:        { type: string(50) }
+
+#
+# GEO_ZONE
+#
+GeoZone:
+  tableName: geo_zone
+  columns:
+    id:    { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:  { type: string(100), notnull: true }
+
+#
+# CITY
+#
+City:
+  tableName: city
+  columns:
+    id:          { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:        { type: string(100), notnull: true }
+    geo_zone_id: { type: integer(4), notnull: true }
+
+  relations:
+    GeoZone:  { class: GeoZone, local: geo_zone_id, foreign: id, foreignAlias: GeoZone, onDelete: CASCADE }
+
+#
+# NEIGHBORHOOD
+#
+Neighborhood:
+  tableName: neighborhood
+  columns:
+    id:       { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:     { type: string(100), notnull: true }
+    city_id:  { type: integer(4), notnull: true }
+
+  relations:
+    City:  { class: City, local: city_id, foreign: id, foreignAlias: City, onDelete: CASCADE }
+
+#
+# PROPERTY_TYPE
+#
+PropertyType:
+  tableName: property_type
+  columns:
+    id:    { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:  { type: string(100), notnull: true }
+
+#
+# OPERATION
+#
+Operation:
+  tableName: operation
+  columns:
+    id:    { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:  { type: string(50), notnull: true }
+
+#
+# CURRENCY
+#
+Currency:
+  tableName: currency
+  columns:
+    id:       { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:     { type: string(50), notnull: true }
+    iso_code: { type: string(5) }
+    symbol:   { type: string(5) }
+
+#
+# VENDOR_ZONE
+#
+VendorZone:
+  tableName: vendor_zone
+  columns:
+    app_user_id:     { type: integer(4), primary: true, notnull: true }
+    neighborhood_id: { type: integer(4), primary: true, notnull: true }
+
+  relations:
+    AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: VendorZones, onDelete: RESTRICT }
+    Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: VendorZones, onDelete: RESTRICT }
+
+#
+# REAL_PROPERTY
+#
+RealProperty:
+  tableName: real_property
+  actAs:
+    I18n:
+      fields: [detail]
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:             { type: string(250), notnull: true }
+    detail:           { type: text }
+    youtube:          { type: text }
+    status:           { type: string(30) }
+    property_type_id: { type: integer(4), notnull: true }
+    neighborhood_id:  { type: integer(4), notnull: true }
+    app_user_id:      { type: integer(4), notnull: true }
+
+  relations:
+    PropertyType:  { class: PropertyType, local: property_type_id, foreign: id, foreignAlias: PropertyType, onDelete: CASCADE }
+    Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: Neighborhood, onDelete: CASCADE }
+    AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: CASCADE }
+
+#
+# OPERATION_REAL_PROPERTY
+#
+OperationRealProperty:
+  tableName: operation_real_property
+  columns:
+    operation_id:     { type: integer(4), primary: true, notnull: true }
+    real_property_id: { type: integer(4), primary: true, notnull: true }
+    price:            { type: decimal(10), scale: 2, default: 0 }
+    currency_id:      { type: integer(4), notnull: true }
+
+  relations:
+    Operation:    { class: Operation, local: operation_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: RESTRICT }
+    RealProperty: { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: RESTRICT }
+    Currency:     { class: Currency, local: currency_id, foreign: id, foreignAlias: Currency, onDelete: CASCADE }
+
+#
+# GALLERY
+#
+Gallery:
+  tableName: gallery
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    former_name:      { type: string(150), notnull: true }
+    internal_name:    { type: string(150), notnull: true }
+    real_property_id: { type: integer(4), notnull: true }
+
+  relations:
+    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: RealProperty, onDelete: CASCADE }
+
+#
+# VIDEO
+#
+Video:
+  tableName: video
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    youtube:          { type: text }
+    uploaded:         { type: string(50) }
+    real_property_id: { type: integer(4), notnull: true }
+
+  relations:
+    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: RealProperty, onDelete: CASCADE }
+
+#
+# GOOGLE_MAP
+#
+GoogleMap:
+  tableName: google_map
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    map_content:      { type: text }
+    real_property_id: { type: integer(4), notnull: true }
+
+  relations:
+    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: RealProperty, onDelete: CASCADE }
+
+#
+# SEARCH_PROFILE
+#
+SearchProfile:
+  tableName: search_profile
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    property_type_id: { type: integer(4) }
+    operation_id:     { type: integer(4) }
+    geo_zone_id:      { type: integer(4) }
+    city_id:          { type: integer(4) }
+    neighborhood_id:  { type: integer(4) }
+    app_user_id:      { type: integer(4) }
+    min_price:        { type: decimal(10), scale: 2, default: 0 }
+    max_price:        { type: decimal(10), scale: 2, default: 0 }
+    is_vendor:        { type: boolean, default: false }
+    reference:        { type: string(150) }
+
+  relations:
+    PropertyType: { class: PropertyType, local: property_type_id, foreign: id, foreignAlias: PropertyType, onDelete: SET NULL }
+    Operation:    { class: Operation, local: operation_id, foreign: id, foreignAlias: Operation, onDelete: SET NULL }
+    GeoZone:      { class: GeoZone, local: geo_zone_id, foreign: id, foreignAlias: GeoZone, onDelete: SET NULL }
+    City:         { class: City, local: city_id, foreign: id, foreignAlias: City, onDelete: SET NULL }
+    Neighborhood: { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: Neighborhood, onDelete: SET NULL }
+    AppUser:      { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: SET NULL }
+
+#
+# SEARCH_MATCH
+#
+SearchMatch:
+  tableName: search_match
+  columns:
+    search_profile_id: { type: integer(4), primary: true, notnull: true }
+    real_property_id:  { type: integer(4), primary: true, notnull: true }
+
+  relations:
+    SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchMatches, onDelete: RESTRICT }
+    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: SearchMatches, onDelete: RESTRICT }
