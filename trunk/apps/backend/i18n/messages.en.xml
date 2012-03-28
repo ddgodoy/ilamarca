@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+  <file original="messages" source-language="en_US" datatype="plaintext">
+    <body>
+      <trans-unit id="1"><source>Start session</source><target>Start session</target></trans-unit>
+      <trans-unit id="2"><source>Password</source><target>Password</target></trans-unit>
+      <trans-unit id="3"><source>Email</source><target>Email</target></trans-unit>
+      <trans-unit id="4"><source>Sign in</source><target>Sign in</target></trans-unit>
+      <trans-unit id="5"><source>Web Administration</source><target>Web Administration</target></trans-unit>
+      <trans-unit id="6"><source>Forgoten your password?</source><target>Forgoten your password?</target></trans-unit>
+      <trans-unit id="7"><source>New password request</source><target>New password request</target></trans-unit>
+      <trans-unit id="8"><source>Send</source><target>Send</target></trans-unit>
+      <trans-unit id="9"><source>Cancel</source><target>Cancel</target></trans-unit>
+      <trans-unit id="10">
+        <source>Forgoten password process completed</source>
+        <target><![CDATA[An email was sent to your account with a link to reset your password.<br /><br />Please, check your messages to continue.]]></target>
+      </trans-unit>
+      <trans-unit id="11"><source>Back to login</source><target>Back to login</target></trans-unit>
+      <trans-unit id="12">
+        <source>New password for %user%</source>
+        <target>Someone has requested a new password for %user%</target>
+      </trans-unit>
+      <trans-unit id="13"><source>To continue use this link</source><target>If you want to continue, use this link</target></trans-unit>
+      <trans-unit id="14"><source>Set new password</source><target>Set new password</target></trans-unit>
+      <trans-unit id="15"><source>Otherwise, ignore this message</source><target>Otherwise, ignore this message</target></trans-unit>
+      <trans-unit id="16"><source>Repeat password</source><target>Repeat password</target></trans-unit>
+      <trans-unit id="17"><source>Register</source><target>Register</target></trans-unit>
+      <trans-unit id="18"><source>New password</source><target>New password</target></trans-unit>
+      <trans-unit id="19"><source>Close session</source><target>Close session</target></trans-unit>
+      <trans-unit id="20"><source>My profile</source><target>My profile</target></trans-unit>
+      <trans-unit id="21"><source>Home</source><target>Home</target></trans-unit>
+      <trans-unit id="22"><source>Help</source><target>Help</target></trans-unit>
+      <trans-unit id="23"><source>Update profile</source><target>Update profile</target></trans-unit>
+      <trans-unit id="24"><source>Mandatory fields</source><target>Mandatory fields</target></trans-unit>
+      <trans-unit id="25"><source>All rights reserved</source><target>All rights reserved</target></trans-unit>
+      <trans-unit id="26"><source>Password correct format</source><target>Password must be alphanumeric and at least 6 characters long</target></trans-unit>
+      <trans-unit id="27"><source>Companies</source><target>Companies</target></trans-unit>
+      <trans-unit id="28"><source>List of Companies</source><target>List of Companies</target></trans-unit>
+      <trans-unit id="29"><source>Name</source><target>Name</target></trans-unit>
+      <trans-unit id="30"><source>Photo</source><target>Photo</target></trans-unit>
+      <trans-unit id="31"><source>Check to delete</source><target>Check to delete</target></trans-unit>
+      <trans-unit id="32"><source>Address</source><target>Address</target></trans-unit>
+      <trans-unit id="33"><source>Edit</source><target>Edit</target></trans-unit>
+      <trans-unit id="34"><source>Delete</source><target>Delete</target></trans-unit>
+      <trans-unit id="35"><source>Are you sure?</source><target>Are you sure?</target></trans-unit>
+      <trans-unit id="36"><source>Company</source><target>Company</target></trans-unit>
+      <trans-unit id="37"><source>User</source><target>User</target></trans-unit>
+      <trans-unit id="38"><source>Host</source><target>Host</target></trans-unit>
+      <trans-unit id="39"><source>Register company</source><target>Register company</target></trans-unit>
+      <trans-unit id="40"><source>Detail</source><target>Detail</target></trans-unit>
+      <trans-unit id="41"><source>Updated record</source><target>Updated record</target></trans-unit>
+      <trans-unit id="42"><source>Phone</source><target>Phone</target></trans-unit>
+      <trans-unit id="43"><source>Continue to list</source><target>Continue to list</target></trans-unit>
+      <trans-unit id="44"><source>Users</source><target>Users</target></trans-unit>
+      <trans-unit id="45"><source>List of Users</source><target>List of Users</target></trans-unit>
+      <trans-unit id="46"><source>Register user</source><target>Register user</target></trans-unit>
+      <trans-unit id="47"><source>By name</source><target>By name</target></trans-unit>
+      <trans-unit id="48"><source>By email</source><target>By email</target></trans-unit>
+      <trans-unit id="49"><source>Select</source><target>Select</target></trans-unit>
+      <trans-unit id="50"><source>My company</source><target>My company</target></trans-unit>
+      <trans-unit id="51"><source>Profile updated successfully</source><target>Your profile was updated successfully</target></trans-unit>
+      <trans-unit id="52"><source>Company info updated successfully</source><target>Your company info was updated successfully</target></trans-unit>
+      <trans-unit id="53"><source>Update company info</source><target>Update company info</target></trans-unit>
+      <trans-unit id="54"><source>User role</source><target>User role</target></trans-unit>
+      <trans-unit id="55"><source>Yes</source><target>Si</target></trans-unit>
+      <trans-unit id="56"><source>No</source><target>No</target></trans-unit>
+      <trans-unit id="57"><source>Enabled</source><target>Enabled</target></trans-unit>
+      <trans-unit id="58"><source>No results</source><target>No results</target></trans-unit>
+      <trans-unit id="59"><source>Accounts</source><target>Accounts</target></trans-unit>     
+      <trans-unit id="60"><source>List of Accounts</source><target>List of Accounts</target></trans-unit>
+			<trans-unit id="61"><source>Register account</source><target>Register account</target></trans-unit>
+			<trans-unit id="62"><source>Account</source><target>Account</target></trans-unit>
+			<trans-unit id="63"><source>Country</source><target>Country</target></trans-unit>
+			<trans-unit id="64"><source>City</source><target>City</target></trans-unit>
+			<trans-unit id="65"><source>Occupation</source><target>Occupation</target></trans-unit>
+			<trans-unit id="66"><source>Age</source><target>Age</target></trans-unit>
+			<trans-unit id="67"><source>Gender</source><target>Gender</target></trans-unit>
+			<trans-unit id="68"><source>Male</source><target>Male</target></trans-unit>
+			<trans-unit id="69"><source>Female</source><target>Female</target></trans-unit>
+    </body>
+  </file>
+</xliff>
