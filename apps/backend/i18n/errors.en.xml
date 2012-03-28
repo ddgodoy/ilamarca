@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+  <file original="errors" source-language="en_US" datatype="plaintext">
+    <body>
+      <trans-unit id="1"><source>Enter the email</source><target>Enter the email</target></trans-unit>
+      <trans-unit id="2"><source>Enter the password</source><target>Enter the password</target></trans-unit>
+      <trans-unit id="3"><source>The user is not registered</source><target>The user is not registered</target></trans-unit>
+      <trans-unit id="4"><source>The password is not correct</source><target>The password is not correct</target></trans-unit>
+      <trans-unit id="5"><source>The user is disabled</source><target>The user is disabled</target></trans-unit>
+      <trans-unit id="6"><source>The email seems incorrect</source><target>The email is incorrect</target></trans-unit>
+      <trans-unit id="7"><source>Wrong captcha</source><target>Enter the words you see in the box</target></trans-unit>
+      <trans-unit id="8"><source>Cannot send the email</source><target>Cannot send the email</target></trans-unit>
+      <trans-unit id="9"><source>Forgoten password empty token</source><target>You need a token to continue with this process</target></trans-unit>
+      <trans-unit id="10">
+        <source>Forgoten password token not valid</source>
+        <target><![CDATA[The code to reset your password is not valid.<br /><br />Please, check the last email that we sent to you and try again.]]></target>
+      </trans-unit>
+      <trans-unit id="11"><source>Repeat the password</source><target>Repeat the password</target></trans-unit>
+      <trans-unit id="12"><source>The passwords do not match</source><target>The passwords do not match</target></trans-unit>
+      <trans-unit id="13"><source>Enter the name</source><target>Enter the name</target></trans-unit>
+      <trans-unit id="14"><source>The email is already registered</source><target>The email is already registered</target></trans-unit>
+      <trans-unit id="15"><source>The password seems incorrect</source><target>The password seems incorrect</target></trans-unit>
+      <trans-unit id="16"><source>Select the company</source><target>Select the company</target></trans-unit>
+      <trans-unit id="17"><source>Select the user role</source><target>Select the user role</target></trans-unit>
+    </body>
+  </file>
+</xliff>
