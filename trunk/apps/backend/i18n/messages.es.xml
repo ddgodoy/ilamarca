@@ -77,6 +77,22 @@
       <trans-unit id="67"><source>Gender</source><target>Género</target></trans-unit>
       <trans-unit id="68"><source>Male</source><target>Masculino</target></trans-unit>
       <trans-unit id="69"><source>Female</source><target>Femenino</target></trans-unit>
+      <trans-unit id="70"><source>Geo zones</source><target>Zonas geográficas</target></trans-unit>
+      <trans-unit id="71"><source>List of Geo zones</source><target>Listado de Zonas geográficas</target></trans-unit>
+      <trans-unit id="72"><source>Register geo zone</source><target>Registrar zona geográfica</target></trans-unit>
+      <trans-unit id="73"><source>Geo zone</source><target>Zona geográfica</target></trans-unit>
+      <trans-unit id="74"><source>Search</source><target>Buscar</target></trans-unit>
+      <trans-unit id="75"><source>Cities</source><target>Ciudades</target></trans-unit>
+      <trans-unit id="76"><source>List of Cities</source><target>Listado de Ciudades</target></trans-unit>
+      <trans-unit id="77"><source>Register city</source><target>Registrar ciudad</target></trans-unit>
+      <trans-unit id="78"><source>Neighborhoods</source><target>Barrios</target></trans-unit>
+      <trans-unit id="79"><source>List of Neighborhoods</source><target>Listado de Barrios</target></trans-unit>
+      <trans-unit id="80"><source>Register neighborhood</source><target>Registrar barrio</target></trans-unit>
+      <trans-unit id="81"><source>Neighborhood</source><target>Barrio</target></trans-unit>
+      <trans-unit id="82"><source>Properties</source><target>Propiedades</target></trans-unit>
+      <trans-unit id="83"><source>List of Properties</source><target>Listado de Propiedades</target></trans-unit>
+      <trans-unit id="84"><source>Register property</source><target>Registrar propiedad</target></trans-unit>
+      <trans-unit id="85"><source>Property</source><target>Propiedad</target></trans-unit>
     </body>
   </file>
 </xliff>

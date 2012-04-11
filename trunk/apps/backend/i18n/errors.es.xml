@@ -22,6 +22,8 @@
       <trans-unit id="15"><source>The password seems incorrect</source><target>La contraseña parece incorrecta</target></trans-unit>
       <trans-unit id="16"><source>Select the company</source><target>Seleccione la empresa</target></trans-unit>
       <trans-unit id="17"><source>Select the user role</source><target>Seleccione el rol de usuario</target></trans-unit>
+      <trans-unit id="18"><source>Select the geo zone</source><target>Seleccione la zona geográfica</target></trans-unit>
+      <trans-unit id="19"><source>Select the city</source><target>Seleccione la ciudad</target></trans-unit>
     </body>
   </file>
 </xliff>

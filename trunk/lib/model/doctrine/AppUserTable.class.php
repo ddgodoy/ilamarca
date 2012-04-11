@@ -2,10 +2,7 @@
 
 class AppUserTable extends Doctrine_Table
 {
-  public static function getInstance()
-  {
-    return Doctrine_Core::getTable('AppUser');
-  }
+  public static function getInstance() { return Doctrine_Core::getTable('AppUser'); }
   
   /**
 	 * Check email repeated in DB

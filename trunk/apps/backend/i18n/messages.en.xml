@@ -77,6 +77,22 @@
 			<trans-unit id="67"><source>Gender</source><target>Gender</target></trans-unit>
 			<trans-unit id="68"><source>Male</source><target>Male</target></trans-unit>
 			<trans-unit id="69"><source>Female</source><target>Female</target></trans-unit>
+			<trans-unit id="70"><source>Geo zones</source><target>Geographical zones</target></trans-unit>
+			<trans-unit id="71"><source>List of Geo zones</source><target>List of Geo zones</target></trans-unit>
+			<trans-unit id="72"><source>Register geo zone</source><target>Register geo zone</target></trans-unit>
+			<trans-unit id="73"><source>Geo zone</source><target>Geo zone</target></trans-unit>
+			<trans-unit id="74"><source>Search</source><target>Search</target></trans-unit>
+			<trans-unit id="75"><source>Cities</source><target>Cities</target></trans-unit>
+			<trans-unit id="76"><source>List of Cities</source><target>List of Cities</target></trans-unit>
+			<trans-unit id="77"><source>Register city</source><target>Register city</target></trans-unit>
+			<trans-unit id="78"><source>Neighborhoods</source><target>Neighborhoods</target></trans-unit>
+			<trans-unit id="79"><source>List of Neighborhoods</source><target>List of Neighborhoods</target></trans-unit>
+      <trans-unit id="80"><source>Register neighborhood</source><target>Register neighborhood</target></trans-unit>
+      <trans-unit id="81"><source>Neighborhood</source><target>Neighborhood</target></trans-unit>
+      <trans-unit id="82"><source>Properties</source><target>Properties</target></trans-unit>
+      <trans-unit id="83"><source>List of Properties</source><target>List of Properties</target></trans-unit>
+      <trans-unit id="84"><source>Register property</source><target>Register property</target></trans-unit>
+      <trans-unit id="85"><source>Property</source><target>Property</target></trans-unit>
     </body>
   </file>
 </xliff>

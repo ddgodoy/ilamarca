@@ -22,6 +22,8 @@
       <trans-unit id="15"><source>The password seems incorrect</source><target>The password seems incorrect</target></trans-unit>
       <trans-unit id="16"><source>Select the company</source><target>Select the company</target></trans-unit>
       <trans-unit id="17"><source>Select the user role</source><target>Select the user role</target></trans-unit>
+      <trans-unit id="18"><source>Select the geo zone</source><target>Select the geo zone</target></trans-unit>
+      <trans-unit id="19"><source>Select the city</source><target>Select the city</target></trans-unit>
     </body>
   </file>
 </xliff>

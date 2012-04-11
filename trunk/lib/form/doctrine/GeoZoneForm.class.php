@@ -12,5 +12,17 @@ class GeoZoneForm extends BaseGeoZoneForm
 {
   public function configure()
   {
+  	$i18N = sfContext::getInstance()->getI18N();
+
+  	$this->setWidgets(array(
+      'name' => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
+    ));
+
+    $this->setValidators(array(
+      'name' => new sfValidatorString(array('max_length' => 100), array('required'=>$i18N->__('Enter the name', NULL, 'errors'))),
+    ));
+
+    $this->widgetSchema->setNameFormat('geo_zone[%s]');
   }
-}
+
+} // end class
