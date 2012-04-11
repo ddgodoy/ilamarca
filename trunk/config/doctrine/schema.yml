@@ -139,7 +139,6 @@ RealProperty:
     id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
     name:             { type: string(250), notnull: true }
     detail:           { type: text }
-    youtube:          { type: text }
     status:           { type: string(30) }
     property_type_id: { type: integer(4), notnull: true }
     neighborhood_id:  { type: integer(4), notnull: true }

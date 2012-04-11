@@ -93,6 +93,10 @@
       <trans-unit id="83"><source>List of Properties</source><target>List of Properties</target></trans-unit>
       <trans-unit id="84"><source>Register property</source><target>Register property</target></trans-unit>
       <trans-unit id="85"><source>Property</source><target>Property</target></trans-unit>
+      <trans-unit id="86"><source>Property type</source><target>Property type</target></trans-unit>
+      <trans-unit id="87"><source>Select the property type</source><target>Select the property type</target></trans-unit>
+      <trans-unit id="88"><source>Select the neighborhood</source><target>Select the neighborhood</target></trans-unit>
+      <trans-unit id="89"><source>Location</source><target>Location</target></trans-unit>
     </body>
   </file>
 </xliff>

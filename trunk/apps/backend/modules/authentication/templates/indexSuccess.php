@@ -11,11 +11,11 @@
 				<ul style="width:460px;">
 					<li>
 						<label><?php echo __('Email') ?>:</label>
-						<input type="text" id="auth_email" name="auth_email" value="<?php echo $auth_email ?>" style="width:200px;"/>
+						<input type="text" id="auth_email" name="auth_email" value="<?php echo $auth_email ?>" class="form_input_login" style="width:200px;"/>
 					</li>
 					<li>
 						<label><?php echo __('Password') ?>:</label>
-						<input type="password" name="auth_password" value="" style="width:200px;"/>
+						<input type="password" name="auth_password" value="" class="form_input_login" style="width:200px;"/>
 						<a href="<?php echo url_for('authentication/forgotenPassword') ?>"><?php echo __('Forgoten your password?') ?></a>
 					</li>
 				</ul>

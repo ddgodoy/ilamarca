@@ -14,7 +14,6 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'youtube'          => new sfWidgetFormFilterInput(),
       'status'           => new sfWidgetFormFilterInput(),
       'property_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'add_empty' => true)),
       'neighborhood_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'add_empty' => true)),
@@ -23,7 +22,6 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'name'             => new sfValidatorPass(array('required' => false)),
-      'youtube'          => new sfValidatorPass(array('required' => false)),
       'status'           => new sfValidatorPass(array('required' => false)),
       'property_type_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('PropertyType'), 'column' => 'id')),
       'neighborhood_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Neighborhood'), 'column' => 'id')),
@@ -49,7 +47,6 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'               => 'Number',
       'name'             => 'Text',
-      'youtube'          => 'Text',
       'status'           => 'Text',
       'property_type_id' => 'ForeignKey',
       'neighborhood_id'  => 'ForeignKey',

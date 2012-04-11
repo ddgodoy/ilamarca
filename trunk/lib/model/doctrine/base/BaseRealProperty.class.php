@@ -8,7 +8,6 @@
  * @property integer $id
  * @property string $name
  * @property text $detail
- * @property text $youtube
  * @property string $status
  * @property integer $property_type_id
  * @property integer $neighborhood_id
@@ -23,7 +22,6 @@
  * @method integer             getId()                      Returns the current record's "id" value
  * @method string              getName()                    Returns the current record's "name" value
  * @method text                getDetail()                  Returns the current record's "detail" value
- * @method text                getYoutube()                 Returns the current record's "youtube" value
  * @method string              getStatus()                  Returns the current record's "status" value
  * @method integer             getPropertyTypeId()          Returns the current record's "property_type_id" value
  * @method integer             getNeighborhoodId()          Returns the current record's "neighborhood_id" value
@@ -37,7 +35,6 @@
  * @method RealProperty        setId()                      Sets the current record's "id" value
  * @method RealProperty        setName()                    Sets the current record's "name" value
  * @method RealProperty        setDetail()                  Sets the current record's "detail" value
- * @method RealProperty        setYoutube()                 Sets the current record's "youtube" value
  * @method RealProperty        setStatus()                  Sets the current record's "status" value
  * @method RealProperty        setPropertyTypeId()          Sets the current record's "property_type_id" value
  * @method RealProperty        setNeighborhoodId()          Sets the current record's "neighborhood_id" value
@@ -71,9 +68,6 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'length' => 250,
              ));
         $this->hasColumn('detail', 'text', null, array(
-             'type' => 'text',
-             ));
-        $this->hasColumn('youtube', 'text', null, array(
              'type' => 'text',
              ));
         $this->hasColumn('status', 'string', 30, array(

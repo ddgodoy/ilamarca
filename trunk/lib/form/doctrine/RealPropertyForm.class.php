@@ -15,7 +15,7 @@ class RealPropertyForm extends BaseRealPropertyForm
   	$i18N = sfContext::getInstance()->getI18N();
 
   	$this->setWidgets(array(
-      'name'             => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
+      'name'             => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:600px;')),
       'property_type_id' => new sfWidgetFormInputHidden(),
       'neighborhood_id'  => new sfWidgetFormInputHidden(),
       'app_user_id'      => new sfWidgetFormInputHidden(),
@@ -29,9 +29,6 @@ class RealPropertyForm extends BaseRealPropertyForm
     ));
     $this->embedI18n(array('es', 'en'));
 
-  	$this->widgetSchema->setLabel('es','Español');
-  	$this->widgetSchema->setLabel('en','English');
-    
     $this->widgetSchema->setNameFormat('real_property[%s]');
   }
 

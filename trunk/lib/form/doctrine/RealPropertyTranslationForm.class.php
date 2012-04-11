@@ -10,6 +10,17 @@
  */
 class RealPropertyTranslationForm extends BaseRealPropertyTranslationForm
 {
-  public function configure() {}
+  public function configure()
+  {
+  	$this->setWidgets(array(
+      'detail' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:600px;height:100px;')),
+    ));
+
+    $this->setValidators(array(
+      'detail' => new sfValidatorPass(array('required' => false)),
+    ));
+
+    $this->widgetSchema->setNameFormat('real_property_translation[%s]');
+  }
 
 } // end class
