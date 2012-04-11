@@ -33,7 +33,10 @@
 					</tr>
 					<tr>
 						<td><label><?php echo __('Detail') ?></label></td>
-						<td><?php echo $form['detail'] ?></td>
+						<td>
+							<?php echo $form['es']['detail'] ?><br />
+							<?php echo $form['en']['detail'] ?>
+						</td>
 					</tr>
 				</table>
 			</fieldset>
