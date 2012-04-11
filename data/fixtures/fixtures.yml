@@ -84,3 +84,23 @@ Currency:
     name: Euro Member Countries
     iso_code: EUR
     symbol: €
+
+###############################################################
+
+GeoZone:
+  geo_zone_1:
+    name: Argentina
+
+###############################################################
+
+City:
+  city_1:
+    name: Cordoba
+    GeoZone: geo_zone_1
+
+###############################################################
+
+Neighborhood:
+  neighborhood_1:
+    name: Alta Cordoba
+    City: city_1
