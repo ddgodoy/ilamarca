@@ -20,7 +20,7 @@
 			<form method="POST" action="<?php echo url_for('authentication/forgotenPassword') ?>" enctype="multipart/form-data">
 				<div class="boxes">
 					<ul>
-						<li><label><?php echo __('Email') ?>:</label><?php echo $form['email'] ?></li>
+						<li><label><?php echo __('Email') ?>:</label><?php echo $form['email']->render(array('class'=>'form_input_login')) ?></li>
 						<li><?php echo $form['captcha'] ?></li>
 					</ul>
 				</div>

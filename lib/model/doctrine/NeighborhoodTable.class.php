@@ -27,5 +27,25 @@ class NeighborhoodTable extends Doctrine_Table
 
 		return $oPager;
 	}
+	
+	/**
+	 * Get neighborhoods by city
+	 *
+	 * @param integer $city
+	 * @return array
+	 */
+	public function getByCityId($city)
+	{
+		$sf_instance = sfContext::getInstance();
+		$arr_options = array('-- '.$sf_instance->getI18N()->__('Select').' --');
+		
+		$q = Doctrine_Query::create()->select('id, name')->from('Neighborhood')->where("city_id = $city")->orderBy('name ASC');
+		$d = $q->fetchArray();
+
+		foreach ($d as $value) {
+			$arr_options[$value['id']] = $value['name'];
+		}
+		return $arr_options;
+	}
 
 } // end class

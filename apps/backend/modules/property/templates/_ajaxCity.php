@@ -4,6 +4,6 @@
 
 	$aValues = CityTable::getInstance()->getByGeoZoneId($geo_zone);
 ?>
-<select name="city" class="form_input" style="width:408px;">
+<select name="city" class="form_input" style="width:300px;" onchange="updNeighborhoodList(this.value);">
 	<?php echo Common::fillSimpleSelect($aValues, $city) ?>
 </select>

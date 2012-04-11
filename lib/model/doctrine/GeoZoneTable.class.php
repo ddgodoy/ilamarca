@@ -34,7 +34,6 @@ class GeoZoneTable extends Doctrine_Table
 	 */
 	public function getAllForSelect($add_empty = false)
 	{
-		$sql_exclude = 'id > 0';
 		$arr_options = array();
 		$sf_instance = sfContext::getInstance();
 

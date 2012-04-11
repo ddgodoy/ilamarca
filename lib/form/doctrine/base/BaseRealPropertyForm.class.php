@@ -17,7 +17,6 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'name'             => new sfWidgetFormInputText(),
-      'youtube'          => new sfWidgetFormInputText(),
       'status'           => new sfWidgetFormInputText(),
       'property_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'add_empty' => false)),
       'neighborhood_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'add_empty' => false)),
@@ -27,7 +26,6 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'             => new sfValidatorString(array('max_length' => 250)),
-      'youtube'          => new sfValidatorPass(array('required' => false)),
       'status'           => new sfValidatorString(array('max_length' => 30, 'required' => false)),
       'property_type_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'))),
       'neighborhood_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'))),

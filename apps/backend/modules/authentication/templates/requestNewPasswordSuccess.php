@@ -18,11 +18,11 @@
 					</li>
 					<li>
 						<label style="width:130px;"><?php echo __('New password') ?>:</label>
-						<input type="password" name="rp_password" id="rp_password" value="" />
+						<input type="password" name="rp_password" id="rp_password" value="" class="form_input_login"/>
 					</li>
 					<li>
 						<label style="width:130px;"><?php echo __('Repeat password') ?>:</label>
-						<input type="password" name="rp_repeat_password" value="" />
+						<input type="password" name="rp_repeat_password" value="" class="form_input_login"/>
 					</li>
 					<li>
 						<em style="font-size:10px;"><?php echo __('Password correct format') ?></em>

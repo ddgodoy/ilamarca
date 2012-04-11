@@ -82,40 +82,44 @@ class propertyActions extends sfActions
    * @param sfWebRequest $request
    */
   public function executeProcess(sfWebRequest $request)
-  {  	
+  {
   	$this->id = $request->getParameter('id');
   	$this->property_type = 0;
+  	$this->geo_zone      = 0;
+  	$this->city          = 0;
   	$this->neighborhood  = 0;
-  	$this->app_user      = 0;
   	$this->error   = array();
   	$entity_object = NULL;
 
   	if ($this->id) {
   		$entity_object = RealPropertyTable::getInstance()->find($this->id);
+
   		$this->property_type = $entity_object->getPropertyTypeId();
+	  	$this->geo_zone      = $entity_object->Neighborhood->City->getGeoZoneId();
+	  	$this->city          = $entity_object->Neighborhood->getCityId();
 	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
-	  	$this->app_user      = $entity_object->getAppUserId();
   	}
   	$this->form = new RealPropertyForm($entity_object);
 
-  	if ($request->getMethod() == 'POST') {
+  	if ($request->getMethod() == 'POST')
+  	{
   		$this->property_type = $request->getParameter('property_type');
+  		$this->geo_zone      = $request->getParameter('geo_zone');
+  		$this->city          = $request->getParameter('city');
 	  	$this->neighborhood  = $request->getParameter('neighborhood');
-	  	$this->app_user      = $request->getParameter('app_user');
-	  	
+
   		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
   		if (empty($this->neighborhood))  { $this->error['neighborhood'] = 'Select the neighborhood'; }
-  		if (empty($this->app_user))      { $this->error['app_user'] = 'Select the user'; }
 
   		## continue
   		if (!$this->error) {
   			$form_request = $request->getParameter($this->form->getName());
 				$form_request['property_type_id'] = $this->property_type;
 				$form_request['neighborhood_id'] = $this->neighborhood;
-				$form_request['app_user_id'] = $this->app_user;
-				
+				$form_request['app_user_id'] = sfContext::getInstance()->getUser()->getAttribute('user_id');
+
 				$this->form->bind($form_request);
-				
+
 				if ($this->form->isValid()) {
 	  			$recorded = $this->form->save();
 	
@@ -164,6 +168,18 @@ class propertyActions extends sfActions
     $this->geo_zone = $request->getParameter('geo_zone');
 
     return $this->renderPartial('property/ajaxCity'); exit();
+  }
+  
+  /**
+   * Ajax get neighborhoods
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeAjaxNeighborhood(sfWebRequest $request)
+  {
+    $this->city = $request->getParameter('city');
+
+    return $this->renderPartial('property/ajaxNeighborhood'); exit();
   }
 
 } // end class
