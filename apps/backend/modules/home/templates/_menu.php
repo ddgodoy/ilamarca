@@ -1,24 +1,23 @@
 <?php $mnGetModule = $sf_params->get('module') ?>
 <ul>
-	<?php if ($sf_user->hasCredential('super_admin')): ?>
 	<li>
-		<a href="<?php echo url_for('company/index') ?>" class="first<?php echo $mnGetModule=='company' ? ' selected' : '' ?>">
-			<?php echo __('Companies') ?>
+		<a href="<?php echo url_for('geo_zone/index') ?>" class="first<?php echo $mnGetModule=='geo_zone' ? ' selected' : '' ?>">
+			<?php echo __('Geo zones') ?>
 		</a>
 	</li>
-	<?php endif; ?>
-	<?php if ($sf_user->hasCredential('company_admin')): ?>
 	<li>
-		<a href="<?php echo url_for('user/index') ?>" class="first<?php echo $mnGetModule=='user' ? ' selected' : '' ?>">
-			<?php echo __('Users') ?>
+		<a href="<?php echo url_for('city/index') ?>" class="first<?php echo $mnGetModule=='city' ? ' selected' : '' ?>">
+			<?php echo __('Cities') ?>
 		</a>
 	</li>
-	<?php endif; ?>
-	<?php if ($sf_user->hasCredential('account_admin')): ?>
 	<li>
-		<a href="<?php echo url_for('account/index') ?>" class="first<?php echo $mnGetModule=='account' ? ' selected' : '' ?>">
-			<?php echo __('Accounts') ?>
+		<a href="<?php echo url_for('neighborhood/index') ?>" class="first<?php echo $mnGetModule=='neighborhood' ? ' selected' : '' ?>">
+			<?php echo __('Neighborhoods') ?>
 		</a>
 	</li>
-	<?php endif; ?>
+	<li>
+		<a href="<?php echo url_for('property/index') ?>" class="first<?php echo $mnGetModule=='property' ? ' selected' : '' ?>">
+			<?php echo __('Properties') ?>
+		</a>
+	</li>
 </ul>

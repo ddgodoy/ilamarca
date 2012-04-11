@@ -14,9 +14,6 @@
 			<div class="grl">
 				<a href="<?php echo url_for('home/index') ?>" class="home"><?php echo __('Home') ?></a>
 				<a href="<?php echo url_for('home/myProfile') ?>" class="datos"><?php echo __('My profile') ?></a>
-				<?php if ($sf_user->hasCredential('company_admin')): ?>
-					<a href="<?php echo url_for('home/myCompany') ?>" class="company"><?php echo __('My company') ?></a>
-				<?php endif; ?>
 				<a href="<?php echo url_for('home/logout') ?>" class="cerrar" style="margin-left:20px;">
 					<?php echo __('Close session') ?>
 				</a>

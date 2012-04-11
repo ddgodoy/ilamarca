@@ -3,6 +3,7 @@ Company:
     name: Inmobiliaria Lamarca
     email: info@ilamarca.com
 
+###############################################################
 
 UserRole:
   user_role_super_admin:
@@ -15,6 +16,7 @@ UserRole:
     credentials: company_admin
     code: company_admin
 
+###############################################################
 
 AppUser:
   user_ilamarca:
@@ -24,3 +26,61 @@ AppUser:
     password: 830acd0bf6d70cec6d5bae3be60ab6eab962cd82
     Company: ilamarca
     UserRole: user_role_super_admin
+
+###############################################################
+
+Operation:
+  operation_venta:
+    name: Venta
+  operation_alquiler:
+    name: Alquiler
+  operation_temporal:
+    name: Alquiler temporal
+
+###############################################################
+
+PropertyType:
+  prop_type_1:
+    name: Departamentos
+  prop_type_2:
+    name: Casas
+  prop_type_3:
+    name: PH
+  prop_type_4:
+    name: Countries y Barrios Cerrados
+  prop_type_5:
+    name: Quintas
+  prop_type_6:
+    name: Terrenos y Lotes
+  prop_type_7:
+    name: Campos y Chacras
+  prop_type_8:
+    name: Galpones, Depositos y Edificios Ind.
+  prop_type_9:
+    name: Locales Comerciales
+  prop_type_10:
+    name: Negocios y Fondos de Comercio
+  prop_type_11:
+    name: Oficinas
+  prop_type_12:
+    name: Consultorios
+  prop_type_13:
+    name: Cocheras
+  prop_type_14:
+    name: Bovedas, Nichos y Parcelas
+
+###############################################################
+
+Currency:
+  currency_ars:
+    name: Argentina Peso
+    iso_code: ARS
+    symbol: $
+  currency_usd:
+    name: United States Dollar
+    iso_code: USD
+    symbol: $
+  currency_eur:
+    name: Euro Member Countries
+    iso_code: EUR
+    symbol: €
