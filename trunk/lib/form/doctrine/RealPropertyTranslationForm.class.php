@@ -10,7 +10,6 @@
  */
 class RealPropertyTranslationForm extends BaseRealPropertyTranslationForm
 {
-  public function configure()
-  {
-  }
-}
+  public function configure() {}
+
+} // end class
