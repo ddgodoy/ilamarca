@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [main.css, admin.css]
 
-  javascripts:    [/js/jquery.min.js]
+  javascripts:    [/js/jquery.min.js, /js/functions.js]
 
   has_layout:     true
   layout:         layout

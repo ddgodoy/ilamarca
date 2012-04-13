@@ -2,6 +2,7 @@
 	$str_module = $sf_params->get('module');
 	$str_action = $sf_params->get('action');
 	$request_id = $id ?  "?id=$id" : '';
+	$db_operations = OperationTable::getInstance()->getAllForSelect();
 ?>
 <script type="text/javascript">
 function updCityList(geo_zone_id)
@@ -79,7 +80,7 @@ function updNeighborhoodList(city_id)
 								<img src="/admin/images/loader.gif" id="img_loading_neighborhoods" border="0" style="visibility:hidden;"/>
 							</td>
 							<td style="padding-left:30px;">
-								<label><?php echo __('Neighborhood') ?></label>
+								<label><?php echo __('Neighborhood') ?> *</label>
 							</td>
 						</tr>
 						<tr>
@@ -105,9 +106,30 @@ function updNeighborhoodList(city_id)
 					<tr>
 						<td width="10%"><label><?php echo __('Property type') ?> *</label></td>
 						<td>
-							<select name="property_type" class="form_input" style="width:300px;">
+							<select name="property_type" class="form_input" style="width:314px;">
 								<?php echo Common::fillSimpleSelect(PropertyTypeTable::getInstance()->getAllForSelect(true), $property_type) ?>
 							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label><?php echo __('Operation') ?> *</label></td>
+						<td>
+							<table cellpadding="0" cellspacing="0">
+								<?php foreach ($db_operations as $id_ope => $db_ope): ?>
+								<tr>
+									<td style="padding-right:20px;">
+										<input type="checkbox" name="operations[]" value="<?php echo $id_ope ?>" style="vertical-align:middle;" />
+										<label><?php echo $db_ope ?></label>
+									</td>
+									<td>
+										<select class="form_input" name="currencies[]">
+											<?php echo Common::fillSimpleSelect(CurrencyTable::getInstance()->getAllForSelect()) ?>
+										</select>
+									</td>
+									<td><input type="text" class="form_input" name="prices[]" style="width:100px;text-align:right;" value="0.00" onkeypress="return onlyDecimal(this, event);"/></td>
+								</tr>
+								<?php endforeach; ?>
+							</table>
 						</td>
 					</tr>
 					<tr>

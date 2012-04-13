@@ -97,6 +97,7 @@
       <trans-unit id="87"><source>Select the property type</source><target>Seleccione el tipo de propiedad</target></trans-unit>
       <trans-unit id="88"><source>Select the neighborhood</source><target>Seleccione el barrio</target></trans-unit>
       <trans-unit id="89"><source>Location</source><target>Ubicación</target></trans-unit>
+      <trans-unit id="90"><source>Operation</source><target>Operación</target></trans-unit>
     </body>
   </file>
 </xliff>
