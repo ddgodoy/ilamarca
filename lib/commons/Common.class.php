@@ -48,7 +48,7 @@ class Common
 	 * @param mixed $selected
 	 * @return string
 	 */
-	function fillSimpleSelect($options, $selected = 0)
+	public static function fillSimpleSelect($options, $selected = 0)
 	{
 		$tag_options = '';
 
@@ -58,6 +58,37 @@ class Common
 			$tag_options .= "<option value='$key'$style_selected>$value</option>\n";
 		}		
 		return $tag_options;
+	}
+	
+	/**
+	 * Render options for multiple select tag with checkboxes
+	 *
+	 * @param string $objeto
+	 * @param array $datos
+	 * @param array $seleccionados
+	 * @param integer $altura_div
+	 * @return string
+	 */
+	public static function fillMultipleSelectWithBoxes($objeto, $datos, $seleccionados = array(), $altura_div = 158)
+	{
+		$Opciones = "<div class='d_2' style='height:$altura_div;'>";
+
+		foreach($datos as $indice => $valor)
+		{
+			$elegida = "";
+			$bgcolor = "#E5E5E5";
+			$frcolor = "#333333";
+
+			foreach ($seleccionados as $selected) {
+				if ($indice == $selected) {
+					$elegida = " CHECKED "; $bgcolor = "#F1DCB4"; break;
+				}
+			}
+			$Opciones .= "<label style='display:block;background-color:$bgcolor;color:$frcolor;'>";
+			$Opciones .= "<input name='$objeto' value='$indice' type='checkbox' $elegida onclick='highlight_div(this);' style='vertical-align:middle;'>";
+			$Opciones .= "&nbsp;$valor</label>\n";
+		}
+		return $Opciones."</div>";
 	}
 
 } // end class

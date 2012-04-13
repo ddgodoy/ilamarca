@@ -80,10 +80,6 @@ Currency:
     name: United States Dollar
     iso_code: USD
     symbol: $
-  currency_eur:
-    name: Euro Member Countries
-    iso_code: EUR
-    symbol: €
 
 ###############################################################
 

@@ -346,10 +346,10 @@ select {
 	text-align: left;
 }
 .divSelectMultiple {
-	height: 250px;
-	overflow: auto;
-	width: 400px;
-	border: 1px solid #A7CACD;
+	font-family: Arial;
+	font-size: 12px;
+	width: 100%;
+	border: 0px;
 }
 .enmarcar {
 	border-top-width: 1px;
@@ -929,4 +929,9 @@ h2.grupo {
 }
 .content .paneles.muro .entrada strong {
 	float: left;
+}
+.d_2 {
+	overflow: auto;
+	border: none;
+	background-color: #E5E5E5;
 }

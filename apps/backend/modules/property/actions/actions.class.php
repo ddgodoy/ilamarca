@@ -88,8 +88,11 @@ class propertyActions extends sfActions
   	$this->geo_zone      = 0;
   	$this->city          = 0;
   	$this->neighborhood  = 0;
-  	$this->error   = array();
-  	$entity_object = NULL;
+  	$this->operations    = array();
+  	$this->currencies    = array();
+  	$this->prices        = array();
+  	$this->error         = array();
+  	$entity_object       = NULL;
 
   	if ($this->id) {
   		$entity_object = RealPropertyTable::getInstance()->find($this->id);
@@ -98,6 +101,11 @@ class propertyActions extends sfActions
 	  	$this->geo_zone      = $entity_object->Neighborhood->City->getGeoZoneId();
 	  	$this->city          = $entity_object->Neighborhood->getCityId();
 	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
+	  	$a_operations_values = OperationRealPropertyTable::getInstance()->getOperationsByPropertyId($this->id);
+
+	  	$this->operations = $a_operations_values['operations'];
+	  	$this->currencies = $a_operations_values['currencies'];
+	  	$this->prices     = $a_operations_values['prices'];
   	}
   	$this->form = new RealPropertyForm($entity_object);
 
@@ -107,6 +115,9 @@ class propertyActions extends sfActions
   		$this->geo_zone      = $request->getParameter('geo_zone');
   		$this->city          = $request->getParameter('city');
 	  	$this->neighborhood  = $request->getParameter('neighborhood');
+	  	$this->operations    = $request->getParameter('operations');
+	  	$this->currencies    = $request->getParameter('currencies');
+	  	$this->prices        = $request->getParameter('prices');
 
   		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
   		if (empty($this->neighborhood))  { $this->error['neighborhood'] = 'Select the neighborhood'; }
