@@ -12,4 +12,25 @@
  */
 class OperationRealProperty extends BaseOperationRealProperty
 {
+    /**
+     * get Data Operations By Property Id
+     * @param int $property_id
+     * @return array()
+     */
+    public static function getDataOperationsByPropertyId($property_id)
+    {
+        $array_data = array('operations'=>array(), 'currencies'=>array(), 'prices'=>array());
+
+        $operations = OperationRealPropertyTable::getInstance()->getOperationsByPropertyId($property_id);
+
+        foreach ( $operations as $value) 
+        {
+            $array_data['operations'][] = $value->getOperationId();
+            $array_data['currencies'][$value->getOperationId()]['id'] = $value->getCurrencyId();
+            $array_data['prices'][$value->getOperationId()]['number'] = $value->getPrice();
+        }
+        
+        return $array_data;
+
+    }
 }
