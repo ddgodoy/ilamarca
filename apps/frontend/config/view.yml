@@ -3,15 +3,15 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:        Inmobiliaria Lamarca
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [styles.css, /js/jqtransformplugin/jqtransform.css]
 
-  javascripts:    []
+  javascripts:    [jquery.min.js, /js/jqtransformplugin/jquery.jqtransform.js]
 
   has_layout:     true
   layout:         layout
