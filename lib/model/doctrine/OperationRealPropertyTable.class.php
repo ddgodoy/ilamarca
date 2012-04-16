@@ -4,22 +4,29 @@ class OperationRealPropertyTable extends Doctrine_Table
 {
   public static function getInstance() { return Doctrine_Core::getTable('OperationRealProperty'); }
   
-  /**
-	 * Get array of operations by property
-	 *
-	 * @return array
-	 */
-	public function getOperationsByPropertyId($property_id)
-	{
-		$a = array('operations'=>array(), 'currencies'=>array(), 'prices'=>array());
+    /**
+     * Get array of operations by property
+     *
+     * @return array
+     */
+    public function getOperationsByPropertyId($property_id)
+    {
+            $q = $this->createQuery('orp')
+                 ->where('real_property_id = ?', $property_id)
+                 ->orderBy('operation_id');
 
-		$q = Doctrine_Query::create()->from('OperationRealProperty')->where("real_property_id = $property_id")->orderBy('operation_id');
-		$d = $q->fetchArray();
+            return $q->execute();
+    }
 
-		foreach ($d as $value) {
-			//$arr_options[$value['id']] = $value['name'];
-		}
-		return $a;
-	}
+    public function deleteOperationsByProperty($property_id)
+    {
+        $q = $this->createQuery('orp')
+                 ->delete()
+                 ->where('real_property_id = ?', $property_id)
+                 ->orderBy('operation_id');
+
+            return $q->execute();
+    }
+
 
 } // end class

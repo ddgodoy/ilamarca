@@ -12,9 +12,9 @@ class RealPropertyForm extends BaseRealPropertyForm
 {
   public function configure()
   {
-  	$i18N = sfContext::getInstance()->getI18N();
+    $i18N = sfContext::getInstance()->getI18N();
 
-  	$this->setWidgets(array(
+    $this->setWidgets(array(
       'name'             => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:600px;')),
       'property_type_id' => new sfWidgetFormInputHidden(),
       'neighborhood_id'  => new sfWidgetFormInputHidden(),
