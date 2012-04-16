@@ -93,10 +93,11 @@ class propertyActions extends sfActions
   	$this->prices        = array();
   	$this->error         = array();
   	$entity_object       = NULL;
-        $this->db_operations = OperationTable::getInstance()->getAllForSelect();
-        $this->sl_operations = array();
-        $this->sl_currencies = array();
-        $this->sl_prices     = array();
+
+    $this->db_operations = OperationTable::getInstance()->getAllForSelect();
+    $this->sl_operations = array();
+    $this->sl_currencies = array();
+    $this->sl_prices     = array();
 
   	if ($this->id) {
   		$entity_object = RealPropertyTable::getInstance()->find($this->id);
@@ -105,7 +106,9 @@ class propertyActions extends sfActions
 	  	$this->geo_zone      = $entity_object->Neighborhood->City->getGeoZoneId();
 	  	$this->city          = $entity_object->Neighborhood->getCityId();
 	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
-                $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
+
+      $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
+
 	  	$this->sl_operations = $a_operations_values['operations'];
 	  	$this->sl_currencies = $a_operations_values['currencies'];
 	  	$this->sl_prices     = $a_operations_values['prices'];
@@ -121,56 +124,49 @@ class propertyActions extends sfActions
 	  	$this->operations    = $request->getParameter('operations');
 	  	$this->currencies    = $request->getParameter('currencies');
 	  	$this->prices        = $request->getParameter('prices');
+      $this->sl_operations = $request->getParameter('operations');
+      $this->sl_currencies = $request->getParameter('currencies');
+      $this->sl_prices     = $request->getParameter('prices');
 
-                $this->sl_operations = $request->getParameter('operations');
-                $this->sl_currencies = $request->getParameter('currencies');
-                $this->sl_prices     = $request->getParameter('prices');
 
+  		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
+  		if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
+      if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operations'; }
+      if (count($this->sl_currencies)==0) { $this->error['currencies'] = 'Select the currencies'; }
 
-  		if (empty($this->property_type))         { $this->error['property_type'] = 'Select the property type'; }
-  		if (empty($this->neighborhood))          { $this->error['neighborhood'] = 'Select the neighborhood'; }
-                if (count($this->sl_operations)==0)      { $this->error['operations'] = 'Select the operations'; }
-                if (count($this->sl_currencies)==0)      { $this->error['currencies'] = 'Select the currencies'; }
-                $sum_array = 0;
-                if (count($this->sl_prices)!=0 )
-                {
-                    foreach ($this->sl_prices as $k=>$value) {
-                       if($value['number']=='0.00' && in_array($k, $this->sl_operations) )
-                       {
-                           $this->error['prices'] = 'Enter the prices';
-                       }
-                    }
-                    
-                }
-                
+      $sum_array = 0;
+
+      if (count($this->sl_prices)!=0 ) {
+        foreach ($this->sl_prices as $k=>$value) {
+           if ($value['number']=='0.00' && in_array($k, $this->sl_operations)) {
+             $this->error['prices'] = 'Enter the prices';
+           }
+        }
+      }
   		## continue
   		if (!$this->error) {
-                        $form_request = $request->getParameter($this->form->getName());
-                        $form_request['property_type_id'] = $this->property_type;
-                        $form_request['neighborhood_id'] = $this->neighborhood;
-                        $form_request['app_user_id'] = $this->getUser()->getAttribute('user_id');
+        $form_request = $request->getParameter($this->form->getName());
+        $form_request['property_type_id'] = $this->property_type;
+        $form_request['neighborhood_id'] = $this->neighborhood;
+        $form_request['app_user_id'] = $this->getUser()->getAttribute('user_id');
 
-                        $this->form->bind($form_request);
+        $this->form->bind($form_request);
 
-		        if ($this->form->isValid()) {
+        if ($this->form->isValid()) {
 	  			$recorded = $this->form->save();
 
-                                if(!$this->form->isNew())
-                                {
-                                    $operation_delete = OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
-                                }
-
-                                foreach ($this->sl_operations as $v)
-                                {
-                                    $operation = new OperationRealProperty;
-                                    $operation->setOperationId($v);
-                                    $operation->setCurrencyId($this->sl_currencies[$v]['id']);
-                                    $operation->setPrice($this->sl_prices[$v]['number']);
-                                    $operation->setRealPropertyId($recorded->getId());
-                                    $operation->save();
-                                }
-
-
+          if (!$this->form->isNew()) {
+            $operation_delete = OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
+          }
+          foreach ($this->sl_operations as $v)
+          {
+              $operation = new OperationRealProperty;
+              $operation->setOperationId($v);
+              $operation->setCurrencyId($this->sl_currencies[$v]['id']);
+              $operation->setPrice($this->sl_prices[$v]['number']);
+              $operation->setRealPropertyId($recorded->getId());
+              $operation->save();
+          }
 	  			$this->redirect('property/show?id='.$recorded->getId());
 	  		}	
   		}
