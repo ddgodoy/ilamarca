@@ -2,7 +2,6 @@
 	$str_module = $sf_params->get('module');
 	$str_action = $sf_params->get('action');
 	$request_id = $id ?  "?id=$id" : '';
-	$db_operations = OperationTable::getInstance()->getAllForSelect();
 ?>
 <script type="text/javascript">
 function updCityList(geo_zone_id)
@@ -114,19 +113,26 @@ function updNeighborhoodList(city_id)
 					<tr>
 						<td><label><?php echo __('Operation') ?> *</label></td>
 						<td>
-							<table cellpadding="0" cellspacing="0">
+                                                       <table cellpadding="0" cellspacing="0">
 								<?php foreach ($db_operations as $id_ope => $db_ope): ?>
 								<tr>
 									<td style="padding-right:20px;">
-										<input type="checkbox" name="operations[]" value="<?php echo $id_ope ?>" style="vertical-align:middle;" />
+                                                                            <?php $operations = is_array($sf_data->getRaw('sl_operations'))?$sf_data->getRaw('sl_operations'):array(); ?>
+                                                                            <input type="checkbox" name="operations[]" value="<?php echo $id_ope ?>" <?php if(in_array($id_ope, $operations)){echo 'checked';} ?>  style="vertical-align:middle;" />
 										<label><?php echo $db_ope ?></label>
 									</td>
 									<td>
-										<select class="form_input" name="currencies[]">
-											<?php echo Common::fillSimpleSelect(CurrencyTable::getInstance()->getAllForSelect()) ?>
+                                                                            <?php $array_currencie =  $sf_data->getRaw('sl_currencies'); ?>
+                                                                            <?php $selected = !empty($array_currencie[$id_ope]['id'])?$array_currencie[$id_ope]['id']:''; ?>
+										<select class="form_input" name="currencies[<?php echo $id_ope ?>][id]">
+                                                                                        <?php echo Common::fillSimpleSelect(CurrencyTable::getInstance()->getAllForSelect(),$selected) ?>
 										</select>
 									</td>
-									<td><input type="text" class="form_input" name="prices[]" style="width:100px;text-align:right;" value="0.00" onkeypress="return onlyDecimal(this, event);"/></td>
+									<td>
+                                                                            <?php $array_prices =  $sf_data->getRaw('sl_prices'); ?>
+                                                                            <?php $value = !empty($array_prices[$id_ope]['number'])?$array_prices[$id_ope]['number']:'0.00'; ?>
+                                                                            <input type="text" class="form_input" name="prices[<?php echo $id_ope ?>][number]" style="width:100px;text-align:right;" value="<?php echo $value ?>" onkeypress="return onlyDecimal(this, event);"/>
+                                                                        </td>
 								</tr>
 								<?php endforeach; ?>
 							</table>
