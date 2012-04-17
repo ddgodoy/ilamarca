@@ -37,7 +37,7 @@ class NeighborhoodTable extends Doctrine_Table
 	public function getByCityId($city)
 	{
 		$sf_instance = sfContext::getInstance();
-		$arr_options = array('-- '.$sf_instance->getI18N()->__('Select').' --');
+		$arr_options = array();
 		
 		$q = Doctrine_Query::create()->select('id, name')->from('Neighborhood')->where("city_id = $city")->orderBy('name ASC');
 		$d = $q->fetchArray();
