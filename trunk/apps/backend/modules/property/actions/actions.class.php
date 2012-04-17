@@ -226,4 +226,15 @@ class propertyActions extends sfActions
     return $this->renderPartial('property/ajaxNeighborhood'); exit();
   }
 
+  /**
+   * Ajax get Text area videos
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeAjaxVideos(sfWebRequest $request)
+  {
+    return $this->renderComponent('property', 'getVideos');
+    exit();
+  }
+
 } // end class
