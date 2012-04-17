@@ -3,46 +3,6 @@
 	$str_action = $sf_params->get('action');
 	$request_id = $id ?  "?id=$id" : '';
 ?>
-<script type="text/javascript">
-function updCityList(geo_zone_id)
-{
-	var l_img = document.getElementById('img_loading_cities');
-	var s_url = document.getElementById('ajax_url_city').value;
-
-	l_img.style.visibility = 'visible';
-
-	jQuery.ajax({
-		type: 'POST',
-		url: s_url,
-		data: 'geo_zone='+geo_zone_id,
-		success: function(data) {
-			l_img.style.visibility = 'hidden'; $('#div_sel_city').html(data);
-		}
-	});
-	var sel_neighborhood = document.getElementById('neighborhood');
-
-	sel_neighborhood.options.length = 0;
-	sel_neighborhood[0] = new Option('<?php echo '-- '.__('Select').' --' ?>', '0');
-	sel_neighborhood[0].selected = true;
-}
-//
-function updNeighborhoodList(city_id)
-{
-	var l_img = document.getElementById('img_loading_neighborhoods');
-	var s_url = document.getElementById('ajax_url_neighborhood').value;
-
-	l_img.style.visibility = 'visible';
-
-	jQuery.ajax({
-		type: 'POST',
-		url: s_url,
-		data: 'city='+city_id,
-		success: function(data) {
-			l_img.style.visibility = 'hidden'; $('#div_sel_neighborhood').html(data);
-		}
-	});
-}
-</script>
 <div class="content">
 	<div class="leftside">
 		<div class="mapa">
@@ -95,7 +55,7 @@ function updNeighborhoodList(city_id)
 							</td>
 							<td style="padding-left:30px;">
 								<div id="div_sel_neighborhood">
-									<?php include_partial('ajaxNeighborhood', array('city'=>$city, 'neighborhood'=>$neighborhood)); ?>
+									<?php include_partial('ajaxNeighborhood', array('city'=>$city, 'neighborhood'=>$neighborhood));?>
 								</div>
 							</td>
 						</tr>
@@ -151,6 +111,21 @@ function updNeighborhoodList(city_id)
 							</table>
 						</td>
 					</tr>
+                                        <tr>
+                                            <td><label><?php echo __('Videos') ?></label></td>
+                                            <td>
+                                                    <img src="/admin/images/loader.gif" id="img_loading_video" border="0" style="display: none;"/>
+                                                    <table cellpadding="0" cellspacing="0" id="table_content">
+                                                        <tr>
+                                                            <?php include_component('property', 'getVideos') ?>
+                                                        </tr>
+                                                    </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>&nbsp;<label id="add"><?php echo __('add') ?> +</label></td>
+                                        </tr>
 				</table>
 			</fieldset>
 			<div style="padding-top:10px;" class="botonera">
@@ -159,6 +134,7 @@ function updNeighborhoodList(city_id)
 				
 				<input type="hidden" id="ajax_url_city" value="<?php echo url_for('property/ajaxCity') ?>"/>
 				<input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('property/ajaxNeighborhood') ?>"/>
+                                <input type="hidden" id="ajax_url_videos" value="<?php echo url_for('property/ajaxVideos') ?>"/>
 				
 				<?php echo $form->renderHiddenFields() ?>
 			</div>

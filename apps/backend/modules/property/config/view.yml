@@ -1,2 +1,2 @@
 formSuccess:
-  javascripts: [numvalidate.js]
+  javascripts: [numvalidate.js, property.js]
