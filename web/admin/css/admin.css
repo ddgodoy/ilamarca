@@ -935,3 +935,8 @@ h2.grupo {
 	border: none;
 	background-color: #E5E5E5;
 }
+.close{
+       cursor: pointer;
+       color: red;
+       text-align: center;
+}
