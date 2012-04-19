@@ -24,6 +24,10 @@
       <trans-unit id="17"><source>Select the user role</source><target>Select the user role</target></trans-unit>
       <trans-unit id="18"><source>Select the geo zone</source><target>Select the geo zone</target></trans-unit>
       <trans-unit id="19"><source>Select the city</source><target>Select the city</target></trans-unit>
+      <trans-unit id="20"><source>Select the property type</source><target>Select the property type</target></trans-unit>
+      <trans-unit id="21"><source>Select the neighborhood</source><target>Select the neighborhood</target></trans-unit>
+      <trans-unit id="22"><source>Select the operation</source><target>Select the operation</target></trans-unit>
+      <trans-unit id="23"><source>Enter the price for the operation</source><target>Enter the price for the operation</target></trans-unit>
     </body>
   </file>
 </xliff>

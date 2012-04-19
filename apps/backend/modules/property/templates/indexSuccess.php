@@ -39,7 +39,7 @@
       <?php foreach ($oList as $item): ?>
       <tr class="<?php if (!empty($odd)) { echo 'gris'; $odd=0; } else { echo 'blanco'; $odd=1; } ?>">
         <td><?php echo $item->getName() ?></td>
-        <td><?php echo $item->getDetail() ?></td>
+        <td><?php echo truncate_text($item->getDetail()) ?></td>
         <td><?php echo $item->Neighborhood->getName() ?></td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">

@@ -9,8 +9,5 @@
  */
 class propertyComponents extends sfComponents
 {
-    public function executeGetVideos(sfWebRequest $request)
-    {
 
-    }
-}
+} // end class

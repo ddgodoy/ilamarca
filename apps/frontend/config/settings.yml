@@ -30,3 +30,12 @@ all:
 
     # Enable the database manager
     use_database:           true
+    
+    # Internationalization enabled
+    i18n: on
+
+    # Set default culture
+    default_culture: es
+
+    # Set standard helpers
+    standard_helpers: [Partial, I18N, Text]

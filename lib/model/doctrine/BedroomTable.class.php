@@ -1,11 +1,11 @@
 <?php
 
-class PropertyTypeTable extends Doctrine_Table
+class BedroomTable extends Doctrine_Table
 {  
-  public static function getInstance() { return Doctrine_Core::getTable('PropertyType'); }
-
+  public static function getInstance() { return Doctrine_Core::getTable('Bedroom'); }
+  
   /**
-	 * Get array of all property types for select tag
+	 * Get array of all bedrooms for select tag
 	 *
 	 * @param boolean $add_empty
 	 * @param string $empty_text
@@ -19,7 +19,7 @@ class PropertyTypeTable extends Doctrine_Table
 		if ($add_empty) {
 			$arr_options['0'] = '-- '.$sf_instance->getI18N()->__($empty_text).' --';
 		}
-		$q = Doctrine_Query::create()->select('id, name')->from('PropertyType')->orderBy('id');
+		$q = Doctrine_Query::create()->select('id, name')->from('Bedroom')->orderBy('id');
 		$d = $q->fetchArray();
 
 		foreach ($d as $value) {

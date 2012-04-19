@@ -88,9 +88,11 @@ class propertyActions extends sfActions
   	$this->geo_zone      = 0;
   	$this->city          = 0;
   	$this->neighborhood  = 0;
+  	$this->bedroom       = 1;
   	$this->operations    = array();
   	$this->currencies    = array();
   	$this->prices        = array();
+  	$this->videos        = array();
   	$this->error         = array();
   	$entity_object       = NULL;
 
@@ -102,10 +104,12 @@ class propertyActions extends sfActions
   	if ($this->id) {
   		$entity_object = RealPropertyTable::getInstance()->find($this->id);
 
+  		$this->bedroom       = $entity_object->getBedroomId();
   		$this->property_type = $entity_object->getPropertyTypeId();
-	  	$this->geo_zone      = $entity_object->Neighborhood->City->getGeoZoneId();
-	  	$this->city          = $entity_object->Neighborhood->getCityId();
+	  	$this->geo_zone      = $entity_object->getGeoZoneId();
+	  	$this->city          = $entity_object->getCityId();
 	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
+	  	$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
 
       $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
@@ -117,6 +121,7 @@ class propertyActions extends sfActions
 
   	if ($request->getMethod() == 'POST')
   	{
+  		$this->bedroom       = $request->getParameter('bedroom');
   		$this->property_type = $request->getParameter('property_type');
   		$this->geo_zone      = $request->getParameter('geo_zone');
   		$this->city          = $request->getParameter('city');
@@ -127,28 +132,32 @@ class propertyActions extends sfActions
       $this->sl_operations = $request->getParameter('operations');
       $this->sl_currencies = $request->getParameter('currencies');
       $this->sl_prices     = $request->getParameter('prices');
-
+      $this->videos        = $request->getParameter('videos');
 
   		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
   		if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
-      if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operations'; }
-      if (count($this->sl_currencies)==0) { $this->error['currencies'] = 'Select the currencies'; }
+      if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
 
       $sum_array = 0;
 
-      if (count($this->sl_prices)!=0 ) {
-        foreach ($this->sl_prices as $k=>$value) {
-           if ($value['number']=='0.00' && in_array($k, $this->sl_operations)) {
-             $this->error['prices'] = 'Enter the prices';
-           }
+      if (count($this->sl_prices) != 0 ) {
+        foreach ($this->sl_prices as $k => $value) {
+        	$_price_number = (float) $value['number'];
+
+          if (empty($_price_number) && in_array($k, $this->sl_operations)) {
+            $this->error['prices'] = 'Enter the price for the operation'; break;
+          }
         }
       }
   		## continue
   		if (!$this->error) {
         $form_request = $request->getParameter($this->form->getName());
+        $form_request['bedroom_id']       = $this->bedroom;
         $form_request['property_type_id'] = $this->property_type;
-        $form_request['neighborhood_id'] = $this->neighborhood;
-        $form_request['app_user_id'] = $this->getUser()->getAttribute('user_id');
+        $form_request['geo_zone_id']      = $this->geo_zone;
+        $form_request['city_id']          = $this->city;
+        $form_request['neighborhood_id']  = $this->neighborhood;
+        $form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
 
         $this->form->bind($form_request);
 
@@ -156,17 +165,23 @@ class propertyActions extends sfActions
 	  			$recorded = $this->form->save();
 
           if (!$this->form->isNew()) {
-            $operation_delete = OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
+            OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
           }
           foreach ($this->sl_operations as $v)
           {
-              $operation = new OperationRealProperty;
-              $operation->setOperationId($v);
-              $operation->setCurrencyId($this->sl_currencies[$v]['id']);
-              $operation->setPrice($this->sl_prices[$v]['number']);
-              $operation->setRealPropertyId($recorded->getId());
-              $operation->save();
+            $operation = new OperationRealProperty;
+            $operation->setOperationId($v);
+            $operation->setCurrencyId($this->sl_currencies[$v]['id']);
+            $operation->setPrice($this->sl_prices[$v]['number']);
+            $operation->setRealPropertyId($recorded->getId());
+            $operation->save();
           }
+          // set videos
+          VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
+          //
+          $recorded->setUpdated(date('Y-m-d H:i:s'));
+          $recorded->save();
+
 	  			$this->redirect('property/show?id='.$recorded->getId());
 	  		}	
   		}
@@ -224,17 +239,6 @@ class propertyActions extends sfActions
     $this->city = $request->getParameter('city');
 
     return $this->renderPartial('property/ajaxNeighborhood'); exit();
-  }
-
-  /**
-   * Ajax get Text area videos
-   *
-   * @param sfWebRequest $request
-   */
-  public function executeAjaxVideos(sfWebRequest $request)
-  {
-    return $this->renderComponent('property', 'getVideos');
-    exit();
   }
 
 } // end class

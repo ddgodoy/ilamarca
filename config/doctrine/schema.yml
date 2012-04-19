@@ -51,6 +51,15 @@ UserRole:
     code:        { type: string(50) }
 
 #
+# BEDROOM
+#
+Bedroom:
+  tableName: bedroom
+  columns:
+    id:    { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:  { type: string(50), notnull: true }
+
+#
 # GEO_ZONE
 #
 GeoZone:
@@ -140,12 +149,19 @@ RealProperty:
     name:             { type: string(250), notnull: true }
     detail:           { type: text }
     status:           { type: string(30) }
+    bedroom_id:       { type: integer(4), notnull: true }
     property_type_id: { type: integer(4), notnull: true }
+    geo_zone_id:      { type: integer(4), notnull: true }
+    city_id:          { type: integer(4), notnull: true }
     neighborhood_id:  { type: integer(4), notnull: true }
     app_user_id:      { type: integer(4), notnull: true }
+    updated:          { type: datetime }
 
   relations:
+    Bedroom:       { class: Bedroom, local: bedroom_id, foreign: id, foreignAlias: Bedroom, onDelete: CASCADE }
     PropertyType:  { class: PropertyType, local: property_type_id, foreign: id, foreignAlias: PropertyType, onDelete: CASCADE }
+    GeoZone:       { class: GeoZone, local: geo_zone_id, foreign: id, foreignAlias: GeoZone, onDelete: CASCADE }
+    City:          { class: City, local: city_id, foreign: id, foreignAlias: City, onDelete: CASCADE }
     Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: Neighborhood, onDelete: CASCADE }
     AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: CASCADE }
 

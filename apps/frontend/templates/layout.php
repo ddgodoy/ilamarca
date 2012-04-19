@@ -6,21 +6,16 @@
     <?php include_title() ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <script language="javascript">
-			$(function(){
-				$('form').jqTransform({imgPath:'jqtransformplugin/img/'});
-			});
-		</script>
   </head>
   <body>
   	<div class="bg-content">
   		<div class="content clearfix">
 				<div class="header">
-					<div class="logo"><a href="#"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
+					<div class="logo"><a href="<?php echo url_for('@homepage') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
 					<div class="submenu">
-					<div class="boton"><a href="" class="login"></a></div>
-					<div class="boton"><a href="" class="logout"></a></div>
-					<div class="boton"><a href="" class="contacto"></a></div>
+					<div class="boton"><a href="#" class="login"></a></div>
+					<div class="boton"><a href="#" class="logout"></a></div>
+					<div class="boton"><a href="<?php echo url_for('home/contact') ?>" class="contacto"></a></div>
 					<a href="https://www.facebook.com/inmobiliaria.lamarca"  target="_blank" class="fb"></a>
 					</div>
 				</div>

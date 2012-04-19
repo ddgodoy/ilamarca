@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [styles.css, /js/jqtransformplugin/jqtransform.css]
+  stylesheets:    [styles.css]
 
-  javascripts:    [jquery.min.js, /js/jqtransformplugin/jquery.jqtransform.js]
+  javascripts:    [jquery.min.js, jquery.tools.min.js, /admin/js/numvalidate.js]
 
   has_layout:     true
   layout:         layout

@@ -215,6 +215,7 @@
 				.blur(function(){oTable.removeClass('jqTransformTextarea-focus');})
 				.appendTo($('#jqTransformTextarea div',oTable))
 			;
+			var oTable = textarea.get(0).oTable;
 			this.oTable = oTable;
 			if($.browser.safari){
 				$('#jqTransformTextarea')
