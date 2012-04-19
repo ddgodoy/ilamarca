@@ -5,6 +5,24 @@ Company:
 
 ###############################################################
 
+Bedroom:
+  bedroom_1:
+    name: Monoambiente
+  bedroom_2:
+    name: 1 Dormitorio
+  bedroom_3:
+    name: 2 Dormitorios
+  bedroom_4:
+    name: 3 Dormitorios
+  bedroom_5:
+    name: 4 Dormitorios
+  bedroom_6:
+    name: Más de 4 dormitorios
+  bedroom_7:
+    name: Sin dormitorios
+
+###############################################################
+
 UserRole:
   user_role_super_admin:
     name: Super Admin
@@ -85,18 +103,1334 @@ Currency:
 
 GeoZone:
   geo_zone_1:
-    name: Argentina
+    name: Córdoba
+  geo_zone_2:
+    name: Capital Federal
+  geo_zone_3:
+    name: Bs.As. G.B.A. Zona Norte
+  geo_zone_4:
+    name: Bs.As. G.B.A. Zona Oeste
+  geo_zone_5:
+    name: Bs.As. G.B.A. Zona Sur
+  geo_zone_6:
+    name: Buenos Aires Costa Atlántica
+  geo_zone_7:
+    name: Buenos Aires Interior
+  geo_zone_8:
+    name: Catamarca
+  geo_zone_9:
+    name: Chaco
+  geo_zone_10:
+    name: Chubut
+  geo_zone_11:
+    name: Corrientes
+  geo_zone_12:
+    name: Entre Ríos
+  geo_zone_13:
+    name: Formosa
+  geo_zone_14:
+    name: Jujuy
+  geo_zone_15:
+    name: La Pampa
+  geo_zone_16:
+    name: La Rioja
+  geo_zone_17:
+    name: Mendoza
+  geo_zone_18:
+    name: Misiones
+  geo_zone_19:
+    name: Neuquén
+  geo_zone_20:
+    name: Río Negro
+  geo_zone_21:
+    name: Salta
+  geo_zone_22:
+    name: San Juan
+  geo_zone_23:
+    name: San Luis
+  geo_zone_24:
+    name: Santa Cruz
+  geo_zone_25:
+    name: Santa Fe
+  geo_zone_26:
+    name: Santiago Del Estero
+  geo_zone_27:
+    name: Tierra Del Fuego
+  geo_zone_28:
+    name: Tucumán
+  geo_zone_29:
+    name: Otros lugares
 
 ###############################################################
 
 City:
   city_1:
-    name: Cordoba
+    name: Capital
     GeoZone: geo_zone_1
 
 ###############################################################
 
 Neighborhood:
   neighborhood_1:
-    name: Alta Cordoba
+    name: 1 DE MAYO
+    City: city_1
+  neighborhood_2:
+    name: 20 DE JUNIO
+    City: city_1
+  neighborhood_3:
+    name: A.T.E.
+    City: city_1
+  neighborhood_4:
+    name: AATRA
+    City: city_1
+  neighborhood_5:
+    name: ACHAVAL PEÑA
+    City: city_1
+  neighborhood_6:
+    name: ACOSTA
+    City: city_1
+  neighborhood_7:
+    name: AERONAUTICO
+    City: city_1
+  neighborhood_8:
+    name: ALAMEDA
+    City: city_1
+  neighborhood_9:
+    name: ALBERDI
+    City: city_1
+  neighborhood_10:
+    name: ALBERTO
+    City: city_1
+  neighborhood_11:
+    name: ALBORADA
+    City: city_1
+  neighborhood_12:
+    name: ALBORADA
+    City: city_1
+  neighborhood_13:
+    name: ALEJANDRO CARBO
+    City: city_1
+  neighborhood_14:
+    name: ALEJANDRO CENTENO
+    City: city_1
+  neighborhood_15:
+    name: ALEM L.N.(E)
+    City: city_1
+  neighborhood_16:
+    name: ALEM L.N.(O)
+    City: city_1
+  neighborhood_17:
+    name: ALT. DE SAN MARTIN
+    City: city_1
+  neighborhood_18:
+    name: ALTA CORDOBA
+    City: city_1
+  neighborhood_19:
+    name: ALTAMIRA
+    City: city_1
+  neighborhood_20:
+    name: ALTO ALBERDI
+    City: city_1
+  neighborhood_21:
+    name: ALTO HERMOSO
+    City: city_1
+  neighborhood_22:
+    name: ALTO PALERMO
+    City: city_1
+  neighborhood_23:
+    name: ALTO VERDE
+    City: city_1
+  neighborhood_24:
+    name: ALTOS DE V.SARSFIELD
+    City: city_1
+  neighborhood_25:
+    name: ALTOS DE VILLA CABRERA
+    City: city_1
+  neighborhood_26:
+    name: ALTOS DEL CHATEAU
+    City: city_1
+  neighborhood_27:
+    name: ALVEAR MARCELO T. DE
+    City: city_1
+  neighborhood_28:
+    name: AMEGHINO NORTE
+    City: city_1
+  neighborhood_29:
+    name: AMEGHINO SUD
+    City: city_1
+  neighborhood_30:
+    name: AMP.1 DE MAYO
+    City: city_1
+  neighborhood_31:
+    name: AMP.ALTAMIRA
+    City: city_1
+  neighborhood_32:
+    name: AMP.EMPALME
+    City: city_1
+  neighborhood_33:
+    name: AMP.JARDIN ESPINOSA
+    City: city_1
+  neighborhood_34:
+    name: AMP.LAS PALMA
+    City: city_1
+  neighborhood_35:
+    name: AMP.LOS PLATANOS
+    City: city_1
+  neighborhood_36:
+    name: AMP.PALMAR
+    City: city_1
+  neighborhood_37:
+    name: AMP.PUEYRREDON
+    City: city_1
+  neighborhood_38:
+    name: AMP.RES.AMERICA
+    City: city_1
+  neighborhood_39:
+    name: AMP.ROSEDAL
+    City: city_1
+  neighborhood_40:
+    name: AMP.SAN FERNANDO
+    City: city_1
+  neighborhood_41:
+    name: AMP.SAN PABLO
+    City: city_1
+  neighborhood_42:
+    name: AMP.V.SARSFIELD
+    City: city_1
+  neighborhood_43:
+    name: AMP.YAPEYU
+    City: city_1
+  neighborhood_44:
+    name: ANA M. ZUMARAN
+    City: city_1
+  neighborhood_45:
+    name: APEADERO LA TABLADA
+    City: city_1
+  neighborhood_46:
+    name: ARGENTINA
+    City: city_1
+  neighborhood_47:
+    name: ARGUELLO
+    City: city_1
+  neighborhood_48:
+    name: ARGUELLO NORTE
+    City: city_1
+  neighborhood_49:
+    name: ASTORI PIERO
+    City: city_1
+  neighborhood_50:
+    name: ATLANTICO
+    City: city_1
+  neighborhood_51:
+    name: AVELLANEDA
+    City: city_1
+  neighborhood_52:
+    name: AVENIDA
+    City: city_1
+  neighborhood_53:
+    name: AYACUCHO
+    City: city_1
+  neighborhood_54:
+    name: BAJADA DE PIEDRA
+    City: city_1
+  neighborhood_55:
+    name: BAJADA SAN ROQUE
+    City: city_1
+  neighborhood_56:
+    name: BAJO CHICO
+    City: city_1
+  neighborhood_57:
+    name: BAJO GALAN
+    City: city_1
+  neighborhood_58:
+    name: BAJO GRAL.PAZ
+    City: city_1
+  neighborhood_59:
+    name: BAJO GRANDE
+    City: city_1
+  neighborhood_60:
+    name: BAJO PALERMO
+    City: city_1
+  neighborhood_61:
+    name: BARRANCAS DEL SUR
+    City: city_1
+  neighborhood_62:
+    name: BARRANCAS NORTE
+    City: city_1
+  neighborhood_63:
+    name: BELLA VISTA
+    City: city_1
+  neighborhood_64:
+    name: BELLA VISTA OESTE
+    City: city_1
+  neighborhood_65:
+    name: BETANIA
+    City: city_1
+  neighborhood_66:
+    name: BIALET MASSE
+    City: city_1
+  neighborhood_67:
+    name: BRIG. SAN MARTIN
+    City: city_1
+  neighborhood_68:
+    name: CABAÑA DEL PILAR
+    City: city_1
+  neighborhood_69:
+    name: CABILDO
+    City: city_1
+  neighborhood_70:
+    name: CABO FARINA
+    City: city_1
+  neighborhood_71:
+    name: CABRERA JERONIMO
+    City: city_1
+  neighborhood_72:
+    name: CACERES
+    City: city_1
+  neighborhood_73:
+    name: CALIFORNIA
+    City: city_1
+  neighborhood_74:
+    name: CANAVOSO
+    City: city_1
+  neighborhood_75:
+    name: CAÑAVERAL
+    City: city_1
+  neighborhood_76:
+    name: CAÑITAS
+    City: city_1
+  neighborhood_77:
+    name: CAÑUELAS
+    City: city_1
+  neighborhood_78:
+    name: CAÑUELAS VILLAGE
+    City: city_1
+  neighborhood_79:
+    name: CASAS DE OBREROS Y EMP.
+    City: city_1
+  neighborhood_80:
+    name: CASEROS
+    City: city_1
+  neighborhood_81:
+    name: CEIBOS
+    City: city_1
+  neighborhood_82:
+    name: CENTENARIO
+    City: city_1
+  neighborhood_83:
+    name: CENTRO
+    City: city_1
+  neighborhood_84:
+    name: CENTRO AMERICA
+    City: city_1
+  neighborhood_85:
+    name: CERRO CHICO
+    City: city_1
+  neighborhood_86:
+    name: CERRO DE LAS ROSAS
+    City: city_1
+  neighborhood_87:
+    name: CERRO NORTE
+    City: city_1
+  neighborhood_88:
+    name: CERVECEROS
+    City: city_1
+  neighborhood_89:
+    name: CHATEAU CARRERAS
+    City: city_1
+  neighborhood_90:
+    name: CINCO LOMAS
+    City: city_1
+  neighborhood_91:
+    name: CIUDADELA
+    City: city_1
+  neighborhood_92:
+    name: COFICO
+    City: city_1
+  neighborhood_93:
+    name: COLINAS DE B.VISTA
+    City: city_1
+  neighborhood_94:
+    name: COLINAS DE V.SARSFIELD
+    City: city_1
+  neighborhood_95:
+    name: COLINAS DEL CERRO
+    City: city_1
+  neighborhood_96:
+    name: COLON
+    City: city_1
+  neighborhood_97:
+    name: COLONIA LOLA
+    City: city_1
+  neighborhood_98:
+    name: COMANDANTE ESPORA
+    City: city_1
+  neighborhood_99:
+    name: COMERCIAL
+    City: city_1
+  neighborhood_100:
+    name: CONGRESO
+    City: city_1
+  neighborhood_101:
+    name: CONSORCIO ESPERANZA
+    City: city_1
+  neighborhood_102:
+    name: CORRAL DE PALOS
+    City: city_1
+  neighborhood_103:
+    name: COVICO
+    City: city_1
+  neighborhood_104:
+    name: CRISOL NORTE
+    City: city_1
+  neighborhood_105:
+    name: CRISOL SUD
+    City: city_1
+  neighborhood_106:
+    name: CUATRO HOJAS
+    City: city_1
+  neighborhood_107:
+    name: CUPANI
+    City: city_1
+  neighborhood_108:
+    name: DEAN FUNES
+    City: city_1
+  neighborhood_109:
+    name: DEL CERRO
+    City: city_1
+  neighborhood_110:
+    name: DIEZ DE AGOSTO
+    City: city_1
+  neighborhood_111:
+    name: DON BOSCO
+    City: city_1
+  neighborhood_112:
+    name: DUCASSE
+    City: city_1
+  neighborhood_113:
+    name: EL BOSQUE
+    City: city_1
+  neighborhood_114:
+    name: EL CABILDO
+    City: city_1
+  neighborhood_115:
+    name: EL CONDOR
+    City: city_1
+  neighborhood_116:
+    name: EL PUEBLITO
+    City: city_1
+  neighborhood_117:
+    name: EL REFUGIO
+    City: city_1
+  neighborhood_118:
+    name: EL TREBOL
+    City: city_1
+  neighborhood_119:
+    name: EMAUS
+    City: city_1
+  neighborhood_120:
+    name: EMPALME
+    City: city_1
+  neighborhood_121:
+    name: ESCOBAR
+    City: city_1
+  neighborhood_122:
+    name: ESTACION FLORES
+    City: city_1
+  neighborhood_123:
+    name: ESTANCIA Q2
+    City: city_1
+  neighborhood_124:
+    name: ESTRADA MANUEL J.
+    City: city_1
+  neighborhood_125:
+    name: EVA PERON
+    City: city_1
+  neighborhood_126:
+    name: FERR. MITRE
+    City: city_1
+  neighborhood_127:
+    name: FERRER
+    City: city_1
+  neighborhood_128:
+    name: FERREYRA
+    City: city_1
+  neighborhood_129:
+    name: FINCAS DEL SUR I
+    City: city_1
+  neighborhood_130:
+    name: FINCAS DEL SUR II
+    City: city_1
+  neighborhood_131:
+    name: FORTÍN DEL POZO
+    City: city_1
+  neighborhood_132:
+    name: FRATERNIDAD
+    City: city_1
+  neighborhood_133:
+    name: GALAN
+    City: city_1
+  neighborhood_134:
+    name: GENERAL ARTIGAS
+    City: city_1
+  neighborhood_135:
+    name: GENERAL BELGRANO
+    City: city_1
+  neighborhood_136:
+    name: GENERAL BUSTOS
+    City: city_1
+  neighborhood_137:
+    name: GENERAL DEHEZA
+    City: city_1
+  neighborhood_138:
+    name: GENERAL LAMADRID
+    City: city_1
+  neighborhood_139:
+    name: GENERAL MOSCONI
+    City: city_1
+  neighborhood_140:
+    name: GENERAL PAZ
+    City: city_1
+  neighborhood_141:
+    name: GENERAL PUEYRREDON
+    City: city_1
+  neighborhood_142:
+    name: GENERAL SAVIO
+    City: city_1
+  neighborhood_143:
+    name: GENERAL URGQUIZA
+    City: city_1
+  neighborhood_144:
+    name: GENERAL VALLE
+    City: city_1
+  neighborhood_145:
+    name: GRANADERO PRINGLES
+    City: city_1
+  neighborhood_146:
+    name: GRANJA DE FUNES
+    City: city_1
+  neighborhood_147:
+    name: GREEN VILLE
+    City: city_1
+  neighborhood_148:
+    name: GUAYAQUIL
+    City: city_1
+  neighborhood_149:
+    name: GUEMES
+    City: city_1
+  neighborhood_150:
+    name: GUIÑAZU
+    City: city_1
+  neighborhood_151:
+    name: GUIÑAZU SUD
+    City: city_1
+  neighborhood_152:
+    name: HERMOSO
+    City: city_1
+  neighborhood_153:
+    name: HERNANDEZ JOSE
+    City: city_1
+  neighborhood_154:
+    name: HIPOLITO IRIGOYEN
+    City: city_1
+  neighborhood_155:
+    name: HOGAR PROPIO
+    City: city_1
+  neighborhood_156:
+    name: HORIZONTE
+    City: city_1
+  neighborhood_157:
+    name: INAUDI
+    City: city_1
+  neighborhood_158:
+    name: INDEPENDENCIA
+    City: city_1
+  neighborhood_159:
+    name: INDUSTRIAL
+    City: city_1
+  neighborhood_160:
+    name: IPONA
+    City: city_1
+  neighborhood_161:
+    name: IRUPE
+    City: city_1
+  neighborhood_162:
+    name: ITUZAINGO
+    City: city_1
+  neighborhood_163:
+    name: JARDIN
+    City: city_1
+  neighborhood_164:
+    name: JARDIN ALBORADA
+    City: city_1
+  neighborhood_165:
+    name: Jardin Claret
+    City: city_1
+  neighborhood_166:
+    name: JARDIN DE FLORES
+    City: city_1
+  neighborhood_167:
+    name: JARDÍN DE LOS BOULEVARES
+    City: city_1
+  neighborhood_168:
+    name: JARDIN DEL PILAR
+    City: city_1
+  neighborhood_169:
+    name: JARDIN ESPINOSA
+    City: city_1
+  neighborhood_170:
+    name: JARDIN HIPODROMO
+    City: city_1
+  neighborhood_171:
+    name: JARDINES DEL JOCKEY
+    City: city_1
+  neighborhood_172:
+    name: JERONIMO L. CABRERA
+    City: city_1
+  neighborhood_173:
+    name: JOCKEY CLUB
+    City: city_1
+  neighborhood_174:
+    name: JORGE NEWBERY
+    City: city_1
+  neighborhood_175:
+    name: JOSE HERNANDEZ
+    City: city_1
+  neighborhood_176:
+    name: JOSE I. RUCCI
+    City: city_1
+  neighborhood_177:
+    name: JOSE IGNACIO DIAZ SE
+    City: city_1
+  neighborhood_178:
+    name: JUAN XXIII
+    City: city_1
+  neighborhood_179:
+    name: JUNIORS
+    City: city_1
+  neighborhood_180:
+    name: KENNEDY
+    City: city_1
+  neighborhood_181:
+    name: LA CAROLINA
+    City: city_1
+  neighborhood_182:
+    name: LA CATALINA
+    City: city_1
+  neighborhood_183:
+    name: LA ESTANZUELA
+    City: city_1
+  neighborhood_184:
+    name: LA FRANCE
+    City: city_1
+  neighborhood_185:
+    name: LA FRATERNIDAD
+    City: city_1
+  neighborhood_186:
+    name: LA HERRADURA
+    City: city_1
+  neighborhood_187:
+    name: LA HORTENSIA
+    City: city_1
+  neighborhood_188:
+    name: LA RESERVA
+    City: city_1
+  neighborhood_189:
+    name: LA RUFINA
+    City: city_1
+  neighborhood_190:
+    name: LA SALLE
+    City: city_1
+  neighborhood_191:
+    name: LA SANTINA
+    City: city_1
+  neighborhood_192:
+    name: LA TOMA
+    City: city_1
+  neighborhood_193:
+    name: LAMADRID
+    City: city_1
+  neighborhood_194:
+    name: LAS DALIAS
+    City: city_1
+  neighborhood_195:
+    name: LAS DELICIAS
+    City: city_1
+  neighborhood_196:
+    name: LAS FLORES
+    City: city_1
+  neighborhood_197:
+    name: LAS LILAS
+    City: city_1
+  neighborhood_198:
+    name: LAS MAGNOLIAS
+    City: city_1
+  neighborhood_199:
+    name: LAS MARGARITAS
+    City: city_1
+  neighborhood_200:
+    name: LAS PALMAS
+    City: city_1
+  neighborhood_201:
+    name: LAS PLAYAS
+    City: city_1
+  neighborhood_202:
+    name: LAS ROSAS
+    City: city_1
+  neighborhood_203:
+    name: LAS VIOLETAS
+    City: city_1
+  neighborhood_204:
+    name: LICEO GENERAL PAZ
+    City: city_1
+  neighborhood_205:
+    name: LOMAS DE LA CAROLINA
+    City: city_1
+  neighborhood_206:
+    name: LOMAS DE SAN MARTIN
+    City: city_1
+  neighborhood_207:
+    name: LOMAS DEL SUQUÍA
+    City: city_1
+  neighborhood_208:
+    name: LOS ALAMOS
+    City: city_1
+  neighborhood_209:
+    name: LOS ANGELES
+    City: city_1
+  neighborhood_210:
+    name: LOS BOULEVARES
+    City: city_1
+  neighborhood_211:
+    name: LOS CAROLINOS
+    City: city_1
+  neighborhood_212:
+    name: LOS GIGANTES
+    City: city_1
+  neighborhood_213:
+    name: LOS GRANADOS
+    City: city_1
+  neighborhood_214:
+    name: LOS JACARANDAES
+    City: city_1
+  neighborhood_215:
+    name: LOS JOSEFINOS
+    City: city_1
+  neighborhood_216:
+    name: LOS NARANJOS
+    City: city_1
+  neighborhood_217:
+    name: LOS OLMOS
+    City: city_1
+  neighborhood_218:
+    name: LOS OLMOS SUD
+    City: city_1
+  neighborhood_219:
+    name: LOS PARAISOS
+    City: city_1
+  neighborhood_220:
+    name: LOS PINOS
+    City: city_1
+  neighborhood_221:
+    name: LOS PLATANOS
+    City: city_1
+  neighborhood_222:
+    name: LOS ROBLES
+    City: city_1
+  neighborhood_223:
+    name: LOS SAUCES
+    City: city_1
+  neighborhood_224:
+    name: LOURDES
+    City: city_1
+  neighborhood_225:
+    name: LUIS DE CABRERA
+    City: city_1
+  neighborhood_226:
+    name: LUZ Y FUERZA
+    City: city_1
+  neighborhood_227:
+    name: MAIPU SECCION 1
+    City: city_1
+  neighborhood_228:
+    name: MAIPU SECCION 2
+    City: city_1
+  neighborhood_229:
+    name: MALDONADO
+    City: city_1
+  neighborhood_230:
+    name: MARCELO T. DE ALVEAR
+    City: city_1
+  neighborhood_231:
+    name: MARCOS SASTRE
+    City: city_1
+  neighborhood_232:
+    name: MARECHAL
+    City: city_1
+  neighborhood_233:
+    name: MARIANO BALCARCE
+    City: city_1
+  neighborhood_234:
+    name: MARIANO FRAGUEIRO
+    City: city_1
+  neighborhood_235:
+    name: MARQ.DE SOBREMONTE
+    City: city_1
+  neighborhood_236:
+    name: MARTINEZ ROGELIO
+    City: city_1
+  neighborhood_237:
+    name: MAULLER
+    City: city_1
+  neighborhood_238:
+    name: MAURIZI
+    City: city_1
+  neighborhood_239:
+    name: MERCANTIL
+    City: city_1
+  neighborhood_240:
+    name: MILITAR GENERAL DEHEZA
+    City: city_1
+  neighborhood_241:
+    name: MIRADOR
+    City: city_1
+  neighborhood_242:
+    name: MIRALTA
+    City: city_1
+  neighborhood_243:
+    name: MIRIZZI
+    City: city_1
+  neighborhood_244:
+    name: MORENO MARIANO
+    City: city_1
+  neighborhood_245:
+    name: MOSCONI
+    City: city_1
+  neighborhood_246:
+    name: NEWBERY JORGE
+    City: city_1
+  neighborhood_247:
+    name: NICOLAS AVELLANEDA
+    City: city_1
+  neighborhood_248:
+    name: NUEVA CORDOBA
+    City: city_1
+  neighborhood_249:
+    name: NUEVA CORDOBA ANEXA
+    City: city_1
+  neighborhood_250:
+    name: NUEVA ITALIA
+    City: city_1
+  neighborhood_251:
+    name: NUEVO POETA LUGONES
+    City: city_1
+  neighborhood_252:
+    name: NUEVO URCA
+    City: city_1
+  neighborhood_253:
+    name: OBRERO
+    City: city_1
+  neighborhood_254:
+    name: OBSERVATORIO
+    City: city_1
+  neighborhood_255:
+    name: OLIVOS
+    City: city_1
+  neighborhood_256:
+    name: OMBU
+    City: city_1
+  neighborhood_257:
+    name: ONA
+    City: city_1
+  neighborhood_258:
+    name: OROBIA
+    City: city_1
+  neighborhood_259:
+    name: OSN
+    City: city_1
+  neighborhood_260:
+    name: PADRE CLARET
+    City: city_1
+  neighborhood_261:
+    name: PALADINI
+    City: city_1
+  neighborhood_262:
+    name: PALERMO BAJO
+    City: city_1
+  neighborhood_263:
+    name: PALMAR
+    City: city_1
+  neighborhood_264:
+    name: PALMAS DE CLARET
+    City: city_1
+  neighborhood_265:
+    name: PANAMERICANO
+    City: city_1
+  neighborhood_266:
+    name: PARQUE HORIZONTE
+    City: city_1
+  neighborhood_267:
+    name: PASO DE LOS ANDES
+    City: city_1
+  neighborhood_268:
+    name: PATRIA
+    City: city_1
+  neighborhood_269:
+    name: PATRICIOS
+    City: city_1
+  neighborhood_270:
+    name: POETA LUGONES
+    City: city_1
+  neighborhood_271:
+    name: POLICIAL
+    City: city_1
+  neighborhood_272:
+    name: PORTAL DEL JACARANDA
+    City: city_1
+  neighborhood_273:
+    name: PQUE.ALAMEDA
+    City: city_1
+  neighborhood_274:
+    name: PQUE.ATLANTICA
+    City: city_1
+  neighborhood_275:
+    name: PQUE.CAPITAL
+    City: city_1
+  neighborhood_276:
+    name: PQUE.CAPITAL SUD
+    City: city_1
+  neighborhood_277:
+    name: PQUE.CHACABUCO
+    City: city_1
+  neighborhood_278:
+    name: PQUE.COREMA
+    City: city_1
+  neighborhood_279:
+    name: PQUE.DON BOSCO
+    City: city_1
+  neighborhood_280:
+    name: PQUE.FUTURA
+    City: city_1
+  neighborhood_281:
+    name: PQUE.JORGE NEWBERY
+    City: city_1
+  neighborhood_282:
+    name: PQUE.LATINO
+    City: city_1
+  neighborhood_283:
+    name: PQUE.LICEO
+    City: city_1
+  neighborhood_284:
+    name: PQUE.LOS MOLINOS
+    City: city_1
+  neighborhood_285:
+    name: PQUE.MODELO
+    City: city_1
+  neighborhood_286:
+    name: PQUE.MONTECRISTO
+    City: city_1
+  neighborhood_287:
+    name: PQUE.REPUBLICA
+    City: city_1
+  neighborhood_288:
+    name: PQUE.SAN CARLOS
+    City: city_1
+  neighborhood_289:
+    name: PQUE.SAN VICENTE
+    City: city_1
+  neighborhood_290:
+    name: PQUE.SARMIENTO
+    City: city_1
+  neighborhood_291:
+    name: PQUE.TABLADA
+    City: city_1
+  neighborhood_292:
+    name: PQUE.VELEZ SARSFIELD
+    City: city_1
+  neighborhood_293:
+    name: PRADOS DE LA VILLA
+    City: city_1
+  neighborhood_294:
+    name: PRIMERA JUNTA
+    City: city_1
+  neighborhood_295:
+    name: PROVIDENCIA
+    City: city_1
+  neighborhood_296:
+    name: PUENTE BLANCO
+    City: city_1
+  neighborhood_297:
+    name: QUEBRADA DE LAS ROSA
+    City: city_1
+  neighborhood_298:
+    name: QUINTA SANTA ANA
+    City: city_1
+  neighborhood_299:
+    name: QUINTAS DE ARGUELLO
+    City: city_1
+  neighborhood_300:
+    name: RAMON J. CARCANO
+    City: city_1
+  neighborhood_301:
+    name: RECREO DEL NORTE
+    City: city_1
+  neighborhood_302:
+    name: REMEDIOS DE ESCALADA
+    City: city_1
+  neighborhood_303:
+    name: RENACIMIENTO
+    City: city_1
+  neighborhood_304:
+    name: RES.ALBERDI
+    City: city_1
+  neighborhood_305:
+    name: RES.AMERICA
+    City: city_1
+  neighborhood_306:
+    name: RES.ARAGON
+    City: city_1
+  neighborhood_307:
+    name: RES.CHATEAU CARRERAS
+    City: city_1
+  neighborhood_308:
+    name: RES.M. FERREYRA
+    City: city_1
+  neighborhood_309:
+    name: RES.OESTE
+    City: city_1
+  neighborhood_310:
+    name: RES.OLIVOS
+    City: city_1
+  neighborhood_311:
+    name: RES.SAN CARLOS
+    City: city_1
+  neighborhood_312:
+    name: RES.SAN JORGE
+    City: city_1
+  neighborhood_313:
+    name: RES.SAN ROQUE
+    City: city_1
+  neighborhood_314:
+    name: RES.SANTA ANA
+    City: city_1
+  neighborhood_315:
+    name: RES.SANTA ROSA
+    City: city_1
+  neighborhood_316:
+    name: RES.SUD
+    City: city_1
+  neighborhood_317:
+    name: RES.VELEZ SARFIELD
+    City: city_1
+  neighborhood_318:
+    name: RIVADAVIA
+    City: city_1
+  neighborhood_319:
+    name: RIVERA INDARTE
+    City: city_1
+  neighborhood_320:
+    name: ROGELIO MARTINEZ
+    City: city_1
+  neighborhood_321:
+    name: ROQUE SAENZ PEÑA
+    City: city_1
+  neighborhood_322:
+    name: ROSEDAL
+    City: city_1
+  neighborhood_323:
+    name: SACHI
+    City: city_1
+  neighborhood_324:
+    name: SAN ANTONIO
+    City: city_1
+  neighborhood_325:
+    name: SAN CAYETANO
+    City: city_1
+  neighborhood_326:
+    name: SAN DANIEL
+    City: city_1
+  neighborhood_327:
+    name: SAN FELIPE
+    City: city_1
+  neighborhood_328:
+    name: SAN FERNANDO
+    City: city_1
+  neighborhood_329:
+    name: SAN FRANCISCO
+    City: city_1
+  neighborhood_330:
+    name: SAN IGNACIO
+    City: city_1
+  neighborhood_331:
+    name: SAN ISIDRO
+    City: city_1
+  neighborhood_332:
+    name: SAN JAVIER
+    City: city_1
+  neighborhood_333:
+    name: SAN JOSE
+    City: city_1
+  neighborhood_334:
+    name: SAN LORENZO
+    City: city_1
+  neighborhood_335:
+    name: SAN MARCELO
+    City: city_1
+  neighborhood_336:
+    name: SAN MARTIN
+    City: city_1
+  neighborhood_337:
+    name: SAN MARTIN ANEXO
+    City: city_1
+  neighborhood_338:
+    name: SAN MARTIN NORTE
+    City: city_1
+  neighborhood_339:
+    name: SAN NICOLAS
+    City: city_1
+  neighborhood_340:
+    name: SAN PABLO
+    City: city_1
+  neighborhood_341:
+    name: SAN PEDRO NOLASCO
+    City: city_1
+  neighborhood_342:
+    name: SAN RAFAEL
+    City: city_1
+  neighborhood_343:
+    name: SAN SALVADOR
+    City: city_1
+  neighborhood_344:
+    name: SAN VICENTE
+    City: city_1
+  neighborhood_345:
+    name: SANTA ANA RESIDENCIA
+    City: city_1
+  neighborhood_346:
+    name: SANTA CECILIA
+    City: city_1
+  neighborhood_347:
+    name: SANTA CLARA DE ASIS
+    City: city_1
+  neighborhood_348:
+    name: SANTA ISABEL
+    City: city_1
+  neighborhood_349:
+    name: SANTA RITA
+    City: city_1
+  neighborhood_350:
+    name: SANTA ROSA RESIDENCIA
+    City: city_1
+  neighborhood_351:
+    name: SARGENTO CABRAL
+    City: city_1
+  neighborhood_352:
+    name: SARMIENTO
+    City: city_1
+  neighborhood_353:
+    name: SEP
+    City: city_1
+  neighborhood_354:
+    name: SUAREZ
+    City: city_1
+  neighborhood_355:
+    name: TABLADA PARK
+    City: city_1
+  neighborhood_356:
+    name: TALLERES ESTE
+    City: city_1
+  neighborhood_357:
+    name: TALLERES OESTE
+    City: city_1
+  neighborhood_358:
+    name: TALLERES SUD
+    City: city_1
+  neighborhood_359:
+    name: TEJAS DEL SUR I
+    City: city_1
+  neighborhood_360:
+    name: TEJAS DEL SUR II
+    City: city_1
+  neighborhood_361:
+    name: TENIENTE BENJ.MATIENZO
+    City: city_1
+  neighborhood_362:
+    name: TRANVIARIOS
+    City: city_1
+  neighborhood_363:
+    name: UOCRA
+    City: city_1
+  neighborhood_364:
+    name: URCA
+    City: city_1
+  neighborhood_365:
+    name: URQUIZA
+    City: city_1
+  neighborhood_366:
+    name: VALLE ESCONDIDO
+    City: city_1
+  neighborhood_367:
+    name: VICOR
+    City: city_1
+  neighborhood_368:
+    name: VILLA 17 DE OCTUBRE
+    City: city_1
+  neighborhood_369:
+    name: VILLA 9 DE JUNIO
+    City: city_1
+  neighborhood_370:
+    name: VILLA ACHAVAL
+    City: city_1
+  neighborhood_371:
+    name: VILLA ADELA
+    City: city_1
+  neighborhood_372:
+    name: VILLA ALBERDI
+    City: city_1
+  neighborhood_373:
+    name: VILLA ALICIA RISLER
+    City: city_1
+  neighborhood_374:
+    name: VILLA ALLENDE PARQUE
+    City: city_1
+  neighborhood_375:
+    name: VILLA AMEGHINO
+    City: city_1
+  neighborhood_376:
+    name: VILLA ARGENTINA
+    City: city_1
+  neighborhood_377:
+    name: VILLA ASPASIA
+    City: city_1
+  neighborhood_378:
+    name: VILLA AVALOS
+    City: city_1
+  neighborhood_379:
+    name: VILLA AZALAIS
+    City: city_1
+  neighborhood_380:
+    name: VILLA BELGRANO
+    City: city_1
+  neighborhood_381:
+    name: VILLA BUSTOS
+    City: city_1
+  neighborhood_382:
+    name: VILLA CABRERA
+    City: city_1
+  neighborhood_383:
+    name: VILLA CENTENARIO
+    City: city_1
+  neighborhood_384:
+    name: VILLA CLARET
+    City: city_1
+  neighborhood_385:
+    name: VILLA CLAUDINA
+    City: city_1
+  neighborhood_386:
+    name: VILLA CORINA
+    City: city_1
+  neighborhood_387:
+    name: VILLA CORNU
+    City: city_1
+  neighborhood_388:
+    name: VILLA CORONEL OLMEDO
+    City: city_1
+  neighborhood_389:
+    name: VILLA EL LIBERTADOR
+    City: city_1
+  neighborhood_390:
+    name: VILLA GENERAL URQUIZA
+    City: city_1
+  neighborhood_391:
+    name: VILLA GRAN PARQUE
+    City: city_1
+  neighborhood_392:
+    name: VILLA LOS ANGELES
+    City: city_1
+  neighborhood_393:
+    name: VILLA LOS PINOS
+    City: city_1
+  neighborhood_394:
+    name: VILLA MAFEKIN
+    City: city_1
+  neighborhood_395:
+    name: VILLA MARTA
+    City: city_1
+  neighborhood_396:
+    name: VILLA MARTINEZ
+    City: city_1
+  neighborhood_397:
+    name: VILLA PAEZ
+    City: city_1
+  neighborhood_398:
+    name: VILLA QUIZQUIZACATE
+    City: city_1
+  neighborhood_399:
+    name: VILLA RETIRO
+    City: city_1
+  neighborhood_400:
+    name: VILLA REVOL
+    City: city_1
+  neighborhood_401:
+    name: VILLA REVOL ANEXO
+    City: city_1
+  neighborhood_402:
+    name: VILLA RIVERA INDARTE
+    City: city_1
+  neighborhood_403:
+    name: VILLA SALDAN
+    City: city_1
+  neighborhood_404:
+    name: VILLA SAN ANTONIO
+    City: city_1
+  neighborhood_405:
+    name: VILLA SAN CARLOS
+    City: city_1
+  neighborhood_406:
+    name: VILLA SAN ISIDRO
+    City: city_1
+  neighborhood_407:
+    name: VILLA SAN JOSE
+    City: city_1
+  neighborhood_408:
+    name: VILLA SERRANA
+    City: city_1
+  neighborhood_409:
+    name: VILLA SIBURU
+    City: city_1
+  neighborhood_410:
+    name: VILLA SILVANO FUNES
+    City: city_1
+  neighborhood_411:
+    name: VILLA SOLFERINO
+    City: city_1
+  neighborhood_412:
+    name: VILLA UNION
+    City: city_1
+  neighborhood_413:
+    name: VILLA WARCALDE
+    City: city_1
+  neighborhood_414:
+    name: VIVERO NORTE
+    City: city_1
+  neighborhood_415:
+    name: YAPEYU
+    City: city_1
+  neighborhood_416:
+    name: YOFRE H
+    City: city_1
+  neighborhood_417:
+    name: YOFRE I
+    City: city_1
+  neighborhood_418:
+    name: YOFRE NORTE
+    City: city_1
+  neighborhood_419:
+    name: YOFRE SUD
+    City: city_1
+  neighborhood_420:
+    name: YRIGOYEN HIPOLITO
+    City: city_1
+  neighborhood_421:
+    name: ZUMARAN
     City: city_1

@@ -5,7 +5,7 @@ class NeighborhoodTable extends Doctrine_Table
   public static function getInstance() { return Doctrine_Core::getTable('Neighborhood'); }
   
   /**
-	 * Get pager for list of users
+	 * Get pager for list of neighborhoods
 	 *
 	 * @param integer $page
 	 * @param integer $per_page
@@ -32,14 +32,15 @@ class NeighborhoodTable extends Doctrine_Table
 	 * Get neighborhoods by city
 	 *
 	 * @param integer $city
+	 * @param string $empty_text
 	 * @return array
 	 */
-	public function getByCityId($city)
+	public function getByCityId($city, $empty_text = 'Select')
 	{
 		$sf_instance = sfContext::getInstance();
-		$arr_options = array();
+		$arr_options = array('-- '.$sf_instance->getI18N()->__($empty_text).' --');
 		
-		$q = Doctrine_Query::create()->select('id, name')->from('Neighborhood')->where("city_id = $city")->orderBy('name ASC');
+		$q = Doctrine_Query::create()->select('id, name')->from('Neighborhood')->where("city_id = $city")->orderBy('id');
 		$d = $q->fetchArray();
 
 		foreach ($d as $value) {

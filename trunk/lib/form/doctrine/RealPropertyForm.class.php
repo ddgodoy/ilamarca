@@ -16,14 +16,20 @@ class RealPropertyForm extends BaseRealPropertyForm
 
     $this->setWidgets(array(
       'name'             => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:600px;')),
+      'bedroom_id'       => new sfWidgetFormInputHidden(),
       'property_type_id' => new sfWidgetFormInputHidden(),
+      'geo_zone_id'      => new sfWidgetFormInputHidden(),
+      'city_id'          => new sfWidgetFormInputHidden(),
       'neighborhood_id'  => new sfWidgetFormInputHidden(),
       'app_user_id'      => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
       'name'             => new sfValidatorString(array('max_length' => 250), array('required'=>$i18N->__('Enter the name', NULL, 'errors'))),
+      'bedroom_id'       => new sfValidatorInteger(),
       'property_type_id' => new sfValidatorInteger(),
+      'geo_zone_id'      => new sfValidatorInteger(),
+      'city_id'          => new sfValidatorInteger(),
       'neighborhood_id'  => new sfValidatorInteger(),
       'app_user_id'      => new sfValidatorInteger(),
     ));

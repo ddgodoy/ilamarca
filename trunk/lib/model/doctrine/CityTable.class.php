@@ -5,7 +5,7 @@ class CityTable extends Doctrine_Table
   public static function getInstance() { return Doctrine_Core::getTable('City'); }
   
   /**
-	 * Get pager for list of users
+	 * Get pager for list of cities
 	 *
 	 * @param integer $page
 	 * @param integer $per_page
@@ -31,12 +31,13 @@ class CityTable extends Doctrine_Table
 	 * Get cities by geo zone
 	 *
 	 * @param integer $geo_zone
+	 * @param string $empty_text
 	 * @return array
 	 */
-	public function getByGeoZoneId($geo_zone)
+	public function getByGeoZoneId($geo_zone, $empty_text = 'Select')
 	{
 		$sf_instance = sfContext::getInstance();
-		$arr_options = array('-- '.$sf_instance->getI18N()->__('Select').' --');
+		$arr_options = array('-- '.$sf_instance->getI18N()->__($empty_text).' --');
 
 		$q = Doctrine_Query::create()->select('id, name')->from('City')->where("geo_zone_id = $geo_zone")->orderBy('name ASC');
 		$d = $q->fetchArray();

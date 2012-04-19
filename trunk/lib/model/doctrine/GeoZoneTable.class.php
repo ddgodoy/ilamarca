@@ -5,7 +5,7 @@ class GeoZoneTable extends Doctrine_Table
   public static function getInstance() { return Doctrine_Core::getTable('GeoZone'); }
   
   /**
-	 * Get pager for list of users
+	 * Get pager for list of geo zones
 	 *
 	 * @param integer $page
 	 * @param integer $per_page
@@ -30,17 +30,18 @@ class GeoZoneTable extends Doctrine_Table
 	 * Get array of all geo_zones for select tag
 	 *
 	 * @param boolean $add_empty
+	 * @param string $empty_text
 	 * @return array
 	 */
-	public function getAllForSelect($add_empty = false)
+	public function getAllForSelect($add_empty = false, $empty_text = 'Select')
 	{
 		$arr_options = array();
 		$sf_instance = sfContext::getInstance();
 
 		if ($add_empty) {
-			$arr_options['0'] = '-- '.$sf_instance->getI18N()->__('Select').' --';
+			$arr_options['0'] = '-- '.$sf_instance->getI18N()->__($empty_text).' --';
 		}
-		$q = Doctrine_Query::create()->select('id, name')->from('GeoZone')->orderBy('name ASC');
+		$q = Doctrine_Query::create()->select('id, name')->from('GeoZone')->orderBy('id');
 		$d = $q->fetchArray();
 
 		foreach ($d as $value) {

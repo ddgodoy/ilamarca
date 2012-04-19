@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+  <file original="messages" source-language="es_ES" datatype="plaintext">
+    <body>
+      <trans-unit id="1"><source>Start session</source><target>Inicie sesión</target></trans-unit>
+      <trans-unit id="2"><source>Password</source><target>Contraseña</target></trans-unit>
+      <trans-unit id="3"><source>Email</source><target>Email</target></trans-unit>
+      <trans-unit id="4"><source>Sign in</source><target>Ingresar</target></trans-unit>
+      <trans-unit id="5"><source>Forgoten your password?</source><target>Ha olvidado su contraseña?</target></trans-unit>
+      <trans-unit id="6"><source>New password request</source><target>Solicitud de nueva contraseña</target></trans-unit>
+      <trans-unit id="7"><source>Send</source><target>Enviar</target></trans-unit>
+      <trans-unit id="8"><source>Cancel</source><target>Cancelar</target></trans-unit>
+      <trans-unit id="9">
+        <source>Forgoten password process completed</source>
+        <target><![CDATA[Un email ha sido enviado a su cuenta con un enlace para restablecer la contraseña.<br /><br />Por favor, revise sus mensajes para continuar.]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>New password for %user%</source>
+        <target>Alguien ha solicitado una nueva contraseña para %user%</target>
+      </trans-unit>
+      <trans-unit id="11"><source>To continue use this link</source><target>Si desea continuar, use el siguiente enlace</target></trans-unit>
+      <trans-unit id="12"><source>Set new password</source><target>Establecer nueva contraseña</target></trans-unit>
+      <trans-unit id="13"><source>Otherwise, ignore this message</source><target>En caso contrario, ignore este mensaje</target></trans-unit>
+      <trans-unit id="14"><source>Repeat password</source><target>Repetir contraseña</target></trans-unit>
+      <trans-unit id="15"><source>New password</source><target>Nueva contraseña</target></trans-unit>
+      <trans-unit id="16"><source>Close session</source><target>Cerrar sesión</target></trans-unit>
+      <trans-unit id="17"><source>My profile</source><target>Mi perfil</target></trans-unit>
+      <trans-unit id="18"><source>Home</source><target>Inicio</target></trans-unit>
+      <trans-unit id="19"><source>Help</source><target>Ayuda</target></trans-unit>
+      <trans-unit id="20"><source>Update profile</source><target>Actualizar perfil</target></trans-unit>
+      <trans-unit id="21"><source>Mandatory fields</source><target>Campos obligatorios</target></trans-unit>
+      <trans-unit id="22"><source>All rights reserved</source><target>Todos los derechos reservados</target></trans-unit>
+      <trans-unit id="23"><source>Password correct format</source><target>La contraseña debe ser alfanumérica y tener al menos 6 caracteres</target></trans-unit>
+      <trans-unit id="24"><source>Name</source><target>Nombre</target></trans-unit>
+      <trans-unit id="25"><source>Photo</source><target>Foto</target></trans-unit>
+      <trans-unit id="26"><source>Address</source><target>Dirección</target></trans-unit>
+      <trans-unit id="27"><source>Delete</source><target>Eliminar</target></trans-unit>
+      <trans-unit id="28"><source>Are you sure?</source><target>Está seguro?</target></trans-unit>
+      <trans-unit id="29"><source>User</source><target>Usuario</target></trans-unit>
+      <trans-unit id="30"><source>Detail</source><target>Detalle</target></trans-unit>
+      <trans-unit id="31"><source>Updated record</source><target>Registro actualizado</target></trans-unit>
+      <trans-unit id="32"><source>Phone</source><target>Teléfono</target></trans-unit>
+      <trans-unit id="33"><source>Continue to list</source><target>Continuar al listado</target></trans-unit>
+      <trans-unit id="34"><source>By name</source><target>Por nombre</target></trans-unit>
+      <trans-unit id="35"><source>By email</source><target>Por email</target></trans-unit>
+      <trans-unit id="36"><source>Select</source><target>Seleccionar</target></trans-unit>
+      <trans-unit id="37"><source>Profile updated successfully</source><target>Sus datos fueron actualizados exitosamente</target></trans-unit>
+      <trans-unit id="38"><source>Yes</source><target>Si</target></trans-unit>
+      <trans-unit id="39"><source>No</source><target>No</target></trans-unit>
+      <trans-unit id="40"><source>Enabled</source><target>Habilitado</target></trans-unit>
+      <trans-unit id="41"><source>No results</source><target>Sin resultados</target></trans-unit>
+      <trans-unit id="42"><source>Country</source><target>País</target></trans-unit>
+      <trans-unit id="43"><source>City</source><target>Ciudad</target></trans-unit>
+      <trans-unit id="44"><source>Occupation</source><target>Ocupación</target></trans-unit>
+      <trans-unit id="45"><source>Age</source><target>Edad</target></trans-unit>
+      <trans-unit id="46"><source>Gender</source><target>Género</target></trans-unit>
+      <trans-unit id="47"><source>Male</source><target>Masculino</target></trans-unit>
+      <trans-unit id="48"><source>Female</source><target>Femenino</target></trans-unit>
+      <trans-unit id="49"><source>Geo zones</source><target>Zonas geográficas</target></trans-unit>
+      <trans-unit id="50"><source>Geo zone</source><target>Zona geográfica</target></trans-unit>
+      <trans-unit id="51"><source>Search</source><target>Buscar</target></trans-unit>
+      <trans-unit id="52"><source>Cities</source><target>Ciudades</target></trans-unit>
+      <trans-unit id="53"><source>Neighborhoods</source><target>Barrios</target></trans-unit>
+      <trans-unit id="54"><source>Neighborhood</source><target>Barrio</target></trans-unit>
+      <trans-unit id="55"><source>Properties</source><target>Propiedades</target></trans-unit>
+      <trans-unit id="56"><source>Property</source><target>Propiedad</target></trans-unit>
+      <trans-unit id="57"><source>Property type</source><target>Tipo de propiedad</target></trans-unit>
+      <trans-unit id="58"><source>Location</source><target>Ubicación</target></trans-unit>
+      <trans-unit id="59"><source>Operation</source><target>Operación</target></trans-unit>
+      <trans-unit id="60"><source>Place</source><target>Lugar</target></trans-unit>
+      <trans-unit id="61"><source>Town</source><target>Localidad</target></trans-unit>
+      <trans-unit id="62"><source>Bedrooms</source><target>Dormitorios</target></trans-unit>
+    </body>
+  </file>
+</xliff>

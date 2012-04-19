@@ -21,7 +21,6 @@ h1, h2, h3, h4, h5 { padding:0; margin:0; font-family:"Lucida Grande", Helvetica
 
 .bg-content {background-color: #f8f8f8;background-image: url(/images/bg_site.jpg);background-repeat: repeat-x;background-position: left top;}
 
-
 /*clearfix*/
 .clearfix:after {
 	content: ".";
@@ -72,7 +71,6 @@ html[xmlns] .clearfix {
 .submenu .boton a.logout:hover {background-image: url(/images/btn_logout.png); background-position: center bottom; }
 
 
-
 /*footer*/
 .footer {background-image: url(/images/bg_footer.png);background-repeat: no-repeat;background-position: center top; background-color:#FFFFFF; padding-top:14px; min-height:60px; margin-top:30px;}
 
@@ -81,7 +79,6 @@ html[xmlns] .clearfix {
 .footer span { color:#000000;}
 
 .footer span.line { padding-left:8px; padding-right:8px;}
-
 
 /*buscador*/
 .buscador {	background-image: url(/images/bg_buscador.png);	background-position: center top; background-repeat:no-repeat; height:519px;	width:100%; position:relative; }
@@ -95,7 +92,6 @@ html[xmlns] .clearfix {
 .buscador a.buscar:hover {background-image: url(/images/btn_buscar.png); background-position: center bottom; }
 
 .search_box { padding-left:169px;}
-
 
 /*Right Boxes*/
 
@@ -131,7 +127,6 @@ html[xmlns] .clearfix {
 
 .box a.modificar:hover {background-image: url(/images/btn_modificar.png); background-position: center bottom; }
 
-
 /*Resultado de busqueda*/
 
 .fondo-titulo {	background-image: url(/images/bg_main_title.png);	background-position: center top; background-repeat:no-repeat; height:57px;	width:100%; margin-bottom:35px;}
@@ -154,13 +149,10 @@ html[xmlns] .clearfix {
 
 .resultado .guardar a:hover { background-position:left bottom;}
 
-
-
 /*filtros*/
 .filtros a.menos {color:#484848;font-size:13px;text-decoration:underline; font-family: "Lucida Grande", Helvetica, Arial, sans-serif; display:block; padding-bottom:10px; text-align:center;}
 
 .filtros a.menos:hover {color:#333; text-decoration:none;}
-
 
 /*paginacion*/
 
@@ -183,8 +175,6 @@ html[xmlns] .clearfix {
 .paginacion span.prev {background-image: url(/images/bt_prev-next.png);	background-repeat: no-repeat;background-position:center top; margin-top:8px;}
 
 .paginacion span.next {background-image: url(/images/bt_prev-next.png); background-repeat: no-repeat; background-position:center bottom; margin-top:7px;}
-
-
 
 /*TOOLTIP*/
 
@@ -232,9 +222,6 @@ html[xmlns] .clearfix {
 
 .tooltip .inside a:hover { background-position:right bottom;}
 
-
-
-
 /*COMPARTIR PROPIEDAD*/
 
 .compartir { min-height:98px;}
@@ -249,8 +236,6 @@ html[xmlns] .clearfix {
 
 .compartir a.share-email:hover {background-image: url(/images/btn_share_email.png); background-position: center bottom; }
 
-
-
 /*DATOS DEL VENDEDOR*/
 
 .box a.contactar {background-image: url(/images/btn_contactar.png); background-position: center top;  width:123px; height:43px; margin-top:12px; margin-bottom:8px; margin-left:60px; display:inline-block}
@@ -264,8 +249,6 @@ html[xmlns] .clearfix {
 .wprofile p { font-size:13px; color:#222; padding:0 0 0 24px; clear:both; line-height:130%;}
 
 .wprofile p.label { color:#555; margin-top:7px;}
-
-
 
 /*FICHA PROP*/
 
@@ -282,9 +265,6 @@ html[xmlns] .clearfix {
 .ficha h1 {float: left;font-size: 19px;color: #393939; padding-left:16px;}
 
 .ficha h3 { float:right;font-size: 19px;color: #393939; font-weight:bold; padding-right:16px;}
-
-
-
 
 /*SLIDER / TABS*/
 
@@ -346,13 +326,9 @@ html[xmlns] .clearfix {
 
 .pdf a:hover { background-position:left bottom;}
 
-
-
 /*Vendedor*/
 
 .vendedor .titulo {background-image: url(/images/tit_propiedadesvta.png);background-repeat: no-repeat;background-position: center center; height:27px; width:100%; padding-top:22px; display:block;}
-
-
 
 /*CONTACTO FORMULARIOS*/
 
@@ -378,9 +354,45 @@ html[xmlns] .clearfix {
 
 .contacto .info a:hover { text-decoration:underline}
 
-
-
-
 /*Perfil*/
 
 .perfil .titulo {background-image: url(/images/tit_misbusquedas.png);}
+
+/* pinika */
+.ajax_img {
+	visibility: hidden;
+	padding-left: 10px;
+	padding-top: 8px;
+	float: right;
+	padding-right: 35px;
+}
+.et_label {
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #333333;
+}
+.et_input {
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	border: 1px solid #CCCCCC;
+	width: 320px;
+	background-color: #F4F4F4;
+	padding: 4px;
+}
+.space_bottom {
+	padding-bottom: 14px;
+}
+.et_btn_buscar {
+	background-image: url(/images/btn_buscar.png);
+	background-position: center top;
+	width: 116px;
+	height: 47px;
+	display: inline-block;
+	border: none;
+	cursor: pointer;
+}
+.et_btn_buscar:hover {
+	background-image: url(/images/btn_buscar.png);
+	background-position: center bottom;
+}
+/* pinika */

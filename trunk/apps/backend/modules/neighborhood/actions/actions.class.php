@@ -18,7 +18,7 @@ class neighborhoodActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$this->iPage  = $request->getParameter('page', 1);
-  	$this->oPager = NeighborhoodTable::getInstance()->getPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy());
+  	$this->oPager = NeighborhoodTable::getInstance()->getPager($this->iPage, 30, $this->setFilter(), $this->setOrderBy());
   	$this->oList  = $this->oPager->getResults();
   }
 

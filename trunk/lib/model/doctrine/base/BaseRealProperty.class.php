@@ -9,10 +9,17 @@
  * @property string $name
  * @property text $detail
  * @property string $status
+ * @property integer $bedroom_id
  * @property integer $property_type_id
+ * @property integer $geo_zone_id
+ * @property integer $city_id
  * @property integer $neighborhood_id
  * @property integer $app_user_id
+ * @property datetime $updated
+ * @property Bedroom $Bedroom
  * @property PropertyType $PropertyType
+ * @property GeoZone $GeoZone
+ * @property City $City
  * @property Neighborhood $Neighborhood
  * @property AppUser $AppUser
  * @property Doctrine_Collection $OperationRealProperties
@@ -23,10 +30,17 @@
  * @method string              getName()                    Returns the current record's "name" value
  * @method text                getDetail()                  Returns the current record's "detail" value
  * @method string              getStatus()                  Returns the current record's "status" value
+ * @method integer             getBedroomId()               Returns the current record's "bedroom_id" value
  * @method integer             getPropertyTypeId()          Returns the current record's "property_type_id" value
+ * @method integer             getGeoZoneId()               Returns the current record's "geo_zone_id" value
+ * @method integer             getCityId()                  Returns the current record's "city_id" value
  * @method integer             getNeighborhoodId()          Returns the current record's "neighborhood_id" value
  * @method integer             getAppUserId()               Returns the current record's "app_user_id" value
+ * @method datetime            getUpdated()                 Returns the current record's "updated" value
+ * @method Bedroom             getBedroom()                 Returns the current record's "Bedroom" value
  * @method PropertyType        getPropertyType()            Returns the current record's "PropertyType" value
+ * @method GeoZone             getGeoZone()                 Returns the current record's "GeoZone" value
+ * @method City                getCity()                    Returns the current record's "City" value
  * @method Neighborhood        getNeighborhood()            Returns the current record's "Neighborhood" value
  * @method AppUser             getAppUser()                 Returns the current record's "AppUser" value
  * @method Doctrine_Collection getOperationRealProperties() Returns the current record's "OperationRealProperties" collection
@@ -36,10 +50,17 @@
  * @method RealProperty        setName()                    Sets the current record's "name" value
  * @method RealProperty        setDetail()                  Sets the current record's "detail" value
  * @method RealProperty        setStatus()                  Sets the current record's "status" value
+ * @method RealProperty        setBedroomId()               Sets the current record's "bedroom_id" value
  * @method RealProperty        setPropertyTypeId()          Sets the current record's "property_type_id" value
+ * @method RealProperty        setGeoZoneId()               Sets the current record's "geo_zone_id" value
+ * @method RealProperty        setCityId()                  Sets the current record's "city_id" value
  * @method RealProperty        setNeighborhoodId()          Sets the current record's "neighborhood_id" value
  * @method RealProperty        setAppUserId()               Sets the current record's "app_user_id" value
+ * @method RealProperty        setUpdated()                 Sets the current record's "updated" value
+ * @method RealProperty        setBedroom()                 Sets the current record's "Bedroom" value
  * @method RealProperty        setPropertyType()            Sets the current record's "PropertyType" value
+ * @method RealProperty        setGeoZone()                 Sets the current record's "GeoZone" value
+ * @method RealProperty        setCity()                    Sets the current record's "City" value
  * @method RealProperty        setNeighborhood()            Sets the current record's "Neighborhood" value
  * @method RealProperty        setAppUser()                 Sets the current record's "AppUser" value
  * @method RealProperty        setOperationRealProperties() Sets the current record's "OperationRealProperties" collection
@@ -74,7 +95,22 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'type' => 'string',
              'length' => 30,
              ));
+        $this->hasColumn('bedroom_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
         $this->hasColumn('property_type_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
+        $this->hasColumn('geo_zone_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
+        $this->hasColumn('city_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
              'length' => 4,
@@ -89,6 +125,9 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
+        $this->hasColumn('updated', 'datetime', null, array(
+             'type' => 'datetime',
+             ));
 
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
@@ -97,8 +136,23 @@ abstract class BaseRealProperty extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Bedroom', array(
+             'local' => 'bedroom_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasOne('PropertyType', array(
              'local' => 'property_type_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('GeoZone', array(
+             'local' => 'geo_zone_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('City', array(
+             'local' => 'city_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
