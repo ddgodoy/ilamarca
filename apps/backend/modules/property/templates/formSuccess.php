@@ -120,6 +120,12 @@
 							</table>
 						</td>
 					</tr>
+                                        <tr>
+                                                <td><label><?php echo __('Google Map') ?></label></td>
+						<td>
+                                                    <?php echo $form['google_map'] ?>
+						</td>
+                                        </tr>
 				</table>
 				<fieldset>
 					<legend>&nbsp;<label><?php echo __('Videos') ?> Youtube</label>&nbsp;</legend>
