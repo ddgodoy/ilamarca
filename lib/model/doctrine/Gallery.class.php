@@ -12,4 +12,65 @@
  */
 class Gallery extends BaseGallery
 {
+
+    public static  function getPath($local = false)
+    {
+        $path_web   = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_';
+        $path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_';
+
+        if($local)
+        {
+         return $path_local;
+        }
+        else
+        {
+         return $path_web;
+        }
+
+    }
+    
+    /**
+     * Get plupload temporal folder
+     *
+     * @return string
+     */
+    public static function getPluploadTempFolder()
+    {
+            return sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR.'plupload_tmp_dir'.DIRECTORY_SEPARATOR;
+    }
+
+
+    public static function setPropertyGallery($property, $images)
+    {
+        if (!empty($images))
+        {
+                $jsonInfo = json_decode($images);
+                $temp_folder = self::getPluploadTempFolder();
+                $destination = ServiceFileHandler::getUploadFolder('gallery', $property);
+
+                foreach ($jsonInfo as $file)
+                {
+                        $internal_name = date('Y_m_d').'_'.time().Common::getStrtrSpecialCharacters($file->former_name);
+                        $upload_file = 'property_'.$property.'/'.$internal_name;
+
+                        $f_extension = strtolower(strrchr($file->former_name, '.'));
+                        copy($temp_folder.$file->unique_name, $destination.$upload_file);
+
+                        @chmod($destination.$upload_file, 0777);
+		        @unlink($temp_folder.$file->unique_name);
+
+                        ## Create thumbnail
+                        $oResize = new ResizeImage();
+                        $aThumbs = array(ServiceFileHandler::getThumbImage($upload_file) => array('w'=>75, 'h'=>50),
+                                         ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h'=>159),
+                                         $upload_file => array('w'=>600, 'h'=>350),);
+                        $oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, $f_extension, array('metodo' => 'full'));
+
+                        GalleryTable::getInstance()->newGalleryProperty($property, $file->former_name, $internal_name);
+                }
+
+        }
+
+        return true;
+    }
 }
