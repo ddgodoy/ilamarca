@@ -264,11 +264,9 @@ class propertyActions extends sfActions
       $array_prefix = array('','c_','m_');
 
       foreach ($array_prefix as $v) {
-        //echo   $path_local.$id_property.DIRECTORY_SEPARATOR.$v.$gallery->getInternalName().'<br/>';
         @unlink($path_local.$id_property.DIRECTORY_SEPARATOR.$v.$gallery->getInternalName());
       }
-
-      //exit();
+      
       $gallery_delete = GalleryTable::getInstance()->deleteGallery($id_gallery);
 
       return $this->renderComponent('property', 'gallery', array('id'=>$id_property));
