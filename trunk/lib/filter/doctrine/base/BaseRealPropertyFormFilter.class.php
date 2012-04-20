@@ -15,6 +15,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'name'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'status'           => new sfWidgetFormFilterInput(),
+      'google_map'       => new sfWidgetFormFilterInput(),
       'bedroom_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Bedroom'), 'add_empty' => true)),
       'property_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'add_empty' => true)),
       'geo_zone_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('GeoZone'), 'add_empty' => true)),
@@ -27,6 +28,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'name'             => new sfValidatorPass(array('required' => false)),
       'status'           => new sfValidatorPass(array('required' => false)),
+      'google_map'       => new sfValidatorPass(array('required' => false)),
       'bedroom_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Bedroom'), 'column' => 'id')),
       'property_type_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('PropertyType'), 'column' => 'id')),
       'geo_zone_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('GeoZone'), 'column' => 'id')),
@@ -56,6 +58,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'name'             => 'Text',
       'status'           => 'Text',
+      'google_map'       => 'Text',
       'bedroom_id'       => 'ForeignKey',
       'property_type_id' => 'ForeignKey',
       'geo_zone_id'      => 'ForeignKey',

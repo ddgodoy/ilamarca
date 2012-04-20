@@ -9,6 +9,7 @@
  * @property string $name
  * @property text $detail
  * @property string $status
+ * @property text $google_map
  * @property integer $bedroom_id
  * @property integer $property_type_id
  * @property integer $geo_zone_id
@@ -30,6 +31,7 @@
  * @method string              getName()                    Returns the current record's "name" value
  * @method text                getDetail()                  Returns the current record's "detail" value
  * @method string              getStatus()                  Returns the current record's "status" value
+ * @method text                getGoogleMap()               Returns the current record's "google_map" value
  * @method integer             getBedroomId()               Returns the current record's "bedroom_id" value
  * @method integer             getPropertyTypeId()          Returns the current record's "property_type_id" value
  * @method integer             getGeoZoneId()               Returns the current record's "geo_zone_id" value
@@ -50,6 +52,7 @@
  * @method RealProperty        setName()                    Sets the current record's "name" value
  * @method RealProperty        setDetail()                  Sets the current record's "detail" value
  * @method RealProperty        setStatus()                  Sets the current record's "status" value
+ * @method RealProperty        setGoogleMap()               Sets the current record's "google_map" value
  * @method RealProperty        setBedroomId()               Sets the current record's "bedroom_id" value
  * @method RealProperty        setPropertyTypeId()          Sets the current record's "property_type_id" value
  * @method RealProperty        setGeoZoneId()               Sets the current record's "geo_zone_id" value
@@ -94,6 +97,9 @@ abstract class BaseRealProperty extends sfDoctrineRecord
         $this->hasColumn('status', 'string', 30, array(
              'type' => 'string',
              'length' => 30,
+             ));
+        $this->hasColumn('google_map', 'text', null, array(
+             'type' => 'text',
              ));
         $this->hasColumn('bedroom_id', 'integer', 4, array(
              'type' => 'integer',
