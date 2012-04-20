@@ -31,7 +31,7 @@ function updCityList(geo_zone_id)
 		url: s_url,
 		data: 'geo_zone='+geo_zone_id,
 		success: function(data) {
-      $('#div_sel_city').html(data); updNeighborhoodList(0)
+      $('#div_sel_city').html(data);updNeighborhoodList(0)
 		}
 	});
 }
