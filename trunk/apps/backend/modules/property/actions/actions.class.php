@@ -97,12 +97,13 @@ class propertyActions extends sfActions
   	$entity_object       = NULL;
         $this->plupload_folder = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR;
 
-    $this->db_operations = OperationTable::getInstance()->getAllForSelect();
-    $this->sl_operations = array();
-    $this->sl_currencies = array();
-    $this->sl_prices     = array();
+        $this->db_operations = OperationTable::getInstance()->getAllForSelect();
+        $this->sl_operations = array();
+        $this->sl_currencies = array();
+        $this->sl_prices     = array();
 
-  	if ($this->id) {
+  	if ($this->id)
+        {
   		$entity_object = RealPropertyTable::getInstance()->find($this->id);
 
   		$this->bedroom       = $entity_object->getBedroomId();
@@ -112,7 +113,7 @@ class propertyActions extends sfActions
 	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
 	  	$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
 
-      $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
+                $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
 	  	$this->sl_operations = $a_operations_values['operations'];
 	  	$this->sl_currencies = $a_operations_values['currencies'];
@@ -130,70 +131,72 @@ class propertyActions extends sfActions
 	  	$this->operations    = $request->getParameter('operations');
 	  	$this->currencies    = $request->getParameter('currencies');
 	  	$this->prices        = $request->getParameter('prices');
-      $this->sl_operations = $request->getParameter('operations');
-      $this->sl_currencies = $request->getParameter('currencies');
-      $this->sl_prices     = $request->getParameter('prices');
-      $this->videos        = $request->getParameter('videos');
+                $this->sl_operations = $request->getParameter('operations');
+                $this->sl_currencies = $request->getParameter('currencies');
+                $this->sl_prices     = $request->getParameter('prices');
+                $this->videos        = $request->getParameter('videos', array());
 
   		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
   		if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
-      if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
+                if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
 
-      $sum_array = 0;
+                  $sum_array = 0;
 
-      if (count($this->sl_prices) != 0 ) {
-        foreach ($this->sl_prices as $k => $value) {
-        	$_price_number = (float) $value['number'];
+                  if (count($this->sl_prices) != 0 ) {
+                    foreach ($this->sl_prices as $k => $value) {
+                            $_price_number = (float) $value['number'];
 
-          if (empty($_price_number) && in_array($k, $this->sl_operations)) {
-            $this->error['prices'] = 'Enter the price for the operation'; break;
-          }
-        }
-      }
+                      if (empty($_price_number) && in_array($k, $this->sl_operations)) {
+                        $this->error['prices'] = 'Enter the price for the operation'; break;
+                      }
+                    }
+                }
   		## continue
-  		if (!$this->error) {
-        $form_request = $request->getParameter($this->form->getName());
-        $form_request['bedroom_id']       = $this->bedroom;
-        $form_request['property_type_id'] = $this->property_type;
-        $form_request['geo_zone_id']      = $this->geo_zone;
-        $form_request['city_id']          = $this->city;
-        $form_request['neighborhood_id']  = $this->neighborhood;
-        $form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
+  		if (!$this->error) 
+                {
+                    $form_request = $request->getParameter($this->form->getName());
+                    $form_request['bedroom_id']       = $this->bedroom;
+                    $form_request['property_type_id'] = $this->property_type;
+                    $form_request['geo_zone_id']      = $this->geo_zone;
+                    $form_request['city_id']          = $this->city;
+                    $form_request['neighborhood_id']  = $this->neighborhood;
+                    $form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
 
-        $this->form->bind($form_request);
+                    $this->form->bind($form_request);
 
-        if ($this->form->isValid()) {
-	  			$recorded = $this->form->save();
+                    if ($this->form->isValid())
+                    {
+                      $recorded = $this->form->save();
 
-          if (!$this->form->isNew()) {
-            OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
+                      if (!$this->form->isNew()) {
+                        OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
+                      }
+                      foreach ($this->sl_operations as $v)
+                      {
+                        $operation = new OperationRealProperty;
+                        $operation->setOperationId($v);
+                        $operation->setCurrencyId($this->sl_currencies[$v]['id']);
+                        $operation->setPrice($this->sl_prices[$v]['number']);
+                        $operation->setRealPropertyId($recorded->getId());
+                        $operation->save();
+                      }
+                      // set videos
+                      VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
+                      //
+
+                      // set images
+                      Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
+
+                      $recorded->setUpdated(date('Y-m-d H:i:s'));
+                      $recorded->save();
+
+
+
+                      $this->redirect('property/show?id='.$recorded->getId());
+                     }
+                 }
           }
-          foreach ($this->sl_operations as $v)
-          {
-            $operation = new OperationRealProperty;
-            $operation->setOperationId($v);
-            $operation->setCurrencyId($this->sl_currencies[$v]['id']);
-            $operation->setPrice($this->sl_prices[$v]['number']);
-            $operation->setRealPropertyId($recorded->getId());
-            $operation->save();
-          }
-          // set videos
-          VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
-          //
-
-          // set images
-          Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
-
-          $recorded->setUpdated(date('Y-m-d H:i:s'));
-          $recorded->save();
-
-
-
-	  $this->redirect('property/show?id='.$recorded->getId());
-	  		}	
-  		}
-  	}
-  	$this->setTemplate('form');
+      $this->setTemplate('form');
   }
 
   /**
