@@ -149,6 +149,7 @@ RealProperty:
     name:             { type: string(250), notnull: true }
     detail:           { type: text }
     status:           { type: string(30) }
+    google_map:       { type: text }
     bedroom_id:       { type: integer(4), notnull: true }
     property_type_id: { type: integer(4), notnull: true }
     geo_zone_id:      { type: integer(4), notnull: true }
@@ -204,19 +205,6 @@ Video:
     id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
     youtube:          { type: text }
     uploaded:         { type: string(50) }
-    real_property_id: { type: integer(4), notnull: true }
-
-  relations:
-    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: RealProperty, onDelete: CASCADE }
-
-#
-# GOOGLE_MAP
-#
-GoogleMap:
-  tableName: google_map
-  columns:
-    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
-    map_content:      { type: text }
     real_property_id: { type: integer(4), notnull: true }
 
   relations:
