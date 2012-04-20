@@ -391,3 +391,27 @@ form {
 	background-color: #FAFAFA;
 	font-size: 12px;
 }
+.div_images{
+    width: 100%;
+    margin-top: 10px;
+}
+.div_images ul{
+    margin-left: -35px;
+}
+.li_images{
+    border: 1px solid #CCCCCC;
+    float: left;
+    list-style: none outside none;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 18px;
+    position: relative;
+    width: 75px;
+}
+.img_delete{
+    float: right;
+    margin-right: -11px;
+    cursor: pointer;
+}
