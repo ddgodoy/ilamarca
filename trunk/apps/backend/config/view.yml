@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, admin.css]
+  stylesheets:    [main.css, admin.css, /js/alerts/jquery.alerts.css]
 
-  javascripts:    [/js/jquery.min.js, /js/functions.js]
+  javascripts:    [/js/jquery.min.js, /js/functions.js, /js/alerts/jquery.alerts.js]
 
   has_layout:     true
   layout:         layout

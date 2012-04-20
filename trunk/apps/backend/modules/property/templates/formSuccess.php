@@ -130,28 +130,51 @@
 								<td>
 									<table cellpadding="0" cellspacing="0" id="table_content">
 										<?php foreach ($videos as $i_video => $v_video): ?>
-			              	<tr id="<?php echo $i_video ?>">
-				              	<td><textarea class="form_input area_yt" name="videos[]"><?php echo $v_video ?></textarea></td>
-				              	<td class="close"><img onclick="close_tr(<?php echo $i_video ?>)" src="/admin/images/borrar_hover.png"></td>
-				              </tr>
-			              <?php endforeach; ?>
-			            </table>
+                                                                                <tr id="<?php echo $i_video ?>">
+                                                                                        <td><textarea class="form_input area_yt" name="videos[]"><?php echo $v_video ?></textarea></td>
+                                                                                        <td class="close"><img onclick="close_tr(<?php echo $i_video ?>)" src="/admin/images/borrar_hover.png"></td>
+                                                                                      </tr>
+                                                                              <?php endforeach; ?>
+                                                                        </table>
 								</td>
 							</tr>
 						</table>
 					</div>
 				</fieldset>
-			</fieldset>
-			<div style="padding-top:10px;" class="botonera">
-				<input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />
-				<input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" />
+                                <fieldset>
+                                    <legend>&nbsp;<label><?php echo __('Images') ?></label>&nbsp;</legend>
+                                    <table cellpadding="0" cellspacing="0">
+					<tr>
+						<td valign="top">
+							<table cellpadding="0" cellspacing="0" class="plupload_list" id="plupload_tb_list">
+								<tr>
+									<th width="300"><?php echo __('File') ?> (.jpeg, .gif o .png)</th>
+									<th width="100"><?php echo __('Size') ?></th>
+									<th width="200" colspan="3" class="plupload_center"><?php echo __('Uploaded') ?></th>
+								</tr>
+								<tr id="plupload_temp_row"><td colspan="5">&nbsp;</td></tr>
+							</table>
+						</td>
+						<td valign="top" style="padding-left:20px;"><input type="button" id="plupload_pick_file" value="<?php echo __('Select') ?>" class="boton" /></td>
+					</tr>
+				</table>
+				<input type="hidden" name="plupload_files" id="plupload_hidden_files" class="plupload_none" />
+				<input type="hidden" id="plupload_get_folder" value="<?php echo $plupload_folder ?>" />
+				<input type="hidden" id="plupload_max_size" value="50" />
+				<input type="hidden" id="plupload_filters" value="jpg,gif,png" />
+                                <div class="div_images" >
+                                <?php include_component('property', 'gallery' , array('id'=>$sf_params->get('id'))) ?>
+                                </div>
+			      </fieldset>
+                              <div style="padding-top:10px;" class="botonera">
+                                    <input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />
+                                    <input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" />
 
-				<input type="hidden" id="ajax_url_city" value="<?php echo url_for('property/ajaxCity') ?>"/>
-				<input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('property/ajaxNeighborhood') ?>"/>
-        <input type="hidden" id="ajax_url_videos" value="<?php echo url_for('property/ajaxVideos') ?>"/>
-
-				<?php echo $form->renderHiddenFields() ?>
-			</div>
+                                    <input type="hidden" id="ajax_url_city" value="<?php echo url_for('property/ajaxCity') ?>"/>
+                                    <input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('property/ajaxNeighborhood') ?>"/>
+                                    <?php echo $form->renderHiddenFields() ?>
+                             </div>
+                      </fieldset>
 		</form>
 	</div>
 	<div class="clear"></div>
