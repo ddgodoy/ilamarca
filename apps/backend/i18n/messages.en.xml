@@ -100,6 +100,14 @@
       <trans-unit id="90"><source>Operation</source><target>Operation</target></trans-unit>
       <trans-unit id="91"><source>Add</source><target>Add</target></trans-unit>
       <trans-unit id="92"><source>Bedrooms</source><target>Bedrooms</target></trans-unit>
+      <trans-unit id="93"><source>Videos</source><target>Videos</target></trans-unit>
+      <trans-unit id="94"><source>Images</source><target>Images</target></trans-unit>
+      <trans-unit id="95"><source>File</source><target>File</target></trans-unit>
+      <trans-unit id="96"><source>Size</source><target>Size</target></trans-unit>
+      <trans-unit id="97"><source>Uploaded</source><target>Uploaded</target></trans-unit>
+      <trans-unit id="98"><source>confirm_delet_images</source><target>Confirms delete the image?</target></trans-unit>
+      <trans-unit id="99"><source>Check the information</source><target>Check the information</target></trans-unit>
+      <trans-unit id="100"><source>delete</source><target>Delete</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -95,6 +95,7 @@ class propertyActions extends sfActions
   	$this->videos        = array();
   	$this->error         = array();
   	$entity_object       = NULL;
+        $this->plupload_folder = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR;
 
     $this->db_operations = OperationTable::getInstance()->getAllForSelect();
     $this->sl_operations = array();
@@ -179,10 +180,16 @@ class propertyActions extends sfActions
           // set videos
           VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
           //
+
+          // set images
+          Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
+
           $recorded->setUpdated(date('Y-m-d H:i:s'));
           $recorded->save();
 
-	  			$this->redirect('property/show?id='.$recorded->getId());
+
+
+	  $this->redirect('property/show?id='.$recorded->getId());
 	  		}	
   		}
   	}
@@ -239,6 +246,33 @@ class propertyActions extends sfActions
     $this->city = $request->getParameter('city');
 
     return $this->renderPartial('property/ajaxNeighborhood'); exit();
+  }
+
+  /**
+   * ajax images
+   * @param sfWebRequest $request
+   */
+  public function executeAjaxImages(sfWebRequest $request)
+  {
+      $id_gallery = $request->getParameter('id_gallery');
+      $id_property = $request->getParameter('id_property');
+      
+      $path_local = Gallery::getPath(1);
+
+      $gallery = GalleryTable::getInstance()->findOneById($id_gallery);
+
+      $array_prefix = array('','c_','m_');
+
+      foreach ($array_prefix as $v) {
+        //echo   $path_local.$id_property.DIRECTORY_SEPARATOR.$v.$gallery->getInternalName().'<br/>';
+        @unlink($path_local.$id_property.DIRECTORY_SEPARATOR.$v.$gallery->getInternalName());
+      }
+
+      //exit();
+      $gallery_delete = GalleryTable::getInstance()->deleteGallery($id_gallery);
+
+      return $this->renderComponent('property', 'gallery', array('id'=>$id_property));
+      exit();
   }
 
 } // end class

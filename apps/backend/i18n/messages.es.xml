@@ -100,6 +100,14 @@
       <trans-unit id="90"><source>Operation</source><target>Operación</target></trans-unit>
       <trans-unit id="91"><source>Add</source><target>Agregar</target></trans-unit>
       <trans-unit id="92"><source>Bedrooms</source><target>Dormitorios</target></trans-unit>
+      <trans-unit id="93"><source>Videos</source><target>Videos</target></trans-unit>
+      <trans-unit id="94"><source>Images</source><target>Imagenes</target></trans-unit>
+      <trans-unit id="95"><source>File</source><target>Archivo</target></trans-unit>
+      <trans-unit id="96"><source>Size</source><target>Tamaño</target></trans-unit>
+      <trans-unit id="97"><source>Uploaded</source><target>Subido</target></trans-unit>
+      <trans-unit id="98"><source>confirm_delet_images</source><target>Confirma que desea eliminar la imagen?</target></trans-unit>
+      <trans-unit id="99"><source>Check the information</source><target>Verifique la información</target></trans-unit>
+      <trans-unit id="100"><source>delete</source><target>Eliminar</target></trans-unit>
     </body>
   </file>
 </xliff>
