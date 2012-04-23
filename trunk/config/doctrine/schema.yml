@@ -121,6 +121,7 @@ Currency:
     id:       { type: integer(4), primary: true, notnull: true, autoincrement: true }
     name:     { type: string(50), notnull: true }
     iso_code: { type: string(5) }
+    culture:  { type: string(5) }
     symbol:   { type: string(5) }
 
 #
