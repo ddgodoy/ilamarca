@@ -260,14 +260,14 @@ class propertyActions extends sfActions
       $id_gallery = $request->getParameter('id_gallery');
       $id_property = $request->getParameter('id_property');
       
-      $path_local = Gallery::getPath(1);
+      $path_local = Gallery::getPath($id_property,1);
 
       $gallery = GalleryTable::getInstance()->findOneById($id_gallery);
 
       $array_prefix = array('','c_','m_');
 
       foreach ($array_prefix as $v) {
-        @unlink($path_local.$id_property.DIRECTORY_SEPARATOR.$v.$gallery->getInternalName());
+        @unlink($path_local.$v.$gallery->getInternalName());
       }
       
       $gallery_delete = GalleryTable::getInstance()->deleteGallery($id_gallery);
