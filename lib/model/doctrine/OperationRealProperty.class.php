@@ -33,4 +33,23 @@ class OperationRealProperty extends BaseOperationRealProperty
         return $array_data;
 
     }
+
+    /**
+     * get array property by operation
+     * @param array $data_currency
+     * @return array
+     */
+    public static function getArrayPropertyByOperation($data_currency)
+    {
+        $array_id = array();
+        $currency_data = OperationRealPropertyTable::getInstance()
+                        ->getIdPropertyByCurrency($data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta']);
+
+        foreach ($currency_data as $value)
+        {
+            $array_id[] =  $value->getRealPropertyId();
+        }
+
+        return $array_id;
+    }
 }
