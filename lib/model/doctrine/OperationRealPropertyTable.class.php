@@ -18,6 +18,24 @@ class OperationRealPropertyTable extends Doctrine_Table
     return $q->execute();
     }
 
+    /**
+    * Get operations by property and culture
+    * @param int $property
+    * @param string $culture
+    * @return array
+    */
+    public function getOperationsByPropertyIdAndCulture($property_id, $culture)
+    {
+        $q = $this->createQuery('orp')
+              ->leftJoin('orp.Currency c')
+              ->where('real_property_id = ?', $property_id)
+              ->andWhere('c.culture = ?', $culture)
+              ->orWhere('c.culture = ?', 'es')
+              ->orderBy('operation_id');
+
+        return $q->fetchOne();
+    }
+
     //
     public function deleteOperationsByProperty($property_id)
     {

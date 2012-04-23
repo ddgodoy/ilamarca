@@ -33,12 +33,18 @@ class GalleryTable extends Doctrine_Table
      * @param int $id
      * @return object
      */
-    public function getGalleryByProperty($id)
+    public function getGalleryByProperty($id, $one = null)
     {
         $q = $this->createQuery('g')
              ->where('g.real_property_id = ?', $id);
-
-        return $q->execute();
+        if($one)
+        {
+            return $q->fetchOne();
+        }
+        else
+        {
+            return $q->execute();
+        }
     }
 
     /**

@@ -12,4 +12,12 @@
  */
 class Operation extends BaseOperation
 {
+    public static function getPrices($property, $culture)
+    {
+        $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, $culture);
+
+        $text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
+
+        return $text_price;
+    }
 }
