@@ -13,10 +13,10 @@
 class Gallery extends BaseGallery
 {
 
-    public static  function getPath($local = false)
+    public static  function getPath($property,$local = false)
     {
-        $path_web   = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_';
-        $path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_';
+        $path_web   = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
+        $path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
 
         if($local)
         {
@@ -72,5 +72,20 @@ class Gallery extends BaseGallery
         }
 
         return true;
+    }
+
+    /**
+     *
+     * @param int $property
+     * @return string
+     */
+    public static function getFirstGallery($property)
+    {
+        $name_gallery = GalleryTable::getInstance()->getGalleryByProperty($property, true);
+
+        $path = self::getPath($property).'m_'.$name_gallery->getInternalName();
+
+        return $path;
+
     }
 }
