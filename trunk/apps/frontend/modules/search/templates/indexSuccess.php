@@ -12,13 +12,15 @@
 		?>
 			<div class="preview<?php echo $set_css_middle ?>">
 				<a href="#" id="tt-<?php echo $p_val->getId() ?>" class="white">
-					<div class="img"><img src="/images/trash/ej_01.jpg" alt="imagen de ejemplo" /></div>
+					<div class="img">
+                                            <img src="<?php echo Gallery::getFirstGallery($p_val->getId()) ?>" alt="<?php echo $p_val->getName() ?>" />
+                                        </div>
 					<p><?php echo $p_val->getName() ?></p>
 				</a>
 				<div class="tooltip">
 					<div class="inside">
 						<span class="name"><?php echo $p_val->getName() ?></span>
-						<span class="precio">US$ 950</span>
+                                                <span class="precio"><?php echo Operation::getPrices($p_val->getId(), $sf_user->getCulture()) ?></span>
 						<span class="sombra"></span>
 						<ul>
 							<li>750 m2 cubiertos.</li>
