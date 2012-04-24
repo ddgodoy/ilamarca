@@ -35,20 +35,7 @@
 				$(document).ready(function() {$("#tt-<?php echo $p_val->getId() ?>").tooltip ({ effect: 'slide', position: "center right", offset: [20, -25]}); });
 			</script>
 		<?php endforeach; ?>
-		<!-- -->
-		<div class="paginacion">
-			<ul>
-				<li><a href="#" class="fondo"><span class="prev"></span></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">...</a></li>
-				<li><a href="#" class="fondo"><span class="next"></span></a></li>
-			</ul>
-		</div>
-		<!-- -->
+                <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
 	</div>
 </div>
 

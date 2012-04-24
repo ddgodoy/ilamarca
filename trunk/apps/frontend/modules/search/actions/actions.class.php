@@ -20,11 +20,13 @@ class searchActions extends sfActions
         $this->p_desde       = $this->getRequestParameter('p_from', 0);
         $this->p_hasta       = $this->getRequestParameter('p_to', 0);
         $this->currency      = $this->getRequestParameter('currency', 0);
+        $str_module          = $request->getParameter('module');
+        $this->index_url     = sfContext::getInstance()->getController()->genUrl($str_module.'/index');
 
         $array_data_currency = array('currency'=>$this->currency, 'p_desde'=>$this->p_desde, 'p_hasta'=>$this->p_hasta);
 
   	$this->iPage  = $request->getParameter('page', 1);
-  	$this->oPager = RealPropertyTable::getInstance()->searchResults($this->iPage, 12, $this->setFilter(),'',$array_data_currency);
+  	$this->oPager = RealPropertyTable::getInstance()->searchResults($this->iPage, 1, $this->setFilter(),'',$array_data_currency);
   	$this->oList  = $this->oPager->getResults();
   }
   
@@ -37,6 +39,7 @@ class searchActions extends sfActions
   {
   	$sch_partial = 'p.id > 0';
   	$this->f_params = '';
+        $this->pager_order = '';
 
   	$this->property_type = $this->getRequestParameter('property_type', 0);
         $this->operation     = $this->getRequestParameter('operation', 0);
