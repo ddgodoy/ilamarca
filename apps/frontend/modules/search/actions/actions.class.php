@@ -44,7 +44,7 @@ class searchActions extends sfActions
   	$this->property_type = $this->getRequestParameter('property_type', 0);
         $this->operation     = $this->getRequestParameter('operation', 0);
         $this->geo_zone      = $this->getRequestParameter('geo_zone', 0);
-        $this->city          = $this->getRequestParameter('property_type', 0);
+        $this->city          = $this->getRequestParameter('city', 0);
         $this->neighborhood  = $this->getRequestParameter('neighborhood', 0);
         $this->bedroom       = $this->getRequestParameter('bedroom', 0);
 

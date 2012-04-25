@@ -15,7 +15,7 @@
 					</select>
 				</div>
 				<div class="space_bottom">
-					<select name="geo_zone" onchange="updCityList(this.value);" class="et_input">
+					<select name="geo_zone" id="geo_zone" onchange="updCityList(this.value);" class="et_input">
 						<?php echo Common::fillSimpleSelect($db_geo_zones) ?>
 					</select>
 				</div>
