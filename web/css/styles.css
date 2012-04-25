@@ -150,7 +150,7 @@ html[xmlns] .clearfix {
 .resultado .guardar a:hover { background-position:left bottom;}
 
 /*filtros*/
-.filtros a.menos {color:#484848;font-size:13px;text-decoration:underline; font-family: "Lucida Grande", Helvetica, Arial, sans-serif; display:block; padding-bottom:10px; text-align:center;}
+.filtros a.menos {color:#484848;font-size:13px;text-decoration:underline; font-family: "Lucida Grande", Helvetica, Arial, sans-serif; display:block; padding-bottom:10px; padding-top: 10px; text-align:center;}
 
 .filtros a.menos:hover {color:#333; text-decoration:none;}
 
@@ -378,6 +378,9 @@ html[xmlns] .clearfix {
 	width: 320px;
 	background-color: #F4F4F4;
 	padding: 4px;
+}
+.et_filter{
+    width: 250px !important;
 }
 .space_bottom {
 	padding-bottom: 14px;
