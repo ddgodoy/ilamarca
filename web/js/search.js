@@ -3,6 +3,7 @@ function updCityList(geo_zone_id)
 	var l_img = document.getElementById('img_loading');
 	var s_url = document.getElementById('ajax_url_city').value;
 	var s_lbl = document.getElementById('lbl_neighborhood').value;
+        var s_class = $('#geo_zone').attr('class');
 
 	l_img.style.visibility = 'visible';
 
@@ -11,7 +12,10 @@ function updCityList(geo_zone_id)
 		url: s_url,
 		data: 'geo_zone='+geo_zone_id,
 		success: function(data) {
-			l_img.style.visibility = 'hidden'; $('#div_sel_city').html(data);
+			l_img.style.visibility = 'hidden';
+                        $('#div_sel_city').html(data);
+                        $('#city').attr('class',s_class);
+
 		}
 	});
 	var sel_neighborhood = document.getElementById('neighborhood');
@@ -25,6 +29,7 @@ function updNeighborhoodList(city_id)
 {
 	var l_img = document.getElementById('img_loading');
 	var s_url = document.getElementById('ajax_url_neighborhood').value;
+        var s_class = $('#city').attr('class');
 
 	l_img.style.visibility = 'visible';
 
@@ -33,7 +38,9 @@ function updNeighborhoodList(city_id)
 		url: s_url,
 		data: 'city='+city_id,
 		success: function(data) {
-			l_img.style.visibility = 'hidden'; $('#div_sel_neighborhood').html(data);
+			l_img.style.visibility = 'hidden'; 
+                        $('#div_sel_neighborhood').html(data);
+                        $('#neighborhood').attr('class',s_class);
 		}
 	});
 }
