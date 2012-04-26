@@ -131,7 +131,7 @@ class propertyActions extends sfActions
 	  	$this->operations    = $request->getParameter('operations');
 	  	$this->currencies    = $request->getParameter('currencies');
 	  	$this->prices        = $request->getParameter('prices');
-                $this->sl_operations = $request->getParameter('operations');
+                $this->sl_operations = $request->getParameter('operations', array());
                 $this->sl_currencies = $request->getParameter('currencies');
                 $this->sl_prices     = $request->getParameter('prices');
                 $this->videos        = $request->getParameter('videos', array());

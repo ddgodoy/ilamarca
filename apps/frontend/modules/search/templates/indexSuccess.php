@@ -23,9 +23,9 @@
                                                 <span class="precio"><?php echo Operation::getPrices($p_val->getId(), $sf_user->getCulture()) ?></span>
 						<span class="sombra"></span>
 						<ul>
-							<li>750 m2 cubiertos.</li>
-							<li>1180 m2 de terreno.</li>
-							<li>4 dormitorios en suite y oficina.</li>
+							<li><?php echo $p_val->getCoveredMeters() ?> m2 cubiertos.</li>
+							<li><?php echo $p_val->getGround() ?> m2 de terreno.</li>
+							<li><?php echo $p_val->getBedroom()->getName() ?></li>
 							<a href="#" title="Más detalles"></a>
 						</ul>
 					</div>

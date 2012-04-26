@@ -111,6 +111,31 @@
 						<td><label><?php echo __('Name') ?> *</label></td>
 						<td><?php echo $form['name'] ?></td>
 					</tr>
+                                        <tr>
+						<td><label><?php echo __('owner') ?> </label></td>
+						<td><?php echo $form['owner'] ?></td>
+					</tr>
+                                        <tr>
+						<td><label><?php echo __('phone') ?> </label></td>
+						<td><?php echo $form['phone'] ?></td>
+					</tr>
+                                        <tr>
+						<td><label><?php echo __('email') ?> </label></td>
+						<td><?php echo $form['email'] ?></td>
+					</tr>
+                                        <tr>
+						<td><label><?php echo __('ground') ?> </label></td>
+						<td><?php echo $form['ground'] ?> <label>Mts</label></td>
+					</tr>
+                                        <tr>
+						<td><label><?php echo __('covered_meters') ?> </label></td>
+						<td><?php echo $form['covered_meters'] ?> <label>Mts</label></td>
+					</tr>
+                                        <tr>
+						<td><label><?php echo __('antiquity') ?> </label></td>
+						<td><?php echo $form['age'] ?> <label><?php echo __('ages') ?></label></td>
+					</tr>
+                                        <?php /*
 					<tr>
 						<td><label><?php echo __('Detail') ?></label></td>
 						<td>
@@ -120,6 +145,24 @@
 							</table>
 						</td>
 					</tr>
+                                         *
+                                         */ ?>
+                                        <tr>
+                                            <td colspan="3">
+                                                <fieldset>
+                                                    <legend>&nbsp;<label><?php echo __('Description') ?></label>&nbsp;</legend>
+                                                    <table style="width: 80%">
+                                                        <tr>
+                                                            <td><label><?php echo __('pool') ?> </label> <?php echo $form['pool'] ?></td>
+                                                            <td><label><?php echo __('service_dept') ?> </label> <?php echo $form['service_dept'] ?></td>
+                                                            <td><label><?php echo __('balcony') ?> </label> <?php echo $form['balcony'] ?></td>
+                                                            <td><label><?php echo __('rotisserie') ?> </label> <?php echo $form['rotisserie'] ?></td>
+                                                            <td><label><?php echo __('desk') ?> </label> <?php echo $form['desk'] ?></td>
+                                                        </tr>
+                                                    </table>
+                                                </fieldset>
+                                            </td>
+                                        </tr>
                                         <tr>
                                                 <td><label><?php echo __('Google Map') ?></label></td>
 						<td>
