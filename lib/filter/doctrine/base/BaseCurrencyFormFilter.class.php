@@ -15,6 +15,7 @@ abstract class BaseCurrencyFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'name'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'iso_code'   => new sfWidgetFormFilterInput(),
+      'culture'    => new sfWidgetFormFilterInput(),
       'symbol'     => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -23,6 +24,7 @@ abstract class BaseCurrencyFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'name'       => new sfValidatorPass(array('required' => false)),
       'iso_code'   => new sfValidatorPass(array('required' => false)),
+      'culture'    => new sfValidatorPass(array('required' => false)),
       'symbol'     => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -48,6 +50,7 @@ abstract class BaseCurrencyFormFilter extends BaseFormFilterDoctrine
       'id'         => 'Number',
       'name'       => 'Text',
       'iso_code'   => 'Text',
+      'culture'    => 'Text',
       'symbol'     => 'Text',
       'created_at' => 'Date',
       'updated_at' => 'Date',

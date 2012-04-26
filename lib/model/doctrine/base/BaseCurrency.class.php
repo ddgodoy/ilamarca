@@ -8,17 +8,20 @@
  * @property integer $id
  * @property string $name
  * @property string $iso_code
+ * @property string $culture
  * @property string $symbol
  * @property Doctrine_Collection $Currency
  * 
  * @method integer             getId()       Returns the current record's "id" value
  * @method string              getName()     Returns the current record's "name" value
  * @method string              getIsoCode()  Returns the current record's "iso_code" value
+ * @method string              getCulture()  Returns the current record's "culture" value
  * @method string              getSymbol()   Returns the current record's "symbol" value
  * @method Doctrine_Collection getCurrency() Returns the current record's "Currency" collection
  * @method Currency            setId()       Sets the current record's "id" value
  * @method Currency            setName()     Sets the current record's "name" value
  * @method Currency            setIsoCode()  Sets the current record's "iso_code" value
+ * @method Currency            setCulture()  Sets the current record's "culture" value
  * @method Currency            setSymbol()   Sets the current record's "symbol" value
  * @method Currency            setCurrency() Sets the current record's "Currency" collection
  * 
@@ -44,6 +47,10 @@ abstract class BaseCurrency extends sfDoctrineRecord
              'length' => 50,
              ));
         $this->hasColumn('iso_code', 'string', 5, array(
+             'type' => 'string',
+             'length' => 5,
+             ));
+        $this->hasColumn('culture', 'string', 5, array(
              'type' => 'string',
              'length' => 5,
              ));

@@ -50,7 +50,7 @@ class RealPropertyTable extends Doctrine_Table
                    ->from('RealProperty p')
                    ->where($filter)
                    ->orderBy('p.updated DESC');
-            if($array_property_operation)
+            if(!empty($array_property_operation))
             {
             $oPager->getQuery()
                    ->andWhereIn('p.id', $array_property_operation);

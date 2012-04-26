@@ -7,9 +7,19 @@
  * 
  * @property integer $id
  * @property string $name
- * @property text $detail
  * @property string $status
  * @property text $google_map
+ * @property string $ground
+ * @property string $covered_meters
+ * @property string $age
+ * @property string $owner
+ * @property string $phone
+ * @property string $email
+ * @property boolean $pool
+ * @property boolean $service_dept
+ * @property boolean $balcony
+ * @property boolean $rotisserie
+ * @property boolean $desk
  * @property integer $bedroom_id
  * @property integer $property_type_id
  * @property integer $geo_zone_id
@@ -23,15 +33,26 @@
  * @property City $City
  * @property Neighborhood $Neighborhood
  * @property AppUser $AppUser
+ * @property Doctrine_Collection $MoreInfoRealProperty
  * @property Doctrine_Collection $OperationRealProperties
  * @property Doctrine_Collection $RealProperty
  * @property Doctrine_Collection $SearchMatches
  * 
  * @method integer             getId()                      Returns the current record's "id" value
  * @method string              getName()                    Returns the current record's "name" value
- * @method text                getDetail()                  Returns the current record's "detail" value
  * @method string              getStatus()                  Returns the current record's "status" value
  * @method text                getGoogleMap()               Returns the current record's "google_map" value
+ * @method string              getGround()                  Returns the current record's "ground" value
+ * @method string              getCoveredMeters()           Returns the current record's "covered_meters" value
+ * @method string              getAge()                     Returns the current record's "age" value
+ * @method string              getOwner()                   Returns the current record's "owner" value
+ * @method string              getPhone()                   Returns the current record's "phone" value
+ * @method string              getEmail()                   Returns the current record's "email" value
+ * @method boolean             getPool()                    Returns the current record's "pool" value
+ * @method boolean             getServiceDept()             Returns the current record's "service_dept" value
+ * @method boolean             getBalcony()                 Returns the current record's "balcony" value
+ * @method boolean             getRotisserie()              Returns the current record's "rotisserie" value
+ * @method boolean             getDesk()                    Returns the current record's "desk" value
  * @method integer             getBedroomId()               Returns the current record's "bedroom_id" value
  * @method integer             getPropertyTypeId()          Returns the current record's "property_type_id" value
  * @method integer             getGeoZoneId()               Returns the current record's "geo_zone_id" value
@@ -45,14 +66,25 @@
  * @method City                getCity()                    Returns the current record's "City" value
  * @method Neighborhood        getNeighborhood()            Returns the current record's "Neighborhood" value
  * @method AppUser             getAppUser()                 Returns the current record's "AppUser" value
+ * @method Doctrine_Collection getMoreInfoRealProperty()    Returns the current record's "MoreInfoRealProperty" collection
  * @method Doctrine_Collection getOperationRealProperties() Returns the current record's "OperationRealProperties" collection
  * @method Doctrine_Collection getRealProperty()            Returns the current record's "RealProperty" collection
  * @method Doctrine_Collection getSearchMatches()           Returns the current record's "SearchMatches" collection
  * @method RealProperty        setId()                      Sets the current record's "id" value
  * @method RealProperty        setName()                    Sets the current record's "name" value
- * @method RealProperty        setDetail()                  Sets the current record's "detail" value
  * @method RealProperty        setStatus()                  Sets the current record's "status" value
  * @method RealProperty        setGoogleMap()               Sets the current record's "google_map" value
+ * @method RealProperty        setGround()                  Sets the current record's "ground" value
+ * @method RealProperty        setCoveredMeters()           Sets the current record's "covered_meters" value
+ * @method RealProperty        setAge()                     Sets the current record's "age" value
+ * @method RealProperty        setOwner()                   Sets the current record's "owner" value
+ * @method RealProperty        setPhone()                   Sets the current record's "phone" value
+ * @method RealProperty        setEmail()                   Sets the current record's "email" value
+ * @method RealProperty        setPool()                    Sets the current record's "pool" value
+ * @method RealProperty        setServiceDept()             Sets the current record's "service_dept" value
+ * @method RealProperty        setBalcony()                 Sets the current record's "balcony" value
+ * @method RealProperty        setRotisserie()              Sets the current record's "rotisserie" value
+ * @method RealProperty        setDesk()                    Sets the current record's "desk" value
  * @method RealProperty        setBedroomId()               Sets the current record's "bedroom_id" value
  * @method RealProperty        setPropertyTypeId()          Sets the current record's "property_type_id" value
  * @method RealProperty        setGeoZoneId()               Sets the current record's "geo_zone_id" value
@@ -66,6 +98,7 @@
  * @method RealProperty        setCity()                    Sets the current record's "City" value
  * @method RealProperty        setNeighborhood()            Sets the current record's "Neighborhood" value
  * @method RealProperty        setAppUser()                 Sets the current record's "AppUser" value
+ * @method RealProperty        setMoreInfoRealProperty()    Sets the current record's "MoreInfoRealProperty" collection
  * @method RealProperty        setOperationRealProperties() Sets the current record's "OperationRealProperties" collection
  * @method RealProperty        setRealProperty()            Sets the current record's "RealProperty" collection
  * @method RealProperty        setSearchMatches()           Sets the current record's "SearchMatches" collection
@@ -91,15 +124,56 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'notnull' => true,
              'length' => 250,
              ));
-        $this->hasColumn('detail', 'text', null, array(
-             'type' => 'text',
-             ));
         $this->hasColumn('status', 'string', 30, array(
              'type' => 'string',
              'length' => 30,
              ));
         $this->hasColumn('google_map', 'text', null, array(
              'type' => 'text',
+             ));
+        $this->hasColumn('ground', 'string', 30, array(
+             'type' => 'string',
+             'length' => 30,
+             ));
+        $this->hasColumn('covered_meters', 'string', 30, array(
+             'type' => 'string',
+             'length' => 30,
+             ));
+        $this->hasColumn('age', 'string', 30, array(
+             'type' => 'string',
+             'length' => 30,
+             ));
+        $this->hasColumn('owner', 'string', 50, array(
+             'type' => 'string',
+             'length' => 50,
+             ));
+        $this->hasColumn('phone', 'string', 50, array(
+             'type' => 'string',
+             'length' => 50,
+             ));
+        $this->hasColumn('email', 'string', 200, array(
+             'type' => 'string',
+             'length' => 200,
+             ));
+        $this->hasColumn('pool', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('service_dept', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('balcony', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('rotisserie', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('desk', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
         $this->hasColumn('bedroom_id', 'integer', 4, array(
              'type' => 'integer',
@@ -172,6 +246,10 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
+        $this->hasMany('MoreInfoRealProperty', array(
+             'local' => 'id',
+             'foreign' => 'real_property_id'));
+
         $this->hasMany('OperationRealProperty as OperationRealProperties', array(
              'local' => 'id',
              'foreign' => 'real_property_id'));
@@ -183,13 +261,5 @@ abstract class BaseRealProperty extends sfDoctrineRecord
         $this->hasMany('SearchMatch as SearchMatches', array(
              'local' => 'id',
              'foreign' => 'real_property_id'));
-
-        $i18n0 = new Doctrine_Template_I18n(array(
-             'fields' => 
-             array(
-              0 => 'detail',
-             ),
-             ));
-        $this->actAs($i18n0);
     }
 }
