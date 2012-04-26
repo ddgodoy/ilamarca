@@ -93,11 +93,13 @@ Currency:
   currency_ars:
     name: Argentina Peso
     iso_code: ARS
+    culture: es
     symbol: $
   currency_usd:
     name: United States Dollar
     iso_code: USD
-    symbol: $
+    culture: en
+    symbol: US$
 
 ###############################################################
 
