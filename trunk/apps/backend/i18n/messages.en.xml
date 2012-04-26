@@ -108,6 +108,18 @@
       <trans-unit id="98"><source>confirm_delet_images</source><target>Confirms delete the image?</target></trans-unit>
       <trans-unit id="99"><source>Check the information</source><target>Check the information</target></trans-unit>
       <trans-unit id="100"><source>delete</source><target>Delete</target></trans-unit>
+      <trans-unit id="101"><source>owner</source><target>Owner</target></trans-unit>
+      <trans-unit id="102"><source>phone</source><target>Phone</target></trans-unit>
+      <trans-unit id="103"><source>email</source><target>E-mail</target></trans-unit>
+      <trans-unit id="104"><source>ground</source><target>Ground covered</target></trans-unit>
+      <trans-unit id="105"><source>covered_meters</source><target>Covered Meters</target></trans-unit>
+      <trans-unit id="106"><source>antiquity</source><target>Antiquity</target></trans-unit>
+      <trans-unit id="107"><source>ages</source><target>Ages</target></trans-unit>
+      <trans-unit id="108"><source>pool</source><target>Pool</target></trans-unit>
+      <trans-unit id="109"><source>service_dept</source><target>Room service</target></trans-unit>
+      <trans-unit id="110"><source>balcony</source><target>Balcony</target></trans-unit>
+      <trans-unit id="111"><source>rotisserie</source><target>Rotisserie</target></trans-unit>
+      <trans-unit id="112"><source>desk</source><target>Desk</target></trans-unit>
     </body>
   </file>
 </xliff>

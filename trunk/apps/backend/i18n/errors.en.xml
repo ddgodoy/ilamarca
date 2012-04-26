@@ -28,6 +28,9 @@
       <trans-unit id="21"><source>Select the neighborhood</source><target>Select the neighborhood</target></trans-unit>
       <trans-unit id="22"><source>Select the operation</source><target>Select the operation</target></trans-unit>
       <trans-unit id="23"><source>Enter the price for the operation</source><target>Enter the price for the operation</target></trans-unit>
+      <trans-unit id="24"><source>The ground seems incorrect</source><target>The Ground is wrong, just enter numbers</target></trans-unit>
+      <trans-unit id="25"><source>The covered_meters seems incorrect</source><target>Covered Mets are wrong, just enter numbers</target></trans-unit>
+      <trans-unit id="26"><source>The age seems incorrect</source><target>The Antiquity is wrong, just enter numbers</target></trans-unit>
     </body>
   </file>
 </xliff>
