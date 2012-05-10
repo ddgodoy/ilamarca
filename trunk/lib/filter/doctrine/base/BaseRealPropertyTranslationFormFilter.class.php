@@ -13,11 +13,19 @@ abstract class BaseRealPropertyTranslationFormFilter extends BaseFormFilterDoctr
   public function setup()
   {
     $this->setWidgets(array(
-      'detail' => new sfWidgetFormFilterInput(),
+      'name'          => new sfWidgetFormFilterInput(),
+      'detail'        => new sfWidgetFormFilterInput(),
+      'address'       => new sfWidgetFormFilterInput(),
+      'points_of_ref' => new sfWidgetFormFilterInput(),
+      'transports'    => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'detail' => new sfValidatorPass(array('required' => false)),
+      'name'          => new sfValidatorPass(array('required' => false)),
+      'detail'        => new sfValidatorPass(array('required' => false)),
+      'address'       => new sfValidatorPass(array('required' => false)),
+      'points_of_ref' => new sfValidatorPass(array('required' => false)),
+      'transports'    => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property_translation_filters[%s]');
@@ -37,9 +45,13 @@ abstract class BaseRealPropertyTranslationFormFilter extends BaseFormFilterDoctr
   public function getFields()
   {
     return array(
-      'id'     => 'Number',
-      'detail' => 'Text',
-      'lang'   => 'Text',
+      'id'            => 'Number',
+      'name'          => 'Text',
+      'detail'        => 'Text',
+      'address'       => 'Text',
+      'points_of_ref' => 'Text',
+      'transports'    => 'Text',
+      'lang'          => 'Text',
     );
   }
 }

@@ -143,29 +143,35 @@ VendorZone:
 RealProperty:
   tableName: real_property
   actAs:
+    I18n:
+      fields: [name, detail, address, points_of_ref, transports]
   columns:
-    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
-    name:             { type: string(250), notnull: true }
-    status:           { type: string(30) }
-    google_map:       { type: text }
-    ground:           { type: string(30) }
-    covered_meters:   { type: string(30) }
-    age:              { type: string(30) }
-    owner:            { type: string(50) }
-    phone:            { type: string(50) }
-    email:            { type: string(200) }
-    pool:             { type: boolean, default: false }
-    service_dept:     { type: boolean, default: false }
-    balcony:          { type: boolean, default: false }
-    rotisserie:       { type: boolean, default: false }
-    desk:             { type: boolean, default: false }
-    bedroom_id:       { type: integer(4), notnull: true }
-    property_type_id: { type: integer(4), notnull: true }
-    geo_zone_id:      { type: integer(4), notnull: true }
-    city_id:          { type: integer(4), notnull: true }
-    neighborhood_id:  { type: integer(4), notnull: true }
-    app_user_id:      { type: integer(4), notnull: true }
-    updated:          { type: datetime }
+    id:                 { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    name:               { type: string(250) }
+    detail:             { type: text }
+    address:            { type: text }
+    points_of_ref:      { type: text }
+    transports:         { type: text }
+    google_map:         { type: text }
+    square_meters:      { type: integer(4), default: 0 }
+    covered_area:       { type: integer(4), default: 0 }
+    years_antiquity:    { type: integer(4), default: 0 }
+    qty_bathrooms:      { type: integer(4), default: 1 }
+    has_garage:         { type: boolean, default: false }
+    has_swimming_pool:  { type: boolean, default: false }
+    has_dep_of_service: { type: boolean, default: false }
+    has_balcony:        { type: boolean, default: false }
+    has_bbq:            { type: boolean, default: false }
+    owner_name:         { type: string(100) }
+    owner_phone:        { type: string(50) }
+    owner_email:        { type: string(250) }
+    bedroom_id:         { type: integer(4), notnull: true }
+    property_type_id:   { type: integer(4), notnull: true }
+    geo_zone_id:        { type: integer(4), notnull: true }
+    city_id:            { type: integer(4), notnull: true }
+    neighborhood_id:    { type: integer(4), notnull: true }
+    app_user_id:        { type: integer(4), notnull: true }
+    updated:            { type: datetime }
 
   relations:
     Bedroom:       { class: Bedroom, local: bedroom_id, foreign: id, foreignAlias: Bedroom, onDelete: CASCADE }
@@ -174,30 +180,6 @@ RealProperty:
     City:          { class: City, local: city_id, foreign: id, foreignAlias: City, onDelete: CASCADE }
     Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: Neighborhood, onDelete: CASCADE }
     AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: CASCADE }
-
-#
-#MORE_INFO_REAL_PROPERTY
-#
-MoreInfoRealProperty:
-  tableName: more_info_real_property
-  actAs:
-    I18n:
-      fields: [detail, toilets, garages, expense_security, writing_plans, benchmarks, transport, observations, address]
-  columns:
-    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
-    real_property_id: { type: integer(4), primary: true, notnull: true }
-    detail:           { type: text }
-    toilets:          { type: string(250) }
-    garages:          { type: string(250) }
-    expense_security: { type: text }
-    writing_plans:    { type: text }
-    benchmarks:       { type: text }
-    transport:        { type: text }
-    observations:     { type: text }
-    address:          { type: text }
-  relations:
-    RealProperty:     { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: MoreInfoRealProperty, onDelete: CASCADE }
-
 
 #
 # OPERATION_REAL_PROPERTY
