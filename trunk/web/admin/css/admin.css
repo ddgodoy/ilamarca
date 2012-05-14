@@ -941,3 +941,26 @@ h2.grupo {
  padding-left: 5px;
 }
 .area_yt { width: 600px; height:35px; }
+.lpadd_30 { padding-left: 30px; }
+.tright { text-align: right; }
+.tab_idiomas_on {
+	text-align: center;
+	background-color: #e9ecec;
+	padding: 5px;
+	font-size: 12px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #666666;
+	border-top: 1px solid #CCCCCC;
+}
+.tab_idiomas_off {
+	text-align: center;
+	background-color: #f4f4f4;
+	padding: 5px;
+	font-size: 12px;
+	cursor: pointer;
+	color: #666666;
+}
+.tab_cont_borders {
+	border: 1px solid #CCCCCC;
+}

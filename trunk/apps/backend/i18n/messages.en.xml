@@ -120,6 +120,9 @@
       <trans-unit id="110"><source>balcony</source><target>Balcony</target></trans-unit>
       <trans-unit id="111"><source>rotisserie</source><target>Rotisserie</target></trans-unit>
       <trans-unit id="112"><source>desk</source><target>Desk</target></trans-unit>
+      <trans-unit id="113"><source>Features</source><target>Features</target></trans-unit>
+      <trans-unit id="114"><source>Owner</source><target>Owner</target></trans-unit>
+      <trans-unit id="115"><source>Google map</source><target>Google map</target></trans-unit>
     </body>
   </file>
 </xliff>
