@@ -27,9 +27,9 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
       	<?php if (count($oList) > 0): ?>
-	        <th width="32%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
-	        <th width="22%"><?php echo __('Detail') ?></th>
-	        <th width="40%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
+	        <th width="50%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
+	        <th width="20%"><?php echo __('Property type') ?></th>
+	        <th width="22%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
 	        <th width="4%"></th>
 	        <th width="4%"></th>
         <?php else: ?>
@@ -39,7 +39,7 @@
       <?php foreach ($oList as $item): ?>
       <tr class="<?php if (!empty($odd)) { echo 'gris'; $odd=0; } else { echo 'blanco'; $odd=1; } ?>">
         <td><?php echo $item->getName() ?></td>
-        <td><?php // echo truncate_text($item->getDetail()) ?></td>
+        <td><?php echo $item->PropertyType->getName() ?></td>
         <td><?php echo $item->Neighborhood->getName() ?></td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">

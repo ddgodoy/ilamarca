@@ -54,3 +54,19 @@ function updNeighborhoodList(city_id)
 		}
 	});
 }
+//
+function changeTabsOnclick(lang)
+{
+	var div_es = document.getElementById('div_content_info_es');
+	var div_en = document.getElementById('div_content_info_en');
+	var tab_es = document.getElementById('td_idioma_es');
+	var tab_en = document.getElementById('td_idioma_en');
+	
+	div_es.style.display = 'none';
+	div_en.style.display = 'none';
+	tab_es.className = 'tab_idiomas_off';
+	tab_en.className = 'tab_idiomas_off';
+	
+	document.getElementById('div_content_info_'+lang).style.display = 'block';
+	document.getElementById('td_idioma_'+lang).className = 'tab_idiomas_on';
+}

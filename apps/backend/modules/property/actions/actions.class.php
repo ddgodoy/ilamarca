@@ -18,7 +18,7 @@ class propertyActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$this->iPage  = $request->getParameter('page', 1);
-  	$this->oPager = RealPropertyTable::getInstance()->getPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy());
+  	$this->oPager = RealPropertyTable::getInstance()->getPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy(), $this->getUser()->getCulture());
   	$this->oList  = $this->oPager->getResults();
   }
 
@@ -34,7 +34,7 @@ class propertyActions extends sfActions
 		$this->sch_name = trim($this->getRequestParameter('sch_name'));
 
 		if (!empty($this->sch_name)) {
-			$sch_partial .= " AND p.name LIKE '%$this->sch_name%'";
+			$sch_partial .= " AND t.name LIKE '%$this->sch_name%'";
 			$this->f_params .= '&sch_name='.urlencode($this->sch_name);
 		}
 		return $sch_partial;
@@ -47,7 +47,7 @@ class propertyActions extends sfActions
    */
   protected function setOrderBy()
   {
-  	$q_order = $this->getRequestParameter('o', 'p.name');	// order
+  	$q_order = $this->getRequestParameter('o', 't.name');	// order
   	$q_sort  = $this->getRequestParameter('s', 'asc');  // sort
 
   	$this->sort = $q_sort == 'asc' ? 'desc' : 'asc';
@@ -83,120 +83,63 @@ class propertyActions extends sfActions
    */
   public function executeProcess(sfWebRequest $request)
   {
-  	$this->id = $request->getParameter('id');
-  	$this->property_type = 0;
-  	$this->geo_zone      = 0;
-  	$this->city          = 0;
-  	$this->neighborhood  = 0;
-  	$this->bedroom       = 1;
-  	$this->operations    = array();
-  	$this->currencies    = array();
-  	$this->prices        = array();
-  	$this->videos        = array();
-  	$this->error         = array();
-  	$entity_object       = NULL;
-        $this->plupload_folder = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR;
+		$this->id = $request->getParameter('id');
 
-        $this->db_operations = OperationTable::getInstance()->getAllForSelect();
-        $this->sl_operations = array();
-        $this->sl_currencies = array();
-        $this->sl_prices     = array();
+		$this->geo_zone      = 0;
+		$this->city          = 0;
+		$this->neighborhood  = 0;
+		$this->property_type = 0;
+		$this->bedroom       = 1;
+		$this->error         = array();
+		$entity_object       = NULL;
+		
+		if ($this->id) {
+			$entity_object = RealPropertyTable::getInstance()->find($this->id);
 
-  	if ($this->id)
-        {
-  		$entity_object = RealPropertyTable::getInstance()->find($this->id);
+			$this->geo_zone      = $entity_object->getGeoZoneId();
+			$this->city          = $entity_object->getCityId();
+			$this->neighborhood  = $entity_object->getNeighborhoodId();
+			$this->property_type = $entity_object->getPropertyTypeId();
+			$this->bedroom       = $entity_object->getBedroomId();
+		}
+		$this->form = new RealPropertyForm($entity_object);
 
-  		$this->bedroom       = $entity_object->getBedroomId();
-  		$this->property_type = $entity_object->getPropertyTypeId();
-	  	$this->geo_zone      = $entity_object->getGeoZoneId();
-	  	$this->city          = $entity_object->getCityId();
-	  	$this->neighborhood  = $entity_object->getNeighborhoodId();
-	  	$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
+		if ($request->getMethod() == 'POST')
+		{
+			$this->geo_zone      = $request->getParameter('geo_zone');
+			$this->city          = $request->getParameter('city');
+			$this->neighborhood  = $request->getParameter('neighborhood');
+			$this->bedroom       = $request->getParameter('bedroom');
+			$this->property_type = $request->getParameter('property_type');
+			
+			if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
+			if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
+			
+			## continue
+			if (!$this->error)
+			{
+				$form_request = $request->getParameter($this->form->getName());
 
-                $a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
+				$form_request['geo_zone_id']      = $this->geo_zone;
+				$form_request['city_id']          = $this->city;
+				$form_request['neighborhood_id']  = $this->neighborhood;
+				$form_request['bedroom_id']       = $this->bedroom;
+				$form_request['property_type_id'] = $this->property_type;
+				$form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
+			
+				$this->form->bind($form_request);
 
-	  	$this->sl_operations = $a_operations_values['operations'];
-	  	$this->sl_currencies = $a_operations_values['currencies'];
-	  	$this->sl_prices     = $a_operations_values['prices'];
-  	}
-  	$this->form = new RealPropertyForm($entity_object);
-
-  	if ($request->getMethod() == 'POST')
-  	{
-  		$this->bedroom       = $request->getParameter('bedroom');
-  		$this->property_type = $request->getParameter('property_type');
-  		$this->geo_zone      = $request->getParameter('geo_zone');
-  		$this->city          = $request->getParameter('city');
-	  	$this->neighborhood  = $request->getParameter('neighborhood');
-	  	$this->operations    = $request->getParameter('operations');
-	  	$this->currencies    = $request->getParameter('currencies');
-	  	$this->prices        = $request->getParameter('prices');
-                $this->sl_operations = $request->getParameter('operations', array());
-                $this->sl_currencies = $request->getParameter('currencies');
-                $this->sl_prices     = $request->getParameter('prices');
-                $this->videos        = $request->getParameter('videos', array());
-
-  		if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
-  		if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
-                if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
-
-                  $sum_array = 0;
-
-                  if (count($this->sl_prices) != 0 ) {
-                    foreach ($this->sl_prices as $k => $value) {
-                            $_price_number = (float) $value['number'];
-
-                      if (empty($_price_number) && in_array($k, $this->sl_operations)) {
-                        $this->error['prices'] = 'Enter the price for the operation'; break;
-                      }
-                    }
-                }
-  		## continue
-  		if (!$this->error) 
-                {
-                    $form_request = $request->getParameter($this->form->getName());
-                    $form_request['bedroom_id']       = $this->bedroom;
-                    $form_request['property_type_id'] = $this->property_type;
-                    $form_request['geo_zone_id']      = $this->geo_zone;
-                    $form_request['city_id']          = $this->city;
-                    $form_request['neighborhood_id']  = $this->neighborhood;
-                    $form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
-
-                    $this->form->bind($form_request);
-
-                    if ($this->form->isValid())
-                    {
-                      $recorded = $this->form->save();
-
-                      if (!$this->form->isNew()) {
-                        OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($recorded->getId());
-                      }
-                      foreach ($this->sl_operations as $v)
-                      {
-                        $operation = new OperationRealProperty;
-                        $operation->setOperationId($v);
-                        $operation->setCurrencyId($this->sl_currencies[$v]['id']);
-                        $operation->setPrice($this->sl_prices[$v]['number']);
-                        $operation->setRealPropertyId($recorded->getId());
-                        $operation->save();
-                      }
-                      // set videos
-                      VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
-                      //
-
-                      // set images
-                      Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
-
-                      $recorded->setUpdated(date('Y-m-d H:i:s'));
-                      $recorded->save();
-
-
-
-                      $this->redirect('property/show?id='.$recorded->getId());
-                     }
-                 }
-          }
-      $this->setTemplate('form');
+				if ($this->form->isValid()) {
+					$recorded = $this->form->save();
+					
+					$recorded->setUpdated(date('Y-m-d H:i:s'));
+					$recorded->save();
+					
+					$this->redirect('property/show?id='.$recorded->getId());
+				}
+			}
+		}
+		$this->setTemplate('form');
   }
 
   /**
@@ -257,23 +200,23 @@ class propertyActions extends sfActions
    */
   public function executeAjaxImages(sfWebRequest $request)
   {
-      $id_gallery = $request->getParameter('id_gallery');
-      $id_property = $request->getParameter('id_property');
-      
-      $path_local = Gallery::getPath($id_property,1);
+    $id_gallery = $request->getParameter('id_gallery');
+    $id_property = $request->getParameter('id_property');
+    
+    $path_local = Gallery::getPath($id_property,1);
 
-      $gallery = GalleryTable::getInstance()->findOneById($id_gallery);
+    $gallery = GalleryTable::getInstance()->findOneById($id_gallery);
 
-      $array_prefix = array('','c_','m_');
+    $array_prefix = array('','c_','m_');
 
-      foreach ($array_prefix as $v) {
-        @unlink($path_local.$v.$gallery->getInternalName());
-      }
-      
-      $gallery_delete = GalleryTable::getInstance()->deleteGallery($id_gallery);
+    foreach ($array_prefix as $v) {
+      @unlink($path_local.$v.$gallery->getInternalName());
+    }
+    
+    $gallery_delete = GalleryTable::getInstance()->deleteGallery($id_gallery);
 
-      return $this->renderComponent('property', 'gallery', array('id'=>$id_property));
-      exit();
+    return $this->renderComponent('property', 'gallery', array('id'=>$id_property));
+    exit();
   }
 
 } // end class

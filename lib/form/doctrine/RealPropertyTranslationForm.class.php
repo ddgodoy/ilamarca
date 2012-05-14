@@ -12,12 +12,22 @@ class RealPropertyTranslationForm extends BaseRealPropertyTranslationForm
 {
   public function configure()
   {
+  	$i18N = sfContext::getInstance()->getI18N();
+
   	$this->setWidgets(array(
-      'detail' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:600px;height:100px;')),
+      'name'       => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:450px;')),
+      'detail'     => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:500px;height:150px;')),
+      'address'    => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:101px;')),
+      'transports' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:50px;')),
+      'points_of_ref' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:500px;height:46px;')),
     ));
 
     $this->setValidators(array(
-      'detail' => new sfValidatorPass(array('required' => false)),
+      'name'       => new sfValidatorString(array('required' => true), array('required' => $i18N->__('Enter the name', NULL, 'errors'))),
+      'detail'     => new sfValidatorPass(array('required' => false)),
+      'address'    => new sfValidatorPass(array('required' => false)),
+      'transports' => new sfValidatorPass(array('required' => false)),
+      'points_of_ref' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property_translation[%s]');
