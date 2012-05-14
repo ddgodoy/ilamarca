@@ -270,7 +270,7 @@ html[xmlns] .clearfix {
 
 .cont-slider { width:652px; min-height:370px; margin-bottom:30px;}
 
-.slider {background-image: url(/images/bg_ficha_slider.png);	background-repeat: no-repeat;background-position: center bottom; min-height:370px; text-align:center; padding-top:12px; clear:both; border-top:1px solid #c3c3c3;}
+.slider { background-color: #FFF !important; background-image: url(/images/bg_ficha_slider.png)!important;	background-repeat: no-repeat !important;background-position: center bottom !important; min-height:370px; text-align:center; padding-top:12px !important; clear:both; border-top:1px solid #c3c3c3;}
 
 .slider .thumbs { margin-top:10px; margin-left:25px; margin-bottom:11px;}
 
