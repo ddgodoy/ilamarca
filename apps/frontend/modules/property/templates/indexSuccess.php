@@ -3,30 +3,85 @@
 		<h1>OPERA LUXURY CONDOMINIUM</h1>  
 		<h3>U$S 950</h3>
 	</div>
-	<div class="cont-slider">
-		<div class="pdf"><a href="#"></a></div>
-		<div class="tabs">
-			<ul>
-				<li><a href="ficha_propiedad.php" class="fotos active-f" title="fotos"></a></li>
-				<li><a href="ficha_propiedad_video.php" class="videos" title="videos"></a></li>
-				<li><a href="ficha_propiedad_mapa.php" class="mapas" title="mapas"></a></li>
-			</ul>
-		</div>
-		<div class="slider clearfix">
-			<div class="fotoBig"><a href="#"><img src="images/trash/ej_ficha_fotobig.jpg" alt="Foto ejemplo" /></a></div>
-			<div class="thumbs clearfix">
-				<div class="flechas"><a href="#" class="back" title="atras"></a></div>
-				<ul>
-					<li><a href="#" class="active"><img src="images/trash/ej_ficha_thumb01.jpg" alt="ejemplo de thumb" /></a>
-					<li><a href="#"><img src="images/trash/ej_ficha_thumb02.jpg" alt="ejemplo de thumb" /></a>
-					<li><a href="#"><img src="images/trash/ej_ficha_thumb03.jpg" alt="ejemplo de thumb" /></a>
-					<li><a href="#"><img src="images/trash/ej_ficha_thumb04.jpg" alt="ejemplo de thumb" /></a>
-					<li><a href="#"><img src="images/trash/ej_ficha_thumb05.jpg" alt="ejemplo de thumb" /></a>
-					<li><a href="#"><img src="images/trash/ej_ficha_thumb06.jpg" alt="ejemplo de thumb" /></a>
-				</ul>
-				<div class="flechas"><a href="#" class="next" title="adelante"></a></div>
-			</div>
-		</div>
+	<div id="container" class="cont-slider">
+            <div class="pdf"><a href="#"></a></div>
+            <div class="tabs">
+                    <ul>
+                            <li><a href="ficha_propiedad.php" class="fotos active-f" title="fotos"></a></li>
+                            <li><a href="ficha_propiedad_video.php" class="videos" title="videos"></a></li>
+                            <li><a href="ficha_propiedad_mapa.php" class="mapas" title="mapas"></a></li>
+                    </ul>
+            </div>
+            <div id="gallery" class="ad-gallery slider clearfix">
+              <div class="ad-image-wrapper fotoBig">
+              </div>
+              <div class="ad-nav">
+                <div class="ad-thumbs">
+                  <ul class="ad-thumb-list">
+                    <li>
+                      <a href="/images/trash/ej_ficha_fotobig.jpg">
+                        <img src="/images/trash/ej_ficha_thumb01.jpg" class="image0">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_ficha_fotobig.jpg">
+                        <img src="/images/trash/ej_ficha_thumb02.jpg" class="image1">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_03.jpg">
+                        <img src="/images/trash/ej_ficha_thumb03.jpg"  class="image2">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_04.jpg">
+                        <img src="/images/trash/ej_ficha_thumb04.jpg" class="image3">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_05.jpg">
+                        <img src="/images/trash/ej_ficha_thumb05.jpg" class="image4">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_06.jpg">
+                        <img src="/images/trash/ej_ficha_thumb06.jpg" class="image5">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_ficha_fotobig.jpg">
+                        <img src="/images/trash/ej_ficha_thumb01.jpg" class="image6">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_ficha_fotobig.jpg">
+                        <img src="/images/trash/ej_ficha_thumb02.jpg" class="image7">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_03.jpg">
+                        <img src="/images/trash/ej_ficha_thumb03.jpg"  class="image8">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_04.jpg">
+                        <img src="/images/trash/ej_ficha_thumb04.jpg" class="image9">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_05.jpg">
+                        <img src="/images/trash/ej_ficha_thumb05.jpg" class="image10">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/images/trash/ej_06.jpg">
+                        <img src="/images/trash/ej_ficha_thumb06.jpg" class="image11">
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 	</div>
 	<div class="info">
 		<h2>DETALLES GENERALES</h2>

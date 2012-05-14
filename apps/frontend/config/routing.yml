@@ -1,3 +1,9 @@
+# detail property
+#detail_property:
+#  url: /detail-property/:id/:name.html
+#  param: {module: property, action: detailProperty}
+
+
 # default rules
 homepage:
   url:   /
