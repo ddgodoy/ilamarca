@@ -1,17 +1,55 @@
+<script>
+$(document).ready(function () {
+  $('#fotos').click(function(){
+      $('#gallery').removeAttr('style');
+      $(this).attr('class', 'active-f');
+      $('#videos').removeAttr('class');
+      $('#videos').attr('class', 'videos');
+      $('#gallery-videos').hide();
+      $('#mapas').removeAttr('class');
+      $('#mapas').attr('class', 'mapas');
+      $('#gallery-mapas').hide();
+  })
+
+  $('#videos').click(function(){
+      $('#gallery-videos').removeAttr('style');
+      $(this).attr('class', 'active-v');
+      $('#fotos').removeAttr('class');
+      $('#fotos').attr('class', 'fotos');
+      $('#gallery').hide();
+      $('#mapas').removeAttr('class');
+      $('#mapas').attr('class', 'mapas');
+      $('#gallery-mapas').hide();
+  })
+
+  $('#mapas').click(function(){
+      $('#gallery-mapas').removeAttr('style');
+      $(this).attr('class', 'active-m');
+      $('#fotos').removeAttr('class');
+      $('#fotos').attr('class', 'fotos');
+      $('#gallery').hide();
+      $('#videos').removeAttr('class');
+      $('#videos').attr('class', 'videos');
+      $('#gallery-videos').hide();
+  })
+
+});
+</script>
 <div class="left ficha">
 	<div class="fondo-titulo">
-		<h1>OPERA LUXURY CONDOMINIUM</h1>  
-		<h3>U$S 950</h3>
+		<h1><?php echo $property->getName()  ?></h1>
+		<h3><?php echo Operation::getPrices($property->getId(), $sf_user->getCulture()) ?></h3>
 	</div>
 	<div id="container" class="cont-slider">
             <div class="pdf"><a href="#"></a></div>
             <div class="tabs">
                     <ul>
-                            <li><a href="ficha_propiedad.php" class="fotos active-f" title="fotos"></a></li>
-                            <li><a href="ficha_propiedad_video.php" class="videos" title="videos"></a></li>
-                            <li><a href="ficha_propiedad_mapa.php" class="mapas" title="mapas"></a></li>
+                            <li><a id="fotos" class="fotos active-f" title="fotos"></a></li>
+                            <li><a id ="videos" class="videos" title="videos"></a></li>
+                            <li><a id="mapas" class="mapas" title="mapas"></a></li>
                     </ul>
             </div>
+            
             <div id="gallery" class="ad-gallery slider clearfix">
               <div class="ad-image-wrapper fotoBig">
               </div>
@@ -30,6 +68,17 @@
                   </ul>
                 </div>
               </div>
+            </div>
+            
+            <div id="gallery-videos" class="slider clearfix" style="display: none">
+                <div class="fotoBig">
+                    <?php echo html_entity_decode($videos->getYoutube()) ?>
+                </div>
+            </div>
+            <div id="gallery-mapas" class="slider clearfix" style="display: none">
+                <div class="fotoBig">
+                    <?php echo html_entity_decode($property->getGoogleMap()) ?>
+                </div>
             </div>
 	</div>
 	<div class="info">
