@@ -91,6 +91,7 @@ class propertyActions extends sfActions
 		$this->property_type = 0;
 		$this->bedroom       = 1;
 		$this->error         = array();
+		$this->videos        = array();
 		$entity_object       = NULL;
 		
 		if ($this->id) {
@@ -101,6 +102,7 @@ class propertyActions extends sfActions
 			$this->neighborhood  = $entity_object->getNeighborhoodId();
 			$this->property_type = $entity_object->getPropertyTypeId();
 			$this->bedroom       = $entity_object->getBedroomId();
+			$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
 		}
 		$this->form = new RealPropertyForm($entity_object);
 
@@ -111,10 +113,11 @@ class propertyActions extends sfActions
 			$this->neighborhood  = $request->getParameter('neighborhood');
 			$this->bedroom       = $request->getParameter('bedroom');
 			$this->property_type = $request->getParameter('property_type');
-			
+			$this->videos        = $request->getParameter('videos', array());
+
 			if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
 			if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
-			
+
 			## continue
 			if (!$this->error)
 			{
@@ -127,14 +130,19 @@ class propertyActions extends sfActions
 				$form_request['property_type_id'] = $this->property_type;
 				$form_request['app_user_id']      = $this->getUser()->getAttribute('user_id');
 			
+				if (empty($form_request['en']['name'])) {
+					$form_request['en']['name'] = ' ';
+				}
 				$this->form->bind($form_request);
 
 				if ($this->form->isValid()) {
-					$recorded = $this->form->save();
-					
+					$recorded = $this->form->save();					
 					$recorded->setUpdated(date('Y-m-d H:i:s'));
 					$recorded->save();
-					
+
+					// set videos
+          VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
+
 					$this->redirect('property/show?id='.$recorded->getId());
 				}
 			}
