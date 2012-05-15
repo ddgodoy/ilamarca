@@ -399,3 +399,44 @@ html[xmlns] .clearfix {
 	background-position: center bottom;
 }
 /* pinika */
+
+.padding-bottom5 {
+    padding-bottom: 5px;
+}
+
+.mensajeSistema {
+	padding: 10px;
+	font-size: 12px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}
+.comun {
+	color: #0B7974;
+	background-color: #E8FDFC;
+	border-top-color: #CBE7E7;
+	border-right-color: #CBE7E7;
+	border-bottom-color: #CBE7E7;
+	border-left-color: #CBE7E7;
+}
+.error {
+	background-color: #FCC;
+	color: #F00;
+	border-top-color: #D25151;
+	border-right-color: #D25151;
+	border-bottom-color: #D25151;
+	border-left-color: #D25151;
+}
+.ok {
+	background-color: #DCFDCE;
+	border-top-color: #236A04;
+	border-right-color: #236A04;
+	border-bottom-color: #236A04;
+	border-left-color: #236A04;
+	color: #236A04;
+}
