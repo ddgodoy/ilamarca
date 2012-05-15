@@ -17,7 +17,10 @@ class propertyActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    
+    $id = $request->getParameter('id');
+    $this->property = RealPropertyTable::getInstance()->findOneById($id);
+    $this->images = GalleryTable::getInstance()->findBy('real_property_id',$id);
+    $this->videos = VideoTable::getInstance()->findBy('real_property_id',$id);
   }
   
   /**

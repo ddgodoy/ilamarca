@@ -18,66 +18,15 @@
               <div class="ad-nav">
                 <div class="ad-thumbs">
                   <ul class="ad-thumb-list">
+                    <?php $index = 0 ?>
+                    <?php foreach ($images as $value):  ?>
                     <li>
-                      <a href="/images/trash/ej_ficha_fotobig.jpg">
-                        <img src="/images/trash/ej_ficha_thumb01.jpg" class="image0">
+                      <a href="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>">
+                          <img src="<?php echo Gallery::getPath($value->getRealPropertyId()).'c_'.$value->getInternalName() ?>" class="<?php echo 'image'.$index ?>">
                       </a>
                     </li>
-                    <li>
-                      <a href="/images/trash/ej_ficha_fotobig.jpg">
-                        <img src="/images/trash/ej_ficha_thumb02.jpg" class="image1">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_03.jpg">
-                        <img src="/images/trash/ej_ficha_thumb03.jpg"  class="image2">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_04.jpg">
-                        <img src="/images/trash/ej_ficha_thumb04.jpg" class="image3">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_05.jpg">
-                        <img src="/images/trash/ej_ficha_thumb05.jpg" class="image4">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_06.jpg">
-                        <img src="/images/trash/ej_ficha_thumb06.jpg" class="image5">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_ficha_fotobig.jpg">
-                        <img src="/images/trash/ej_ficha_thumb01.jpg" class="image6">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_ficha_fotobig.jpg">
-                        <img src="/images/trash/ej_ficha_thumb02.jpg" class="image7">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_03.jpg">
-                        <img src="/images/trash/ej_ficha_thumb03.jpg"  class="image8">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_04.jpg">
-                        <img src="/images/trash/ej_ficha_thumb04.jpg" class="image9">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_05.jpg">
-                        <img src="/images/trash/ej_ficha_thumb05.jpg" class="image10">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/images/trash/ej_06.jpg">
-                        <img src="/images/trash/ej_ficha_thumb06.jpg" class="image11">
-                      </a>
-                    </li>
+                    <?php $index++; ?>
+                    <?php endforeach ?>
                   </ul>
                 </div>
               </div>
@@ -86,15 +35,13 @@
 	<div class="info">
 		<h2>DETALLES GENERALES</h2>
 		<ul>
-			<li><strong>Superficie cubierta:</strong>  750 m2.</li>
-			<li><strong>Superficie terreno: </strong> 180 m2.</li>
-			<li><strong>Cantidad dormitorios: </strong> 4 en suite más oficina</li>            
+			<li><strong>Superficie cubierta:</strong>  <?php echo $property->getSquareMeters() ?> m2.</li>
+			<li><strong>Superficie terreno: </strong> <?php echo $property->getCoveredArea() ?> m2.</li>
+			<li><strong>Cantidad dormitorios: </strong> <?php echo $property->getBedroom()->getName() ?></li>
 		</ul>
 		<h2>DESCRIPCIÓN</h2>
-		<p>
-			4 dormitorios en Suite más oficina, más departamento en subsuelo con baño y cocina, sala de tele, comedor formal y estar. La mejor categoría con artefactos traídos de Estados Unidos, construida íntegramente por reconocidos arquitectos en 1995. <br />
-			Calefacción y Aire acondicionado central por tuberías de aire. Entablonados tarugados en living, en planta alta y dormitorios, porcellanato y mármol en plantillas (cortados a medida) en los baños. Riego por aspersión. Pozo propio para regar. Cisterna para albergar 40 mil litros de agua. Termotanque arriba de alta recuperación. Quincho de categoría con aire, baño asador de material con mecheros de gas natural. Piscina con climatización instalada. Fuente con cascadita. Cochera para 5 autos automática más segundo ingreso descubierto para dos vehículos más. Departamento de servicio enorme. <br />
-			La casa se entrega con las arañas y otros artefactos a conversar. Para verla, demostrar capacidad de compra. Turismo inmobiliario abstenerse. Videos en alta definición en nuestra oficina. En serio, una de las mejores ubicaciones en el Cerro con vista al Chateau y las Sierras de Córdoba.
+                <p style="text-align:justify">
+			<?php echo $property->getDetail() ?>
 		</p>
 	</div>
 </div>
