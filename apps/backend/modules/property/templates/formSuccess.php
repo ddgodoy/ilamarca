@@ -2,6 +2,8 @@
 	$str_module = $sf_params->get('module');
 	$str_action = $sf_params->get('action');
 	$request_id = $id ?  "?id=$id" : '';
+	
+	if (count($videos) == 0) { $videos = array(''); }
 ?>
 <div class="content">
 	<div class="leftside">
@@ -229,15 +231,15 @@
 				</table>
 			</fieldset>
 			<div class="div_cont_ytvideos">
-				<div class="div_cont_add_ytvideos">
+				<!--<div class="div_cont_add_ytvideos">
 					<a class="linkPinika" onclick="addToYoutubeVideosTb();">+ Agregar</a>
-				</div>
-				<label style="color:#333333;"><strong><?php echo __('Videos') ?> Youtube</strong></label>
+				</div>-->
+				<label style="color:#333333;"><strong><?php echo __('Video') ?> Youtube</strong></label>
 				<table cellpadding="0" cellspacing="0" id="tb_videos_youtube">
 					<?php foreach ($videos as $v_video): ?>
 					<tr>
 	          <td><textarea name="videos[]" class="form_input area_yt"><?php echo $v_video ?></textarea></td>
-	          <td>&nbsp;<img src="/admin/images/borrar_hover.png" border="0" onclick="delVideoYoutube(this);" style="cursor:pointer;"/></td>
+	          <!--<td>&nbsp;<img src="/admin/images/borrar_hover.png" border="0" onclick="delVideoYoutube(this);" style="cursor:pointer;"/></td>-->
 	        </tr>
 					<?php endforeach; ?>
 				</table>

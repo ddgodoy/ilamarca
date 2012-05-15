@@ -111,7 +111,7 @@ class propertyActions extends sfActions
 			$this->property_type = $entity_object->getPropertyTypeId();
 			$this->bedroom       = $entity_object->getBedroomId();
 			$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
-			
+
 			$a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
 	  	$this->sl_operations = $a_operations_values['operations'];
