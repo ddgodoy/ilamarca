@@ -24,8 +24,8 @@
 						<span class="precio"><?php echo Operation::getPrices($p_val->getId(), $sf_user->getCulture()) ?></span>
 						<span class="sombra"></span>
 						<ul>
-							<li><?php echo $p_val->getCoveredMeters() ?> m2 cubiertos.</li>
-							<li><?php echo $p_val->getGround() ?> m2 de terreno.</li>
+							<li><?php echo $p_val->getSquareMeters() ?> m2 cubiertos.</li>
+							<li><?php echo $p_val->getCoveredArea() ?> m2 de terreno.</li>
 							<li><?php echo $p_val->getBedroom()->getName() ?></li>
 							<a href="#" title="Más detalles"></a>
 						</ul>
