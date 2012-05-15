@@ -50,12 +50,12 @@ abstract class BaseSearchMatch extends sfDoctrineRecord
         $this->hasOne('SearchProfile', array(
              'local' => 'search_profile_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('RealProperty', array(
              'local' => 'real_property_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

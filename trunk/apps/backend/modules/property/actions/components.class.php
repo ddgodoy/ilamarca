@@ -9,12 +9,16 @@
  */
 class propertyComponents extends sfComponents
 {
-    public function executeGallery(sfWebRequest $request)
-    {
-        $this->path = Gallery::getPath($this->id).'c_';
-        $this->gallery = GalleryTable::getInstance()->getGalleryByProperty($this->id);
-        $this->cant = count($this->gallery);
-
-    }
+	/**
+	 * Image list action
+	 *
+	 * @param sfWebRequest $request
+	 */
+  public function executeGallery(sfWebRequest $request)
+  {
+    $this->path    = Gallery::getPath($this->id).'c_';
+    $this->gallery = GalleryTable::getInstance()->getGalleryByProperty($this->id);
+    $this->cant    = count($this->gallery);
+  }
 
 } // end class

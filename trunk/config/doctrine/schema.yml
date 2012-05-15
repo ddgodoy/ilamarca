@@ -134,8 +134,8 @@ VendorZone:
     neighborhood_id: { type: integer(4), primary: true, notnull: true }
 
   relations:
-    AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: VendorZones, onDelete: RESTRICT }
-    Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: VendorZones, onDelete: RESTRICT }
+    AppUser:       { class: AppUser, local: app_user_id, foreign: id, foreignAlias: VendorZones, onDelete: CASCADE }
+    Neighborhood:  { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: VendorZones, onDelete: CASCADE }
 
 #
 # REAL_PROPERTY
@@ -193,8 +193,8 @@ OperationRealProperty:
     currency_id:      { type: integer(4), notnull: true }
 
   relations:
-    Operation:    { class: Operation, local: operation_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: RESTRICT }
-    RealProperty: { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: RESTRICT }
+    Operation:    { class: Operation, local: operation_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: CASCADE }
+    RealProperty: { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: OperationRealProperties, onDelete: CASCADE }
     Currency:     { class: Currency, local: currency_id, foreign: id, foreignAlias: Currency, onDelete: CASCADE }
 
 #
@@ -261,5 +261,5 @@ SearchMatch:
     real_property_id:  { type: integer(4), primary: true, notnull: true }
 
   relations:
-    SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchMatches, onDelete: RESTRICT }
-    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: SearchMatches, onDelete: RESTRICT }
+    SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchMatches, onDelete: CASCADE }
+    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: SearchMatches, onDelete: CASCADE }

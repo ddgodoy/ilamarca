@@ -27,5 +27,29 @@ class OperationTable extends Doctrine_Table
 		}
 		return $arr_options;
 	}
+	
+	/**
+	 * Upd operations for this property
+	 *
+	 * @param integer $property_id
+	 * @param array $operations
+	 * @param array $currencies
+	 * @param array $prices
+	 */
+	public function updOperationsForThisProperty($property_id, $operations, $currencies, $prices)
+	{
+    OperationRealPropertyTable::getInstance()->deleteOperationsByProperty($property_id);
+
+    foreach ($operations as $v)
+    {
+      $operation = new OperationRealProperty();
+
+      $operation->setOperationId   ($v);
+      $operation->setCurrencyId    ($currencies[$v]['id']);
+      $operation->setPrice         ($prices[$v]['number']);
+      $operation->setRealPropertyId($property_id);
+      $operation->save();
+    }
+	}
 
 } // end class

@@ -92,6 +92,42 @@
 					</td>
 				</tr>
 			</table>
+			<fieldset>
+				<legend>&nbsp;<?php echo __('Operation') ?>&nbsp;</legend>
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<?php foreach ($db_operations as $id_ope => $db_ope): ?>
+							<td style="padding-right:74px;">
+								<table cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+			                <?php $operations = is_array($sf_data->getRaw('sl_operations')) ? $sf_data->getRaw('sl_operations') : array(); ?>
+			                <input type="checkbox" name="operations[]" value="<?php echo $id_ope ?>" <?php if (in_array($id_ope, $operations)) { echo 'checked'; } ?>  style="vertical-align:middle;" />
+											<label><?php echo $db_ope ?>&nbsp;&nbsp;</label>
+										</td>
+										<td>
+			                <?php
+			                	$aCurrency = $sf_data->getRaw('sl_currencies');
+			                	$selected = !empty($aCurrency[$id_ope]['id']) ? $aCurrency[$id_ope]['id'] : '';
+			                ?>
+											<select class="form_input" name="currencies[<?php echo $id_ope ?>][id]">
+			                  <?php echo Common::fillSimpleSelect(CurrencyTable::getInstance()->getAllForSelect(), $selected) ?>
+											</select>
+										</td>
+										<td>
+			                <?php
+			                	$array_prices =  $sf_data->getRaw('sl_prices');
+			                	$value = !empty($array_prices[$id_ope]['number']) ? $array_prices[$id_ope]['number'] : '0.00';
+			                ?>
+			                <input type="text" class="form_input" name="prices[<?php echo $id_ope ?>][number]" style="width:100px;text-align:right;" value="<?php echo $value ?>" onkeypress="return onlyDecimal(this, event);"/>
+			              </td>
+									</tr>
+								</table>
+							</td>
+						<?php endforeach; ?>
+					</tr>
+				</table>
+			</fieldset>
 			<fieldset style="margin-top:10px;padding-top:3px;">
 				<legend>&nbsp;<?php echo __('Location') ?>&nbsp;</legend>
 				<table cellpadding="0" cellspacing="0">
@@ -196,7 +232,7 @@
 				<div class="div_cont_add_ytvideos">
 					<a class="linkPinika" onclick="addToYoutubeVideosTb();">+ Agregar</a>
 				</div>
-				<label style="color:#333333;"><strong><?php echo __('Videos') ?> Youtube</label></strong>
+				<label style="color:#333333;"><strong><?php echo __('Videos') ?> Youtube</strong></label>
 				<table cellpadding="0" cellspacing="0" id="tb_videos_youtube">
 					<?php foreach ($videos as $v_video): ?>
 					<tr>
@@ -205,6 +241,36 @@
 	        </tr>
 					<?php endforeach; ?>
 				</table>
+			</div>
+			<div class="div_cont_ytvideos">
+				<div class="div_cont_add_ytvideos">
+					<a class="linkPinika" id="plupload_pick_file">+ Seleccionar</a>
+				</div>
+				<div class="div_cont_add_ytvideos" style="margin-top:20px;">
+					<img src="/admin/images/loader.gif" id="img_updating_gallery" border="0" style="visibility:hidden;"/>
+				</div>
+				<label style="color:#333333;"><strong>Galería de imágenes</strong></label>
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<td valign="top">
+							<table cellpadding="0" cellspacing="0" class="plupload_list" id="plupload_tb_list">
+								<tr>
+									<th width="325">Archivo</th>
+									<th width="100">Tamaño</th>
+									<th width="200" colspan="3" class="plupload_center">Subido</th>
+								</tr>
+								<tr id="plupload_temp_row"><td colspan="5">&nbsp;</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<?php
+      		include_component('property', 'gallery' , array('id'=>$id));
+      	?>
+				<input type="hidden" name="plupload_files" id="plupload_hidden_files" class="plupload_none" />
+				<input type="hidden" id="plupload_filters" value="jpg,gif,png" />
+				<input type="hidden" id="plupload_get_folder" value="/admin/plupload/" />
+				<input type="hidden" id="plupload_max_size" value="10" />
 			</div>
       <div style="padding-top:10px;" class="botonera">
         <input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />

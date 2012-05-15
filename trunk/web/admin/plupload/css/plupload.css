@@ -2,13 +2,14 @@
 	border: 1px solid #CCC;
 	font-size: 12px;
 	font-family: arial;
-	width: 600px;
+	width: 625px;
 }
 .plupload_list th {
-	background-color: #333;
-	color: #FFFFFF;
+	background-color: #CCC;
+	color: #0a2a28;
 	text-align: left;
 	padding: 5px;
+	font-weight: normal;
 }
 .plupload_list td {
 	padding: 5px;

@@ -12,80 +12,86 @@
  */
 class Gallery extends BaseGallery
 {
+	/**
+	 * Get image path
+	 *
+	 * @param string $property
+	 * @param boolean $local
+	 * @return string
+	 */
+	public static function getPath($property, $local = false)
+	{
+		$path_web = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
+		$path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
 
-    public static  function getPath($property,$local = false)
-    {
-        $path_web   = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
-        $path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
+		if ($local) {
+			return $path_local;
+		} else {
+			return $path_web;
+		}
+	}
 
-        if($local)
-        {
-         return $path_local;
-        }
-        else
-        {
-         return $path_web;
-        }
+ /**
+	* Get plupload temporal folder
+	*
+	* @return string
+	*/
+	public static function getPluploadTempFolder()
+	{
+		return sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR.'plupload_tmp_dir'.DIRECTORY_SEPARATOR;
+	}
 
-    }
-    
-    /**
-     * Get plupload temporal folder
-     *
-     * @return string
-     */
-    public static function getPluploadTempFolder()
-    {
-            return sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'plupload'.DIRECTORY_SEPARATOR.'plupload_tmp_dir'.DIRECTORY_SEPARATOR;
-    }
+	/**
+	 * Set gallegy
+	 *
+	 * @param integer $property
+	 * @param string $images
+	 */
+	public static function setPropertyGallery($property, $images)
+	{
+		if (!empty($images))
+		{
+			$jsonInfo = json_decode($images);
+			$temp_folder = self::getPluploadTempFolder();
+			$destination = ServiceFileHandler::getUploadFolder('gallery', $property);
+	
+			foreach ($jsonInfo as $file)
+			{
+				$internal_nm = uniqid('').'.'.$file->file_type;
+				$upload_file = "property_$property/$internal_nm";
 
+				copy($temp_folder.$file->unique_name, $destination.$upload_file);
 
-    public static function setPropertyGallery($property, $images)
-    {
-        if (!empty($images))
-        {
-                $jsonInfo = json_decode($images);
-                $temp_folder = self::getPluploadTempFolder();
-                $destination = ServiceFileHandler::getUploadFolder('gallery', $property);
+				@chmod($destination.$upload_file, 0777);
+				@unlink($temp_folder.$file->unique_name);
 
-                foreach ($jsonInfo as $file)
-                {
-                        $internal_name = date('Y_m_d').'_'.time().Common::getStrtrSpecialCharacters($file->former_name);
-                        $upload_file = 'property_'.$property.'/'.$internal_name;
+				## Create thumbnail
+				$oResize = new ResizeImage();
+				$aThumbs = array(
+					ServiceFileHandler::getThumbImage($upload_file)      => array('w'=>75,  'h' => 50),
+					ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h' => 159),
+					$upload_file                                         => array('w'=>600, 'h' => 350)
+				);
+				$oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
 
-                        $f_extension = strtolower(strrchr($file->former_name, '.'));
-                        copy($temp_folder.$file->unique_name, $destination.$upload_file);
+				GalleryTable::getInstance()->newGalleryProperty($property, $file->former_name, $internal_nm);
+			}
+		}
+	}
 
-                        @chmod($destination.$upload_file, 0777);
-		        @unlink($temp_folder.$file->unique_name);
+ /**
+  * Get first gallery
+  *
+  * @param integer $property
+  * @return string
+  */
+	public static function getFirstGallery($property)
+	{
+		$name_gallery = GalleryTable::getInstance()->getGalleryByProperty($property, true);
 
-                        ## Create thumbnail
-                        $oResize = new ResizeImage();
-                        $aThumbs = array(ServiceFileHandler::getThumbImage($upload_file) => array('w'=>75, 'h'=>50),
-                                         ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h'=>159),
-                                         $upload_file => array('w'=>600, 'h'=>350),);
-                        $oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, $f_extension, array('metodo' => 'full'));
+		$path = self::getPath($property).'m_'.$name_gallery->getInternalName();
+		
+		return $path;
+	}
 
-                        GalleryTable::getInstance()->newGalleryProperty($property, $file->former_name, $internal_name);
-                }
-
-        }
-
-        return true;
-    }
-
-    /**
-     *
-     * @param int $property
-     * @return string
-     */
-    public static function getFirstGallery($property)
-    {
-        $name_gallery = GalleryTable::getInstance()->getGalleryByProperty($property, true);
-
-        $path = self::getPath($property).'m_'.$name_gallery->getInternalName();
-
-        return $path;
-
-    }
-}
+} // end class
