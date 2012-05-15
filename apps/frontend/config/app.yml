@@ -1,2 +1,4 @@
-# default values
-#all:
+all:
+
+   project_reference_name: sandbox
+   no_replay_email_account: noreply@emailbase.com.ar

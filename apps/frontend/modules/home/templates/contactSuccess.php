@@ -2,27 +2,49 @@
 	<div class="fondo-titulo contact">
 		<div class="titulo"></div>
 	</div>
+        <?php if($sf_user->getFlash('notice')): ?>
+        <div class="mensajeSistema ok">
+            <ul>
+                <li>
+                    <?php echo 'Gracias por contactar con nosotros, Te responderemos a la brevedad  ' ?>
+                </li>
+            </ul>
+        </div>
+        <br/>
+        <?php endif; ?>
 	<div class="contacto">
 		<div class="search_box clearfix">
-			<form action="" method="">
+                        <form action="<?php url_for('home/contact') ?>" method="post">
 				<div class="rowElem">
-					<input name="nombre" type="text" value="Nombre y Apellido *" />
+                                    <p><strong><?php echo $form['name']->renderLabel('Nombre y Apellido *:') ?></strong></p>
+                                    <?php $error_name = $form['name']->renderError()?'background-color: #FFCCCC;':''; ?>
+                                    <?php echo $form['name']->render(array('class'=>'et_input','style'=>'width: 255px;'.$error_name)) ?>
 				</div>
 				<div class="rowElem">
-					<input name="email" type="text" value="E-mail *" />
+                                    <p><strong><?php echo $form['email']->renderLabel('Email *:') ?></strong></p>
+                                    <?php $error_email = $form['email']->renderError()?'background-color: #FFCCCC;':''; ?>
+                                    <?php echo $form['email']->render(array('class'=>'et_input','style'=>'width: 255px;'.$error_email)) ?>
 				</div>
-				<div class="rowElem">
-					<input name="telefono" type="text" value="Teléfono *" />
+                                <div class="rowElem">
+                                    <p><strong><?php echo $form['phone']->renderLabel('Teléfono *:') ?></strong></p>
+                                    <?php $error_phone = $form['phone']->renderError()?'background-color: #FFCCCC;':''; ?>
+                                    <?php echo $form['phone']->render(array('class'=>'et_input','style'=>'width: 255px;'.$error_phone)) ?>
 				</div>
-				<div class="rowElem">
-					<input name="direccion" type="text" value="Dirección" />
+                                <div class="rowElem">
+                                    <p><strong><?php echo $form['address']->renderLabel('Dirección :') ?></strong></p>
+                                    <?php echo $form['address']->render(array('class'=>'et_input','style'=>'width: 255px;')) ?>
 				</div>
-				<div class="rowElem">
-					<textarea name="consulta">Consulta *</textarea>                      
+                                <div class="rowElem">
+                                    <p><strong><?php echo $form['message']->renderLabel('Consulta *:') ?></strong></p>
+                                    <?php $error_message = $form['message']->renderError()?'background-color: #FFCCCC;':''; ?>
+                                    <?php echo $form['message']->render(array('class'=>'et_input','style'=>'width: 255px;'.$error_message)) ?>
 				</div>
+                                <?php echo $form->renderHiddenFields() ?>
+                                <p <?php if($form->hasErrors()): ?> style="color: red" <?php endif; ?>>Los campos con asterisco (*) son obligatorios</p>
+                                <div class="boton" style="bottom: 20px;">
+                                    <input type="submit" value="" class="et_btn_buscar"/>
+                                </div>
 			</form>
-			<p>Los campos con asterisco (*) son obligatorios</p>
-			<div class="boton"><a href="#" class="buscar"></a></div>      
 		</div>
 		<div class="divider"></div>
 
@@ -47,41 +69,4 @@
 	</div>
 </div>
 <!-- -->
-<div class="right">
-	<div class="box clearfix">
-		<div class="inner clearfix">
-			<div class="titulo"><img src="/images/tit_tasa.png" alt="Tasá tu propiedad" /></div>
-			<p>
-				¿Querés vender o alquilar tu casa?<br />
-				Te brindamos la seguridad de un <strong>Perito Tasador Oficial.</strong>
-			</p>
-			<div class="boton">
-				<a href="#" class="vende"></a>
-				<a href="#" class="alquila"></a>
-			</div>
-		</div>
-	</div>
-	<div class="sombra"></div>
-
-	<div class="box clearfix">
-		<div class="inner clearfix">
-			<div class="titulo"><img src="/images/tit_creaperfil.png" alt="Creá tu perfil" /></div>
-			<p>Creá tu perfil de preferencias y <strong>las propiedades te encuentran a vos!</strong></p>
-			<div class="boton">
-				<a href="#" class="ingresar"></a>
-			</div>
-		</div>
-	</div>
-	<div class="sombra"></div>
-
-	<div class="box clearfix">
-		<div class="inner clearfix">
-			<div class="titulo"><img src="/images/tit_pertenece.png" alt="Pertenecé a la comunidad" /></div>
-			<p>Enviá tu <strong>CV</strong> o tu perfil de <strong>Facebook</strong>.</p>
-			<div class="boton">
-				<a href="#" class="enviar"></a>
-			</div>   
-		</div>
-	</div>
-	<div class="sombra"></div>
-</div>
+<?php include_partial('right_static'); ?>

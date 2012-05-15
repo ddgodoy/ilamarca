@@ -4,32 +4,32 @@
                 <form action="<?php echo url_for('search/index') ?>" method="POST" enctype="multipart/form-data" class="clearfix">
                     <div align="center">
                         <img src="/admin/images/loader.gif" id="img_loading" border="0" class="ajax_img" style="margin-left: 9px;float: left"/>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <select name="property_type" class="et_input et_filter">
                                         <?php echo Common::fillSimpleSelect($db_properties, $property_type) ?>
                                 </select>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <select name="operation" class="et_input et_filter">
 					<?php echo Common::fillSimpleSelect($db_operations, $operation) ?>
                                 </select>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <select name="geo_zone" id="geo_zone" onchange="updCityList(this.value);" class="et_input et_filter">
 					<?php echo Common::fillSimpleSelect($db_geo_zones, $geo_zone) ?>
                                 </select>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <div id="div_sel_city">
                                         <?php include_partial('property/ajaxCity',array('et_filter'=>'et_filter', 'geo_zone'=>$geo_zone, 'city'=>$city)); ?>
                                 </div>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <div id="div_sel_neighborhood">
                                         <?php include_partial('property/ajaxNeighborhood',array('et_filter'=>'et_filter', 'city'=>$city, 'neighborhood'=>$neighborhood)); ?>
                                 </div>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                             <table cellpadding="0" cellspacing="0" style="width: 75px">
                                     <tr>
                                             <td class="et_label" style="text-align:center;">Desde</td><td width="10"></td>
@@ -49,7 +49,7 @@
                                     </tr>
                               </table>
                         </div>
-                        <div class="rowElem">
+                        <div class="rowElem padding-bottom5">
                                 <select name="bedroom" class="et_input et_filter">
 						<?php echo Common::fillSimpleSelect($db_bedrooms, $bedrooms) ?>
 			        </select>

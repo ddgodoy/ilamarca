@@ -3,6 +3,7 @@
 		<div class="fondo-titulo">
 			<div class="titulo"></div>
 		</div>
+            <?php if(count($oList)>0): ?>
 		<div class="guardar"><a href=""></a></div>
 		<?php
 			$middle_counter = 2;
@@ -13,8 +14,8 @@
 			<div class="preview<?php echo $set_css_middle ?>">
 				<a href="#" id="tt-<?php echo $p_val->getId() ?>" class="white">
 					<div class="img">
-            <img src="<?php echo Gallery::getFirstGallery($p_val->getId()) ?>" alt="<?php echo $p_val->getName() ?>" />
-          </div>
+                                            <img src="<?php echo Gallery::getFirstGallery($p_val->getId()) ?>" alt="<?php echo $p_val->getName() ?>" />
+                                        </div>
 					<p><?php echo $p_val->getName() ?></p>
 				</a>
 				<div class="tooltip">
@@ -35,7 +36,14 @@
 				$(document).ready(function() {$("#tt-<?php echo $p_val->getId() ?>").tooltip ({ effect: 'slide', position: "center right", offset: [20, -25]}); });
 			</script>
 		<?php endforeach; ?>
-    <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+            <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+          <?php else: ?>
+                <div class="mensajeSistema error">
+                    <ul>
+                        <li>Tu búsqueda no dio ningún resultado </li>
+                    </ul>
+                </div>
+          <?php endif; ?>
 	</div>
 </div>
 <?php include_component('home', 'right'); ?>
