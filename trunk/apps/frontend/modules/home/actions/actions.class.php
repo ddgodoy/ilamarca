@@ -39,8 +39,22 @@ class homeActions extends sfActions
 
 			if ($this->form->isValid())
 			{
-				ServiceSendEmail::sendEmailForContact($this->form->getValues());
-
+				$post_values = $this->form->getValues();
+				//
+				$destinatarios = array('matias@inmobiliarialamarca.com'=>'Matías', 'luciana@inmobiliarialamarca.com'=>'Luciana');
+				//
+				$sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
+		  		array(
+		  			'subject'     => 'Nueva consulta desde ilamarca.com',
+		  			'to_partial'  => array(
+		  				'nombre'    => $post_values['name'],
+		  				'email'     => $post_values['email'],
+		  				'telefono'  => $post_values['phone'],
+		  				'direccion' => $post_values['address'],
+		  				'consulta'  => $post_values['message']
+		  			)
+		  		)
+		  	);
 				$this->getUSer()->setFlash('notice', true);
 				$this->redirect('home/contact');
 			}
