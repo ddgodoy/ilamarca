@@ -27,7 +27,7 @@
 							<li><?php echo $p_val->getSquareMeters() ?> m2 cubiertos.</li>
 							<li><?php echo $p_val->getCoveredArea() ?> m2 de terreno.</li>
 							<li><?php echo $p_val->getBedroom()->getName() ?></li>
-							<a href="#" title="Más detalles"></a>
+							<a href="<?php echo url_for('property/index?id='.$p_val->getId()) ?>" title="Más detalles"></a>
 						</ul>
 					</div>
 				</div>
