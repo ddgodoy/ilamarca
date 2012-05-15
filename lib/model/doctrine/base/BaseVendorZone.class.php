@@ -50,12 +50,12 @@ abstract class BaseVendorZone extends sfDoctrineRecord
         $this->hasOne('AppUser', array(
              'local' => 'app_user_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Neighborhood', array(
              'local' => 'neighborhood_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

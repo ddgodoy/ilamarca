@@ -70,12 +70,12 @@ abstract class BaseOperationRealProperty extends sfDoctrineRecord
         $this->hasOne('Operation', array(
              'local' => 'operation_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('RealProperty', array(
              'local' => 'real_property_id',
              'foreign' => 'id',
-             'onDelete' => 'RESTRICT'));
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Currency', array(
              'local' => 'currency_id',

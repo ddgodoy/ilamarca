@@ -1,35 +1,39 @@
-<script type="text/javascript">
-$(document).ready(function()
-{
-    $('.img_delete').click(function(){
-        var id = $(this).attr('id');
-        var id_property = $(this).attr('lang');
-        var s_url = $('#ajax_url_imagen').val();
-        jConfirm('<?php echo __('confirm_delet_images') ?>', '<?php echo __('Check the information') ?>', function(r) {
-        if(r)
-        {
-           jQuery.ajax({
-		type: 'POST',
-		url: s_url,
-		data: 'id_gallery='+id+'&id_property='+id_property,
-		success: function(data) {
-                    $('.div_images').html(data);
+<?php if ($cant > 0): ?>
+<div id="main_cont_gallery" style="width:100%;">
+	<script type="text/javascript">
+		function confirmDelImage(image_id, property_id)
+		{
+			var loader = document.getElementById('img_updating_gallery');
+
+			jConfirm('<?php echo __('confirm_delet_images') ?>', '<?php echo __('Check the information') ?>', function(r) {
+	    	if (r) {
+	    		loader.style.visibility = 'visible';
+
+	      	jQuery.ajax({
+						type: 'POST',
+						url: $('#ajax_url_imagen').val(),
+						data: 'id_gallery='+image_id+'&id_property='+property_id,
+						success: function(data) {
+							loader.style.visibility = 'hidden';
+
+							$('#main_cont_gallery').html(data);
+						}
+	  			});
+	    	}
+	   	});
 		}
-	    });
-        }
-       });
-     });
-})
-</script>
-<?php if($cant > 0): ?>
-    <ul>
-        <?php foreach($gallery AS $value): ?>
-            <li class="li_images">
-                <img src="<?php echo $path.$value->getInternalName() ?>" alt="<?php echo $value->getFormerName()  ?>" />
-                <img src="/admin/images/borrar_hover.png" id="<?php echo $value->getId(); ?>" lang="<?php echo $value->getRealPropertyId()?>" class="img_delete" alt="<?php __('delete') ?>" title="<?php __('delete') ?>">
-            </li>
-        <?php endforeach; ?>
-    </ul>
-    <br clear="all"/>
+	</script>
+	<div style="height:10px;"></div>
+  <?php foreach($gallery as $value): ?>
+    <div class="div_cont_gal">
+    	<a onclick="confirmDelImage(<?php echo $value->getId(); ?>, <?php echo $value->getRealPropertyId()?>);">
+    		<img src="/admin/images/borrar_hover.png" class="img_gal_delete" title="<?php __('delete') ?>" />
+    	</a>
+      <img src="<?php echo $path.$value->getInternalName() ?>" alt="<?php echo $value->getFormerName()  ?>" border="0" />
+    </div>
+  <?php endforeach; ?>
+
+  <br clear="all"/>
+	<input type="hidden" id="ajax_url_imagen" value="<?php echo url_for('property/ajaxImages') ?>"/>
+</div>	
 <?php endif; ?>
-<input type="hidden" id="ajax_url_imagen" value="<?php echo url_for('property/ajaxImages') ?>"/>
