@@ -51,6 +51,7 @@ $(document).ready(function () {
             </div>
             
             <div id="gallery" class="ad-gallery slider clearfix">
+              <?php if(count($images)>0): ?>
               <div class="ad-image-wrapper fotoBig">
               </div>
               <div class="ad-nav">
@@ -68,6 +69,7 @@ $(document).ready(function () {
                   </ul>
                 </div>
               </div>
+              <?php endif; ?>
             </div>
             
             <div id="gallery-videos" class="slider clearfix" style="display: none">
