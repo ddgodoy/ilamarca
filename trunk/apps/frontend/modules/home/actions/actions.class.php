@@ -29,26 +29,22 @@ class homeActions extends sfActions
    *
    * @param sfRequest $request A request object
    */
-  public function executeContact(sfWebRequest $request)
-  {
-    $this->form = new ContacForm();
-    if($request->isMethod('POST'))
-    {
-       $this->processForm($request, $this->form);
-    }
-  }
+	public function executeContact(sfWebRequest $request)
+	{
+		$this->form = new ContacForm();
+		
+		if ($request->isMethod('POST'))
+		{
+			$this->form->bind($request->getParameter($this->form->getName()));
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()));
-    if ($form->isValid())
-    {
-      $user = $form->getValues();
-      ServiceSendEmail::sendEmailForContact($user);
-      $this->getUSer()->setFlash('notice', true);
-      $this->redirect('home/contact');
-    }
-   }
-   
+			if ($this->form->isValid())
+			{
+				ServiceSendEmail::sendEmailForContact($this->form->getValues());
+
+				$this->getUSer()->setFlash('notice', true);
+				$this->redirect('home/contact');
+			}
+		}
+	}
 
 } // end class

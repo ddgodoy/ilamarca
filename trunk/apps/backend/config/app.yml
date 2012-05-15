@@ -2,5 +2,10 @@ all:
   recaptcha_public_key: 6LdmU70SAAAAAMYSeNgt_7msy3RNKe9gp0_qM2L9
   recaptcha_private_key: 6LdmU70SAAAAAHprwsVhmdjpvoKhq-ZW9qgvtall
 
-  project_reference_name: sandbox
+  project_reference_name: ilamarca
   no_replay_email_account: noreply@emailbase.com.ar
+  
+  outgoing_smtp_server: smtp.gmail.com
+  outgoing_smtp_port: 465
+  outgoing_smtp_account: icox.automatic.service@gmail.com
+  outgoing_smtp_password: la-virginia
