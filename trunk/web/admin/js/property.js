@@ -1,22 +1,19 @@
-$(document).ready(function()
+function addToYoutubeVideosTb()
 {
-	$('#add').click(function()
-	{
-		var id = Math.floor(Math.random()*101);
-		var mod_tr = $('<tr>').attr('id',id);
-
-		$('#table_content').append(mod_tr);
-
-		var html_text = '<td><textarea class="form_input area_yt" name="videos[]"></textarea></td>'+
-									  '<td class="close"><img onclick="close_tr('+ id +')" src="/admin/images/borrar_hover.png"></td>'
-
-		$('#'+id).html(html_text);
-	});
-});
+	var celda = '';
+	var tabla = document.getElementById('tb_videos_youtube');
+	var fila  = tabla.insertRow(tabla.rows.length);
+	
+	celda = fila.insertCell(0);
+	celda.innerHTML = '<textarea name="videos[]" class="form_input area_yt"></textarea>';
+	
+	celda = fila.insertCell(1);
+	celda.innerHTML = '&nbsp;<img src="/admin/images/borrar_hover.png" border="0" onclick="delVideoYoutube(this);" style="cursor:pointer;"/>';
+}
 //
-function close_tr(id)
+function delVideoYoutube(fila)
 {
-  $('#'+id).remove();
+	fila.parentNode.parentNode.parentNode.deleteRow(fila.parentNode.parentNode.rowIndex);
 }
 //
 function updCityList(geo_zone_id)

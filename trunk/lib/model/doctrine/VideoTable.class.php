@@ -17,7 +17,7 @@ class VideoTable extends Doctrine_Table
 		$d = $q->fetchArray();
 
 		foreach ($d as $value) {
-			$a[$value['id']] = $value['youtube'];
+			$a[] = $value['youtube'];
 		}
 		return $a;
   }

@@ -63,18 +63,18 @@
 						<div id="div_content_info_en" style="display:none;background-color:#FBFBFB;">
 							<table cellpadding="0" cellspacing="0" style="padding:7px;">
 								<tr>
-									<td valign="top"><label>Nombre *</label></td><td width="22"></td>
-									<td valign="top"><label>Descripción</label></td>
+									<td valign="top"><label>Name</label></td><td width="22"></td>
+									<td valign="top"><label>Description</label></td>
 								</tr>
 								<tr>
 									<td valign="top">
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['en']['name'] ?></td></tr>
 											<tr><td height="10"></td></tr>
-											<tr><td><label>Dirección</label></td></tr>
+											<tr><td><label>Address</label></td></tr>
 											<tr><td><?php echo $form['en']['address'] ?></td></tr>
 											<tr><td height="8"></td></tr>
-											<tr><td><label>Transportes</label></td></tr>
+											<tr><td><label>Transports</label></td></tr>
 											<tr><td><?php echo $form['en']['transports'] ?></td></tr>
 										</table>
 									</td><td width="22"></td>
@@ -82,7 +82,7 @@
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['en']['detail'] ?></td></tr>
 											<tr><td height="10"></td></tr>
-											<tr><td><label>Puntos de referencia</label></td></tr>
+											<tr><td><label>Points of reference</label></td></tr>
 											<tr><td><?php echo $form['en']['points_of_ref'] ?></td></tr>
 										</table>
 									</td>
@@ -192,6 +192,20 @@
 					</tr>
 				</table>
 			</fieldset>
+			<div class="div_cont_ytvideos">
+				<div class="div_cont_add_ytvideos">
+					<a class="linkPinika" onclick="addToYoutubeVideosTb();">+ Agregar</a>
+				</div>
+				<label style="color:#333333;"><strong><?php echo __('Videos') ?> Youtube</label></strong>
+				<table cellpadding="0" cellspacing="0" id="tb_videos_youtube">
+					<?php foreach ($videos as $v_video): ?>
+					<tr>
+	          <td><textarea name="videos[]" class="form_input area_yt"><?php echo $v_video ?></textarea></td>
+	          <td>&nbsp;<img src="/admin/images/borrar_hover.png" border="0" onclick="delVideoYoutube(this);" style="cursor:pointer;"/></td>
+	        </tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
       <div style="padding-top:10px;" class="botonera">
         <input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />
         <input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" />
