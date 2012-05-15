@@ -16,8 +16,11 @@ class Operation extends BaseOperation
     {
         $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, $culture);
 
-        $text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
-
+        if ($operation) {
+        	$text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
+        } else {
+        	$text_price = '';
+        }
         return $text_price;
     }
 }
