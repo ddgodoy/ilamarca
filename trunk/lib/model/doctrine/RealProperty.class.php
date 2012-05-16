@@ -41,7 +41,7 @@ class RealProperty extends BaseRealProperty
   	}
   	$recorded->save();
   }
-  
+
   /**
    * Create qr code type url linked to frontend property deatail
    *
@@ -50,15 +50,22 @@ class RealProperty extends BaseRealProperty
    */
   public static function createPropertyQrCode($create_now, $property_id)
   {
-  	if ($create_now) {
+  	if ($create_now)
+  	{
+  		// get host
+  		$request = sfContext::getInstance()->getRequest();
+
+			$host = $request->isSecure() ? 'https://' : 'http://';
+	    $host.= $request->getHost();
+  		//
   		$qr = new BarcodeQR();
   		$fl = sfConfig::get('sf_web_dir').'/uploads/qr_codes/'.uniqid('').'.png';
 
-  		$qr->url("http://ilamarca/property?id=$property_id");
+  		$qr->url("$host/property?id=$property_id");
   		$qr->draw(200, $fl);
 
   		@chmod($fl, 0777);
   	}
   }
-	
+
 } // end class
