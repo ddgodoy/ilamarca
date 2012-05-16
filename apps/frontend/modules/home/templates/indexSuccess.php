@@ -28,17 +28,17 @@
 				<div class="space_bottom">
 					<table cellpadding="0" cellspacing="0">
 						<tr>
-							<td class="et_label" style="text-align:center;">Desde</td><td width="10"></td>
-							<td class="et_label" style="text-align:center;">Hasta</td><td width="10"></td>
+							<td class="et_label" style="text-align:center;">Desde</td><td width="5"></td>
+							<td class="et_label" style="text-align:center;">Hasta</td><td width="5"></td>
 							<td class="et_label" style="text-align:center;">Moneda</td>
 						</tr>
 						<tr>
 							<td><input type="text" name="p_from" class="et_input" style="width:100px;text-align:right;" onkeypress="return onlyDecimal(this, event);"/></td>
-							<td width="10"></td>
-							<td><input type="text" name="p_to" class="et_input" style="width:100px;text-align:right;" onkeypress="return onlyDecimal(this, event);"/></td>
-							<td width="10"></td>
+							<td width="5"></td>
+							<td><input ype="text" name="p_to" class="et_input" style="width:100px;text-align:right;" onkeypress="return onlyDecimal(this, event);"/></td>
+							<td width="5"></td>
 							<td>
-								<select name="currency" class="et_input" style="width:80px;text-align:center;">
+								<select name="currency" class="et_input" style="width:90px;text-align:center;font-size:12px;">
 									<?php echo Common::fillSimpleSelect($db_currencies) ?>
 								</select>
 							</td>

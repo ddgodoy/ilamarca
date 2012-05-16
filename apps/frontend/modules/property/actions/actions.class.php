@@ -20,8 +20,8 @@ class propertyActions extends sfActions
     $this->images = array();
     $id = $request->getParameter('id');
     $this->property = RealPropertyTable::getInstance()->findOneById($id);
-    $this->images = GalleryTable::getInstance()->findBy('real_property_id',$id);
-    $this->videos = VideoTable::getInstance()->findOneBy('real_property_id',$id);
+    $this->images = GalleryTable::getInstance()->findBy('real_property_id', $id);
+    $this->videos = VideoTable::getInstance()->findOneBy('real_property_id', $id);
   }
   
   /**
