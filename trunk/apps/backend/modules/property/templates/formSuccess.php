@@ -231,6 +231,19 @@
 				</table>
 			</fieldset>
 			<div class="div_cont_ytvideos">
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<td><label style="color:#333333;"><strong>Archivo PDF</strong></label></td>
+						<td style="padding-left:5px;"><input type="file" name="pdf_file" class="form_input"/></td>
+						<td style="padding-left:5px;">
+							<?php if ($pdf_file): ?>
+								<input type="checkbox" name="reset_pdf_file" />&nbsp;<label><?php echo __('Check to delete') ?></label>
+							<?php endif; ?>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="div_cont_ytvideos">
 				<!--<div class="div_cont_add_ytvideos">
 					<a class="linkPinika" onclick="addToYoutubeVideosTb();">+ Agregar</a>
 				</div>-->

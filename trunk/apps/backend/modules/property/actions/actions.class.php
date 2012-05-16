@@ -95,6 +95,7 @@ class propertyActions extends sfActions
 		$this->operations    = array();
   	$this->currencies    = array();
   	$this->prices        = array();
+  	$this->pdf_file      = NULL;
 		$entity_object       = NULL;
 
 		$this->db_operations = OperationTable::getInstance()->getAllForSelect();
@@ -105,6 +106,7 @@ class propertyActions extends sfActions
 		if ($this->id) {
 			$entity_object = RealPropertyTable::getInstance()->find($this->id);
 
+			$this->pdf_file      = $entity_object->getPdfFile();
 			$this->geo_zone      = $entity_object->getGeoZoneId();
 			$this->city          = $entity_object->getCityId();
 			$this->neighborhood  = $entity_object->getNeighborhoodId();
@@ -176,6 +178,9 @@ class propertyActions extends sfActions
 
         // set imagenes
 				Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
+				
+				// set pdf file
+  			RealProperty::uploadPdfFile($request->getFiles('pdf_file'), $recorded, $request->getParameter('reset_pdf_file'));
 
 				$this->redirect('property/show?id='.$recorded->getId());
 			}
