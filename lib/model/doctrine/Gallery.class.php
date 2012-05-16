@@ -87,10 +87,12 @@ class Gallery extends BaseGallery
   */
 	public static function getFirstGallery($property)
 	{
+		$path = '';
 		$name_gallery = GalleryTable::getInstance()->getGalleryByProperty($property, true);
 
-		$path = self::getPath($property).'m_'.$name_gallery->getInternalName();
-		
+		if (!empty($name_gallery)) {
+			$path = self::getPath($property).'m_'.$name_gallery->getInternalName();
+		}
 		return $path;
 	}
 

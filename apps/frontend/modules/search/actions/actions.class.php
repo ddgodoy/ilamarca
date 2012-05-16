@@ -16,7 +16,7 @@ class searchActions extends sfActions
    * @param sfRequest $request A request object
    */
   public function executeIndex(sfWebRequest $request)
-  {
+  {  	
   	$str_module = $request->getParameter('module');
 
         $this->p_desde   = $this->getRequestParameter('p_from', 0);

@@ -83,6 +83,7 @@ class propertyActions extends sfActions
    */
   public function executeProcess(sfWebRequest $request)
   {
+  	$create_qrcode = true;
 		$this->id = $request->getParameter('id');
 
 		$this->geo_zone      = 0;
@@ -104,6 +105,7 @@ class propertyActions extends sfActions
     $this->sl_prices     = array();
 
 		if ($this->id) {
+			$create_qrcode = false;
 			$entity_object = RealPropertyTable::getInstance()->find($this->id);
 
 			$this->pdf_file      = $entity_object->getPdfFile();
@@ -181,6 +183,9 @@ class propertyActions extends sfActions
 				
 				// set pdf file
   			RealProperty::uploadPdfFile($request->getFiles('pdf_file'), $recorded, $request->getParameter('reset_pdf_file'));
+  			
+  			// set qrcode
+  			RealProperty::createPropertyQrCode($create_qrcode, $recorded->getId());
 
 				$this->redirect('property/show?id='.$recorded->getId());
 			}
