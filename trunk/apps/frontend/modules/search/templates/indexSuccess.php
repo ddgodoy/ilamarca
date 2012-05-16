@@ -40,7 +40,7 @@
           <?php else: ?>
                 <div class="mensajeSistema error">
                     <ul>
-                        <li>Tu búsqueda no dio ningún resultado </li>
+                        <li>Tu búsqueda no dio ningún resultado</li>
                     </ul>
                 </div>
           <?php endif; ?>
