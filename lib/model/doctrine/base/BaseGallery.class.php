@@ -40,13 +40,11 @@ abstract class BaseGallery extends sfDoctrineRecord
              ));
         $this->hasColumn('former_name', 'string', 150, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 150,
              ));
-        $this->hasColumn('internal_name', 'string', 150, array(
+        $this->hasColumn('internal_name', 'string', 50, array(
              'type' => 'string',
-             'notnull' => true,
-             'length' => 150,
+             'length' => 50,
              ));
         $this->hasColumn('real_property_id', 'integer', 4, array(
              'type' => 'integer',

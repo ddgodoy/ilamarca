@@ -12,4 +12,34 @@
  */
 class RealProperty extends BaseRealProperty
 {
-}
+	/**
+   * Upload pdf_file process
+   *
+   * @param array $file
+   * @param mixed $recorded
+   * @param boolean $reset
+   */
+  public static function uploadPdfFile($file, $recorded, $reset = false)
+  {
+  	$destination = ServiceFileHandler::getUploadFolder('pdf_file');
+
+  	if ($file['size'] > 0) {
+	  	$f_extension = strtolower(strrchr($file['name'], '.'));
+			$upload_file = date('Y').'/'.uniqid('').$f_extension;
+
+			if (move_uploaded_file($file['tmp_name'], $destination.$upload_file)) {
+				if ($recorded->getPdfFile()) {
+					@unlink($destination.$recorded->getPdfFile());
+				}
+				@chmod($destination.$upload_file, 0777);
+				$recorded->setPdfFile($upload_file);
+			}
+  	} elseif ($reset && $recorded->getPdfFile()) {
+  		@unlink($destination.$recorded->getPdfFile());
+
+  		$recorded->setPdfFile(NULL);
+  	}
+  	$recorded->save();
+  }
+	
+} // end class

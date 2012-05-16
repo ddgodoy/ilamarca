@@ -14,6 +14,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'google_map'         => new sfWidgetFormFilterInput(),
+      'pdf_file'           => new sfWidgetFormFilterInput(),
       'square_meters'      => new sfWidgetFormFilterInput(),
       'covered_area'       => new sfWidgetFormFilterInput(),
       'years_antiquity'    => new sfWidgetFormFilterInput(),
@@ -37,6 +38,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'google_map'         => new sfValidatorPass(array('required' => false)),
+      'pdf_file'           => new sfValidatorPass(array('required' => false)),
       'square_meters'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'covered_area'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'years_antiquity'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -77,6 +79,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                 => 'Number',
       'google_map'         => 'Text',
+      'pdf_file'           => 'Text',
       'square_meters'      => 'Number',
       'covered_area'       => 'Number',
       'years_antiquity'    => 'Number',

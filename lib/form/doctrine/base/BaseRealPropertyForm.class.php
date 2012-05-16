@@ -17,6 +17,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
       'google_map'         => new sfWidgetFormInputText(),
+      'pdf_file'           => new sfWidgetFormInputText(),
       'square_meters'      => new sfWidgetFormInputText(),
       'covered_area'       => new sfWidgetFormInputText(),
       'years_antiquity'    => new sfWidgetFormInputText(),
@@ -41,6 +42,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                 => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'google_map'         => new sfValidatorPass(array('required' => false)),
+      'pdf_file'           => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'square_meters'      => new sfValidatorInteger(array('required' => false)),
       'covered_area'       => new sfValidatorInteger(array('required' => false)),
       'years_antiquity'    => new sfValidatorInteger(array('required' => false)),

@@ -12,6 +12,7 @@
  * @property text $points_of_ref
  * @property text $transports
  * @property text $google_map
+ * @property string $pdf_file
  * @property integer $square_meters
  * @property integer $covered_area
  * @property integer $years_antiquity
@@ -48,6 +49,7 @@
  * @method text                getPointsOfRef()             Returns the current record's "points_of_ref" value
  * @method text                getTransports()              Returns the current record's "transports" value
  * @method text                getGoogleMap()               Returns the current record's "google_map" value
+ * @method string              getPdfFile()                 Returns the current record's "pdf_file" value
  * @method integer             getSquareMeters()            Returns the current record's "square_meters" value
  * @method integer             getCoveredArea()             Returns the current record's "covered_area" value
  * @method integer             getYearsAntiquity()          Returns the current record's "years_antiquity" value
@@ -83,6 +85,7 @@
  * @method RealProperty        setPointsOfRef()             Sets the current record's "points_of_ref" value
  * @method RealProperty        setTransports()              Sets the current record's "transports" value
  * @method RealProperty        setGoogleMap()               Sets the current record's "google_map" value
+ * @method RealProperty        setPdfFile()                 Sets the current record's "pdf_file" value
  * @method RealProperty        setSquareMeters()            Sets the current record's "square_meters" value
  * @method RealProperty        setCoveredArea()             Sets the current record's "covered_area" value
  * @method RealProperty        setYearsAntiquity()          Sets the current record's "years_antiquity" value
@@ -146,6 +149,10 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              ));
         $this->hasColumn('google_map', 'text', null, array(
              'type' => 'text',
+             ));
+        $this->hasColumn('pdf_file', 'string', 50, array(
+             'type' => 'string',
+             'length' => 50,
              ));
         $this->hasColumn('square_meters', 'integer', 4, array(
              'type' => 'integer',

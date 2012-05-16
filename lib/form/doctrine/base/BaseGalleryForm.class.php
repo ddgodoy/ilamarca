@@ -25,8 +25,8 @@ abstract class BaseGalleryForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'former_name'      => new sfValidatorString(array('max_length' => 150)),
-      'internal_name'    => new sfValidatorString(array('max_length' => 150)),
+      'former_name'      => new sfValidatorString(array('max_length' => 150, 'required' => false)),
+      'internal_name'    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'real_property_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('RealProperty'))),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),

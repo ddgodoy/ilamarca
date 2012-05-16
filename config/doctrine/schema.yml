@@ -153,6 +153,7 @@ RealProperty:
     points_of_ref:      { type: text }
     transports:         { type: text }
     google_map:         { type: text }
+    pdf_file:           { type: string(50) }
     square_meters:      { type: integer(4), default: 0 }
     covered_area:       { type: integer(4), default: 0 }
     years_antiquity:    { type: integer(4), default: 0 }
@@ -204,8 +205,8 @@ Gallery:
   tableName: gallery
   columns:
     id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
-    former_name:      { type: string(150), notnull: true }
-    internal_name:    { type: string(150), notnull: true }
+    former_name:      { type: string(150) }
+    internal_name:    { type: string(50) }
     real_property_id: { type: integer(4), notnull: true }
 
   relations:

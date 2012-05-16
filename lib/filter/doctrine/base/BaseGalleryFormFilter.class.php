@@ -13,8 +13,8 @@ abstract class BaseGalleryFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'former_name'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'internal_name'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'former_name'      => new sfWidgetFormFilterInput(),
+      'internal_name'    => new sfWidgetFormFilterInput(),
       'real_property_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('RealProperty'), 'add_empty' => true)),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
