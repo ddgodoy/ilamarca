@@ -19,9 +19,21 @@
 				<ul><?php foreach ($error as $e): ?><li><?php echo __($e, NULL, 'errors') ?></li><?php endforeach; ?></ul>
 			</div>
 		<?php endif; ?>
+                <?php if($sf_user->getFlash('notice')): ?>
+                <div class="mensajeSistema ok" style="margin: 0px; padding: 0px;">
+                    <ul>
+                        <li>
+                            <?php echo __('La propiedad se ha actualizado correctamente') ?>
+                        </li>
+                    </ul>
+                </div>
+                <?php endif; ?>
 		<h1 class="titulos">
 			<?php echo __(ucfirst($str_action)).' '.__('Property') ?>
 		</h1>
+                <div style=" border: 1px solid fuchsia; width: 200px; height: 200px; position: absolute; margin-left: 1015px; margin-top: 77px;">
+                    <img src="<?php echo '' ?>" alt="qr" title="qr" />
+                </div>
 		<form enctype="multipart/form-data" method="post" action="<?php echo url_for($str_module.'/'.$str_action).$request_id ?>">
 			<label class="lineaListados"><?php echo __('Mandatory fields') ?>&nbsp;(*)</label>
 			<br />
