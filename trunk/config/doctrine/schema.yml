@@ -154,6 +154,7 @@ RealProperty:
     transports:         { type: text }
     google_map:         { type: text }
     pdf_file:           { type: string(50) }
+    qr_code:            { type: string(50) }
     square_meters:      { type: integer(4), default: 0 }
     covered_area:       { type: integer(4), default: 0 }
     years_antiquity:    { type: integer(4), default: 0 }

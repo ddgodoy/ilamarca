@@ -97,6 +97,7 @@ class propertyActions extends sfActions
   	$this->currencies    = array();
   	$this->prices        = array();
   	$this->pdf_file      = NULL;
+  	$this->qrcode_img    = '';
 		$entity_object       = NULL;
 
 		$this->db_operations = OperationTable::getInstance()->getAllForSelect();
@@ -115,6 +116,7 @@ class propertyActions extends sfActions
 			$this->property_type = $entity_object->getPropertyTypeId();
 			$this->bedroom       = $entity_object->getBedroomId();
 			$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
+			$this->qrcode_img    = $entity_object->getQrCode();
 
 			$a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
@@ -185,7 +187,7 @@ class propertyActions extends sfActions
   			RealProperty::uploadPdfFile($request->getFiles('pdf_file'), $recorded, $request->getParameter('reset_pdf_file'));
   			
   			// set qrcode
-  			RealProperty::createPropertyQrCode($create_qrcode, $recorded->getId());
+  			RealProperty::createPropertyQrCode($create_qrcode, $recorded);
 
                         $this->getUser()->setFlash('notice',true);
 			$this->redirect('property/edit?id='.$recorded->getId());
