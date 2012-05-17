@@ -187,7 +187,8 @@ class propertyActions extends sfActions
   			// set qrcode
   			RealProperty::createPropertyQrCode($create_qrcode, $recorded->getId());
 
-				$this->redirect('property/show?id='.$recorded->getId());
+                        $this->getUser()->setFlash('notice',true);
+			$this->redirect('property/edit?id='.$recorded->getId());
 			}
 		}
 		$this->setTemplate('form');
