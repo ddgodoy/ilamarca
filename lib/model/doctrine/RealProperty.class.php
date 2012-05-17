@@ -46,9 +46,9 @@ class RealProperty extends BaseRealProperty
    * Create qr code type url linked to frontend property deatail
    *
    * @param boolean $create_now
-   * @param integer $property_id
+   * @param object $property_id
    */
-  public static function createPropertyQrCode($create_now, $property_id)
+  public static function createPropertyQrCode($create_now, $property)
   {
   	if ($create_now)
   	{
@@ -59,12 +59,16 @@ class RealProperty extends BaseRealProperty
 	    $host.= $request->getHost();
   		//
   		$qr = new BarcodeQR();
-  		$fl = sfConfig::get('sf_web_dir').'/uploads/qr_codes/'.uniqid('').'.png';
+  		$nm = uniqid('').'.png';
+  		$fl = sfConfig::get('sf_web_dir').'/uploads/qr_codes/'.$nm;
 
-  		$qr->url("$host/property?id=$property_id");
+  		$qr->url("$host/property?id=".$property->getId());
   		$qr->draw(200, $fl);
 
   		@chmod($fl, 0777);
+
+  		$property->setQrCode($nm);
+  		$property->save();
   	}
   }
 

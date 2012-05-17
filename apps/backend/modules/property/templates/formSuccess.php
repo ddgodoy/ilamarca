@@ -31,9 +31,11 @@
 		<h1 class="titulos">
 			<?php echo __(ucfirst($str_action)).' '.__('Property') ?>
 		</h1>
-                <div style=" border: 1px solid fuchsia; width: 200px; height: 200px; position: absolute; margin-left: 1015px; margin-top: 77px;">
-                    <img src="<?php echo '' ?>" alt="qr" title="qr" />
-                </div>
+		<?php if (!empty($qrcode_img)): ?>
+    <div style="border:1px solid #CCCCCC;width:200px;height:200px;position:absolute;margin-left:1015px;margin-top:77px;">
+        <img src="/uploads/qr_codes/<?php echo $qrcode_img ?>" alt="qr" title="qr" />
+    </div>
+    <?php endif; ?>
 		<form enctype="multipart/form-data" method="post" action="<?php echo url_for($str_module.'/'.$str_action).$request_id ?>">
 			<label class="lineaListados"><?php echo __('Mandatory fields') ?>&nbsp;(*)</label>
 			<br />
