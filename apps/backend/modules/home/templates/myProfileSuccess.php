@@ -30,6 +30,10 @@
 						<td valign="middle"><input type="text" name="my_name" value="<?php echo $my_name ?>" class="form_input" style="width:330px;"></td>
 					</tr>
 					<tr>
+						<td><label><?php echo __('Last name') ?> *</label></td>
+						<td valign="middle"><input type="text" name="my_last_name" value="<?php echo $my_lname ?>" class="form_input" style="width:330px;"></td>
+					</tr>
+					<tr>
 						<td><label><?php echo __('Photo') ?></label></td>
 						<td valign="middle">
 							<input type="file" name="my_photo" class="form_input"/>

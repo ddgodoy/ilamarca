@@ -20,8 +20,16 @@
 			</div>
 		</div>
 		<div class="logo">
-			<?php $_company_logo = $sf_user->getAttribute('user_company_logo') ? 'uploads/company/'.$sf_user->getAttribute('user_company_logo') : 'images/no_company_logo.jpg'; ?>
-			<img src="/admin/<?php echo $_company_logo ?>" title="<?php echo $sf_user->getAttribute('user_company_name') ?>" />
+			<?php
+				$_company_logo = 'images/no_company_logo.png';
+				$_fixSize_logo = 'width="200"';
+				
+				if ($sf_user->getAttribute('user_company_logo')) {
+					$_company_logo = 'uploads/company/'.$sf_user->getAttribute('user_company_logo');
+					$_fixSize_logo = '';
+				}
+			?>
+			<img src="/admin/<?php echo $_company_logo ?>" title="<?php echo $sf_user->getAttribute('user_company_name') ?>" <?php echo $_fixSize_logo ?>/>
 		</div>
 		<div class="user">
 			<a href="<?php echo url_for('home/myProfile') ?>">

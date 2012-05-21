@@ -31,10 +31,12 @@ class homeActions extends sfActions
   	$this->my_error = array();
   	$this->my_email = $oUser->getEmail();
   	$this->my_name  = $oUser->getName();
+  	$this->my_lname = $oUser->getLastName();
 
   	if ($request->getMethod() == 'POST') {
   		$this->my_email = trim($request->getParameter('my_email'));
-  		$this->my_name = trim($request->getParameter('my_name'));
+  		$this->my_name  = trim($request->getParameter('my_name'));
+  		$this->my_lname = trim($request->getParameter('my_last_name'));
 
   		$x_password = trim($request->getParameter('my_password'));
   		$r_password = trim($request->getParameter('my_repeat_password'));
@@ -46,14 +48,16 @@ class homeActions extends sfActions
   		if (!empty($check_email))    { $this->my_error['email']    = $check_email; }
   		if (!empty($check_password)) { $this->my_error['password'] = $check_password; }
   		if (empty($this->my_name))   { $this->my_error['name']     = 'Enter the name'; }
+  		if (empty($this->my_lname))  { $this->my_error['last_name']= 'Enter the last name'; }
 
   		## continue
   		if (!$this->my_error) {
   			## set photo
   			AppUserTable::getInstance()->uploadPhoto($request->getFiles('my_photo'), $oUser, $request->getParameter('my_reset_photo'));
 
-  			$oUser->setEmail($this->my_email);
-  			$oUser->setName($this->my_name);
+  			$oUser->setEmail   ($this->my_email);
+  			$oUser->setName    ($this->my_name);
+  			$oUser->setLastName($this->my_lname);
 
   			if (!empty($x_password)) {
   				## change password

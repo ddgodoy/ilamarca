@@ -8,7 +8,7 @@
 		<div class="mapa">
 			<a href="<?php echo url_for('home/index') ?>"><strong><?php echo __('Home') ?></strong></a>
 			&nbsp;&gt;&nbsp;
-			<a href="<?php echo url_for('user/index') ?>"><strong><?php echo __('Users') ?></strong></a>
+			<a href="<?php echo url_for('salesman/index') ?>"><strong><?php echo __('Salesmen') ?></strong></a>
 			&nbsp;&gt;&nbsp;
 			<?php echo __('Detail') ?>
 		</div>
@@ -16,16 +16,16 @@
 		<fieldset>
 			<table width="100%" cellspacing="4" cellpadding="2" border="0">
 				<tr>
-					<td width="10%"><label><strong><?php echo __('Company') ?>&nbsp;:&nbsp;</strong></label></td>
-					<td width="90%" class="text_detail"><?php echo $oValue->Company->getName() ?></td>
-				</tr>
-				<tr>
-					<td><label><strong><?php echo __('User role') ?>&nbsp;:&nbsp;</strong></label></td>
+					<td width="12%"><label><strong><?php echo __('User role') ?>&nbsp;:&nbsp;</strong></label></td>
 					<td class="text_detail"><?php echo $oValue->UserRole->getName() ?></td>
 				</tr>
 				<tr>
 					<td><label><strong><?php echo __('Name') ?>&nbsp;:&nbsp;</strong></label></td>
 					<td class="text_detail"><?php echo $oValue->getName() ?></td>
+				</tr>
+				<tr>
+					<td><label><strong><?php echo __('Last name') ?>&nbsp;:&nbsp;</strong></label></td>
+					<td class="text_detail"><?php echo $oValue->getLastName() ?></td>
 				</tr>
 				<tr>
 					<td><label><strong><?php echo __('Email') ?>&nbsp;:&nbsp;</strong></label></td>
@@ -38,8 +38,8 @@
 			</table>
 		</fieldset>
 		<div style="padding-top:10px;" class="botonera">
-			<input type="button" onclick="document.location='<?php echo url_for('user/edit').'?id='.$id ?>';" value="<?php echo __('Edit') ?>" class="boton" />
-			<input type="button" onclick="document.location='<?php echo url_for('user/index') ?>';" value="<?php echo __('Continue to list') ?>" class="boton" />
+			<input type="button" onclick="document.location='<?php echo url_for('salesman/edit').'?id='.$id ?>';" value="<?php echo __('Edit') ?>" class="boton" />
+			<input type="button" onclick="document.location='<?php echo url_for('salesman/index') ?>';" value="<?php echo __('Continue to list') ?>" class="boton" />
 		</div>
 	</div>
 	<div class="clear"></div>
