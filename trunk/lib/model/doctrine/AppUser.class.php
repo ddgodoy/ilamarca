@@ -84,6 +84,14 @@ class AppUser extends BaseAppUser
     $this->setSalt(MD5(uniqid(''))); //Random seed
     $this->_set('password', sha1($password . $this->getSalt())); //Override
   }
+
+  /**
+   * Override add automatic recover token
+   */
+  public function setNewRecoverToken()
+  {
+    $this->setRecoverToken(sha1(MD5(uniqid('')))); //Random seed
+  }
   
   /**
    * Send password to salesman
@@ -110,5 +118,4 @@ class AppUser extends BaseAppUser
   		)
   	);
   }
-
 } // end class
