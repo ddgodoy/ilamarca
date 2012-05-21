@@ -84,5 +84,31 @@ class AppUser extends BaseAppUser
     $this->setSalt(MD5(uniqid(''))); //Random seed
     $this->_set('password', sha1($password . $this->getSalt())); //Override
   }
-	
+  
+  /**
+   * Send password to salesman
+   *
+   * @param string $password
+   * @param string $email
+   * @param string $name
+   */
+  public static function sendPasswordToSalesman($password, $email, $name)
+  {
+  	sfProjectConfiguration::getActive()->loadHelpers(array("Url"));
+
+		$sendEmail = ServiceOutgoingMessages::sendToSingleAccount
+		(
+			$name, $email,
+			'home/passwordToSalesman',
+  		array(
+  			'subject'     => 'Sus datos de acceso para ilamarca.com',
+  			'to_partial'  => array(
+  				'email'     => $email,
+  				'password'  => $password,
+  				'url'       => url_for('home/index', true)
+  			)
+  		)
+  	);
+  }
+
 } // end class

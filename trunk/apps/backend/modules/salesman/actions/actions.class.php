@@ -95,13 +95,12 @@ class salesmanActions extends sfActions
   	$this->error   = array();
   	$this->photo   = NULL;
   	$entity_object = NULL;
-  	$send_password = true;
+  	$send_password = false;
 
   	if ($this->id) {
   		$entity_object = AppUserTable::getInstance()->find($this->id);
 	  	$this->email   = $entity_object->getEmail();
 	  	$this->photo   = $entity_object->getPhoto();
-	  	$send_password = false;
   	}
   	$this->form = new SalesmanForm($entity_object);
 
@@ -135,9 +134,14 @@ class salesmanActions extends sfActions
 
 					$recorded->setSalt($x_salt);
 					$recorded->setPassword($x_pass);
+
+					$send_password = true;
   			}
   			## set photo
   			AppUserTable::getInstance()->uploadPhoto($request->getFiles('photo'), $recorded, $request->getParameter('reset_photo'));
+
+  			## send password to salesman
+  			if ($send_password) { AppUser::sendPasswordToSalesman($x_password, $this->email, $recorded->getName().' '.$recorded->getLastName()); }
 
   			$this->redirect('salesman/show?id='.$recorded->getId());
   		}
