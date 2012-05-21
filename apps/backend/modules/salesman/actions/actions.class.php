@@ -101,14 +101,13 @@ class salesmanActions extends sfActions
 	  	$this->email   = $entity_object->getEmail();
 	  	$this->photo   = $entity_object->getPhoto();
   	}
-  	$this->form = new AppUserForm($entity_object);
+  	$this->form = new SalesmanForm($entity_object);
 
   	if ($request->getMethod() == 'POST') {
   		$this->email = trim($request->getParameter('email'));
+  		$x_password  = trim($request->getParameter('password'));
+  		$r_password  = trim($request->getParameter('repeat_password'));
 
-  		$x_password = trim($request->getParameter('password'));
-  		$r_password = trim($request->getParameter('repeat_password'));
-  		
   		## check values
   		$check_email = AppUser::checkProfileEmail($this->email, $this->id);
   		$check_password = AppUser::checkProfilePassword($x_password, $r_password, $this->id);
@@ -116,31 +115,29 @@ class salesmanActions extends sfActions
   		if (!empty($check_email))    { $this->error['email'] = $check_email; }
   		if (!empty($check_password)) { $this->error['password'] = $check_password; }
 
+  		$form_request = $request->getParameter($this->form->getName());
+			$form_request['company_id']   = 1;
+			$form_request['user_role_id'] = 3;
+			$form_request['email']        = $this->email;
+
+			$this->form->bind($form_request);
+
   		## continue
-  		if (!$this->error) {
-  			$form_request = $request->getParameter($this->form->getName());
-  			$form_request['company_id']   = 1;
-  			$form_request['user_role_id'] = 3;
-  			$form_request['email']        = $this->email;
+  		if ($this->form->isValid() && !$this->error) {
+  			$recorded = $this->form->save();
 
-				$this->form->bind($form_request);
+  			## set password
+  			if (!empty($x_password)) {
+					$x_salt = MD5(uniqid(''));
+					$x_pass = sha1($x_password.$x_salt);
 
-	  		if ($this->form->isValid()) {
-	  			$recorded = $this->form->save();
+					$recorded->setSalt($x_salt);
+					$recorded->setPassword($x_pass);
+  			}	
+  			## set photo
+  			AppUserTable::getInstance()->uploadPhoto($request->getFiles('photo'), $recorded, $request->getParameter('reset_photo'));
 
-	  			## set password
-	  			if (!empty($x_password)) {
-						$x_salt = MD5(uniqid(''));
-						$x_pass = sha1($x_password.$x_salt);
-	
-						$recorded->setSalt($x_salt);
-						$recorded->setPassword($x_pass);
-	  			}	
-	  			## set photo
-	  			AppUserTable::getInstance()->uploadPhoto($request->getFiles('photo'), $recorded, $request->getParameter('reset_photo'));
-	
-	  			$this->redirect('salesman/show?id='.$recorded->getId());
-	  		}
+  			$this->redirect('salesman/show?id='.$recorded->getId());
   		}
   	}
   	$this->setTemplate('form');

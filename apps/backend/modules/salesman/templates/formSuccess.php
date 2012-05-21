@@ -21,7 +21,7 @@
 			<div class="mensajeSistema error">
 				<ul>
 					<?php foreach ($error as $e): ?><li><?php echo __($e, NULL, 'errors') ?></li><?php endforeach; ?>
-					<?php foreach($form->getFormFieldSchema() as $name=>$formField) { if ($formField->getError()) { echo '<li>'.$formField->getError().'</li>'; } } ?>
+					<?php foreach($form->getFormFieldSchema() as $name=>$formField) { if ($formField->getError() && $formField->getName() != 'email') { echo '<li>'.$formField->getError().'</li>'; } } ?>
 				</ul>
 			</div>
 		<?php endif; ?>
@@ -39,6 +39,10 @@
 					<tr>
 						<td><label><?php echo __('Name') ?> *</label></td>
 						<td><?php echo $form['name'] ?></td>
+					</tr>
+					<tr>
+						<td><label><?php echo __('Last name') ?> *</label></td>
+						<td><?php echo $form['last_name'] ?></td>
 					</tr>
 					<tr>
 						<td><label><?php echo __('Photo') ?></label></td>
