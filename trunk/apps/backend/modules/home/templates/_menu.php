@@ -1,6 +1,11 @@
 <?php $mnGetModule = $sf_params->get('module') ?>
 <ul>
 	<li>
+		<a href="<?php echo url_for('salesman/index') ?>" class="first<?php echo $mnGetModule=='salesman' ? ' selected' : '' ?>">
+			<?php echo __('Salesmen') ?>
+		</a>
+	</li>
+	<li>
 		<a href="<?php echo url_for('geo_zone/index') ?>" class="first<?php echo $mnGetModule=='geo_zone' ? ' selected' : '' ?>">
 			<?php echo __('Geo zones') ?>
 		</a>

@@ -54,7 +54,8 @@ class AppUserTable extends Doctrine_Table
   {
   	$destination = ServiceFileHandler::getUploadFolder('user');
 
-  	if ($file['size'] > 0) {
+  	if ($file['size'] > 0)
+  	{
 	  	$f_extension = strtolower(strrchr($file['name'], '.'));
 			$upload_file = date('Y').'/'.uniqid('').$f_extension;
 

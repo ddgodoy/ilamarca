@@ -25,14 +25,22 @@ Bedroom:
 
 UserRole:
   user_role_super_admin:
+    id: 1
     name: Super Admin
-    credentials: super_admin, customer
+    credentials: super_admin, customer, salesman
     code: super_admin
 
   user_role_customer:
+    id: 2
     name: Customer
     credentials: customer
     code: customer
+  
+  user_role_salesman:
+    id: 3
+    name: Salesman
+    credentials: salesman
+    code: salesman
 
 ###############################################################
 

@@ -7,6 +7,7 @@
  * 
  * @property integer $id
  * @property string $name
+ * @property string $last_name
  * @property string $email
  * @property string $photo
  * @property string $salt
@@ -23,6 +24,7 @@
  * 
  * @method integer             getId()            Returns the current record's "id" value
  * @method string              getName()          Returns the current record's "name" value
+ * @method string              getLastName()      Returns the current record's "last_name" value
  * @method string              getEmail()         Returns the current record's "email" value
  * @method string              getPhoto()         Returns the current record's "photo" value
  * @method string              getSalt()          Returns the current record's "salt" value
@@ -38,6 +40,7 @@
  * @method Doctrine_Collection getAppUser()       Returns the current record's "AppUser" collection
  * @method AppUser             setId()            Sets the current record's "id" value
  * @method AppUser             setName()          Sets the current record's "name" value
+ * @method AppUser             setLastName()      Sets the current record's "last_name" value
  * @method AppUser             setEmail()         Sets the current record's "email" value
  * @method AppUser             setPhoto()         Sets the current record's "photo" value
  * @method AppUser             setSalt()          Sets the current record's "salt" value
@@ -69,6 +72,10 @@ abstract class BaseAppUser extends sfDoctrineRecord
              'length' => 4,
              ));
         $this->hasColumn('name', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('last_name', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
              ));

@@ -14,6 +14,7 @@ abstract class BaseAppUserFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'          => new sfWidgetFormFilterInput(),
+      'last_name'     => new sfWidgetFormFilterInput(),
       'email'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'photo'         => new sfWidgetFormFilterInput(),
       'salt'          => new sfWidgetFormFilterInput(),
@@ -29,6 +30,7 @@ abstract class BaseAppUserFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'name'          => new sfValidatorPass(array('required' => false)),
+      'last_name'     => new sfValidatorPass(array('required' => false)),
       'email'         => new sfValidatorPass(array('required' => false)),
       'photo'         => new sfValidatorPass(array('required' => false)),
       'salt'          => new sfValidatorPass(array('required' => false)),
@@ -61,6 +63,7 @@ abstract class BaseAppUserFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'            => 'Number',
       'name'          => 'Text',
+      'last_name'     => 'Text',
       'email'         => 'Text',
       'photo'         => 'Text',
       'salt'          => 'Text',

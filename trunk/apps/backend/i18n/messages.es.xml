@@ -123,6 +123,10 @@
       <trans-unit id="113"><source>Features</source><target>Características</target></trans-unit>
       <trans-unit id="114"><source>Owner</source><target>Propietario</target></trans-unit>
       <trans-unit id="115"><source>Google map</source><target>Mapa de Google</target></trans-unit>
+      <trans-unit id="116"><source>Salesman</source><target>Vendedor</target></trans-unit>
+      <trans-unit id="117"><source>Salesmen</source><target>Vendedores</target></trans-unit>
+      <trans-unit id="118"><source>List of Salesmen</source><target>Listado de Vendedores</target></trans-unit>
+      <trans-unit id="119"><source>Register salesman</source><target>Registrar vendedor</target></trans-unit>
     </body>
   </file>
 </xliff>
