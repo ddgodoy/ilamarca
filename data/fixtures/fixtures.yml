@@ -26,13 +26,13 @@ Bedroom:
 UserRole:
   user_role_super_admin:
     name: Super Admin
-    credentials: super_admin,company_admin
+    credentials: super_admin, customer
     code: super_admin
 
-  user_role_company_admin:
-    name: Company Admin
-    credentials: company_admin
-    code: company_admin
+  user_role_customer:
+    name: Customer
+    credentials: customer
+    code: customer
 
 ###############################################################
 
