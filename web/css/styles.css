@@ -440,5 +440,10 @@ html[xmlns] .clearfix {
 	border-left-color: #236A04;
 	color: #236A04;
 }
-
-.no_background_image {background-image: url()!important;}
+.no_background_image {
+    background-image: url()!important;
+}
+.p-error{
+    color:red;
+    font-size: 10px !important;
+}
