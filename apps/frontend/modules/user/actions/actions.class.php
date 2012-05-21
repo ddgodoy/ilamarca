@@ -31,11 +31,22 @@ class userActions extends sfActions
         $form->bind(array_merge($defaul_merge, array('captcha' => $captcha)));
         if ($form->isValid())
         {
+            
             $user = $form->save();
-
+            
             $user->setPassword($value['password']);
-            $user->setRecoverToken(sha1(MD5(uniqid(''))));
+            $user->setNewRecoverToken();
             $user->save();
+
+            ServiceOutgoingMessages::sendToSingleAccount($value['name'].', '.$value['last_name'],
+                                                         $value['email'],
+                                                         'home/mailUserFrontend',
+                                                         array('subject'     => 'Sus datos de acceso para ilamarca.com',
+                                                               'to_partial'  => array(
+                                                                      'email'     => $value['email'],
+                                                                      'token'  => $user->getRecoverToken()
+                                                              )
+                                                         ));
         }
     }
 
