@@ -37,7 +37,7 @@ class salesmanActions extends sfActions
 		$this->sch_email = trim($this->getRequestParameter('sch_email'));
 
 		if (!empty($this->sch_name)) {
-			$sch_partial .= " AND name LIKE '%$this->sch_name%'";
+			$sch_partial .= " AND (name LIKE '%$this->sch_name%' OR last_name LIKE '%$this->sch_name%')";
 			$this->f_params .= '&sch_name='.urlencode($this->sch_name);
 		}
 		if (!empty($this->sch_email)) {
@@ -95,11 +95,13 @@ class salesmanActions extends sfActions
   	$this->error   = array();
   	$this->photo   = NULL;
   	$entity_object = NULL;
+  	$send_password = true;
 
   	if ($this->id) {
   		$entity_object = AppUserTable::getInstance()->find($this->id);
 	  	$this->email   = $entity_object->getEmail();
 	  	$this->photo   = $entity_object->getPhoto();
+	  	$send_password = false;
   	}
   	$this->form = new SalesmanForm($entity_object);
 
@@ -133,7 +135,7 @@ class salesmanActions extends sfActions
 
 					$recorded->setSalt($x_salt);
 					$recorded->setPassword($x_pass);
-  			}	
+  			}
   			## set photo
   			AppUserTable::getInstance()->uploadPhoto($request->getFiles('photo'), $recorded, $request->getParameter('reset_photo'));
 
