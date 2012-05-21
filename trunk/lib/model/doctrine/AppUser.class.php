@@ -74,5 +74,15 @@ class AppUser extends BaseAppUser
   	}
   	return $granted;
   }
+
+  /**
+   * Override set password method | add automatic salt and sha1
+   * @param string $password contraseña
+   */
+  public function setPassword($password)
+  {
+    $this->setSalt(MD5(uniqid(''))); //Random seed
+    $this->_set('password', sha1($password . $this->getSalt())); //Override
+  }
 	
 } // end class
