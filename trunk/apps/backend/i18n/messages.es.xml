@@ -127,6 +127,7 @@
       <trans-unit id="117"><source>Salesmen</source><target>Vendedores</target></trans-unit>
       <trans-unit id="118"><source>List of Salesmen</source><target>Listado de Vendedores</target></trans-unit>
       <trans-unit id="119"><source>Register salesman</source><target>Registrar vendedor</target></trans-unit>
+      <trans-unit id="120"><source>Last name</source><target>Apellido</target></trans-unit>
     </body>
   </file>
 </xliff>

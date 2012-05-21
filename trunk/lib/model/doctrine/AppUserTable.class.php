@@ -80,7 +80,7 @@ class AppUserTable extends Doctrine_Table
   	}
   	$recorded->save();
   }
-  
+
   /**
    * Get info by email
    *
