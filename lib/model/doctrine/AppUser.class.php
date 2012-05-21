@@ -69,13 +69,9 @@ class AppUser extends BaseAppUser
 	  	## can not process himself
 	  	if ($sessionUser->getAttribute('user_id') != $oUser->getId()) {
 	  		## super_admin privilege
-	  		if ($sessionUser->hasCredential('super_admin')) {
-	  			$granted = true;
-	  		} else {
-	  			## company restriction
-	  			if ($sessionUser->getAttribute('user_company') == $oUser->getCompanyId()) {
-	  				$granted = true;
-		}}}}
+	  		if ($sessionUser->hasCredential('super_admin')) { $granted = true; }
+	  	}
+  	}
   	return $granted;
   }
 	
