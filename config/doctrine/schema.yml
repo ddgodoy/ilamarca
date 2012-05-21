@@ -25,6 +25,7 @@ AppUser:
   columns:
     id:            { type: integer(4), primary: true, notnull: true, autoincrement: true }
     name:          { type: string(100) }
+    last_name:     { type: string(100) }
     email:         { type: string(200), notnull: true }
     photo:         { type: string(50) }
     salt:          { type: string(100) }
