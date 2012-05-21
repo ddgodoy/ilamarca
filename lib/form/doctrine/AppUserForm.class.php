@@ -23,6 +23,8 @@ class AppUserForm extends BaseAppUserForm
       'password'      => new sfWidgetFormInputPassword(),
       're_password'   => new sfWidgetFormInputPassword(),
       'captcha'       => new sfWidgetFormReCaptcha(array('public_key' => sfConfig::get('app_recaptcha_public_key'))),
+      'company_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Company'), 'add_empty' => false)),
+      'user_role_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UserRole'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
@@ -35,6 +37,8 @@ class AppUserForm extends BaseAppUserForm
       'password'      => new sfValidatorString(array('max_length' => 100, 'required' => true), array('required' => '<em>Este campo es obligatorio</em>','max_length'=>'<em>Contraseña no valida</em>')),
       're_password'   => new sfValidatorString(array('max_length' => 100, 'required' => true), array('required' => '<em>Este campo es obligatorio</em>','max_length'=>'<em>Contraseña no valida</em>')),
       'captcha'       => new sfValidatorReCaptcha(array('private_key' => sfConfig::get('app_recaptcha_private_key')),array('captcha'=>'Ingrese las palabras que ve en la imagen')),
+      'company_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Company'))),
+      'user_role_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserRole'))),
     ));
 
     // validator for user login

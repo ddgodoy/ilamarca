@@ -20,6 +20,7 @@ class ServiceOutgoingMessages
     						 ->setPassword(sfConfig::get('app_outgoing_smtp_password'));
 
 		$obMailer = Swift_Mailer::newInstance($transport);
+               
 		$mailBody = get_partial($partial, array('data' => $data['to_partial']));
 
 		$oMessage = Swift_Message::newInstance($data['subject'])
