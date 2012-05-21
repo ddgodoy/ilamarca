@@ -1,4 +1,7 @@
 all:
+  recaptcha_public_key: 6LdmU70SAAAAAMYSeNgt_7msy3RNKe9gp0_qM2L9
+  recaptcha_private_key: 6LdmU70SAAAAAHprwsVhmdjpvoKhq-ZW9qgvtall
+  
   project_reference_name: ilamarca
   no_replay_email_account: noreply@emailbase.com.ar
    
