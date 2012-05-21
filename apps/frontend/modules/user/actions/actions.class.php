@@ -22,10 +22,20 @@ class userActions extends sfActions
     
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
-        $form->bind($request->getParameter($form->getName()));
+        $captcha = array('recaptcha_challenge_field' => $request->getParameter('recaptcha_challenge_field'),
+			 'recaptcha_response_field'  => $request->getParameter('recaptcha_response_field'),
+			);
+        $value = $request->getParameter($form->getName());
+        $defaul = array('company_id'=>1,'user_role_id'=>2);
+        $defaul_merge = $value+$defaul;
+        $form->bind(array_merge($defaul_merge, array('captcha' => $captcha)));
         if ($form->isValid())
         {
-            
+            $user = $form->save();
+
+            $user->setPassword($value['password']);
+            $user->setRecoverToken(sha1(MD5(uniqid(''))));
+            $user->save();
         }
     }
 
