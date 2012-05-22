@@ -447,3 +447,11 @@ html[xmlns] .clearfix {
     color:red;
     font-size: 10px !important;
 }
+
+.titulo-html{
+    padding: 10px;
+    text-align: center;
+}
+.titulo-html p{
+    font-size:18px !important;
+}
