@@ -48,8 +48,7 @@ AppUser:
   user_ilamarca:
     name: admin
     email: admin@ilamarca.com
-    salt: c994a4a185c51405330ce2ad8960235b
-    password: 830acd0bf6d70cec6d5bae3be60ab6eab962cd82
+    password: 123456
     Company: ilamarca
     UserRole: user_role_super_admin
 
