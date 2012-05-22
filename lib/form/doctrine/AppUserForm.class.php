@@ -9,9 +9,17 @@
  */
 class AppUserForm extends BaseAppUserForm
 {
+  private $requets = '';
+  private $oUser = '';
+
   public function configure()
   {
-      $user_name = '';
+      $this->requets = sfContext::getInstance()->getRequest();
+      $this->oUser = sfContext::getInstance()->getUser();
+
+      $values = $this->requets->getParameter($this->getName());
+      
+      $user_name = !empty($values['email'])?AppUser::checkProfileEmail($values['email']):'';
 
       $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
@@ -46,7 +54,7 @@ class AppUserForm extends BaseAppUserForm
     $v = new sfValidatorSchemaCompare('email', sfValidatorSchemaCompare::EQUAL, 're_email', array(), array('invalid' =>'<em>Los E-mails no son iguales</em>'));
     if($user_name && $this->getObject()->isNew())
     {
-        $v = new sfValidatorSchemaCompare('user_name', sfValidatorSchemaCompare::EQUAL, $user_name, array(), array('invalid'=>'<em>El E-mail ya está registrado</em>'));
+        $v = new sfValidatorSchemaCompare('email', sfValidatorSchemaCompare::EQUAL, $user_name, array(), array('invalid'=>'<em>El E-mail ya está registrado</em>'));
     }
 
     $this->validatorSchema->setPostValidator(
