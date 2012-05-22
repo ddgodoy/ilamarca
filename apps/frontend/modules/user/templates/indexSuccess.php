@@ -1,6 +1,8 @@
 <div class="left">
-	<div class="fondo-titulo contact">
-		<div class="titulo"></div>
+	<div class="fondo-titulo">
+		<div class="titulo titulo-html">
+                    <p>REGÍSTRATE</p>
+                </div>
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
 		<div class="mensajeSistema ok">Gracias por contactar con nosotros, Te responderemos a la brevedad</div>
@@ -66,8 +68,8 @@
                                 </tr>
                             </table>
                                 <div class="rowElem">
-                                       <?php echo $form['captcha']->render(array('class'=>'et_input','style'=>'width:255px;'))  ?>
-                                       <?php if ($form['captcha']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['captcha']->renderError()) ?></em></p><?php endif; ?>
+                                       <?php  echo $form['captcha']->render(array('class'=>'et_input','style'=>'width:255px;'))  ?>
+                                       <?php if ($form['captcha']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['captcha']->renderError()) ?></em></p><?php endif;?>
                                 </div>
 				<?php echo $form->renderHiddenFields() ?>
 				<p>Los campos con asterisco (*) son obligatorios</p>
