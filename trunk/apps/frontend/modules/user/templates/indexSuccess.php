@@ -5,7 +5,11 @@
                 </div>
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
-		<div class="mensajeSistema ok">Gracias por contactar con nosotros, Te responderemos a la brevedad</div>
+		<div class="mensajeSistema ok">
+                    Tu registro fue exitoso; te hemos enviado un Email para que puedas activar tu cuenta.
+                    <br/>
+                    ¡Muchas gracias!
+                </div>
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
