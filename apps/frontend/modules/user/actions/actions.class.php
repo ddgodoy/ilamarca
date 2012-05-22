@@ -47,7 +47,14 @@ class userActions extends sfActions
                                                                       'token'  => $user->getRecoverToken()
                                                               )
                                                          ));
+            $this->getUser()->setFlash('notice', true);
+            $this->redirect('user/index');
         }
+    }
+
+    public function executeLoging(sfWebRequest $request)
+    {
+        
     }
 
 
