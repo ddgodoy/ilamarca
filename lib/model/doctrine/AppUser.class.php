@@ -118,4 +118,24 @@ class AppUser extends BaseAppUser
   		)
   	);
   }
+  
+  /**
+   * Get salesman array from designated zones
+   *
+   * @param integer $salesman_id
+   * @return array
+   */
+  public static function getArrayFromDesignatedZones($salesman_id)
+  {
+  	$a = array();
+  	$zones = AppUserTable::getInstance()->getDesignatedZones($salesman_id);
+  	
+  	if ($zones) {
+  		foreach ($zones as $value) {
+  			$a[$value->getNeighborhoodId()] = $value->Neighborhood->getName();
+  		}
+  	}
+  	return $a;
+  }
+  
 } // end class

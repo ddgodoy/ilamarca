@@ -33,16 +33,20 @@
 			<fieldset>
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
 					<tr>
-						<td width="11%"><label><?php echo __('Email') ?> *</label></td>
-						<td width="89%"><input type="text" class="form_input" name="email" value="<?php echo $email ?>" style="width:330px;"/></td>
+						<td width="7%"><label><?php echo __('Name') ?> *</label></td>
+						<td width="93%">
+							<table cellpadding="0" cellspacing="0">
+								<tr>
+									<td><?php echo $form['name'] ?></td>
+									<td style="padding-left:20px;"><label><?php echo __('Last name') ?> *</label>&nbsp;</td>
+									<td><?php echo $form['last_name'] ?></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
-						<td><label><?php echo __('Name') ?> *</label></td>
-						<td><?php echo $form['name'] ?></td>
-					</tr>
-					<tr>
-						<td><label><?php echo __('Last name') ?> *</label></td>
-						<td><?php echo $form['last_name'] ?></td>
+						<td><label><?php echo __('Email') ?> *</label></td>
+						<td><input type="text" class="form_input" name="email" value="<?php echo $email ?>" style="width:485px;"/></td>
 					</tr>
 					<tr>
 						<td><label><?php echo __('Photo') ?></label></td>
@@ -84,9 +88,64 @@
 					</tr>
 				</table>
 			</fieldset>
+			<fieldset style="margin-top:10px;">
+				<div style="float:right;">
+					<img src="/admin/images/loader.gif" id="img_loading_cities" border="0" style="visibility:hidden;"/>
+				</div>
+				<table cellspacing="4" cellpadding="0" border="0" width="700">
+					<tr>
+						<td valign="top" width="46%">
+							<table cellpadding="0" cellspacing="0">
+								<tr><td><label>Zona geográfica</label></td></tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td>
+										<select class="form_input" style="width:310px;" onchange="updCityList(this.value);">
+											<?php echo Common::fillSimpleSelect(GeoZoneTable::getInstance()->getAllForSelect(true), 0) ?>
+										</select>
+									</td>
+								</tr>
+								<tr><td height="5"></td></tr>
+								<tr><td><label>Ciudad</label></td></tr>
+								<tr><td height="3"></td></tr>
+								<tr><td><div id="div_sel_city"><?php include_partial('ajaxCity'); ?></div></td></tr>
+								<tr><td height="5"></td></tr>
+								<tr><td><label>Barrio</label></td></tr>
+								<tr><td height="3"></td></tr>
+								<tr><td><div id="div_sel_neighborhood"><?php include_partial('ajaxNeighborhood');?></div></td></tr>
+							</table>
+						</td>
+						<td width="8%">
+							<table cellpadding="0" cellspacing="0" align="center">
+								<tr><td><img src="/admin/images/right_arrow.png" border="0" style="cursor:pointer;" onclick="handleListas('neighborhood', 'selected_zones');"/></td></tr>
+								<tr><td height="10"></td></tr>
+								<tr><td><img src="/admin/images/left_arrow.png" border="0" style="cursor:pointer;" onclick="handleListas('selected_zones', 'neighborhood');"/></td></tr>
+							</table>
+						</td>
+						<td valign="top" width="46%">
+							<table cellpadding="0" cellspacing="0">
+								<tr><td><label>Zonas seleccionadas</label></td></tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td>
+										<select id="selected_zones" name="selected_zones[]" multiple size="14" class="form_input" style="width:310px;">
+											<?php foreach ($selected_zones as $k_sz => $v_sz): ?>
+												<option value="<?php echo $k_sz ?>"><?php echo $v_sz ?></option>
+											<?php endforeach; ?>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
 			<div style="padding-top:10px;" class="botonera">
 				<input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />
-				<input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" />
+				<input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" onclick="return prepareSelectMultiple();" />
+
+				<input type="hidden" id="ajax_url_city" value="<?php echo url_for('salesman/ajaxCity') ?>"/>
+        <input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('salesman/ajaxNeighborhood') ?>"/>
 				<?php echo $form->renderHiddenFields() ?>
 			</div>
 		</form>

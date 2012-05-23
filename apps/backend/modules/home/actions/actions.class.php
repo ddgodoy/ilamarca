@@ -60,12 +60,7 @@ class homeActions extends sfActions
   			$oUser->setLastName($this->my_lname);
 
   			if (!empty($x_password)) {
-  				## change password
-					$x_salt = MD5(uniqid(''));
-					$x_pass = sha1($x_password.$x_salt);
-
-					$oUser->setSalt($x_salt);
-					$oUser->setPassword($x_pass);
+					$oUser->setPassword($x_password);
   			}
   			$oUser->save();
 
