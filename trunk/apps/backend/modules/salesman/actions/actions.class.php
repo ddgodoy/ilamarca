@@ -96,15 +96,20 @@ class salesmanActions extends sfActions
   	$this->photo   = NULL;
   	$entity_object = NULL;
   	$send_password = false;
+  	$this->selected_zones = array();
 
   	if ($this->id) {
   		$entity_object = AppUserTable::getInstance()->find($this->id);
 	  	$this->email   = $entity_object->getEmail();
 	  	$this->photo   = $entity_object->getPhoto();
+	  	$this->selected_zones = AppUser::getArrayFromDesignatedZones($this->id);
   	}
   	$this->form = new SalesmanForm($entity_object);
 
   	if ($request->getMethod() == 'POST') {
+  		$designated_zones_ids = $request->getParameter('selected_zones');
+  		$this->selected_zones = AppUserTable::getInstance()->getValuesFromZonesArray($designated_zones_ids);
+
   		$this->email = trim($request->getParameter('email'));
   		$x_password  = trim($request->getParameter('password'));
   		$r_password  = trim($request->getParameter('repeat_password'));
@@ -129,12 +134,7 @@ class salesmanActions extends sfActions
 
   			## set password
   			if (!empty($x_password)) {
-					$x_salt = MD5(uniqid(''));
-					$x_pass = sha1($x_password.$x_salt);
-
-					$recorded->setSalt($x_salt);
-					$recorded->setPassword($x_pass);
-
+					$recorded->setPassword($x_password);
 					$send_password = true;
   			}
   			## set photo
@@ -142,6 +142,9 @@ class salesmanActions extends sfActions
 
   			## send password to salesman
   			if ($send_password) { AppUser::sendPasswordToSalesman($x_password, $this->email, $recorded->getName().' '.$recorded->getLastName()); }
+  			
+  			## update designated zones
+  			AppUserTable::getInstance()->updDesignatedZonesForVendor($designated_zones_ids, $recorded->getId());
 
   			$this->redirect('salesman/show?id='.$recorded->getId());
   		}
@@ -184,6 +187,20 @@ class salesmanActions extends sfActions
   		}
   	}
   	$this->redirect('salesman/index');
+  }
+  //
+  public function executeAjaxCity(sfWebRequest $request)
+  {
+    $this->geo_zone = $request->getParameter('geo_zone');
+
+    return $this->renderPartial('salesman/ajaxCity'); exit();
+  }
+  //
+  public function executeAjaxNeighborhood(sfWebRequest $request)
+  {
+    $this->city = $request->getParameter('city');
+
+    return $this->renderPartial('salesman/ajaxNeighborhood'); exit();
   }
 
 } // end class

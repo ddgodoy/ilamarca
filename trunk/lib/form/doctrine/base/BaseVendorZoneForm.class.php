@@ -15,15 +15,17 @@ abstract class BaseVendorZoneForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'app_user_id'     => new sfWidgetFormInputHidden(),
-      'neighborhood_id' => new sfWidgetFormInputHidden(),
+      'id'              => new sfWidgetFormInputHidden(),
+      'app_user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AppUser'), 'add_empty' => true)),
+      'neighborhood_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'add_empty' => true)),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'app_user_id'     => new sfValidatorChoice(array('choices' => array($this->getObject()->get('app_user_id')), 'empty_value' => $this->getObject()->get('app_user_id'), 'required' => false)),
-      'neighborhood_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('neighborhood_id')), 'empty_value' => $this->getObject()->get('neighborhood_id'), 'required' => false)),
+      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'app_user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AppUser'), 'required' => false)),
+      'neighborhood_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
     ));

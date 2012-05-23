@@ -96,5 +96,58 @@ class AppUserTable extends Doctrine_Table
   	}
   	return NULL;
   }
+  
+  /**
+   * Get salesman designated zones
+   *
+   * @param integer $salesman_id
+   * @return mixed
+   */
+  public function getDesignatedZones($salesman_id)
+  {
+  	$q = Doctrine_Query::create()
+  			->from('VendorZone vz')
+  			->leftJoin('vz.Neighborhood nh')
+  			->where('vz.app_user_id = ?', $salesman_id);
+
+		return $q->count() > 0 ? $q->execute() : NULL;
+  }
+  
+  /**
+   * Get neighborhood values from array
+   *
+   * @param array $a_barrios
+   * @return array
+   */
+  public function getValuesFromZonesArray($a_barrios)
+  {
+  	$a = array();
+
+  	foreach ($a_barrios as $barrio)
+  	{
+  		$oBarrio = NeighborhoodTable::getInstance()->find($barrio);
+
+  		if ($oBarrio) { $a[$oBarrio->getId()] = $oBarrio->getName(); }
+  	}
+  	return $a;
+  }
+  
+  /**
+   * Update zones for salesman
+   *
+   * @param array $zones
+   * @param integer $vendor
+   */
+  public function updDesignatedZonesForVendor($zones, $vendor)
+  {
+		Doctrine_Query::create()->delete()->from('VendorZone')->where('app_user_id = ?', $vendor)->execute();
+		
+		foreach ($zones as $barrio) {
+			$vZone = new VendorZone();
+			$vZone->setAppUserId     ($vendor);
+			$vZone->setNeighborhoodId($barrio);
+			$vZone->save();
+		}
+  }
 
 } // end class

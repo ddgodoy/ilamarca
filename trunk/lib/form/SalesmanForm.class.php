@@ -14,8 +14,8 @@ class SalesmanForm extends BaseAppUserForm
   	$i18N = sfContext::getInstance()->getI18N();
 
   	$this->setWidgets(array(
-      'name'          => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
-      'last_name'     => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
+      'name'          => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:200px;')),
+      'last_name'     => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:200px;')),
       'email'         => new sfWidgetFormInputText(),
       'enabled'       => new sfWidgetFormInputCheckbox(),
       'company_id'    => new sfWidgetFormInputHidden(),

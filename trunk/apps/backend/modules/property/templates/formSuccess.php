@@ -19,15 +19,13 @@
 				<ul><?php foreach ($error as $e): ?><li><?php echo __($e, NULL, 'errors') ?></li><?php endforeach; ?></ul>
 			</div>
 		<?php endif; ?>
-                <?php if($sf_user->getFlash('notice')): ?>
-                <div class="mensajeSistema ok" style="margin: 0px; padding: 0px;">
-                    <ul>
-                        <li>
-                            <?php echo __('La propiedad se ha actualizado correctamente') ?>
-                        </li>
-                    </ul>
-                </div>
-                <?php endif; ?>
+
+    <?php if ($sf_user->getFlash('notice')): ?>
+    <div class="mensajeSistema ok" style="margin: 0px; padding: 0px;">
+      <ul><li><?php echo __('La propiedad se ha actualizado correctamente') ?></li></ul>
+    </div>
+    <?php endif; ?>
+
 		<h1 class="titulos">
 			<?php echo __(ucfirst($str_action)).' '.__('Property') ?>
 		</h1>
@@ -258,17 +256,11 @@
 				</table>
 			</div>
 			<div class="div_cont_ytvideos">
-				<!--<div class="div_cont_add_ytvideos">
-					<a class="linkPinika" onclick="addToYoutubeVideosTb();">+ Agregar</a>
-				</div>-->
 				<label style="color:#333333;"><strong><?php echo __('Video') ?> Youtube</strong></label>
 				<table cellpadding="0" cellspacing="0" id="tb_videos_youtube">
-					<?php foreach ($videos as $v_video): ?>
-					<tr>
-	          <td><textarea name="videos[]" class="form_input area_yt"><?php echo $v_video ?></textarea></td>
-	          <!--<td>&nbsp;<img src="/admin/images/borrar_hover.png" border="0" onclick="delVideoYoutube(this);" style="cursor:pointer;"/></td>-->
-	        </tr>
-					<?php endforeach; ?>
+				<?php foreach ($videos as $v_video): ?>
+					<tr><td><textarea name="videos[]" class="form_input area_yt"><?php echo $v_video ?></textarea></td></tr>
+				<?php endforeach; ?>
 				</table>
 			</div>
 			<div class="div_cont_ytvideos">
