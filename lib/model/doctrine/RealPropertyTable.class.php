@@ -45,7 +45,7 @@ class RealPropertyTable extends Doctrine_Table
   {
     if (array_sum($data_currency) > 0) {
       $array_property_operation = OperationRealProperty::getArrayPropertyByOperation($data_currency);
-    }
+    }    
     $oPager = new sfDoctrinePager('RealProperty', $per_page);
     $oPager->getQuery()
            ->from('RealProperty p')

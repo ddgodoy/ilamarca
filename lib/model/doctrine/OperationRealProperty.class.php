@@ -1,5 +1,4 @@
 <?php
-
 /**
  * OperationRealProperty
  * 
@@ -12,44 +11,42 @@
  */
 class OperationRealProperty extends BaseOperationRealProperty
 {
-    /**
-     * get Data Operations By Property Id
-     * @param int $property_id
-     * @return array()
-     */
-    public static function getDataOperationsByPropertyId($property_id)
+  /**
+   * get Data Operations By Property Id
+   * @param int $property_id
+   * @return array()
+   */
+  public static function getDataOperationsByPropertyId($property_id)
+  {
+    $array_data = array('operations'=>array(), 'currencies'=>array(), 'prices'=>array());
+
+    $operations = OperationRealPropertyTable::getInstance()->getOperationsByPropertyId($property_id);
+
+    foreach ( $operations as $value) 
     {
-        $array_data = array('operations'=>array(), 'currencies'=>array(), 'prices'=>array());
-
-        $operations = OperationRealPropertyTable::getInstance()->getOperationsByPropertyId($property_id);
-
-        foreach ( $operations as $value) 
-        {
-            $array_data['operations'][] = $value->getOperationId();
-            $array_data['currencies'][$value->getOperationId()]['id'] = $value->getCurrencyId();
-            $array_data['prices'][$value->getOperationId()]['number'] = $value->getPrice();
-        }
-        
-        return $array_data;
-
+      $array_data['operations'][] = $value->getOperationId();
+      $array_data['currencies'][$value->getOperationId()]['id'] = $value->getCurrencyId();
+      $array_data['prices'][$value->getOperationId()]['number'] = $value->getPrice();
     }
+    return $array_data;
+  }
 
-    /**
-     * get array property by operation
-     * @param array $data_currency
-     * @return array
-     */
-    public static function getArrayPropertyByOperation($data_currency)
-    {
-        $array_id = array();
-        $currency_data = OperationRealPropertyTable::getInstance()
-                        ->getIdPropertyByCurrency($data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta']);
+  /**
+   * get array property by operation
+   * @param array $data_currency
+   * @return array
+   */
+  public static function getArrayPropertyByOperation($data_currency)
+  {
+    $array_id = array();
 
-        foreach ($currency_data as $value)
-        {
-            $array_id[] =  $value->getRealPropertyId();
-        }
-
-        return $array_id;
+    $currency_data = OperationRealPropertyTable::getInstance()->getIdPropertyByCurrency(
+    	$data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta']
+    );
+    foreach ($currency_data as $value) {
+      $array_id[] =  $value->getRealPropertyId();
     }
-}
+    return $array_id;
+  }
+
+} // end class
