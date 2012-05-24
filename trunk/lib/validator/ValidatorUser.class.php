@@ -25,7 +25,7 @@ class ValidatorUser extends sfValidatorBase
         $this->addOption('password_field', 'password');
         $this->addOption('throw_global_error', false);
 
-        $this->setMessage('invalid', 'The username and/or password is invalid.');
+        $this->setMessage('invalid', 'El usuario y / o contraseña no es válido.');
     }
 
     /**
@@ -45,7 +45,10 @@ class ValidatorUser extends sfValidatorBase
                 //Check the password
                 if ($user->checkPassword($password))
                 {
-                    return array_merge($values, array('user' => $user));
+                    if($user->IsEnabled()!=1)
+                    {
+                        return array_merge($values, array('user' => $user));
+                    }
                 }
             }
 

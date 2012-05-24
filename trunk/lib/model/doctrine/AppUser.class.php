@@ -95,6 +95,15 @@ class AppUser extends BaseAppUser
     return sha1($password . $this->getSalt()) == $this->getPassword();
  }
 
+ /**
+  * is enable
+  * @return enable
+  */
+ public function IsEnabled()
+ {
+     return $this->getEnabled();
+ }
+
   /**
    * Override add automatic recover token
    */
