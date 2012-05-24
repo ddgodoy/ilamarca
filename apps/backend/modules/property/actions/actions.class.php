@@ -29,7 +29,11 @@ class propertyActions extends sfActions
    */
   protected function setFilter()
   {
-  	$sch_partial = 'p.id > 0';
+  	if ($this->getUser()->hasCredential('super_admin')) {
+  		$sch_partial = 'p.id > 0';
+  	} else {
+  		$sch_partial = 'p.app_user_id = '.$this->getUser()->getAttribute('user_id');
+  	}  	
   	$this->f_params = '';
 		$this->sch_name = trim($this->getRequestParameter('sch_name'));
 
@@ -189,8 +193,8 @@ class propertyActions extends sfActions
   			// set qrcode
   			RealProperty::createPropertyQrCode($create_qrcode, $recorded);
 
-                        $this->getUser()->setFlash('notice',true);
-			$this->redirect('property/edit?id='.$recorded->getId());
+        $this->getUser()->setFlash('notice',true);
+				$this->redirect('property/edit?id='.$recorded->getId());
 			}
 		}
 		$this->setTemplate('form');

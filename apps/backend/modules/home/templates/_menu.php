@@ -1,5 +1,6 @@
 <?php $mnGetModule = $sf_params->get('module') ?>
 <ul>
+	<?php if ($sf_user->hasCredential('super_admin')): ?>
 	<li>
 		<a href="<?php echo url_for('salesman/index') ?>" class="first<?php echo $mnGetModule=='salesman' ? ' selected' : '' ?>">
 			<?php echo __('Salesmen') ?>
@@ -20,6 +21,7 @@
 			<?php echo __('Neighborhoods') ?>
 		</a>
 	</li>
+	<?php endif; ?>
 	<li>
 		<a href="<?php echo url_for('property/index') ?>" class="first<?php echo $mnGetModule=='property' ? ' selected' : '' ?>">
 			<?php echo __('Properties') ?>
