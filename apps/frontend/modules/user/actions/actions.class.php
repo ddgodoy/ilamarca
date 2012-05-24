@@ -10,6 +10,10 @@
  */
 class userActions extends sfActions
 {
+    /**
+     * index
+     * @param sfWebRequest $request
+     */
     public function executeIndex(sfWebRequest $request)
     {
         $this->form = new AppUserForm();
@@ -19,7 +23,12 @@ class userActions extends sfActions
         }
 
     }
-    
+
+    /**
+     * process form
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     */
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
         $captcha = array('recaptcha_challenge_field' => $request->getParameter('recaptcha_challenge_field'),
@@ -52,11 +61,44 @@ class userActions extends sfActions
         }
     }
 
+    /**
+     * loging
+     * @param sfWebRequest $request
+     */
     public function executeLoging(sfWebRequest $request)
     {
         $this->form = new LoginForm();
+        if($request->isMethod('POST'))
+        {
+            $this->processFormLoging($request, $this->form);
+        }
 
     }
+    /**
+     * proccess form loging
+     * @param sfWebRequest $request
+     * @param sfForm $form
+     */
+    protected function processFormLoging(sfWebRequest $request, sfForm $form)
+    {
+        $form->bind($request->getParameter($form->getName()));
+        if ($form->isValid())
+        {
+             $value = $form->getValues();
+             ServiceAuthentication::startSessionProcess($value['user']);
+             $this->redirect('home/index');
+        }
+    }
 
+    /**
+     * Executes logout action
+     *
+     * @param sfWebRequest $request
+     */
+    public function executeLogout(sfWebRequest $request)
+    {
+        ServiceAuthentication::closeSessionProcess();
 
+        $this->redirect('home/index');
+    }
 }
