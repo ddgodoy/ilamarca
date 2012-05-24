@@ -54,7 +54,8 @@ class userActions extends sfActions
 
     public function executeLoging(sfWebRequest $request)
     {
-        
+        $this->form = new LoginForm();
+
     }
 
 
