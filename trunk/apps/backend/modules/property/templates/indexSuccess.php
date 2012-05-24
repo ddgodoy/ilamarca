@@ -38,9 +38,9 @@
       </tr>
       <?php foreach ($oList as $item): ?>
       <tr class="<?php if (!empty($odd)) { echo 'gris'; $odd=0; } else { echo 'blanco'; $odd=1; } ?>">
-        <td><?php echo $item->getName() ?></td>
+        <td><?php echo truncate_text($item->getName(), 85) ?></td>
         <td><?php echo $item->PropertyType->getName() ?></td>
-        <td><?php echo $item->Neighborhood->getName() ?></td>
+        <td><?php echo truncate_text($item->Neighborhood->getName(), 35) ?></td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">
         		<img border="0" src="/admin/images/editar.png" alt="<?php echo __('Edit') ?>" title="<?php echo __('Edit') ?>">

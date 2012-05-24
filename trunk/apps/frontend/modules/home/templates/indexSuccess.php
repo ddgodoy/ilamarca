@@ -39,6 +39,7 @@
 							<td width="5"></td>
 							<td>
 								<select name="currency" class="et_input" style="width:90px;text-align:center;font-size:12px;">
+									<option value="0" selected>---</option>
 									<?php echo Common::fillSimpleSelect($db_currencies) ?>
 								</select>
 							</td>

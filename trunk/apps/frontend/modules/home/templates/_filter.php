@@ -43,6 +43,7 @@
 							<td style="padding-left:5px;"><input type="text" name="p_to" class="et_input" value="<?php echo $p_hasta ?>" style="width:65px;text-align:right;" onkeypress="return onlyDecimal(this, event);"/></td>
 							<td style="padding-left:5px;">
 								<select name="currency" class="et_input" style="width:90px;font-size:12px;">
+									<option value="0">---</option>
 									<?php echo Common::fillSimpleSelect($db_currencies, $currency) ?>
 								</select>
 							</td>

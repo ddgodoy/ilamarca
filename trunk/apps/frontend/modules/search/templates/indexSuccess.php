@@ -19,7 +19,7 @@
 					<div class="img">
 						<img src="<?php echo Gallery::getFirstGallery($p_val->getId()) ?>" alt="<?php echo $p_val->getName() ?>" />
 					</div>
-					<p><?php echo $p_val->getName() ?></p>
+					<p><?php echo truncate_text($p_val->getName(), 50) ?></p>
 				</a>
 				<div class="tooltip">
 					<div class="inside">
