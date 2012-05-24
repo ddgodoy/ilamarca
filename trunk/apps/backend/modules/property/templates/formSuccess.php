@@ -21,7 +21,7 @@
 		<?php endif; ?>
 
     <?php if ($sf_user->getFlash('notice')): ?>
-    <div class="mensajeSistema ok" style="margin: 0px; padding: 0px;">
+    <div class="mensajeSistema ok">
       <ul><li><?php echo __('La propiedad se ha actualizado correctamente') ?></li></ul>
     </div>
     <?php endif; ?>
