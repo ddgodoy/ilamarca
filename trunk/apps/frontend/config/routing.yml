@@ -2,7 +2,10 @@
 loging:
   url: loging
   param: { module: user, action: loging }
-
+# logout
+logout:
+  url: logout
+  param: { module: user, action: logout }
 # default rules
 homepage:
   url:   /
