@@ -85,6 +85,16 @@ class AppUser extends BaseAppUser
     $this->_set('password', sha1($password . $this->getSalt())); //Override
   }
 
+ /**
+  * Password verification
+  * @param string $password
+  * @return boolean
+  */
+ public function checkPassword($password)
+ {
+    return sha1($password . $this->getSalt()) == $this->getPassword();
+ }
+
   /**
    * Override add automatic recover token
    */
