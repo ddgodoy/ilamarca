@@ -68,9 +68,10 @@ class Gallery extends BaseGallery
 				## Create thumbnail
 				$oResize = new ResizeImage();
 				$aThumbs = array(
-					ServiceFileHandler::getThumbImage($upload_file)      => array('w'=>75,  'h' => 50),
+					ServiceFileHandler::getThumbImage($upload_file, 'c') => array('w'=>75,  'h' => 50),
 					ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h' => 159),
-					$upload_file                                         => array('w'=>600, 'h' => 350)
+					$upload_file                                         => array('w'=>600, 'h' => 350),
+                                        ServiceFileHandler::getThumbImage($upload_file, 'g') => array('w'=>1024, 'h' => 600),
 				);
 				$oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
 
