@@ -42,7 +42,7 @@
 </script>
 <div class="left ficha">
 	<div class="fondo-titulo">
-		<h1><?php echo $property->getName() ?></h1>
+		<h1><?php echo truncate_text($property->getName(), 55, '') ?></h1>
 		<h3><?php echo Operation::getPrices($property->getId(), $sf_user->getCulture()) ?></h3>
 	</div>
 	<div id="container" class="cont-slider">

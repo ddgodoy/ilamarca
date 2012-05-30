@@ -23,7 +23,7 @@
 				</a>
 				<div class="tooltip">
 					<div class="inside">
-						<span class="name"><?php echo $p_val->getName() ?></span>
+						<span class="name"><?php echo truncate_text($p_val->getName(), 50) ?></span>
 						<span class="precio"><?php echo Operation::getPrices($p_val->getId(), $sf_user->getCulture()) ?></span>
 						<span class="sombra"></span>
 						<ul>
