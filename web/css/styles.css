@@ -455,3 +455,8 @@ html[xmlns] .clearfix {
 .titulo-html p{
     font-size:18px !important;
 }
+.register{
+    float: left!important;
+    padding-left: 14px;
+    padding-top: 13px!important;
+}
