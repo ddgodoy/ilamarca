@@ -101,4 +101,14 @@ class userActions extends sfActions
 
         $this->redirect('home/index');
     }
+
+    /**
+     * Execute Profile
+     * @param sfWebRequest $request
+     */
+    public function executeProfile(sfWebRequest $request)
+    {
+        $this->form = new AppUserForm();
+    }
+
 }
