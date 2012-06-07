@@ -31,7 +31,9 @@ class GalleryTable extends Doctrine_Table
    */
   public function getGalleryByProperty($id, $one = null)
   {
-    $q = $this->createQuery('g') ->where('g.real_property_id = ?', $id);
+    $q = $this->createQuery('g')
+         ->where('g.real_property_id = ?', $id)
+         ->orderBy('g.outstanding DESC');
 
     if ($one) {
       return $q->fetchOne();
