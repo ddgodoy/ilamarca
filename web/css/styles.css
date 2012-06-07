@@ -398,6 +398,20 @@ html[xmlns] .clearfix {
 	background-image: url(/images/btn_buscar.png);
 	background-position: center bottom;
 }
+.et_btn_vacio {
+	background-image: url(/images/btn_no_bckg.png);
+	background-position: center top;
+	width: 116px;
+	height: 47px;
+	display: inline-block;
+	border: none;
+	cursor: pointer;
+	padding-bottom: 6px;
+}
+.et_btn_vacio:hover {
+	background-image: url(/images/btn_no_bckg.png);
+	background-position: center bottom;
+}
 /* pinika */
 
 .padding-bottom5 {

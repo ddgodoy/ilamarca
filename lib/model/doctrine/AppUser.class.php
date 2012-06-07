@@ -87,6 +87,7 @@ class AppUser extends BaseAppUser
 
  /**
   * Password verification
+  * 
   * @param string $password
   * @return boolean
   */
@@ -96,13 +97,10 @@ class AppUser extends BaseAppUser
  }
 
  /**
-  * is enable
-  * @return enable
+  * Get if user is enable
+  * @return boolean
   */
- public function IsEnabled()
- {
-     return $this->getEnabled();
- }
+ public function IsEnabled() { return $this->getEnabled(); }
 
   /**
    * Override add automatic recover token

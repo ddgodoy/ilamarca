@@ -16,18 +16,14 @@ class searchActions extends sfActions
    * @param sfRequest $request A request object
    */
   public function executeIndex(sfWebRequest $request)
-  {  	
-  	$str_module = $request->getParameter('module');
-
-    $this->p_desde   = $this->getRequestParameter('p_from', '');
-    $this->p_hasta   = $this->getRequestParameter('p_to', '');
-    $this->currency  = $this->getRequestParameter('currency', 0);
-    $this->index_url = sfContext::getInstance()->getController()->genUrl($str_module.'/index');
+  {
+  	$str_filter = $this->setFilter();
+    $this->index_url = sfContext::getInstance()->getController()->genUrl($request->getParameter('module').'/index');
 
     $array_data_currency = array('currency'=>$this->currency, 'p_desde'=>$this->p_desde, 'p_hasta'=>$this->p_hasta);
 
   	$this->iPage  = $request->getParameter('page', 1);
-  	$this->oPager = RealPropertyTable::getInstance()->searchResults($this->iPage, 9, $this->setFilter(), '', $array_data_currency);
+  	$this->oPager = RealPropertyTable::getInstance()->searchResults($this->iPage, 9, $str_filter, '', $array_data_currency);
   	$this->oList  = $this->oPager->getResults();
   }
 
@@ -48,6 +44,9 @@ class searchActions extends sfActions
     $this->city          = $this->getRequestParameter('city', 0);
     $this->neighborhood  = $this->getRequestParameter('neighborhood', 0);
     $this->bedroom       = $this->getRequestParameter('bedroom', 0);
+    $this->p_desde       = $this->getRequestParameter('p_from', '');
+    $this->p_hasta       = $this->getRequestParameter('p_to', '');
+    $this->currency      = $this->getRequestParameter('currency', 0);
 
     if (!empty($this->property_type)) {
       $sch_partial .= " AND p.property_type_id = $this->property_type";

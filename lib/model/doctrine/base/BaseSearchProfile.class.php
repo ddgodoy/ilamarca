@@ -14,6 +14,7 @@
  * @property integer $app_user_id
  * @property decimal $min_price
  * @property decimal $max_price
+ * @property integer $currency_id
  * @property boolean $is_vendor
  * @property string $reference
  * @property PropertyType $PropertyType
@@ -22,6 +23,7 @@
  * @property City $City
  * @property Neighborhood $Neighborhood
  * @property AppUser $AppUser
+ * @property Currency $Currency
  * @property Doctrine_Collection $SearchMatches
  * 
  * @method integer             getId()               Returns the current record's "id" value
@@ -33,6 +35,7 @@
  * @method integer             getAppUserId()        Returns the current record's "app_user_id" value
  * @method decimal             getMinPrice()         Returns the current record's "min_price" value
  * @method decimal             getMaxPrice()         Returns the current record's "max_price" value
+ * @method integer             getCurrencyId()       Returns the current record's "currency_id" value
  * @method boolean             getIsVendor()         Returns the current record's "is_vendor" value
  * @method string              getReference()        Returns the current record's "reference" value
  * @method PropertyType        getPropertyType()     Returns the current record's "PropertyType" value
@@ -41,6 +44,7 @@
  * @method City                getCity()             Returns the current record's "City" value
  * @method Neighborhood        getNeighborhood()     Returns the current record's "Neighborhood" value
  * @method AppUser             getAppUser()          Returns the current record's "AppUser" value
+ * @method Currency            getCurrency()         Returns the current record's "Currency" value
  * @method Doctrine_Collection getSearchMatches()    Returns the current record's "SearchMatches" collection
  * @method SearchProfile       setId()               Sets the current record's "id" value
  * @method SearchProfile       setPropertyTypeId()   Sets the current record's "property_type_id" value
@@ -51,6 +55,7 @@
  * @method SearchProfile       setAppUserId()        Sets the current record's "app_user_id" value
  * @method SearchProfile       setMinPrice()         Sets the current record's "min_price" value
  * @method SearchProfile       setMaxPrice()         Sets the current record's "max_price" value
+ * @method SearchProfile       setCurrencyId()       Sets the current record's "currency_id" value
  * @method SearchProfile       setIsVendor()         Sets the current record's "is_vendor" value
  * @method SearchProfile       setReference()        Sets the current record's "reference" value
  * @method SearchProfile       setPropertyType()     Sets the current record's "PropertyType" value
@@ -59,6 +64,7 @@
  * @method SearchProfile       setCity()             Sets the current record's "City" value
  * @method SearchProfile       setNeighborhood()     Sets the current record's "Neighborhood" value
  * @method SearchProfile       setAppUser()          Sets the current record's "AppUser" value
+ * @method SearchProfile       setCurrency()         Sets the current record's "Currency" value
  * @method SearchProfile       setSearchMatches()    Sets the current record's "SearchMatches" collection
  * 
  * @package    sf_icox
@@ -113,6 +119,10 @@ abstract class BaseSearchProfile extends sfDoctrineRecord
              'default' => 0,
              'length' => 10,
              ));
+        $this->hasColumn('currency_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             ));
         $this->hasColumn('is_vendor', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
@@ -156,6 +166,11 @@ abstract class BaseSearchProfile extends sfDoctrineRecord
 
         $this->hasOne('AppUser', array(
              'local' => 'app_user_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
+        $this->hasOne('Currency', array(
+             'local' => 'currency_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 

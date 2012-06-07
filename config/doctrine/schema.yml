@@ -244,6 +244,7 @@ SearchProfile:
     app_user_id:      { type: integer(4) }
     min_price:        { type: decimal(10), scale: 2, default: 0 }
     max_price:        { type: decimal(10), scale: 2, default: 0 }
+    currency_id:      { type: integer(4) }
     is_vendor:        { type: boolean, default: false }
     reference:        { type: string(150) }
 
@@ -254,6 +255,7 @@ SearchProfile:
     City:         { class: City, local: city_id, foreign: id, foreignAlias: City, onDelete: SET NULL }
     Neighborhood: { class: Neighborhood, local: neighborhood_id, foreign: id, foreignAlias: Neighborhood, onDelete: SET NULL }
     AppUser:      { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: SET NULL }
+    Currency:     { class: Currency, local: currency_id, foreign: id, foreignAlias: Currency, onDelete: SET NULL }
 
 #
 # SEARCH_MATCH

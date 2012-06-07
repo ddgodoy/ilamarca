@@ -69,5 +69,4 @@
 		</div>
 	</div>
 </div>
-<!-- -->
 <?php include_partial('right_static'); ?>

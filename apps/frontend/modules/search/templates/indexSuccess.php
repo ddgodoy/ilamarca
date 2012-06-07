@@ -4,7 +4,9 @@
 			<div class="titulo"></div>
 		</div>
 		<?php if (count($oList) > 0): ?>
-			<div class="guardar"><a href=""></a></div>
+			<?php if ($sf_user->isAuthenticated()): ?>
+				<div class="guardar"><a href=""></a></div>
+			<?php endif; ?>
 			<?php
 				$middle_counter = 2;
 				
