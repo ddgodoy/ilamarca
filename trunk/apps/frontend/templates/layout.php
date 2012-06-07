@@ -13,8 +13,11 @@
 				<div class="header">
 					<div class="logo"><a href="<?php echo url_for('@homepage') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
 					<div class="submenu">
-					<div class="boton"><a href="#" class="login"></a></div>
-					<div class="boton"><a href="#" class="logout"></a></div>
+					<?php if ($sf_user->isAuthenticated()): ?>
+						<div class="boton"><a href="<?php echo url_for('@logout') ?>" class="logout"></a></div>
+					<?php else: ?>
+						<div class="boton"><a href="<?php echo url_for('@loging') ?>" class="login"></a></div>
+					<?php endif; ?>
 					<div class="boton"><a href="<?php echo url_for('home/contact') ?>" class="contacto"></a></div>
 					<a href="https://www.facebook.com/inmobiliaria.lamarca"  target="_blank" class="fb"></a>
 					</div>

@@ -5,6 +5,11 @@
 	$_down_pdf_file  = $property->getPdfFile();
 ?>
 <script type="text/javascript">
+	function asdfasdfas()
+	{
+		alert('okokok');
+	}
+
 	$(document).ready(function () {
 		$('#fotos').click(function() {
 			$('#gallery').removeAttr('style');

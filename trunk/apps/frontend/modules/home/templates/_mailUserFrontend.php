@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Consulta desde formulario de contacto</title>
+		<title>Activa tu cuenta</title>
 	</head>
 	<table>
 		<tr>
@@ -8,8 +8,8 @@
 			<td><?php echo $data['email'] ?></td>
 		</tr>
 		<tr>
-			<td><strong>Para Habilitar su cuenta:</strong>&nbsp;<td>
-                        <td><a href="<?php echo $data['token'] ?>">click aqui</a></td>
+			<td><strong>Para habilitar tu cuenta:</strong>&nbsp;<td>
+      <td><a href="<?php echo url_for('user/activateAccount?tk='.$data['token'], true) ?>">click aquí</a></td>
 		</tr>
 	</table>
 </html>
