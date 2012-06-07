@@ -8,17 +8,20 @@
  * @property integer $id
  * @property string $former_name
  * @property string $internal_name
+ * @property boolean $outstanding
  * @property integer $real_property_id
  * @property RealProperty $RealProperty
  * 
  * @method integer      getId()               Returns the current record's "id" value
  * @method string       getFormerName()       Returns the current record's "former_name" value
  * @method string       getInternalName()     Returns the current record's "internal_name" value
+ * @method boolean      getOutstanding()      Returns the current record's "outstanding" value
  * @method integer      getRealPropertyId()   Returns the current record's "real_property_id" value
  * @method RealProperty getRealProperty()     Returns the current record's "RealProperty" value
  * @method Gallery      setId()               Sets the current record's "id" value
  * @method Gallery      setFormerName()       Sets the current record's "former_name" value
  * @method Gallery      setInternalName()     Sets the current record's "internal_name" value
+ * @method Gallery      setOutstanding()      Sets the current record's "outstanding" value
  * @method Gallery      setRealPropertyId()   Sets the current record's "real_property_id" value
  * @method Gallery      setRealProperty()     Sets the current record's "RealProperty" value
  * 
@@ -45,6 +48,10 @@ abstract class BaseGallery extends sfDoctrineRecord
         $this->hasColumn('internal_name', 'string', 50, array(
              'type' => 'string',
              'length' => 50,
+             ));
+        $this->hasColumn('outstanding', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
         $this->hasColumn('real_property_id', 'integer', 4, array(
              'type' => 'integer',
