@@ -210,6 +210,7 @@ Gallery:
     id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
     former_name:      { type: string(150) }
     internal_name:    { type: string(50) }
+    outstanding:      { type: boolean, default: false }
     real_property_id: { type: integer(4), notnull: true }
 
   relations:
