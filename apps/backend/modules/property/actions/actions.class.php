@@ -184,7 +184,7 @@ class propertyActions extends sfActions
 				// set videos
         VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
 
-        // set imagenes
+        // set images
 				Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
 				
 				// set pdf file
