@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/lightbox/lightbox.css" type="text/css" media="screen" />
-<script src="/js/lightbox/lightbox.js"></script>
 <?php
 	$m2_sup_cubierta = $property->getSquareMeters();
 	$m2_sup_terreno  = $property->getCoveredArea();
