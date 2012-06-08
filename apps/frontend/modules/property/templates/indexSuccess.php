@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/lightbox/lightbox.css" type="text/css" media="screen" />
+<script src="/js/lightbox/lightbox.js"></script>
 <?php
 	$m2_sup_cubierta = $property->getSquareMeters();
 	$m2_sup_terreno  = $property->getCoveredArea();
@@ -63,7 +65,7 @@
 		</div>
 		<div id="gallery" class="ad-gallery slider clearfix">
 		<?php if (count($images) > 0): ?>
-			<div class="ad-image-wrapper fotoBig"></div>
+			<a href=""  rel="lightbox" id="mas-imagen" title="<?php echo $property->getName() ?>" class="ad-image-wrapper fotoBig"></a>
 			<div class="ad-nav">
 				<div class="ad-thumbs">
 					<ul class="ad-thumb-list">
