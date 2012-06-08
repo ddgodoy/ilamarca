@@ -45,6 +45,10 @@ class ResizeImage
 	var $y_source_point;
 	var $finalW;
 	var $finalH;
+	//
+	var $ruta_ttf;
+	var $watermark;
+	var $wm_opacity;
 
 	function clsRedimensionar()
 	{
@@ -79,6 +83,10 @@ class ResizeImage
 		$this->y_source_point = 0;
 		$this->finalW = 0;
 		$this->finalH = 0;
+		//
+		$this->ruta_ttf   = sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'assets/arial_bold.ttf';
+		$this->watermark  = '';
+		$this->wm_opacity = 25;
 	}
 //-------------------------------------------------------------------------------------
 	function setNombreImgOrigen($value){ $this->nombre_img_origen = $value; }
@@ -127,6 +135,7 @@ class ResizeImage
 					$rel_aspecto   = $source_width / $source_height;
 					$source_width  = round( $source_width - ( $source_width * ($this->zoom / 100) ) );
 					$source_height = round( $source_width / $rel_aspecto );
+
 					$this->x_source_point = round( ( $width - $source_width ) / 2 );
 					$this->y_source_point = round( ( $height - $source_height ) / 2 );
 				}
@@ -158,16 +167,17 @@ class ResizeImage
 			}
 			$this->crearImagenSegunTipo();
 
-			imagecopyresampled ($this->objeto_destino,
-													$this->objeto_origen,
-													$this->x_destination_point,
-													$this->y_destination_point,
-													$this->x_source_point,
-													$this->y_source_point,
-													$this->ancho_nuevo,
-													$this->alto_nuevo,
-													$source_width,
-													$source_height);
+			imagecopyresampled($this->objeto_destino,
+												 $this->objeto_origen,
+												 $this->x_destination_point,
+												 $this->y_destination_point,
+												 $this->x_source_point,
+												 $this->y_source_point,
+												 $this->ancho_nuevo,
+												 $this->alto_nuevo,
+												 $source_width,
+												 $source_height);
+
 			$this->salidaHaciaArchivo();
 		}
 	}
@@ -177,13 +187,14 @@ class ResizeImage
 		if ($this->extension_img == '.png') {
 			$this->objeto_origen = imagecreatefrompng($this->ruta_origen.$this->nombre_img_origen);
 
-			## preservar la transparencia en archivos PNG
-			imagealphablending($this->objeto_destino, false);
-			$colorTransparent = imagecolorallocatealpha($this->objeto_destino, 0, 0, 0, 127);
-
-			imagefill($this->objeto_destino, 0, 0, $colorTransparent);
-			imagesavealpha($this->objeto_destino, true);
-			##
+			if (empty($this->watermark)) {
+				## preservar la transparencia en archivos PNG
+				imagealphablending($this->objeto_destino, false);
+				$colorTransparent = imagecolorallocatealpha($this->objeto_destino, 0, 0, 0, 127);
+	
+				imagefill($this->objeto_destino, 0, 0, $colorTransparent);
+				imagesavealpha($this->objeto_destino, true);	
+			}
 		} elseif ($this->extension_img == '.gif') {
 			$this->objeto_origen = imagecreatefromgif($this->ruta_origen.$this->nombre_img_origen);
 		} else {
@@ -193,6 +204,9 @@ class ResizeImage
 //
 	function salidaHaciaArchivo()
 	{
+		if (!empty($this->watermark)) {
+			$this->crearMarcaDeAgua();
+		}
 		## ruta final para la imagen redimensionada
 		$this->ruta_final = $this->ruta_destino == '' ? $this->ruta_origen : $this->ruta_destino;
 		##
@@ -205,6 +219,27 @@ class ResizeImage
 
 		@chmod($this->ruta_final.$this->nombre_img_nueva, 0777);
 	}
+//
+	function crearMarcaDeAgua()
+  {
+  	$font_size = intval(1.25 * ($this->ancho_nuevo / strlen($this->watermark)));
+
+    $bb = imagettfbbox($font_size, 0, $this->ruta_ttf, $this->watermark);
+    $x0 = min($bb[ 0 ], $bb[ 2 ], $bb[ 4 ], $bb[ 6 ]);
+    $x1 = max($bb[ 0 ], $bb[ 2 ], $bb[ 4 ], $bb[ 6 ]);
+    $y0 = min($bb[ 1 ], $bb[ 3 ], $bb[ 5 ], $bb[ 7 ]);
+    $y1 = max($bb[ 1 ], $bb[ 3 ], $bb[ 5 ], $bb[ 7 ]);
+
+    $bb_width = abs($x1 - $x0);
+    $bb_height = abs($y1 - $y0);
+
+    $bpy = $this->alto_nuevo / 2 - $bb_height / 2 - $y0;
+    $bpx = $this->ancho_nuevo / 2 - $bb_width / 2 - $x0;
+
+    $alpha_color = imagecolorallocatealpha($this->objeto_destino, 204, 204, 204, 127 * (100 - $this->wm_opacity) / 100);
+
+    imagettftext($this->objeto_destino, $font_size, 0, $bpx, $bpy, $alpha_color, $this->ruta_ttf, $this->watermark);
+  }
 //
 	function rellenarCanvas()
 	{
@@ -257,6 +292,7 @@ class ResizeImage
 		if (isset($opciones['destino'])) { $this->setRutaDestino($opciones['destino']); }
 		if (isset($opciones['calidad_jpg'])) { $this->calidad_jpg = $opciones['calidad_jpg']; }
 		if (isset($opciones['calidad_png'])) { $this->calidad_png = $opciones['calidad_png']; }
+		if (isset($opciones['watermark']))   { $this->watermark   = trim($opciones['watermark']); }
 		##
 		$this->Ejecutar();
 	}
@@ -328,5 +364,8 @@ class ResizeImage
 			$this->calidad_jpg = $valor; // entre 10 y 300 - por defecto 90
 		}
 	}
+//
+	function setRutaTtf($ruta)  { $this->ruta_ttf = $ruta; }
+	function setWmOpacity($val) { $this->wm_opacity = $val; }
 
 } // end class

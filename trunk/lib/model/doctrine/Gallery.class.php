@@ -22,7 +22,7 @@ class Gallery extends BaseGallery
 	public static function getPath($property, $local = false)
 	{
 		$path_web = DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
-		$path_local =  sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
+		$path_local = sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR.'property_'.$property.DIRECTORY_SEPARATOR;
 
 		if ($local) {
 			return $path_local;
@@ -65,15 +65,18 @@ class Gallery extends BaseGallery
 				@chmod($destination.$upload_file, 0777);
 				@unlink($temp_folder.$file->unique_name);
 
-				## Create thumbnail
+				## Create thumbnails
 				$oResize = new ResizeImage();
+
+				$with_watermark = ServiceFileHandler::getThumbImage($upload_file, 'g');
+				$oResize->setSimple($upload_file, $with_watermark, $destination, 1024, 768, 0, 0, '', array('watermark'=>'ilamarca.com'));
+
 				$aThumbs = array(
 					ServiceFileHandler::getThumbImage($upload_file, 'c') => array('w'=>75,  'h' => 50),
 					ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h' => 159),
-					$upload_file                                         => array('w'=>600, 'h' => 350),
-                                        ServiceFileHandler::getThumbImage($upload_file, 'g') => array('w'=>1024, 'h' => 600),
+					$upload_file => array('w'=>600, 'h' => 350),
 				);
-				$oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
+				$oResize->setMultiple($with_watermark, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
 
 				GalleryTable::getInstance()->newGalleryProperty($property, $file->former_name, $internal_nm);
 			}
