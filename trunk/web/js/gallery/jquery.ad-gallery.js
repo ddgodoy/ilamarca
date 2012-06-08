@@ -9,7 +9,7 @@
  */
 (function($) {
   $.fn.adGallery = function(options) {
-    var defaults = { loader_image: 'loader.gif',
+    var defaults = { loader_image: '/images/gallery/loader.gif',
                      start_at_index: 0,
                      update_window_hash: true,
                      description_wrapper: false,
@@ -18,7 +18,7 @@
                      animation_speed: 400,
                      width: false,
                      height: false,
-                     display_next_and_prev: true,
+                     display_next_and_prev: false,
                      display_back_and_forward: true,
                      scroll_jump: 0, // If 0, it jumps the width of the container
                      slideshow: {
@@ -659,8 +659,11 @@
         var image = this.images[index];
         var img_container = $(document.createElement('div')).addClass('ad-image');
         var img = $(new Image()).attr('src', image.image);
+        var array_src = img.attr('src').split('/');
+        var href_link = array_src[0]+'/'+array_src[1]+'/'+array_src[2]+'/'+array_src[3]+'/'+array_src[4]+'/g_'+array_src[5];
+        $('#mas-imagen').attr('href',href_link);
         if(image.link) {
-          var link = $('<a href="'+ image.link +'" target="_blank"></a>');
+          var link = $('<a href="'+ image.link +'" rel="lightbox"></a>');
           link.append(img);
           img_container.append(link);
         } else {
