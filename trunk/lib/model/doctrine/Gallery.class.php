@@ -69,8 +69,7 @@ class Gallery extends BaseGallery
 				$oResize = new ResizeImage();
 
 				$with_watermark = ServiceFileHandler::getThumbImage($upload_file, 'g');
-				//$oResize->setSimple($upload_file, $with_watermark, $destination, 1024, 768, 0, 0, '', array('watermark'=>'ilamarca.com'));
-				$oResize->setSimple($upload_file, $with_watermark, $destination, 1024, 768);
+				$oResize->setSimple($upload_file, $with_watermark, $destination, 1024, 768, 0, 0, '', array('watermark'=>'ilamarca.com'));
 
 				$aThumbs = array(
 					ServiceFileHandler::getThumbImage($upload_file, 'c') => array('w'=>75,  'h' => 50),

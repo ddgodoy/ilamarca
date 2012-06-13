@@ -84,7 +84,7 @@ class ResizeImage
 		$this->finalW = 0;
 		$this->finalH = 0;
 		//
-		$this->ruta_ttf   = sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'assets/arial_bold.ttf';
+		$this->ruta_ttf   = sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'assets/gisha.ttf';
 		$this->watermark  = '';
 		$this->wm_opacity = 25;
 	}
@@ -222,7 +222,7 @@ class ResizeImage
 //
 	function crearMarcaDeAgua()
   {
-  	$font_size = intval(1.25 * ($this->ancho_nuevo / strlen($this->watermark)));
+  	$font_size = intval(1.1 * ($this->ancho_nuevo / strlen($this->watermark)));
 
     $bb = imagettfbbox($font_size, 0, $this->ruta_ttf, $this->watermark);
     $x0 = min($bb[ 0 ], $bb[ 2 ], $bb[ 4 ], $bb[ 6 ]);
