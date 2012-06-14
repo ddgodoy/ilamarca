@@ -84,7 +84,7 @@ class ResizeImage
 		$this->finalW = 0;
 		$this->finalH = 0;
 		//
-		$this->ruta_ttf   = sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'assets/gisha.ttf';
+		$this->ruta_ttf   = sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'assets/Aller_Rg.ttf';
 		$this->watermark  = '';
 		$this->wm_opacity = 25;
 	}
