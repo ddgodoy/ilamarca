@@ -128,6 +128,10 @@
       <trans-unit id="118"><source>List of Salesmen</source><target>Listado de Vendedores</target></trans-unit>
       <trans-unit id="119"><source>Register salesman</source><target>Registrar vendedor</target></trans-unit>
       <trans-unit id="120"><source>Last name</source><target>Apellido</target></trans-unit>
+      <trans-unit id="121"><source>Countries</source><target>Países</target></trans-unit>
+      <trans-unit id="122"><source>List of Countries</source><target>Listado de Países</target></trans-unit>
+      <trans-unit id="123"><source>Register country</source><target>Registrar país</target></trans-unit>
+      <trans-unit id="124"><source>Country</source><target>País</target></trans-unit>
     </body>
   </file>
 </xliff>
