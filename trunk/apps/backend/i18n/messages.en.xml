@@ -128,6 +128,10 @@
       <trans-unit id="118"><source>List of Salesmen</source><target>List of Salesmen</target></trans-unit>
       <trans-unit id="119"><source>Register salesman</source><target>Register salesman</target></trans-unit>
       <trans-unit id="120"><source>Last name</source><target>Last name</target></trans-unit>
+      <trans-unit id="121"><source>Countries</source><target>Countries</target></trans-unit>
+      <trans-unit id="122"><source>List of Countries</source><target>List of Countries</target></trans-unit>
+      <trans-unit id="123"><source>Register country</source><target>Register country</target></trans-unit>
+      <trans-unit id="124"><source>Country</source><target>Country</target></trans-unit>
     </body>
   </file>
 </xliff>

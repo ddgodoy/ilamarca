@@ -7,6 +7,11 @@
 		</a>
 	</li>
 	<li>
+		<a href="<?php echo url_for('country/index') ?>" class="first<?php echo $mnGetModule=='country' ? ' selected' : '' ?>">
+			<?php echo __('Countries') ?>
+		</a>
+	</li>
+	<li>
 		<a href="<?php echo url_for('geo_zone/index') ?>" class="first<?php echo $mnGetModule=='geo_zone' ? ' selected' : '' ?>">
 			<?php echo __('Geo zones') ?>
 		</a>
