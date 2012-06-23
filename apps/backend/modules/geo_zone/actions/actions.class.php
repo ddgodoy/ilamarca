@@ -31,14 +31,22 @@ class geo_zoneActions extends sfActions
   {
   	$sch_partial = 'id > 0';
 
+    $this->country = Country::getCountryForSelect();
   	$this->f_params = '';
-		$this->sch_name = trim($this->getRequestParameter('sch_name'));
+    $this->sch_name = trim($this->getRequestParameter('sch_name'));
+    $this->sch_country = trim($this->getRequestParameter('sch_country'));
 
-		if (!empty($this->sch_name)) {
-			$sch_partial .= " AND name LIKE '%$this->sch_name%'";
-			$this->f_params .= '&sch_name='.urlencode($this->sch_name);
-		}
-		return $sch_partial;
+    if (!empty($this->sch_name)) {
+        $sch_partial .= " AND name LIKE '%$this->sch_name%'";
+        $this->f_params .= '&sch_name='.urlencode($this->sch_name);
+    }
+
+    if (!empty($this->sch_country)) {
+			$sch_partial .= " AND country_id = $this->sch_country ";
+			$this->f_params .= '&sch_country='.urlencode($this->sch_country);
+	}
+    
+	return $sch_partial;
   }
   
   /**
@@ -133,6 +141,16 @@ class geo_zoneActions extends sfActions
   		$oValue->delete();
   	}
   	$this->redirect('geo_zone/index');
+  }
+
+  public function executeGetGeoZone(sfWebRequest $request)
+  {
+    $country_id = $request->getParameter('country', '');
+    $is_neighborhood = $request->getParameter('is_neighborhood', false);
+    $is_property = $request->getParameter('is_property', false);
+
+    return $this->renderComponent('geo_zone', 'geoZone', array('geo_zone'=>'', 'country_id'=>$country_id, 'is_neighborhood'=>$is_neighborhood, 'w'=>$is_property));
+    exit();
   }
 
 } // end class

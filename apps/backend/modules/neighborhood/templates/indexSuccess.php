@@ -30,6 +30,7 @@
 	        <th width="32%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
 	        <th width="30%"><a href="<?php echo $head_link.'&o=c.name&s='.$sort ?>"><?php echo __('City') ?></a></th>
 	        <th width="30%"><a href="<?php echo $head_link.'&o=g.name&s='.$sort ?>"><?php echo __('Geo zone') ?></a></th>
+             <th width="30%"><a href="<?php echo $head_link.'&o=g.name&s='.$sort ?>"><?php echo __('Country') ?></a></th>
 	        <th width="4%"></th>
 	        <th width="4%"></th>
         <?php else: ?>
@@ -41,6 +42,7 @@
         <td><?php echo $item->getName() ?></td>
         <td><?php echo $item->City->getName() ?></td>
         <td><?php echo $item->City->GeoZone->getName() ?></td>
+        <td><?php echo $item->getCountry()->getName() ?></td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">
         		<img border="0" src="/admin/images/editar.png" alt="<?php echo __('Edit') ?>" title="<?php echo __('Edit') ?>">

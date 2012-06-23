@@ -4,6 +4,6 @@
 
 	$aValues = NeighborhoodTable::getInstance()->getByCityId($city);
 ?>
-<select name="neighborhood" id="neighborhood" class="form_input" style="width:300px;">
+<select name="neighborhood" id="neighborhood-id" id="neighborhood" class="form_input" style="width:300px;">
 	<?php echo Common::fillSimpleSelect($aValues, $neighborhood) ?>
 </select>

@@ -30,6 +30,10 @@
 						<td width="6%"><label><?php echo __('Name') ?> *</label></td>
 						<td><?php echo $form['name'] ?></td>
 					</tr>
+                    <tr>
+						<td width="6%"><label><?php echo __('Iso') ?> *</label></td>
+                        <td><?php echo $form['iso'] ?>&nbsp;&nbsp;<em style="font-size: 10px">Ej. (ES, EN)</em></td>
+					</tr>
 				</table>
 			</fieldset>
 			<div style="padding-top:10px;" class="botonera">

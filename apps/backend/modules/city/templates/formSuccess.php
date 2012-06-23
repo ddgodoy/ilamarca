@@ -27,12 +27,17 @@
 			<label class="lineaListados"><?php echo __('Mandatory fields') ?>&nbsp;(*)</label><br />
 			<fieldset>
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
+                    <tr>
+						<td width="6%"><label><?php echo __('Country') ?> *</label></td>
+						<td><?php echo $form['country_id'] ?></td>
+					</tr>
 					<tr>
 						<td width="10%"><label><?php echo __('Geo zone') ?> *</label></td>
-						<td>
-							<select name="geo_zone" class="form_input" style="width:408px;">
-								<?php echo Common::fillSimpleSelect(GeoZoneTable::getInstance()->getAllForSelect(true), $geo_zone) ?>
-							</select>
+						<td id="geo_zone_td">
+                          <div  style="display: none; position: absolute; margin-bottom: 20px; margin-left: 415px" id="img_updating_gallery"  >
+                          <img border="0" src="/admin/images/loader.gif">
+                          </div>
+                          <?php include_component('geo_zone', 'geoZone', array('geo_zone'=>$geo_zone!=''?$geo_zone:$form['geo_zone_id']->getValue(), 'country_id'=>$form['country_id']->getValue(), ''=>'')); ?>
 						</td>
 					</tr>
 					<tr>
@@ -45,6 +50,7 @@
 				<input type="button" onclick="document.location='<?php echo url_for($str_module.'/index') ?>';" value="<?php echo __('Cancel') ?>" class="boton" />
 				<input type="submit" name="btn_action" value="<?php echo __('Register') ?>" class="boton" id="btn_action" />
 				<?php echo $form->renderHiddenFields() ?>
+                <input type="hidden" value="<?php echo url_for('geo_zone/getGeoZone') ?>" id="geo_zone_url" />
 			</div>
 		</form>
 	</div>

@@ -97,21 +97,17 @@ class cityActions extends sfActions
   	if ($request->getMethod() == 'POST') {
   		$this->geo_zone = $request->getParameter('geo_zone');
 
-  		if (empty($this->geo_zone)) { $this->error['geo_zone'] = 'Select the geo zone'; }
+  	    $form_request = $request->getParameter($this->form->getName());
+  		$form_request['geo_zone_id'] = $this->geo_zone;
 
-  		## continue
-  		if (!$this->error) {
-  			$form_request = $request->getParameter($this->form->getName());
-  			$form_request['geo_zone_id'] = $this->geo_zone;
+        $this->form->bind($form_request);
 
-				$this->form->bind($form_request);
+        if ($this->form->isValid()) {
+            $recorded = $this->form->save();
 
-	  		if ($this->form->isValid()) {
-	  			$recorded = $this->form->save();
-	
-	  			$this->redirect('city/show?id='.$recorded->getId());
-	  		}
-  		}
+            $this->redirect('city/show?id='.$recorded->getId());
+        }
+  		
   	}
   	$this->setTemplate('form');
   }

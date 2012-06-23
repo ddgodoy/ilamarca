@@ -132,6 +132,7 @@
       <trans-unit id="122"><source>List of Countries</source><target>Listado de Países</target></trans-unit>
       <trans-unit id="123"><source>Register country</source><target>Registrar país</target></trans-unit>
       <trans-unit id="124"><source>Country</source><target>País</target></trans-unit>
+      <trans-unit id="125"><source>By country</source><target>Por País</target></trans-unit>
     </body>
   </file>
 </xliff>
