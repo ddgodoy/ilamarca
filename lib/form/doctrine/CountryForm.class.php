@@ -16,10 +16,12 @@ class CountryForm extends BaseCountryForm
 
   	$this->setWidgets(array(
       'name' => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
+      'iso' => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:330px;')),
     ));
 
     $this->setValidators(array(
       'name' => new sfValidatorString(array('max_length' => 100), array('required'=>$i18N->__('Enter the name', NULL, 'errors'))),
+      'iso' => new sfValidatorString(array('max_length' => 100), array('required'=>$i18N->__('Enter the iso', NULL, 'errors'))),
     ));
 
     $this->widgetSchema->setNameFormat('country[%s]');
