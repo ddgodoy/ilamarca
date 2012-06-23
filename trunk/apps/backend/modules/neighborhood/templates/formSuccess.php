@@ -46,17 +46,24 @@ function updCityList(geo_zone_id)
 			<fieldset>
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
 					<tr>
+						<td width="6%"><label><?php echo __('Country') ?> *</label></td>
+						<td><?php echo $form['country_id'] ?></td>
+					</tr>
+                    <tr>
 						<td width="10%"><label><?php echo __('Geo zone') ?> *</label></td>
-						<td>
-							<select name="geo_zone" class="form_input" style="width:408px;" onchange="updCityList(this.value);">
-								<?php echo Common::fillSimpleSelect(GeoZoneTable::getInstance()->getAllForSelect(true), $geo_zone) ?>
-							</select>
-							<img src="/admin/images/loader.gif" id="img_ajax_loading" border="0" style="visibility:hidden;"/>
+						<td id="geo_zone_td">
+                            <div  style="display: none; position: absolute; margin-bottom: 20px; margin-left: 415px" id="img_updating_gallery"  >
+                              <img border="0" src="/admin/images/loader.gif">
+                            </div>
+                            <?php include_component('geo_zone', 'geoZone', array('geo_zone'=>$geo_zone, 'country_id'=>$form['country_id']->getValue(), ''=>'', 'is_neighborhood'=>true)); ?>
 						</td>
 					</tr>
 					<tr>
 						<td><label><?php echo __('City') ?> *</label></td>
 						<td>
+                            <div  style="display: none; position: absolute; margin-bottom: 20px; margin-left: 415px" id="img_ajax_loading"  >
+                              <img border="0" src="/admin/images/loader.gif">
+                            </div>
 							<div id="div_sel_city">
 								<?php include_partial('ajaxCity', array('geo_zone'=>$geo_zone, 'city'=>$city)); ?>
 							</div>
@@ -74,6 +81,8 @@ function updCityList(geo_zone_id)
 				<input type="hidden" id="ajax_url_city" value="<?php echo url_for('neighborhood/ajaxCity') ?>"/>
 
 				<?php echo $form->renderHiddenFields() ?>
+                <input type="hidden" value="<?php echo url_for('geo_zone/getGeoZone?is_neighborhood=1') ?>" id="geo_zone_url" />
+                <input type="hidden" value="<?php echo __('Select') ?>" id="value-select" />
 			</div>
 		</form>
 	</div>

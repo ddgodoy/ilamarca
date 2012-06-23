@@ -4,6 +4,6 @@
 
 	$aValues = CityTable::getInstance()->getByGeoZoneId($geo_zone);
 ?>
-<select name="city" class="form_input" style="width:408px;">
+<select name="city" class="form_input" style="width:408px;" id="city-id">
 	<?php echo Common::fillSimpleSelect($aValues, $city) ?>
 </select>

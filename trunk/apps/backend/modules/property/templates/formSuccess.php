@@ -148,19 +148,31 @@
 					<tr>
 						<td valign="top">
 							<table cellpadding="3" cellspacing="0">
+                                <tr>
+                                    <td width="6%"><label><?php echo __('Country') ?></label></td>
+                                    <td><?php echo $form['country_id'] ?></td>
+                                </tr>
 								<tr>
 									<td><label><?php echo __('Geo zone') ?></label></td>
-									<td>
-										<select name="geo_zone" class="form_input" style="width:300px;" onchange="updCityList(this.value);">
-											<?php echo Common::fillSimpleSelect(GeoZoneTable::getInstance()->getAllForSelect(true), $geo_zone) ?>
-										</select>
-									</td>
-									<td><img src="/admin/images/loader.gif" id="img_loading_cities" border="0" style="visibility:hidden;"/></td>
+									<td id="geo_zone_td">
+                                        <div  style="display: none; position: absolute; margin-bottom: 20px; margin-left: 315px" id="img_updating_gallery"  >
+                                          <img border="0" src="/admin/images/loader.gif">
+                                        </div>
+                                        <?php include_component('geo_zone', 'geoZone', array('geo_zone'=>$geo_zone, 'country_id'=>$form['country_id']->getValue(), ''=>'', 'is_neighborhood'=>true, 'w'=>'300')); ?>
+                                    </td>
+                                    <td>
+                                      <img src="/admin/images/loader.gif" id="img_loading_cities" border="0" style="visibility:hidden;"/>
+                                    </td>
 								</tr>
 								<tr>
 									<td><label><?php echo __('City') ?></label></td>
 									<td colspan="2">
-										<div id="div_sel_city"><?php include_partial('ajaxCity', array('geo_zone'=>$geo_zone, 'city'=>$city)); ?></div>
+										<div  style="display: none; position: absolute; margin-bottom: 20px; margin-left: 415px" id="img_ajax_loading"  >
+                                          <img border="0" src="/admin/images/loader.gif">
+                                        </div>
+                                        <div id="div_sel_city">
+                                            <?php include_partial('ajaxCity', array('geo_zone'=>$geo_zone, 'city'=>$city)); ?>
+                                        </div>
 									</td>
 								</tr>
 								<tr>
@@ -300,6 +312,8 @@
         <input type="hidden" id="ajax_url_city" value="<?php echo url_for('property/ajaxCity') ?>"/>
         <input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('property/ajaxNeighborhood') ?>"/>
         <?php echo $form->renderHiddenFields() ?>
+        <input type="hidden" value="<?php echo url_for('geo_zone/getGeoZone?is_neighborhood=1&is_property=300') ?>" id="geo_zone_url" />
+        <input type="hidden" value="<?php echo __('Select') ?>" id="value-select" />
      </div>
 		</form>
 	</div>

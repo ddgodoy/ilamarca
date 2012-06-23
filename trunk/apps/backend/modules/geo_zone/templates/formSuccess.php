@@ -26,6 +26,10 @@
 			<label class="lineaListados"><?php echo __('Mandatory fields') ?>&nbsp;(*)</label><br />
 			<fieldset>
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
+                    <tr>
+						<td width="6%"><label><?php echo __('Country') ?> *</label></td>
+						<td><?php echo $form['country_id'] ?></td>
+					</tr>
 					<tr>
 						<td width="6%"><label><?php echo __('Name') ?> *</label></td>
 						<td><?php echo $form['name'] ?></td>

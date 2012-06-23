@@ -99,9 +99,11 @@ class neighborhoodActions extends sfActions
   	if ($request->getMethod() == 'POST') {
   		$this->geo_zone = $request->getParameter('geo_zone');
   		$this->city = $request->getParameter('city');
+        $this->country_id = $request->getParameter($this->form->getName());
 
   		if (empty($this->geo_zone)) { $this->error['geo_zone'] = 'Select the geo zone'; }
   		if (empty($this->city)) { $this->error['city'] = 'Select the city'; }
+        if (empty($this->country_id['country_id'])) { $this->error['country_id'] = 'Enter the country'; }
 
   		## continue
   		if (!$this->error) {

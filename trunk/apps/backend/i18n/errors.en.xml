@@ -32,6 +32,7 @@
       <trans-unit id="25"><source>The covered_meters seems incorrect</source><target>Covered Mets are wrong, just enter numbers</target></trans-unit>
       <trans-unit id="26"><source>The age seems incorrect</source><target>The Antiquity is wrong, just enter numbers</target></trans-unit>
       <trans-unit id="27"><source>Enter the last name</source><target>Enter the last name</target></trans-unit>
+      <trans-unit id="28"><source>Enter the country</source><target>Enter the country</target></trans-unit>
     </body>
   </file>
 </xliff>

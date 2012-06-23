@@ -32,6 +32,7 @@
       <trans-unit id="25"><source>The covered_meters seems incorrect</source><target>Los Metros Cubiertos son incorrecto, solo ingrese numeros</target></trans-unit>
       <trans-unit id="26"><source>The age seems incorrect</source><target>La Antiguedad es incorrecta, solo ingrese numeros</target></trans-unit>
       <trans-unit id="27"><source>Enter the last name</source><target>Ingrese el apellido</target></trans-unit>
+      <trans-unit id="28"><source>Enter the country</source><target>Ingrese el País</target></trans-unit>
     </body>
   </file>
 </xliff>
