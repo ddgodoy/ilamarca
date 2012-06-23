@@ -12,6 +12,10 @@
  */
 class Country extends BaseCountry
 {
+  /**
+   * get country for select
+   * @return array()
+   */
   public static function getCountryForSelect()
   {
     $array = array();
@@ -20,6 +24,23 @@ class Country extends BaseCountry
     foreach($countrys AS $country)
     {
       $array[$country->getId()] = $country->getName();
+    }
+
+    return $array;
+  }
+
+  /**
+   * get culture for select
+   * @return array
+   */
+  public static function getCultureForSelect()
+  {
+    $array = array();
+    $countrys = CountryTable::getInstance()->findAll();
+
+    foreach($countrys AS $country)
+    {
+      $array[$country->getIso()] = $country->getName();
     }
 
     return $array;
