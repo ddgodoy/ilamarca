@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [styles.css]
 
-  javascripts:    [jquery.min.js, jquery.tools.min.js, /admin/js/numvalidate.js, search.js]
+  javascripts:    [jquery.min.js, jquery.tools.min.js, /admin/js/numvalidate.js, search.js, culture.js]
 
   has_layout:     true
   layout:         layout

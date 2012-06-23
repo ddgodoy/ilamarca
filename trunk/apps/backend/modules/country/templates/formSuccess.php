@@ -28,11 +28,8 @@
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
 					<tr>
 						<td width="6%"><label><?php echo __('Name') ?> *</label></td>
-						<td><?php echo $form['name'] ?></td>
-					</tr>
-                    <tr>
-						<td width="6%"><label><?php echo __('Iso') ?> *</label></td>
-                        <td><?php echo $form['iso'] ?>&nbsp;&nbsp;<em style="font-size: 10px">Ej. (ES, EN)</em></td>
+						<td><?php echo select_country_tag('country[iso]', 'AR', array('class'=>'form_input')) ?></td>
+
 					</tr>
 				</table>
 			</fieldset>
