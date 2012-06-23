@@ -12,4 +12,16 @@
  */
 class Country extends BaseCountry
 {
+  public static function getCountryForSelect()
+  {
+    $array = array();
+    $countrys = CountryTable::getInstance()->findAll();
+
+    foreach($countrys AS $country)
+    {
+      $array[$country->getId()] = $country->getName();
+    }
+
+    return $array;
+  }
 }
