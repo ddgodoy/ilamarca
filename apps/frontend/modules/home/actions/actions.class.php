@@ -24,6 +24,16 @@ class homeActions extends sfActions
     $this->db_currencies = CurrencyTable::getInstance()->getAllForSelect();
   }
   
+  public function executeSetCulture(sfWebRequest $request)
+  {
+    $culture = $request->getParameter('country', 'es');
+    
+    $culture = $request->getPreferredCulture(array($culture));
+    $this->getUser()->setCulture($culture);
+    
+    $this->redirect('@homepage');
+  }
+
   /**
    * Executes contact action
    *
