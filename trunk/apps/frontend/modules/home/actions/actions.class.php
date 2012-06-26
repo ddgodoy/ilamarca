@@ -23,11 +23,17 @@ class homeActions extends sfActions
     $this->db_bedrooms   = BedroomTable::getInstance()->getAllForSelect(true, 'Bedrooms');
     $this->db_currencies = CurrencyTable::getInstance()->getAllForSelect();
   }
-  
+
+  /**
+   * set culture
+   * @param sfWebRequest $request
+   */
   public function executeSetCulture(sfWebRequest $request)
   {
     $culture = $request->getParameter('country', 'es');
     
+    $culture = $culture=='ar'?'es':$culture;
+
     $culture = $request->getPreferredCulture(array($culture));
     $this->getUser()->setCulture($culture);
     
