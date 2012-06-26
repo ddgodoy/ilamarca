@@ -15,7 +15,7 @@
                   <a>
                     <strong>
                       PAIS: &nbsp;&nbsp;
-                      <?php echo select_tag('country', options_for_select(Country::getCultureForSelect(),$sf_user->getCulture()), array('class'=>'et_input', 'style'=>'width: 145px;', 'id'=>'culture-id')) ?>
+                      <?php echo select_tag('country', options_for_select(Country::getCultureForSelect(),$sf_user->getAttribute('true_culture','ar')), array('class'=>'et_input', 'style'=>'width: 145px;', 'id'=>'culture-id')) ?>
                     </strong>
                   </a>
                   </form>
