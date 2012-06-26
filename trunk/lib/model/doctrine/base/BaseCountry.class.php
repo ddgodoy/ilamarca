@@ -7,11 +7,17 @@
  * 
  * @property integer $id
  * @property string $name
+ * @property string $iso
+ * @property Doctrine_Collection $Country
  * 
- * @method integer getId()   Returns the current record's "id" value
- * @method string  getName() Returns the current record's "name" value
- * @method Country setId()   Sets the current record's "id" value
- * @method Country setName() Sets the current record's "name" value
+ * @method integer             getId()      Returns the current record's "id" value
+ * @method string              getName()    Returns the current record's "name" value
+ * @method string              getIso()     Returns the current record's "iso" value
+ * @method Doctrine_Collection getCountry() Returns the current record's "Country" collection
+ * @method Country             setId()      Sets the current record's "id" value
+ * @method Country             setName()    Sets the current record's "name" value
+ * @method Country             setIso()     Sets the current record's "iso" value
+ * @method Country             setCountry() Sets the current record's "Country" collection
  * 
  * @package    sf_icox
  * @subpackage model
@@ -34,6 +40,11 @@ abstract class BaseCountry extends sfDoctrineRecord
              'notnull' => true,
              'length' => 100,
              ));
+        $this->hasColumn('iso', 'string', 50, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 50,
+             ));
 
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
@@ -42,6 +53,10 @@ abstract class BaseCountry extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('GeoZone as Country', array(
+             'local' => 'id',
+             'foreign' => 'country_id'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
