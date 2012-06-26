@@ -30,7 +30,9 @@ class homeActions extends sfActions
    */
   public function executeSetCulture(sfWebRequest $request)
   {
-    $culture = $request->getParameter('country', 'es');
+    $culture = $request->getParameter('country', 'ar');
+
+    $this->getUser()->setAttribute('true_culture', $culture);
     
     $culture = $culture=='ar'?'es':$culture;
 
