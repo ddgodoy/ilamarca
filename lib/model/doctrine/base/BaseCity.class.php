@@ -8,18 +8,24 @@
  * @property integer $id
  * @property string $name
  * @property integer $geo_zone_id
+ * @property integer $country_id
  * @property GeoZone $GeoZone
+ * @property Country $Country
  * @property Doctrine_Collection $City
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method string              getName()        Returns the current record's "name" value
  * @method integer             getGeoZoneId()   Returns the current record's "geo_zone_id" value
+ * @method integer             getCountryId()   Returns the current record's "country_id" value
  * @method GeoZone             getGeoZone()     Returns the current record's "GeoZone" value
+ * @method Country             getCountry()     Returns the current record's "Country" value
  * @method Doctrine_Collection getCity()        Returns the current record's "City" collection
  * @method City                setId()          Sets the current record's "id" value
  * @method City                setName()        Sets the current record's "name" value
  * @method City                setGeoZoneId()   Sets the current record's "geo_zone_id" value
+ * @method City                setCountryId()   Sets the current record's "country_id" value
  * @method City                setGeoZone()     Sets the current record's "GeoZone" value
+ * @method City                setCountry()     Sets the current record's "Country" value
  * @method City                setCity()        Sets the current record's "City" collection
  * 
  * @package    sf_icox
@@ -48,6 +54,11 @@ abstract class BaseCity extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
+        $this->hasColumn('country_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
 
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
@@ -58,6 +69,11 @@ abstract class BaseCity extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('GeoZone', array(
              'local' => 'geo_zone_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Country', array(
+             'local' => 'country_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

@@ -28,6 +28,7 @@
  * @property string $owner_email
  * @property integer $bedroom_id
  * @property integer $property_type_id
+ * @property integer $country_id
  * @property integer $geo_zone_id
  * @property integer $city_id
  * @property integer $neighborhood_id
@@ -37,6 +38,7 @@
  * @property PropertyType $PropertyType
  * @property GeoZone $GeoZone
  * @property City $City
+ * @property Country $Country
  * @property Neighborhood $Neighborhood
  * @property AppUser $AppUser
  * @property Doctrine_Collection $OperationRealProperties
@@ -66,6 +68,7 @@
  * @method string              getOwnerEmail()              Returns the current record's "owner_email" value
  * @method integer             getBedroomId()               Returns the current record's "bedroom_id" value
  * @method integer             getPropertyTypeId()          Returns the current record's "property_type_id" value
+ * @method integer             getCountryId()               Returns the current record's "country_id" value
  * @method integer             getGeoZoneId()               Returns the current record's "geo_zone_id" value
  * @method integer             getCityId()                  Returns the current record's "city_id" value
  * @method integer             getNeighborhoodId()          Returns the current record's "neighborhood_id" value
@@ -75,6 +78,7 @@
  * @method PropertyType        getPropertyType()            Returns the current record's "PropertyType" value
  * @method GeoZone             getGeoZone()                 Returns the current record's "GeoZone" value
  * @method City                getCity()                    Returns the current record's "City" value
+ * @method Country             getCountry()                 Returns the current record's "Country" value
  * @method Neighborhood        getNeighborhood()            Returns the current record's "Neighborhood" value
  * @method AppUser             getAppUser()                 Returns the current record's "AppUser" value
  * @method Doctrine_Collection getOperationRealProperties() Returns the current record's "OperationRealProperties" collection
@@ -103,6 +107,7 @@
  * @method RealProperty        setOwnerEmail()              Sets the current record's "owner_email" value
  * @method RealProperty        setBedroomId()               Sets the current record's "bedroom_id" value
  * @method RealProperty        setPropertyTypeId()          Sets the current record's "property_type_id" value
+ * @method RealProperty        setCountryId()               Sets the current record's "country_id" value
  * @method RealProperty        setGeoZoneId()               Sets the current record's "geo_zone_id" value
  * @method RealProperty        setCityId()                  Sets the current record's "city_id" value
  * @method RealProperty        setNeighborhoodId()          Sets the current record's "neighborhood_id" value
@@ -112,6 +117,7 @@
  * @method RealProperty        setPropertyType()            Sets the current record's "PropertyType" value
  * @method RealProperty        setGeoZone()                 Sets the current record's "GeoZone" value
  * @method RealProperty        setCity()                    Sets the current record's "City" value
+ * @method RealProperty        setCountry()                 Sets the current record's "Country" value
  * @method RealProperty        setNeighborhood()            Sets the current record's "Neighborhood" value
  * @method RealProperty        setAppUser()                 Sets the current record's "AppUser" value
  * @method RealProperty        setOperationRealProperties() Sets the current record's "OperationRealProperties" collection
@@ -223,6 +229,11 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
+        $this->hasColumn('country_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
         $this->hasColumn('geo_zone_id', 'integer', 4, array(
              'type' => 'integer',
              'notnull' => true,
@@ -271,6 +282,11 @@ abstract class BaseRealProperty extends sfDoctrineRecord
 
         $this->hasOne('City', array(
              'local' => 'city_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Country', array(
+             'local' => 'country_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

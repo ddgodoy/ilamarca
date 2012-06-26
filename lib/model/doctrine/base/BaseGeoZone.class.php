@@ -7,14 +7,20 @@
  * 
  * @property integer $id
  * @property string $name
+ * @property integer $country_id
+ * @property Country $Country
  * @property Doctrine_Collection $GeoZone
  * 
- * @method integer             getId()      Returns the current record's "id" value
- * @method string              getName()    Returns the current record's "name" value
- * @method Doctrine_Collection getGeoZone() Returns the current record's "GeoZone" collection
- * @method GeoZone             setId()      Sets the current record's "id" value
- * @method GeoZone             setName()    Sets the current record's "name" value
- * @method GeoZone             setGeoZone() Sets the current record's "GeoZone" collection
+ * @method integer             getId()         Returns the current record's "id" value
+ * @method string              getName()       Returns the current record's "name" value
+ * @method integer             getCountryId()  Returns the current record's "country_id" value
+ * @method Country             getCountry()    Returns the current record's "Country" value
+ * @method Doctrine_Collection getGeoZone()    Returns the current record's "GeoZone" collection
+ * @method GeoZone             setId()         Sets the current record's "id" value
+ * @method GeoZone             setName()       Sets the current record's "name" value
+ * @method GeoZone             setCountryId()  Sets the current record's "country_id" value
+ * @method GeoZone             setCountry()    Sets the current record's "Country" value
+ * @method GeoZone             setGeoZone()    Sets the current record's "GeoZone" collection
  * 
  * @package    sf_icox
  * @subpackage model
@@ -37,6 +43,11 @@ abstract class BaseGeoZone extends sfDoctrineRecord
              'notnull' => true,
              'length' => 100,
              ));
+        $this->hasColumn('country_id', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
 
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
@@ -45,6 +56,11 @@ abstract class BaseGeoZone extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Country', array(
+             'local' => 'country_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasMany('City as GeoZone', array(
              'local' => 'id',
              'foreign' => 'geo_zone_id'));
