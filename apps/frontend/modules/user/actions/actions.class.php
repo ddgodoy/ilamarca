@@ -94,7 +94,7 @@ class userActions extends sfActions
        $value = $form->getValues();
        ServiceAuthentication::startSessionProcess($value['user']);
 
-       $this->redirect('home/index');
+       $this->redirect('@profile');
     }
   }
 
@@ -135,10 +135,22 @@ class userActions extends sfActions
   }
 
   /**
-   * Execute Profile
+   * View profile
+   * 
    * @param sfWebRequest $request
    */
   public function executeProfile(sfWebRequest $request)
+  {
+    $this->oUser = AppUserTable::getInstance()->find($this->getUser()->getAttribute('user_id'));
+    $this->searchs = SearchProfileTable::getInstance()->getSearchsForThisUser($this->oUser->getId());
+  }
+
+  /**
+   * Update profile values
+   * 
+   * @param sfWebRequest $request
+   */
+  public function executeUpdateProfile(sfWebRequest $request)
   {
     $this->form = new AppUserForm();
   }

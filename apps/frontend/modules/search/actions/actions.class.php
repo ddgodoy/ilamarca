@@ -23,20 +23,21 @@ class searchActions extends sfActions
     $array_data_currency = array('currency'=>$this->currency, 'p_desde'=>$this->p_desde, 'p_hasta'=>$this->p_hasta);
 
   	$this->iPage  = $request->getParameter('page', 1);
-  	$this->oPager = RealPropertyTable::getInstance()->searchResults($this->iPage, 9, $str_filter, '', $array_data_currency);
-  	$this->oList  = $this->oPager->getResults();
+  	$this->oPager = RealPropertyTable::getInstance()->searchResults(
+  		$this->iPage, 9, $str_filter, $array_data_currency, $request->getMethod(), $request->getParameterHolder()->getAll()
+  	);
+  	$this->oList = $this->oPager->getResults();
   }
 
   /**
    * Set filter
-   *
+   * 
    * @return string
    */
   protected function setFilter()
   {
   	$sch_partial = 'p.id > 0';
   	$this->f_params = '';
-    $this->pager_order = '';
 
   	$this->property_type = $this->getRequestParameter('property_type', 0);
     $this->operation     = $this->getRequestParameter('operation', 0);
@@ -69,6 +70,67 @@ class searchActions extends sfActions
       $this->f_params .= '&bedroom='.$this->bedroom;
     }
     return $sch_partial;
+  }
+  
+  /**
+   * Executes ajax rec search in DB action
+   *
+   * @param sfRequest $request A request object
+   */
+  public function executeAjaxRecSearchInDB(sfWebRequest $request)
+  {
+  	$mensaje = '';
+  	$may_rec = false;
+  	$ss_user = sfContext::getInstance()->getUser();
+
+  	if ($ss_user->isAuthenticated())
+  	{
+  		$obj = new SearchProfile();
+  		$_user_id       = $ss_user->getAttribute('user_id');
+  		$_bedroom       = $ss_user->getAttribute('sch_bedroom');
+  		$_property_type = $ss_user->getAttribute('sch_property_type');
+  		$_operation     = $ss_user->getAttribute('sch_operation');
+  		$_geo_zone      = $ss_user->getAttribute('sch_geo_zone');
+  		$_city          = $ss_user->getAttribute('sch_city');
+  		$_neighborhood  = $ss_user->getAttribute('sch_neighborhood');
+  		$_currency      = $ss_user->getAttribute('sch_currency');
+  		$_p_from        = $ss_user->getAttribute('sch_p_from');
+  		$_p_to          = $ss_user->getAttribute('sch_p_to');
+  		$name_ref       = trim($request->getParameter('name_ref'));
+
+  		if (!empty($_bedroom))       { $obj->setBedroomId($_bedroom);            $may_rec = true; }
+  		if (!empty($_property_type)) { $obj->setPropertyTypeId($_property_type); $may_rec = true; }
+  		if (!empty($_operation))     { $obj->setOperationId($_operation);        $may_rec = true; }
+  		if (!empty($_geo_zone))      { $obj->setGeoZoneId($_geo_zone);           $may_rec = true; }
+  		if (!empty($_city))          { $obj->setCityId($_city);                  $may_rec = true; }
+  		if (!empty($_neighborhood))  { $obj->setNeighborhoodId($_neighborhood);  $may_rec = true; }
+  		if (!empty($_currency))      { $obj->setCurrencyId($_currency);          $may_rec = true; }
+  		if (!empty($_p_from))        { $obj->setMinPrice($_p_from);              $may_rec = true; }
+  		if (!empty($_p_to))          { $obj->setMaxPrice($_p_to);                $may_rec = true; }
+
+  		if (!$may_rec) {
+  			$mensaje = 'No hay filtros para registrar';
+  		} else {
+  			$mensaje = 'La búsqueda fue registrada exitosamente';
+
+  			$obj->setAppUserId($_user_id);
+  			$obj->save();
+  			
+  			// set name for this search
+  			if (empty($name_ref)) {
+  				$name_ref = 'Búsqueda nº '.sprintf("%04d", $obj->getId());
+  			}
+  			$obj->setName($name_ref);
+  			$obj->save();
+
+  			// rec in search_match table
+  			SearchMatchTable::getInstance()->recBySearchConditions($ss_user->getAttribute('sch_filter'), $obj->getId());
+
+  			// clear session values for search
+  			myUser::clearSearchInSession();
+  		}
+  	}
+  	return $this->renderText($mensaje); exit();
   }
 
 } // end class

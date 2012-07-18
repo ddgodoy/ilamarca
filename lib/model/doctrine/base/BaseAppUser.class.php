@@ -9,6 +9,8 @@
  * @property string $name
  * @property string $last_name
  * @property string $email
+ * @property string $address
+ * @property string $phone
  * @property string $photo
  * @property string $salt
  * @property string $password
@@ -26,6 +28,8 @@
  * @method string              getName()          Returns the current record's "name" value
  * @method string              getLastName()      Returns the current record's "last_name" value
  * @method string              getEmail()         Returns the current record's "email" value
+ * @method string              getAddress()       Returns the current record's "address" value
+ * @method string              getPhone()         Returns the current record's "phone" value
  * @method string              getPhoto()         Returns the current record's "photo" value
  * @method string              getSalt()          Returns the current record's "salt" value
  * @method string              getPassword()      Returns the current record's "password" value
@@ -42,6 +46,8 @@
  * @method AppUser             setName()          Sets the current record's "name" value
  * @method AppUser             setLastName()      Sets the current record's "last_name" value
  * @method AppUser             setEmail()         Sets the current record's "email" value
+ * @method AppUser             setAddress()       Sets the current record's "address" value
+ * @method AppUser             setPhone()         Sets the current record's "phone" value
  * @method AppUser             setPhoto()         Sets the current record's "photo" value
  * @method AppUser             setSalt()          Sets the current record's "salt" value
  * @method AppUser             setPassword()      Sets the current record's "password" value
@@ -83,6 +89,14 @@ abstract class BaseAppUser extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 200,
+             ));
+        $this->hasColumn('address', 'string', 250, array(
+             'type' => 'string',
+             'length' => 250,
+             ));
+        $this->hasColumn('phone', 'string', 50, array(
+             'type' => 'string',
+             'length' => 50,
              ));
         $this->hasColumn('photo', 'string', 50, array(
              'type' => 'string',

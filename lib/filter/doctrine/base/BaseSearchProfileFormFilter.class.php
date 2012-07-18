@@ -13,6 +13,7 @@ abstract class BaseSearchProfileFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'bedroom_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Bedroom'), 'add_empty' => true)),
       'property_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'add_empty' => true)),
       'operation_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Operation'), 'add_empty' => true)),
       'geo_zone_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('GeoZone'), 'add_empty' => true)),
@@ -22,13 +23,14 @@ abstract class BaseSearchProfileFormFilter extends BaseFormFilterDoctrine
       'min_price'        => new sfWidgetFormFilterInput(),
       'max_price'        => new sfWidgetFormFilterInput(),
       'currency_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Currency'), 'add_empty' => true)),
-      'is_vendor'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'name'             => new sfWidgetFormFilterInput(),
       'reference'        => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
+      'bedroom_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Bedroom'), 'column' => 'id')),
       'property_type_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('PropertyType'), 'column' => 'id')),
       'operation_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Operation'), 'column' => 'id')),
       'geo_zone_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('GeoZone'), 'column' => 'id')),
@@ -38,7 +40,7 @@ abstract class BaseSearchProfileFormFilter extends BaseFormFilterDoctrine
       'min_price'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'max_price'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'currency_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Currency'), 'column' => 'id')),
-      'is_vendor'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'name'             => new sfValidatorPass(array('required' => false)),
       'reference'        => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -62,6 +64,7 @@ abstract class BaseSearchProfileFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'               => 'Number',
+      'bedroom_id'       => 'ForeignKey',
       'property_type_id' => 'ForeignKey',
       'operation_id'     => 'ForeignKey',
       'geo_zone_id'      => 'ForeignKey',
@@ -71,7 +74,7 @@ abstract class BaseSearchProfileFormFilter extends BaseFormFilterDoctrine
       'min_price'        => 'Number',
       'max_price'        => 'Number',
       'currency_id'      => 'ForeignKey',
-      'is_vendor'        => 'Boolean',
+      'name'             => 'Text',
       'reference'        => 'Text',
       'created_at'       => 'Date',
       'updated_at'       => 'Date',

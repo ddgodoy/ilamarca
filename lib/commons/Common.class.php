@@ -113,5 +113,17 @@ class Common
 
     return strtr($toClean, $GLOBALS['normalizeChars']);
   }
+  
+  /**
+   * Get date in certain format
+   *
+   * @param string $date
+   * @return string
+   */
+  public static function getFormattedDate($date, $format='Y-m-d')
+  {
+    $date = new DateTime($date);
+    return $date->format($format);
+  }
 
 } // end class

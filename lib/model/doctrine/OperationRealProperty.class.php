@@ -44,7 +44,7 @@ class OperationRealProperty extends BaseOperationRealProperty
     	$data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta']
     );
     foreach ($currency_data as $value) {
-      $array_id[] =  $value->getRealPropertyId();
+      $array_id[] = $value->getRealPropertyId();
     }
     return $array_id;
   }

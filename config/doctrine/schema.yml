@@ -27,6 +27,8 @@ AppUser:
     name:          { type: string(100) }
     last_name:     { type: string(100) }
     email:         { type: string(200), notnull: true }
+    address:       { type: string(250) }
+    phone:         { type: string(50) }
     photo:         { type: string(50) }
     salt:          { type: string(100) }
     password:      { type: string(100) }
@@ -257,6 +259,7 @@ SearchProfile:
   tableName: search_profile
   columns:
     id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    bedroom_id:       { type: integer(4) }
     property_type_id: { type: integer(4) }
     operation_id:     { type: integer(4) }
     geo_zone_id:      { type: integer(4) }
@@ -266,10 +269,11 @@ SearchProfile:
     min_price:        { type: decimal(10), scale: 2, default: 0 }
     max_price:        { type: decimal(10), scale: 2, default: 0 }
     currency_id:      { type: integer(4) }
-    is_vendor:        { type: boolean, default: false }
+    name:             { type: string(250) }
     reference:        { type: string(150) }
 
   relations:
+    Bedroom:      { class: Bedroom, local: bedroom_id, foreign: id, foreignAlias: Bedroom, onDelete: SET NULL }
     PropertyType: { class: PropertyType, local: property_type_id, foreign: id, foreignAlias: PropertyType, onDelete: SET NULL }
     Operation:    { class: Operation, local: operation_id, foreign: id, foreignAlias: Operation, onDelete: SET NULL }
     GeoZone:      { class: GeoZone, local: geo_zone_id, foreign: id, foreignAlias: GeoZone, onDelete: SET NULL }
@@ -284,9 +288,9 @@ SearchProfile:
 SearchMatch:
   tableName: search_match
   columns:
-    search_profile_id: { type: integer(4), primary: true, notnull: true }
-    real_property_id:  { type: integer(4), primary: true, notnull: true }
+    id:                { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    search_profile_id: { type: integer(4) }
+    vendor_id:         { type: integer(4) }
 
   relations:
-    SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchMatches, onDelete: CASCADE }
-    RealProperty:  { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: SearchMatches, onDelete: CASCADE }
+    SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchProfile, onDelete: CASCADE }
