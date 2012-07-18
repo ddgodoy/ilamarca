@@ -82,8 +82,9 @@ class searchActions extends sfActions
   	$mensaje = '';
   	$may_rec = false;
   	$ss_user = sfContext::getInstance()->getUser();
+  	$checkDB = SearchProfileTable::getInstance()->checkSearchAlreadySaved($ss_user);
 
-  	if ($ss_user->isAuthenticated())
+  	if ($checkDB)
   	{
   		$obj = new SearchProfile();
   		$_user_id       = $ss_user->getAttribute('user_id');

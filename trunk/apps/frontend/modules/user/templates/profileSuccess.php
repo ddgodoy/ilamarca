@@ -3,15 +3,16 @@
 		<div class="fondo-titulo" style="height:47px;">
 			<div class="titulo"></div>
 		</div>
-		<table style="font-family:arial;font-size:13px;" width="100%" cellpadding="2">
-			<tr>
-				<th style="text-align:left;">Fecha</th>
+		<?php if (count($searchs) > 0): ?>
+		<table style="font-family:arial;font-size:13px;" width="100%" cellpadding="0" cellspacing="0">
+			<tr bgcolor="#FFFFFF">
+				<th style="text-align:left;padding:5px;">Fecha</th>
 				<th style="text-align:left;">Referencia</th>
 				<th style="text-align:left;">Criterios</th>
 			</tr>
 			<?php foreach ($searchs as $sch): $_infoFromDB = SearchProfile::getStringInfroFromDBObject($sch); ?>
 			<tr>
-				<td><?php echo Common::getFormattedDate($sch->getCreatedAt(), 'd/m/Y H:i') ?></td>
+				<td style="padding:5px;"><?php echo Common::getFormattedDate($sch->getCreatedAt(), 'd/m/Y H:i') ?></td>
 				<td>
 					<a href="<?php echo url_for('search/index').$_infoFromDB['query_string'] ?>" title="Ver resultados de esta búsqueda">
 						<?php echo $sch->getName() ?>
@@ -21,6 +22,9 @@
 			</tr>
 			<?php endforeach; ?>
 		</table>
+		<?php else: ?>
+			<div class="mensajeSistema comun"><ul><li>No hay búsquedas registradas</li></ul></div>
+		<?php endif; ?>
 	</div>
 </div>
 <!--  -->

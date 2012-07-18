@@ -66,7 +66,7 @@ function preserveSearchInDB()
 		success: function(data) {
 			l_img.style.visibility = 'hidden';
 
-			alert(data);
+			if (data != '') { alert(data); }
 		}
 	});
 }
