@@ -37,11 +37,13 @@ class RealPropertyTable extends Doctrine_Table
    * @param integer $page
    * @param integer $per_page
    * @param string $filter
-   * @param string $order
    * @param array $data_currency
+   * @param string $rq_method
+   * @param array $params
+   * 
    * @return doctrine pager
    */
-  public function searchResults($page, $per_page, $filter, $order, $data_currency = array())
+  public function searchResults($page, $per_page, $filter, $data_currency = array(), $rq_method, $params)
   {
     if (array_sum($data_currency) > 0) {
       $array_property_operation = OperationRealProperty::getArrayPropertyByOperation($data_currency);
@@ -53,11 +55,19 @@ class RealPropertyTable extends Doctrine_Table
            ->orderBy('p.updated DESC');
 
     if (!empty($array_property_operation)) {
+    	$add_to_filter = '';
     	$oPager->getQuery()->andWhereIn('p.id', $array_property_operation);
+    	
+    	foreach ($array_property_operation as $v_pro_ope) {
+    		$add_to_filter .= $v_pro_ope.',';
+    	}
+    	$filter .= ' AND p.id IN ('.substr($add_to_filter, 0, -1).')';
     }
     $oPager->setPage($page);
     $oPager->init();
-
+		//
+    myUser::recSearchInSession($rq_method, $params, $filter);
+    //
     return $oPager;
   }
 

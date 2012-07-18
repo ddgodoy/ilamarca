@@ -12,4 +12,52 @@
  */
 class SearchProfile extends BaseSearchProfile
 {
-}
+	/**
+	 * Get string info from object
+	 *
+	 * @param object $sObject
+	 * @return array
+	 */
+	public static function getStringInfroFromDBObject($sObject)
+	{
+		$query_str = '?';
+		$criterios = '';
+
+		if ($sObject->getPropertyTypeId()) {
+			$criterios .= $sObject->PropertyType->getName().' | ';
+			$query_str .= 'property_type='.$sObject->getPropertyTypeId().'&';
+		}
+		if ($sObject->getOperationId()) {
+			$criterios .= $sObject->Operation->getName().' | ';
+			$query_str .= 'operation='.$sObject->getOperationId().'&';
+		}
+		if ($sObject->getBedroomId()) {
+			$criterios .= $sObject->Bedroom->getName().' | ';
+			$query_str .= 'bedroom='.$sObject->getBedroomId().'&';
+		}
+		if ($sObject->getNeighborhoodId()) {
+			$criterios .= $sObject->Neighborhood->getName().' | ';
+			$query_str .= 'neighborhood='.$sObject->getNeighborhoodId().'&';
+		}
+		if ($sObject->getGeoZoneId()) {
+			$query_str .= 'geo_zone='.$sObject->getGeoZoneId().'&';
+		}
+		if ($sObject->getCityId()) {
+			$query_str .= 'city='.$sObject->getCityId().'&';
+		}
+		if ($sObject->getCurrencyId()) {
+			$query_str .= 'currency='.$sObject->getCurrencyId().'&';
+		}
+		$_minprice = (float) $sObject->getMinPrice();
+		$_maxprice = (float) $sObject->getMaxPrice();
+
+		if (!empty($_minprice)) {
+			$query_str .= 'p_from='.$_minprice.'&';
+		}
+		if (!empty($_maxprice)) {
+			$query_str .= 'p_to='.$_maxprice.'&';
+		}
+		return array('criterios'=>substr($criterios, 0, -3), 'query_string'=>substr($query_str, 0, -1));
+	}
+
+} // end class

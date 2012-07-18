@@ -10,26 +10,27 @@
   <body>
   	<div class="bg-content">
   		<div class="content clearfix">
-                <div class="boton" style=" float: right; ">
-                  <form action="<?php echo url_for('home/setCulture') ?>" method="POST" id="form-culture">
-                  <a>
-                    <strong>
-                      PAIS: &nbsp;&nbsp;
-                      <?php echo select_tag('country', options_for_select(Country::getCultureForSelect(),$sf_user->getAttribute('true_culture','ar')), array('class'=>'et_input', 'style'=>'width: 145px;', 'id'=>'culture-id')) ?>
-                    </strong>
-                  </a>
-                  </form>
-                </div>
-                <br clear="all"/>
+        <div class="boton" style=" float: right; ">
+          <form action="<?php echo url_for('home/setCulture') ?>" method="POST" id="form-culture">
+          <a>
+            <strong>
+              PAIS: &nbsp;&nbsp;
+              <?php echo select_tag('country', options_for_select(Country::getCultureForSelect(),$sf_user->getAttribute('true_culture','ar')), array('class'=>'et_input', 'style'=>'width: 145px;', 'id'=>'culture-id')) ?>
+            </strong>
+          </a>
+          </form>
+        </div>
+        <br clear="all"/>
 				<div class="header">
 					<div class="logo"><a href="<?php echo url_for('@homepage') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
 					<div class="submenu">
 					<?php if ($sf_user->isAuthenticated()): ?>
+						<div class="boton"><a href="<?php echo url_for('@profile') ?>" style="padding-top:5px;">Mi perfil</a></div>
 						<div class="boton"><a href="<?php echo url_for('@logout') ?>" class="logout"></a></div>
 					<?php else: ?>
 						<div class="boton"><a href="<?php echo url_for('@loging') ?>" class="login"></a></div>
 					<?php endif; ?>
-                        <div class="boton"><a href="<?php echo url_for('home/contact') ?>" class="contacto" ></a></div>
+            <div class="boton"><a href="<?php echo url_for('home/contact') ?>" class="contacto" ></a></div>
 					<a href="https://www.facebook.com/inmobiliaria.lamarca"  target="_blank" class="fb"></a>
 					</div>
 				</div>

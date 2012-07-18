@@ -15,15 +15,17 @@ abstract class BaseSearchMatchForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'search_profile_id' => new sfWidgetFormInputHidden(),
-      'real_property_id'  => new sfWidgetFormInputHidden(),
+      'id'                => new sfWidgetFormInputHidden(),
+      'search_profile_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('SearchProfile'), 'add_empty' => true)),
+      'vendor_id'         => new sfWidgetFormInputText(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'search_profile_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('search_profile_id')), 'empty_value' => $this->getObject()->get('search_profile_id'), 'required' => false)),
-      'real_property_id'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('real_property_id')), 'empty_value' => $this->getObject()->get('real_property_id'), 'required' => false)),
+      'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'search_profile_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SearchProfile'), 'required' => false)),
+      'vendor_id'         => new sfValidatorInteger(array('required' => false)),
       'created_at'        => new sfValidatorDateTime(),
       'updated_at'        => new sfValidatorDateTime(),
     ));

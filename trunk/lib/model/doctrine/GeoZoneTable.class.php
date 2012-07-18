@@ -41,16 +41,11 @@ class GeoZoneTable extends Doctrine_Table
 		if ($add_empty) {
 			$arr_options['0'] = '-- '.$sf_instance->getI18N()->__($empty_text).' --';
 		}
-		$q = Doctrine_Query::create()
-             ->select('id, name')
-             ->from('GeoZone')
-             ->orderBy('id');
+		$q = Doctrine_Query::create()->select('id, name')->from('GeoZone')->orderBy('id');
 
-        if($country)
-        {
-            $q->andWhere('country_id = ?', $country);
-        }
-        
+    if ($country) {
+      $q->andWhere('country_id = ?', $country);
+    }
 		$d = $q->fetchArray();
 
 		foreach ($d as $value) {

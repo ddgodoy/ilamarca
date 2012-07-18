@@ -30,7 +30,7 @@
 				<?php echo $form->renderHiddenFields() ?>
 				<p>Los campos con asterisco (*) son obligatorios</p>
 				<div class="boton" style="top:200px;">
-					<input type="submit" value="" class="et_btn_buscar"/>
+					<input type="submit" value="INGRESAR" class="et_btn_vacio"/>
 				</div>
 			</form>
       <br clear="all"/>

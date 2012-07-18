@@ -16,6 +16,7 @@ abstract class BaseSearchProfileForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
+      'bedroom_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Bedroom'), 'add_empty' => true)),
       'property_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'add_empty' => true)),
       'operation_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Operation'), 'add_empty' => true)),
       'geo_zone_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('GeoZone'), 'add_empty' => true)),
@@ -25,7 +26,7 @@ abstract class BaseSearchProfileForm extends BaseFormDoctrine
       'min_price'        => new sfWidgetFormInputText(),
       'max_price'        => new sfWidgetFormInputText(),
       'currency_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Currency'), 'add_empty' => true)),
-      'is_vendor'        => new sfWidgetFormInputCheckbox(),
+      'name'             => new sfWidgetFormInputText(),
       'reference'        => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
@@ -33,6 +34,7 @@ abstract class BaseSearchProfileForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'bedroom_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Bedroom'), 'required' => false)),
       'property_type_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('PropertyType'), 'required' => false)),
       'operation_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Operation'), 'required' => false)),
       'geo_zone_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('GeoZone'), 'required' => false)),
@@ -42,7 +44,7 @@ abstract class BaseSearchProfileForm extends BaseFormDoctrine
       'min_price'        => new sfValidatorNumber(array('required' => false)),
       'max_price'        => new sfValidatorNumber(array('required' => false)),
       'currency_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Currency'), 'required' => false)),
-      'is_vendor'        => new sfValidatorBoolean(array('required' => false)),
+      'name'             => new sfValidatorString(array('max_length' => 250, 'required' => false)),
       'reference'        => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),

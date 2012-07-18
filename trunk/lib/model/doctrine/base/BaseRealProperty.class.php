@@ -43,7 +43,6 @@
  * @property AppUser $AppUser
  * @property Doctrine_Collection $OperationRealProperties
  * @property Doctrine_Collection $RealProperty
- * @property Doctrine_Collection $SearchMatches
  * 
  * @method integer             getId()                      Returns the current record's "id" value
  * @method string              getName()                    Returns the current record's "name" value
@@ -83,7 +82,6 @@
  * @method AppUser             getAppUser()                 Returns the current record's "AppUser" value
  * @method Doctrine_Collection getOperationRealProperties() Returns the current record's "OperationRealProperties" collection
  * @method Doctrine_Collection getRealProperty()            Returns the current record's "RealProperty" collection
- * @method Doctrine_Collection getSearchMatches()           Returns the current record's "SearchMatches" collection
  * @method RealProperty        setId()                      Sets the current record's "id" value
  * @method RealProperty        setName()                    Sets the current record's "name" value
  * @method RealProperty        setDetail()                  Sets the current record's "detail" value
@@ -122,7 +120,6 @@
  * @method RealProperty        setAppUser()                 Sets the current record's "AppUser" value
  * @method RealProperty        setOperationRealProperties() Sets the current record's "OperationRealProperties" collection
  * @method RealProperty        setRealProperty()            Sets the current record's "RealProperty" collection
- * @method RealProperty        setSearchMatches()           Sets the current record's "SearchMatches" collection
  * 
  * @package    sf_icox
  * @subpackage model
@@ -305,10 +302,6 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'foreign' => 'real_property_id'));
 
         $this->hasMany('Gallery as RealProperty', array(
-             'local' => 'id',
-             'foreign' => 'real_property_id'));
-
-        $this->hasMany('SearchMatch as SearchMatches', array(
              'local' => 'id',
              'foreign' => 'real_property_id'));
 

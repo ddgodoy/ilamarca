@@ -5,14 +5,18 @@
 		</div>
 		<?php if (count($oList) > 0): ?>
 			<?php if ($sf_user->isAuthenticated()): ?>
-				<div class="guardar"><a href=""></a></div>
+				<div class="guardar">
+					<a onclick="preserveSearchInDB();">&nbsp;</a>
+					<img id="img_rec_loading" src="/images/loader.gif" border="0" style="position:absolute;visibility:hidden;"/>
+					<input type="hidden" id="ajax_url_rec_search" value="<?php echo url_for('search/AjaxRecSearchInDB') ?>" />
+				</div>
 			<?php endif; ?>
 			<?php
 				$middle_counter = 2;
-				
+
 				foreach ($oList as $p_val):
 					$set_css_middle = ''; if ($middle_counter == 3) { $middle_counter = 0; $set_css_middle = ' middle'; } $middle_counter++;
-					
+
 					$_m2_cubiertos = $p_val->getSquareMeters();
 					$_m2_terreno   = $p_val->getCoveredArea();
 			?>
@@ -46,7 +50,7 @@
 			</script>
 		<?php endforeach; ?>
 
-		<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+		<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params)) ?>
 
 		<?php else: ?>
 			<div class="mensajeSistema error"><ul><li>La búsqueda no devolvió ningún resultado</li></ul></div>
