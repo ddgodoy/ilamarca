@@ -5,9 +5,9 @@
 	<?php if ($sf_user->getFlash('notice')): ?>
 		<div class="mensajeSistema ok">Tus datos fueron actualizados correctamente.</div><br />
 	<?php endif; ?>
-	<div class="contacto">
+    <div class="contacto profile">
 		<div class="search_box clearfix no_background_image" style="margin-left: 35px">
-			<form action="<?php url_for('user/index') ?>" method="post">
+          <form action="<?php url_for('user/index') ?>" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td colspan="2">
@@ -16,6 +16,11 @@
 							</div>
 						</td>
 					</tr>
+                    <tr>
+                      <td colspan="2" align="center">
+                        <?php	echo $form['photo']->render(array('class'=>'et_input','style'=>'width:255px;'))?>
+					  </td>
+                    </tr>
 					<tr><td height="3"></td></tr>
 					<tr>
 						<td valign="top">
@@ -35,43 +40,61 @@
 							<?php if ($form['last_name']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['last_name']->renderError()) ?></em></p><?php endif; ?>
 						</td>
 					</tr>
-					<tr>
+                    <tr>
 						<td valign="top">
-							<p><strong><?php echo $form['email']->renderLabel('Email:') ?></strong></p>
+							<p><strong><?php echo $form['address']->renderLabel('Dirección:') ?></strong></p>
 							<?php
-								$error_email = $form['email']->renderError() ? 'background-color:#FFCCCC;' : '';
-								echo $form['email']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_email));
+								$error_address = $form['address']->renderError() ? 'background-color:#FFCCCC;' : '';
+								echo $form['address']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_address))
 							?>
-							<?php if ($form['email']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['email']->renderError()) ?></em></p><?php endif; ?>
+							<?php if ($form['address']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['address']->renderError()) ?></em></p><?php endif; ?>
 						</td>
 						<td valign="top">
-							<p><strong><?php echo $form['re_email']->renderLabel('Repetir Email:') ?></strong></p>
+							<p><strong><?php echo $form['phone']->renderLabel('Teléfono:') ?></strong></p>
 							<?php
-								$error_re_email = $form['re_email']->renderError() ? 'background-color:#FFCCCC;' : '';
-								echo $form['re_email']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_re_email));
+								$error_phone = $form['phone']->renderError() ? 'background-color:#FFCCCC;' : '';
+								echo $form['phone']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_phone))
 							?>
-							<?php if ($form['re_email']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['re_email']->renderError()) ?></em></p><?php endif; ?>
-						</td>
-					</tr>
-					<tr>
-						<td valign="top">
-							<p><strong><?php echo $form['password']->renderLabel('Contraseña:') ?></strong></p>
-							<?php
-								$error_password = $form['password']->renderError() ? 'background-color:#FFCCCC;' : '';
-								echo $form['password']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_password));
-							?>
-							<?php if ($form['password']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['password']->renderError()) ?></em></p><?php endif; ?>
-						</td>
-						<td valign="top">
-							<p><strong><?php echo $form['re_password']->renderLabel('Repetir Contraseña:') ?></strong></p>
-							<?php
-								$error_re_password = $form['re_password']->renderError() ? 'background-color:#FFCCCC;' : '';
-								echo $form['re_password']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_re_password))
-							?>
-							<?php if ($form['re_password']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['re_password']->renderError()) ?></em></p><?php endif; ?>
+							<?php if ($form['phone']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['phone']->renderError()) ?></em></p><?php endif; ?>
 						</td>
 					</tr>
-				</table>
+                    <tr>
+                        <td valign="top">
+                            <p><strong><?php echo $form['email']->renderLabel('Email:') ?></strong></p>
+                            <?php
+                                $error_email = $form['email']->renderError() ? 'background-color:#FFCCCC;' : '';
+                                echo $form['email']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_email));
+                            ?>
+                            <?php if ($form['email']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['email']->renderError()) ?></em></p><?php endif; ?>
+                        </td>
+                        <td valign="top">
+                            <p><strong><?php echo $form['re_email']->renderLabel('Repetir Email:') ?></strong></p>
+                            <?php
+                                $error_re_email = $form['re_email']->renderError() ? 'background-color:#FFCCCC;' : '';
+                                echo $form['re_email']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_re_email));
+                            ?>
+                            <?php if ($form['re_email']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['re_email']->renderError()) ?></em></p><?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <p><strong><?php echo $form['password']->renderLabel('Contraseña:') ?></strong></p>
+                            <?php
+                                $error_password = $form['password']->renderError() ? 'background-color:#FFCCCC;' : '';
+                                echo $form['password']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_password));
+                            ?>
+                            <?php if ($form['password']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['password']->renderError()) ?></em></p><?php endif; ?>
+                        </td>
+                        <td valign="top">
+                            <p><strong><?php echo $form['re_password']->renderLabel('Repetir Contraseña:') ?></strong></p>
+                            <?php
+                                $error_re_password = $form['re_password']->renderError() ? 'background-color:#FFCCCC;' : '';
+                                echo $form['re_password']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_re_password))
+                            ?>
+                            <?php if ($form['re_password']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['re_password']->renderError()) ?></em></p><?php endif; ?>
+                        </td>
+                    </tr>
+                </table>
 				<?php echo $form->renderHiddenFields() ?>
 				<div style="width:100%;text-align:center;padding-top:10px;">
 					<input type="submit" value="ACTUALIZAR" class="et_btn_vacio"/>
