@@ -1,4 +1,8 @@
 <div class="left">
+    <?php if($sf_user->getFlash('notice')): ?>
+     <div class="mensajeSistema comun"><ul><li><?php echo $sf_user->getFlash('notice') ?></li></ul></div>
+    <br/>
+    <?php endif; ?>
 	<div class="resultado perfil">
 		<div class="fondo-titulo" style="height:47px;">
 			<div class="titulo"></div>
@@ -32,7 +36,9 @@
 	<div class="box clearfix wprofile">
 		<div class="inner clearfix">
 			<div class="titulo"><img src="/images/tit_misdatos.png" alt="Mis datos de perfil" /></div>
-			<div class="avatar"><img src="/images/avatar.jpg" alt="Avatar generico" /></div>
+			<div class="avatar">
+              <img alt="Avatar" src="<?php echo $sf_user->getAttribute('user_photo')!='' ? '/admin/uploads/user/'.$sf_user->getAttribute('user_photo') : '/images/avatar.jpg' ?>" border="0" width="137px" height="119px"/>
+            </div>
 			<div class="nombre"><?php echo $oUser->getName().' '.$oUser->getLastName() ?></div>
 
 			<p class="label">Dirección:</p>
