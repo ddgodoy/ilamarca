@@ -354,6 +354,7 @@ html[xmlns] .clearfix {
 
 .contacto .info a:hover { text-decoration:underline}
 
+.profile {	background-image: url(/images/bg_profile.png) !important; height:624px !important;}
 /*Perfil*/
 
 .perfil .titulo {background-image: url(/images/tit_misbusquedas.png);}
