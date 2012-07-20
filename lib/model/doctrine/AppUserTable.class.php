@@ -72,7 +72,9 @@ class AppUserTable extends Doctrine_Table
 				$aThumbs = array(ServiceFileHandler::getThumbImage($upload_file) => array('w'=>20, 'h'=>20), $upload_file => array('w'=>150, 'h'=>150));
 				$oResize->setMultiple($upload_file, $aThumbs, $destination, 0, 0, $f_extension, array('metodo' => 'full'));
 			}
-  	} elseif ($reset && $recorded->getPhoto()) {
+  	} 
+    elseif ($reset && $recorded->getPhoto())
+    {
   		@unlink($destination.$recorded->getPhoto());
   		@unlink($destination.ServiceFileHandler::getThumbImage($recorded->getPhoto()));
 

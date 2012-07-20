@@ -85,6 +85,14 @@ class AppUser extends BaseAppUser
     $this->_set('password', sha1($password . $this->getSalt())); //Override
   }
 
+  /**
+   * Override set password method
+   * @param string $password contraseña
+   */
+  public function setPasswordOffSalt($password)
+  {
+    $this->_set('password', $password); //Override
+  }
  /**
   * Password verification
   * 
