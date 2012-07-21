@@ -72,7 +72,7 @@ html[xmlns] .clearfix {
 
 
 /*footer*/
-.footer {background-image: url(/images/bg_footer.png);background-repeat: no-repeat;background-position: center top; background-color:#FFFFFF; padding-top:14px; min-height:60px; margin-top:30px;}
+.footer {background-image: url(/images/bg_footer.png);background-repeat: no-repeat;background-position: center top; background-color:#FFFFFF; padding-top:14px; min-height:60px;}
 
 .footer p { font-size:11px; color:#454545; text-align:center;}
 
@@ -497,4 +497,38 @@ html[xmlns] .clearfix {
     float: left!important;
     padding-left: 14px;
     padding-top: 13px!important;
+}
+
+#bgtransparent{
+  position:fixed;
+  left:0;
+  top:0;
+  background-color:#000;
+  opacity:0.6;
+  filter:alpha(opacity=60)
+}
+
+#bgmodal{
+  border:10px solid #E9E9E9;
+  height:0;
+  outline:medium none;
+  overflow:hidden;
+  position:fixed;
+  width:0;
+  z-index:1102;
+  background:none repeat scroll 0 0 #FAFAFA;
+  padding:20px
+}
+#modal-close{
+  background:url(/images/btn_close_x.png) repeat scroll -40px 0 transparent;
+  cursor:pointer;
+  height:42px;
+  position:fixed;
+  width:42px;
+  z-index:1110
+}
+
+.sharer-property{
+    margin-left: 30px !important;
+    width: 92% !important;
 }
