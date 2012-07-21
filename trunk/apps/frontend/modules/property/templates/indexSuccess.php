@@ -122,15 +122,11 @@
 	<div class="box clearfix wprofile">
 		<div class="inner clearfix">
 			<div class="titulo"><img src="images/tit_datosvendedor.png" alt="Datos del vendedor" /></div>
-			<div class="avatar"><img src="images/avatar.jpg" alt="Avatar generico" /></div>
-			<div class="nombre">Juan Gutierrez</div>
-			<p class="label">Dirección:</p>
-			<p>Av. Emilio Lamarca 3920</p>
-			<p class="label">Teléfono:</p>
-			<p>0351 42824473</p>
-			<p class="label">E-mail:</p>
-			<p>juangutierrez@gmail.com</p>
-			<div class="boton"><a href="#" class="contactar"></a></div>
+			<div class="avatar"><img src="<?php echo $property->AppUser->getPhoto() ? '/admin/uploads/user/'.$property->AppUser->getPhoto() : '/images/avatar.jpg' ?>" /></div>
+			<div class="nombre"><?php echo $property->AppUser->getName().' '.$property->AppUser->getLastName() ?></div>
+			<div class="boton">
+				<a href="<?php echo $sf_user->isAuthenticated() ? url_for('search/contact?pid='.$property->getId()) : url_for('user/index') ?>" class="contactar" style="margin-top:30px;"></a>
+			</div>
 		</div>
 	</div>
 	<div class="sombra"></div>

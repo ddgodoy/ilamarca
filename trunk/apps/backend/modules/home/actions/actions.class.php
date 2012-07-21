@@ -17,11 +17,43 @@ class homeActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-  	$this->sch_name = trim($request->getParameter('sch_name'));
+  	$this->contacts = SearchProfileTable::getInstance()->getContactsForAdminUser($this->getUser()->getAttribute('user_id'));
+  	$this->searchs  = SearchProfileTable::getInstance()->getSearchsForAdminUser($this->getUser()->getAttribute('user_id'));
 
-  	$this->searchs = SearchProfileTable::getInstance()->getSearchsForAdminUser(
-  		$this->getUser()->getAttribute('user_id'), $this->sch_name
-  	);
+  	$this->qSearchs  = count($this->searchs);
+  	$this->qContacts = count($this->contacts);
+  	$this->hostname  = $request->getHost();
+  }
+  
+ /**
+  * Executes search details action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeSearchDetails(sfWebRequest $request)
+  {
+  	$this->data = SearchProfileTable::getInstance()->find($request->getParameter('id', 0));
+  	
+  	if (!$this->data) {
+  		$this->redirect('home/index');
+  	}
+  	$this->perfil = SearchProfile::getStringInfroFromDBObject($this->data);
+  	//$this->propts = SearchMatchTable::getInstance()->getPropertiesInProfile($this->perfil['filter_for_db'], $this->getUser()->getAttribute('user_id'));
+  }
+  
+ /**
+  * Executes contact details action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeContactDetails(sfWebRequest $request)
+  {
+  	$this->data = SearchContactTable::getInstance()->find($request->getParameter('id', 0));
+  	
+  	if (!$this->data) {
+  		$this->redirect('home/index');
+  	}
+  	$this->hostname = $request->getHost();
   }
 
   /**

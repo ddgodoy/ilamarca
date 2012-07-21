@@ -3,7 +3,7 @@
 		<div class="titulo"></div>
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
-		<div class="mensajeSistema ok">Gracias por contactar con nosotros, Te responderemos a la brevedad</div>
+		<div class="mensajeSistema ok">Gracias por contactar con nosotros. Te responderemos a la brevedad.</div>
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
@@ -44,7 +44,7 @@
 				<?php echo $form->renderHiddenFields() ?>
 				<p <?php if ($form->hasErrors()): ?>style="color:red;"<?php endif; ?>>Los campos con asterisco (*) son obligatorios</p>
 				<div class="boton" style="bottom: 20px;">
-					<input type="submit" value="" class="et_btn_buscar"/>
+					<input type="submit" value="ENVIAR" class="et_btn_vacio"/>
 				</div>
 			</form>
 		</div>

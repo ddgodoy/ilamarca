@@ -3,7 +3,7 @@
 		<div class="titulo titulo-html"><p>CREÁ TU PERFIL</p></div>
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
-		<div class="mensajeSistema ok">Gracias por contactar con nosotros, Te responderemos a la brevedad.</div>
+		<div class="mensajeSistema ok">Gracias por contactar con nosotros. Te responderemos a la brevedad.</div>
 		<br />
 	<?php endif; ?>
 	<div class="contacto">

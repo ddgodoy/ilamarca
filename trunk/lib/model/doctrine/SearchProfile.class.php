@@ -22,10 +22,12 @@ class SearchProfile extends BaseSearchProfile
 	{
 		$query_str = '?';
 		$criterios = '';
+		$st_for_db = 'p.id > 0';
 
 		if ($sObject->getPropertyTypeId()) {
 			$criterios .= $sObject->PropertyType->getName().' | ';
 			$query_str .= 'property_type='.$sObject->getPropertyTypeId().'&';
+			$st_for_db .= ' AND p.property_type_id = '.$sObject->getPropertyTypeId();
 		}
 		if ($sObject->getOperationId()) {
 			$criterios .= $sObject->Operation->getName().' | ';
@@ -34,16 +36,20 @@ class SearchProfile extends BaseSearchProfile
 		if ($sObject->getBedroomId()) {
 			$criterios .= $sObject->Bedroom->getName().' | ';
 			$query_str .= 'bedroom='.$sObject->getBedroomId().'&';
+			$st_for_db .= ' AND p.bedroom_id = '.$sObject->getBedroomId();
 		}
 		if ($sObject->getNeighborhoodId()) {
 			$criterios .= $sObject->Neighborhood->getName().' | ';
 			$query_str .= 'neighborhood='.$sObject->getNeighborhoodId().'&';
+			$st_for_db .= ' AND p.neighborhood_id = '.$sObject->getNeighborhoodId();
 		}
 		if ($sObject->getGeoZoneId()) {
 			$query_str .= 'geo_zone='.$sObject->getGeoZoneId().'&';
+			$st_for_db .= ' AND p.geo_zone_id = '.$sObject->getGeoZoneId();
 		}
 		if ($sObject->getCityId()) {
 			$query_str .= 'city='.$sObject->getCityId().'&';
+			$st_for_db .= ' AND p.city_id = '.$sObject->getCityId();
 		}
 		if ($sObject->getCurrencyId()) {
 			$query_str .= 'currency='.$sObject->getCurrencyId().'&';
@@ -57,7 +63,11 @@ class SearchProfile extends BaseSearchProfile
 		if (!empty($_maxprice)) {
 			$query_str .= 'p_to='.$_maxprice.'&';
 		}
-		return array('criterios'=>substr($criterios, 0, -3), 'query_string'=>substr($query_str, 0, -1));
+		return array(
+			'criterios'     => substr($criterios, 0, -3),
+			'query_string'  => substr($query_str, 0, -1),
+			'filter_for_db' => $st_for_db
+		);
 	}
 
 } // end class
