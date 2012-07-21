@@ -91,7 +91,7 @@ class Gallery extends BaseGallery
   */
 	public static function getFirstGallery($property)
 	{
-		$path = '';
+		$path = '/images/gallery/ficha_no_imagen.jpg';
 		$name_gallery = GalleryTable::getInstance()->getGalleryByProperty($property, true);
 
 		if (!empty($name_gallery)) {
