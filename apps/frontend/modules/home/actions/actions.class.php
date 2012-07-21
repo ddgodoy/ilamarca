@@ -63,7 +63,7 @@ class homeActions extends sfActions
 				//
 				$sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
 		  		array(
-		  			'subject'     => 'Nueva consulta desde ilamarca.com',
+		  			'subject'     => 'Nueva consulta desde '.sfConfig::get('app_project_url_name'),
 		  			'to_partial'  => array(
 		  				'nombre'    => $post_values['name'],
 		  				'email'     => $post_values['email'],

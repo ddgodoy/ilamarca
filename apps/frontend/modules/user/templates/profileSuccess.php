@@ -18,7 +18,7 @@
 			<tr>
 				<td style="padding:5px;"><?php echo Common::getFormattedDate($sch->getCreatedAt(), 'd/m/Y H:i') ?></td>
 				<td>
-					<a href="<?php echo url_for('search/index').$_infoFromDB['query_string'] ?>" title="Ver resultados de esta búsqueda">
+					<a href="<?php echo url_for('search/index').$_infoFromDB['query_string'] ?>" title="Ver resultados de esta búsqueda" class="et_link">
 						<?php echo $sch->getName() ?>
 					</a>
 				</td>

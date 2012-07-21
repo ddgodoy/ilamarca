@@ -25,7 +25,7 @@
 					<div class="logo"><a href="<?php echo url_for('@homepage') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
 					<div class="submenu">
 					<?php if ($sf_user->isAuthenticated()): ?>
-						<div class="boton"><a href="<?php echo url_for('@profile') ?>" style="padding-top:5px;">Mi perfil</a></div>
+						<div class="boton"><a href="<?php echo url_for('@profile') ?>" style="padding-top:5px;" class="et_link">Mi perfil</a></div>
 						<div class="boton"><a href="<?php echo url_for('@logout') ?>" class="logout"></a></div>
 					<?php else: ?>
 						<div class="boton"><a href="<?php echo url_for('@loging') ?>" class="login"></a></div>

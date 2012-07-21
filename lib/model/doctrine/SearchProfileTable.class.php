@@ -28,16 +28,10 @@ class SearchProfileTable extends Doctrine_Table
    * Get searchs for admin user
    *
    * @param integer $user_id
-   * @param string $filter
    * @return object
    */
-  public function getSearchsForAdminUser($user_id, $filter)
+  public function getSearchsForAdminUser($user_id)
   {
-  	$f = "sm.vendor_id = $user_id";
-
-  	if (!empty($filter)) {
-  		$f .= " AND sp.name LIKE '%$filter%'";
-  	}
   	$q = Doctrine_Query::create()
   	     ->from('SearchMatch sm')
   	     ->leftJoin('sm.SearchProfile sp')
@@ -46,12 +40,32 @@ class SearchProfileTable extends Doctrine_Table
   	     ->leftJoin('sp.Operation op')
   	     ->leftJoin('sp.City c')
   	     ->leftJoin('sp.Neighborhood n')
-  	     ->where($f)
-  	     ->orderBy('sp.created_at DESC');
+  	     ->where("sm.vendor_id = $user_id")
+  	     ->orderBy('sp.created_at DESC')
+  	     ->limit(50);
 
 		return $q->execute();
   }
   
+  /**
+   * Get contacts for admin user
+   *
+   * @param integer $user_id
+   * @return object
+   */
+  public function getContactsForAdminUser($user_id)
+  {
+  	$q = Doctrine_Query::create()
+  	     ->from('SearchContact sc')
+  	     ->leftJoin('sc.RealProperty rp')
+  	     ->leftJoin('sc.AppUser u')
+  	     ->where("sc.vendor_id = $user_id")
+  	     ->orderBy('sc.created_at DESC')
+  	     ->limit(50);
+
+		return $q->execute();
+  }
+
   /**
    * Check if search is already saved
    *

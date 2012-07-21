@@ -49,4 +49,37 @@ class SearchMatchTable extends Doctrine_Table
 		}
   }
   
+  /**
+   * Get properties in query for admin user
+   *
+   * @param string $query
+   * @param integer $vendor
+   * @return object
+   */
+  public function getPropertiesInProfile($query, $vendor)
+  {
+  	$sz = '';
+  	$qz = Doctrine_Query::create()->from('VendorZone')->where("app_user_id = $vendor");
+  	
+  	if ($qz->count() > 0) {
+  		$dz = $qz->execute();
+
+  		foreach ($dz as $v_z) { $sz .= $v_z->getNeighborhoodId().','; }
+  	}
+  	$sz = substr($sz, 0, -1);
+
+  	if (!empty($sz)) {
+  		$sz = "OR p.neighborhood_id IN ($sz)";
+  	}
+  	$filter = "$query AND (p.app_user_id = $vendor $sz)";
+
+  	$q = Doctrine_Query::create()
+  			 ->from('RealProperty p')
+  			 ->where($filter)
+  			 ->orderBy('p.created_at DESC')
+  			 ->limit(50);
+
+		return $q->count() > 0 ? $q->execute() : NULL;
+  }
+  
 } // end class

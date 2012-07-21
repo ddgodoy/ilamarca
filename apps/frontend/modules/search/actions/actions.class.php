@@ -119,7 +119,7 @@ class searchActions extends sfActions
   			
   			// set name for this search
   			if (empty($name_ref)) {
-  				$name_ref = 'Búsqueda nº '.sprintf("%04d", $obj->getId());
+  				$name_ref = 'Búsqueda nro. '.sprintf("%04d", $obj->getId());
   			}
   			$obj->setName($name_ref);
   			$obj->save();
@@ -132,6 +132,62 @@ class searchActions extends sfActions
   		}
   	}
   	return $this->renderText($mensaje); exit();
+  }
+  
+  /**
+   * Executes contact vendor action
+   *
+   * @param sfRequest $request A request object
+   */
+  public function executeContact(sfWebRequest $request)
+  {
+  	$this->pid = $request->getParameter('pid', 0);
+  	$this->obj = RealPropertyTable::getInstance()->find($this->pid);
+  	
+  	if (!$this->obj) {
+  		$this->redirect('home/index');
+  	}
+  	$this->error = '';
+  	$this->messg = '';
+  	$this->commt = trim($request->getParameter('p_comments', ''));
+  	
+  	if ($request->isMethod('POST'))
+		{
+			if (!empty($this->commt)) {
+				$vendor_email = $this->obj->AppUser->getEmail();
+				$vendor_name  = $this->obj->AppUser->getName().' '.$this->obj->AppUser->getLastName();
+				$mail_titulo  = 'Contacto por una propiedad desde '.sfConfig::get('app_project_url_name');
+				
+				if ($vendor_email) {
+					$sendEmail = ServiceOutgoingMessages::sendToSingleAccount(
+						$vendor_name,
+						$vendor_email,
+						'search/mailToVendor',
+						array(
+			  			'subject'     => $mail_titulo,
+			  			'to_partial'  => array(
+			  				'titulo'    => $mail_titulo,
+			  				'vendedor'  => $vendor_name,
+			  				'cliente'   => $this->getUser()->getAttribute('user_name').' '.$this->getUser()->getAttribute('user_last_name'),
+			  				'url_sitio' => sfConfig::get('app_project_url_name'),
+			  				'backend'   => 'http://'.$request->getHost().'/admin'
+			  			)
+			  		)
+					);
+					// rec contact in DB
+					$ctc = new SearchContact();
+					$ctc->setAppUserId     ($this->getUser()->getAttribute('user_id'));
+					$ctc->setRealPropertyId($this->pid);
+					$ctc->setVendorId      ($this->obj->AppUser->getId());
+					$ctc->setComments      ($this->commt);
+					$ctc->save();	
+				}
+				$this->messg = 'ok';
+  			$this->commt = '';
+			} else {
+				$this->error = 'error';
+			}
+		}
   }
 
 } // end class

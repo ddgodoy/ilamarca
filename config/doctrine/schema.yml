@@ -294,3 +294,19 @@ SearchMatch:
 
   relations:
     SearchProfile: { class: SearchProfile, local: search_profile_id, foreign: id, foreignAlias: SearchProfile, onDelete: CASCADE }
+
+#
+# SEARCH_CONTACT
+#
+SearchContact:
+  tableName: search_contact
+  columns:
+    id:               { type: integer(4), primary: true, notnull: true, autoincrement: true }
+    app_user_id:      { type: integer(4) }
+    real_property_id: { type: integer(4) }
+    vendor_id:        { type: integer(4) }
+    comments:         { type: text }
+
+  relations:
+    AppUser:      { class: AppUser, local: app_user_id, foreign: id, foreignAlias: AppUser, onDelete: CASCADE }
+    RealProperty: { class: RealProperty, local: real_property_id, foreign: id, foreignAlias: RealProperty, onDelete: CASCADE }

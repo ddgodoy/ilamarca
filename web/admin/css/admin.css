@@ -980,3 +980,12 @@ h2.grupo {
 	margin-left: 660px;
 	width: 150px;
 }
+.lg_separacion {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.txt_show2 {
+	color: #666666;
+	font-weight: bold;
+	font-size: 13px;
+}

@@ -54,7 +54,7 @@ class userActions extends sfActions
         $value['email'],
         'home/mailUserFrontend',
         array(
-        	'subject'    => 'Sus datos de acceso para ilamarca.com',
+        	'subject'    => 'Sus datos de acceso para '.sfConfig::get('app_project_url_name'),
           'to_partial' => array(
             'email' => $value['email'],
             'token' => $user->getRecoverToken()
@@ -153,47 +153,42 @@ class userActions extends sfActions
   public function executeUpdateProfile(sfWebRequest $request)
   {
     $_user = $this->getUser()->getAttribute('user_id', '');
-    if($_user== '')
-    {
+
+    if ($_user== '') {
       $this->redirect('@homepage');
     }
     $_user_object = AppUserTable::getInstance()->findOneById($_user);
     $_pass = $_user_object->getPassword();
     $_salt = $_user_object->getSalt();
+
     $this->form = new AppUserProfileForm($_user_object);
 
-    if($request->isMethod('POST'))
-    {
+    if ($request->isMethod('POST')) {
       $this->processFormUpdateProfile($request, $this->form, $_pass, $_salt);
     }
   }
-
+	//
   protected function processFormUpdateProfile(sfWebRequest $request, sfForm $form, $_pass, $_salt)
   {
     $form->bind($request->getParameter($form->getName()),$request->getFiles($form->getName()));
     $photo_user = $this->getUser()->getAttribute('user_photo');
+
     if ($form->isValid())
     {
        $photo = $request->getFiles($form->getName());
        $value = $form->getValues();
        $profile = $form->save();
-       if($photo['photo']['size'] <= 0)
-       {
+
+       if ($photo['photo']['size'] <= 0) {
          $profile->setPhoto($photo_user);
        }
-      
-       if($value['password']=='')
-       {
+       if ($value['password']=='') {
           $profile->setPasswordOffSalt($_pass);
           $profile->setSalt($_salt);
-       }  
-       else 
-       {
+       } else {
          $profile->setPassword($value['password']);
        }
-
        $profile->save();
-       
 
        ## set photo
   	   AppUserTable::getInstance()->uploadPhoto($photo['photo'], $profile);
@@ -205,4 +200,5 @@ class userActions extends sfActions
        $this->redirect('@profile');
     }
   }
+
 } // end class

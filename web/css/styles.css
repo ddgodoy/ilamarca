@@ -85,6 +85,21 @@ html[xmlns] .clearfix {
 
 .buscador .titulo {background-image: url(/images/tit_buscador.png);background-repeat: no-repeat;background-position: center center; height:23px; width:100%; padding-top:40px; display:block; margin-bottom:28px;}
 
+.et_search_contacto {
+	font-family: arial;
+	height: 23px;
+	width: 100%;
+	padding-top: 13px;
+	display: block;
+	color: #333333;
+	font-size: 20px;
+	text-align: center;
+}
+.et_info_casa {
+	float: right;
+	width: 275px;
+	height: 400px;
+}
 .buscador .boton { width:100%; text-align:center; position:absolute; bottom:45px;}
 
 .buscador a.buscar {background-image: url(/images/btn_buscar.png); background-position: center top;  width:116px; height:47px; display:inline-block;}
@@ -360,6 +375,14 @@ html[xmlns] .clearfix {
 .perfil .titulo {background-image: url(/images/tit_misbusquedas.png);}
 
 /* pinika */
+.et_link {
+	font-family: arial;
+	color: #666666;
+	font-weight: bold;
+}
+.et_link:hover {
+	text-decoration: underline;
+}
 .ajax_img {
 	visibility: hidden;
 	padding-left: 10px;
