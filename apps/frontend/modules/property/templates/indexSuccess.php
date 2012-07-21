@@ -1,15 +1,4 @@
-<?php
-	$m2_sup_cubierta = $property->getSquareMeters();
-	$m2_sup_terreno  = $property->getCoveredArea();
-	$get_google_map  = $property->getGoogleMap();
-	$_down_pdf_file  = $property->getPdfFile();
-?>
 <script type="text/javascript">
-	function asdfasdfas()
-	{
-		alert('okokok');
-	}
-
 	$(document).ready(function () {
 		$('#fotos').click(function() {
 			$('#gallery').removeAttr('style');
@@ -43,9 +32,125 @@
 			$('#videos').attr('class', 'videos');
 			$('#gallery-videos').hide();
 		})
+
+        //
+        $(window).resize(function () {
+            var ancho = 735;
+            var alto = 475;
+            var wscr = $(window).width();
+            var hscr = $(window).height();
+            $('#bgtransparent').css("width", wscr);
+            $('#bgtransparent').css("height", hscr);
+            $('#bgmodal').css("width", ancho + 'px');
+            $('#bgmodal').css("height", alto + 'px');
+            var wcnt = $('#bgmodal').width();
+            var hcnt = $('#bgmodal').height();
+            var mleft = (wscr - wcnt) / 2;
+            var mtop = (hscr - hcnt) / 2;
+            var atop = (mtop - 15);
+            var aright = (mleft - 72);
+            $('#bgmodal').css("left", mleft + 'px');
+            $('#bgmodal').css("top", mtop + 'px');
+            $('#modal-close').css("top", atop + 'px');
+            $('#modal-close').css("right", aright + 'px')
+        });
+
+        $('#email-box').click(function(){
+           showModal();
+        });
+
+        $('#submit-sharer').click(function(){
+
+          if($('#contac_name').val()=='')
+          {
+            alert('Ingresa tu nombre');
+            $('#contac_name').focus();
+            return false;
+          }
+
+          if($('#contac_email').val()=='')
+          {
+            alert('Ingresa tu email');
+            $('#contac_email').focus();
+            return false;
+          }
+
+          if(!validar_email($('#contac_email').val()))
+          {
+            alert('Tu email no es correcto');
+            $('#contac_email').focus();
+            return false;
+          }
+
+          if($('#contac_email_friend').val()=='')
+          {
+            alert('Ingresa el email de tu amigo');
+            $('#contac_email_friend').focus();
+            return false;
+          }
+
+          if(!validar_email($('#contac_email_friend').val()))
+          {
+            alert('El email de tu amigo no es correcto');
+            $('#contac_email_friend').focus();
+            return false;
+          }
+
+        });
+
+
 	});
+  //
+  function showModal() {
+      var bgdiv = $('<div>').attr({
+          'id': 'bgtransparent'
+      });
+      $('body').append(bgdiv);
+      var wscr = $(window).width();
+      var hscr = $(window).height();
+      $('#bgtransparent').css("width", wscr);
+      $('#bgtransparent').css("height", hscr);
+      var moddiv = '';
+      moddiv = $('<div>').attr({
+          'id': 'bgmodal'
+      });
+      var mod_close = $('<div>').attr({
+          id: 'modal-close-div'
+      });
+      $('body').append(moddiv);
+      $('body').append(mod_close);
+      $('#bgmodal').append($('#ab-inbox').contents());
+      $('#modal-close-div').append($('#new-close-modal').contents());
+      $(window).resize()
+  }
+
+  //
+  function closeModal() {
+      $('#ab-inbox').append($('#bgmodal').contents());
+      $('#new-close-modal').append($('#modal-close-div').contents());
+      $('#bgmodal').remove();
+      $('#bgtransparent').remove();
+      $('#modal-close-div').remove()
+  }
+  
+  //
+  function validar_email(valor)
+    {
+        // creamos nuestra regla con expresiones regulares.
+        var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        // utilizamos test para comprobar si el parametro valor cumple la regla
+        if(filter.test(valor))
+            return true;
+        else
+            return false;
+    }
 </script>
+<?php include_partial ('boxEmailSharer') ?>
 <div class="left ficha">
+    <?php if($sf_user->getFlash('notice')): ?>
+     <div class="mensajeSistema comun"><ul><li><?php echo $sf_user->getFlash('notice') ?></li></ul></div>
+    <br/>
+    <?php endif; ?>
 	<div class="fondo-titulo">
 		<h1><?php echo truncate_text($property->getName(), 55, '') ?></h1>
 		<h3><?php echo Operation::getPrices($property->getId(), $sf_user->getCulture()) ?></h3>
@@ -109,12 +214,33 @@
 			<?php if (!empty($m2_sup_terreno)): ?>
 				<li><strong>Superficie terreno: </strong> <?php echo $m2_sup_terreno ?> m2.</li>
 			<?php endif; ?>
+            <?php if (!empty($years_antiquity)): ?>
+				<li><strong>Antigüedad (años): </strong> <?php echo $years_antiquity ?> </li>
+			<?php endif; ?>
+            <?php if (!empty($qty_bathrooms)): ?>
+				<li><strong>Baños: </strong> <?php echo $qty_bathrooms ?> </li>
+			<?php endif; ?>
 			<li><strong>Cantidad dormitorios: </strong> <?php echo $property->getBedroom()->getName() ?></li>
 		</ul>
 		<h2>DESCRIPCIÓN</h2>
 		<p style="text-align:justify">
 			<?php echo $property->getDetail() ?>
 		</p>
+        <br/>
+        <?php if($property->getPointsOfRef()): ?>
+        <h2>PUNTOS DE REFERENCIA</h2>
+		<p style="text-align:justify">
+			<?php echo $property->getPointsOfRef() ?>
+		</p>
+        <br/>
+        <?php endif; ?>
+        <?php if($property->getTransports()): ?>
+        <h2>TRANSPORTE</h2>
+		<p style="text-align:justify">
+			<?php echo $property->getTransports() ?>
+		</p>
+        <br/>
+        <?php endif; ?>
 	</div>
 </div>
 <!-- -->
@@ -131,12 +257,21 @@
 	</div>
 	<div class="sombra"></div>
 	<!-- -->
+    <?php if (!empty($qrcode_img)): ?>
+    <div class="box clearfix wprofile">
+      <div align="center" style=" padding: 15px;">
+		<img src="/uploads/qr_codes/<?php echo $qrcode_img ?>" alt="qr" title="qr" />
+      </div>
+	</div>
+	<div class="sombra"></div>
+	<!-- -->
+    <?php endif; ?>
 	<div class="box clearfix  compartir">
 		<div class="inner clearfix">
 			<div class="titulo"><img src="images/tit_compartir.png" alt="Compartir propiedad" /></div>
 			<div class="boton">
-				<a href="#" class="share-fb">En Facebook</a>
-				<a href="#" class="share-email">Por E-mail</a>
+              <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb" target="_blanck">En Facebook</a>
+              <a class="share-email" id="email-box" >Por E-mail</a>
 			</div>
 		</div>
 	</div>
