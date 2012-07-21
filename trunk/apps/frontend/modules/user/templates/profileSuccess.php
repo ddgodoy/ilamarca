@@ -41,12 +41,9 @@
             </div>
 			<div class="nombre"><?php echo $oUser->getName().' '.$oUser->getLastName() ?></div>
 
-			<p class="label">Dirección:</p>
-			<p><?php echo $oUser->getAddress() ?></p>
-			<p class="label">Teléfono:</p>
-			<p><?php echo $oUser->getPhone() ?></p>
-			<p class="label">E-mail:</p>
-			<p><?php echo $oUser->getEmail() ?></p>
+			<p class="label">Dirección: <?php echo $oUser->getAddress() ?></p>
+			<p class="label">Teléfono:  <?php echo $oUser->getPhone() ?></p>
+			<p class="label">E-mail:    <?php echo $oUser->getEmail() ?></p>
 
 			<div class="boton">
 				<a href="#" class="modificar" onclick="document.location='<?php echo url_for('user/updateProfile') ?>';"></a>
