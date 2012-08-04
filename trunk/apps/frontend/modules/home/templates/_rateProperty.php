@@ -6,8 +6,8 @@
                         Te brindamos la seguridad de un <strong>Perito Tasador Oficial.</strong>
                 </p>
                 <div class="boton">
-                        <a href="#" class="vende"></a>
-                        <a href="#" class="alquila"></a>
+                  <a href="<?php echo url_for('home/contact?type=vende') ?>" class="vende"></a>
+                  <a href="<?php echo url_for('home/contact?type=alquila') ?>" class="alquila"></a>
                 </div>
         </div>
 </div>

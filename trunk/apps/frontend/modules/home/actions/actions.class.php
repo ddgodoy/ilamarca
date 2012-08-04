@@ -49,6 +49,7 @@ class homeActions extends sfActions
    */
 	public function executeContact(sfWebRequest $request)
 	{
+        $this->type = $request->getParameter('type','');
 		$this->form = new ContacForm();
 		
 		if ($request->isMethod('POST'))
@@ -58,12 +59,27 @@ class homeActions extends sfActions
 			if ($this->form->isValid())
 			{
 				$post_values = $this->form->getValues();
+
+                $post_values['type'];
+
+                switch ($post_values['type']) {
+                  case 'alquila':
+                      $subject = 'Nueva consulta por Alquiler de propiedad';
+                    break;
+                  case 'vende':
+                      $subject = 'Nueva consulta por Venta de propiedad';
+                    break;
+                  default:
+                      $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
+                    break;
+                }
+
 				//
 				$destinatarios = array('matias@inmobiliarialamarca.com'=>'Matías', 'luciana@inmobiliarialamarca.com'=>'Luciana');
 				//
 				$sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
 		  		array(
-		  			'subject'     => 'Nueva consulta desde '.sfConfig::get('app_project_url_name'),
+		  			'subject'     => $subject,
 		  			'to_partial'  => array(
 		  				'nombre'    => $post_values['name'],
 		  				'email'     => $post_values['email'],

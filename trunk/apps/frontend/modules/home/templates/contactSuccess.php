@@ -1,6 +1,10 @@
 <div class="left">
 	<div class="fondo-titulo contact">
+     <?php if($type == ''): ?>
 		<div class="titulo"></div>
+     <?php else: ?>   
+        <div class="titulo titulo-html"><p></p></div>
+     <?php endif; ?>
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
 		<div class="mensajeSistema ok">Gracias por contactar con nosotros. Te responderemos a la brevedad.</div>
