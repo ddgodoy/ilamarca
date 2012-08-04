@@ -1,11 +1,13 @@
 <div class="left">
-	<div class="fondo-titulo contact">
      <?php if($type == ''): ?>
-		<div class="titulo"></div>
-     <?php else: ?>   
-        <div class="titulo titulo-html"><p></p></div>
+        <div class="fondo-titulo contact">
+          <div class="titulo"></div>
+        </div>
+     <?php else: ?>
+        <div class="fondo-titulo">
+          <div class="titulo titulo-html"><p>TASA TU PROPIEDAD</p></div>
+        </div>
      <?php endif; ?>
-	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
 		<div class="mensajeSistema ok">Gracias por contactar con nosotros. Te responderemos a la brevedad.</div>
 		<br />
@@ -39,7 +41,7 @@
 					<?php echo $form['address']->render(array('class'=>'et_input','style'=>'width:255px;')) ?>
 				</div>
 				<div class="rowElem">
-					<p><strong><?php echo $form['message']->renderLabel('* Consulta:') ?></strong></p>
+					<p><strong><?php echo $form['message']->renderLabel($label.':') ?></strong></p>
 					<?php
 						$error_message = $form['message']->renderError() ? 'background-color:#FFCCCC;' : '';
 						echo $form['message']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_message));
