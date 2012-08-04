@@ -20,6 +20,7 @@ abstract class BaseEmailShareForm extends BaseFormDoctrine
       'email'        => new sfWidgetFormInputText(),
       'email_friend' => new sfWidgetFormInputText(),
       'comment'      => new sfWidgetFormInputText(),
+      'url'          => new sfWidgetFormInputText(),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseEmailShareForm extends BaseFormDoctrine
       'email'        => new sfValidatorString(array('max_length' => 250)),
       'email_friend' => new sfValidatorString(array('max_length' => 250)),
       'comment'      => new sfValidatorPass(array('required' => false)),
+      'url'          => new sfValidatorPass(array('required' => false)),
       'created_at'   => new sfValidatorDateTime(),
       'updated_at'   => new sfValidatorDateTime(),
     ));
