@@ -50,8 +50,11 @@ class homeActions extends sfActions
 	public function executeContact(sfWebRequest $request)
 	{
         $this->type = $request->getParameter('type','');
+        $this->label =  $this->type != ''?'Propiedad':'Consulta';
 		$this->form = new ContacForm();
-		
+
+
+
 		if ($request->isMethod('POST'))
 		{
 			$this->form->bind($request->getParameter($this->form->getName()));
