@@ -322,3 +322,4 @@ EmailShare:
     email:            { type: string(250), notnull: true }
     email_friend:     { type: string(250), notnull: true}
     comment:          { type: text }
+    url:              { type: text }
