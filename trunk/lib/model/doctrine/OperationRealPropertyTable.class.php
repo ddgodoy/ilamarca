@@ -50,13 +50,13 @@ class OperationRealPropertyTable extends Doctrine_Table
    */
   public function getIdPropertyByCurrency($currency = 0, $p_desde = '', $p_hasta = '', $operation = '')
   {
-    $q = $this->createQuery('orp');
-
+    $q = $this->createQuery('orp')
+         ->where('1');
     if(!empty($operation)){
-      $q->where('orp.operation_id  = ?', $operation);
+      $q->andwhere('orp.operation_id  = ?', $operation);
     }
     if (!empty($currency)) {
-     $q->where('orp.currency_id  = ?', $currency);
+     $q->andwhere('orp.currency_id  = ?', $currency);
     }
     if (!empty($p_desde)) {
       $q->andWhere('orp.price >= ?', $p_desde);
