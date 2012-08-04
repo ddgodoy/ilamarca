@@ -41,7 +41,7 @@ class OperationRealProperty extends BaseOperationRealProperty
     $array_id = array();
 
     $currency_data = OperationRealPropertyTable::getInstance()->getIdPropertyByCurrency(
-    	$data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta']
+    	$data_currency['currency'],$data_currency['p_desde'], $data_currency['p_hasta'], $data_currency['operation']
     );
     foreach ($currency_data as $value) {
       $array_id[] = $value->getRealPropertyId();
