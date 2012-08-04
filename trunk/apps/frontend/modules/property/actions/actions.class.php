@@ -49,6 +49,9 @@ class propertyActions extends sfActions
 
       //
       $sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromSharer',  $array_data);
+
+      EmailShare::NewEmailShare($_parameter, $this->url_site);
+
       $this->getUSer()->setFlash('notice', 'La propiedad fue compartida con éxito');
       $this->redirect('property/index?id='.$id);
     }
