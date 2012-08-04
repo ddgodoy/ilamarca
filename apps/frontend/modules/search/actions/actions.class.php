@@ -20,7 +20,7 @@ class searchActions extends sfActions
   	$str_filter = $this->setFilter();
     $this->index_url = sfContext::getInstance()->getController()->genUrl($request->getParameter('module').'/index');
 
-    $array_data_currency = array('currency'=>$this->currency, 'p_desde'=>$this->p_desde, 'p_hasta'=>$this->p_hasta);
+    $array_data_currency = array('currency'=>$this->currency, 'p_desde'=>$this->p_desde, 'p_hasta'=>$this->p_hasta, 'operation'=>$this->operation);
 
   	$this->iPage  = $request->getParameter('page', 1);
   	$this->oPager = RealPropertyTable::getInstance()->searchResults(
