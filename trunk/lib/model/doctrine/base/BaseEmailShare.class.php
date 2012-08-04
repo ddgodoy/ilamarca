@@ -10,17 +10,20 @@
  * @property string $email
  * @property string $email_friend
  * @property text $comment
+ * @property text $url
  * 
  * @method integer    getId()           Returns the current record's "id" value
  * @method string     getName()         Returns the current record's "name" value
  * @method string     getEmail()        Returns the current record's "email" value
  * @method string     getEmailFriend()  Returns the current record's "email_friend" value
  * @method text       getComment()      Returns the current record's "comment" value
+ * @method text       getUrl()          Returns the current record's "url" value
  * @method EmailShare setId()           Sets the current record's "id" value
  * @method EmailShare setName()         Sets the current record's "name" value
  * @method EmailShare setEmail()        Sets the current record's "email" value
  * @method EmailShare setEmailFriend()  Sets the current record's "email_friend" value
  * @method EmailShare setComment()      Sets the current record's "comment" value
+ * @method EmailShare setUrl()          Sets the current record's "url" value
  * 
  * @package    sf_icox
  * @subpackage model
@@ -54,6 +57,9 @@ abstract class BaseEmailShare extends sfDoctrineRecord
              'length' => 250,
              ));
         $this->hasColumn('comment', 'text', null, array(
+             'type' => 'text',
+             ));
+        $this->hasColumn('url', 'text', null, array(
              'type' => 'text',
              ));
 
