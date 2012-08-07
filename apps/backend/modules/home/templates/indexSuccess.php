@@ -41,7 +41,7 @@
 			    </tr>
 			    <?php
 		      	foreach ($searchs as $item):
-		      		$_infoFromDB = SearchProfile::getStringInfroFromDBObject($item->SearchProfile);
+		      		$_infoFromDB = SearchProfile::getStringInfoFromDBObject($item->SearchProfile);
 		      ?>
 			    <tr class="<?php if (!empty($odd)) { echo 'gris'; $odd=0; } else { echo 'blanco'; $odd=1; } ?>">
 			      <td style="padding:4px;"><?php echo Common::getFormattedDate($item->SearchProfile->getCreatedAt(), 'd/m/Y H:i') ?></td>

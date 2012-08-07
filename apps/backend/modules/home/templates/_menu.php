@@ -2,6 +2,11 @@
 <ul>
 	<?php if ($sf_user->hasCredential('super_admin')): ?>
 	<li>
+		<a href="<?php echo url_for('email_share/index') ?>" class="first<?php echo $mnGetModule=='email_share' ? ' selected' : '' ?>">
+			<?php echo __('Emails') ?>
+		</a>
+	</li>
+	<li>
 		<a href="<?php echo url_for('salesman/index') ?>" class="first<?php echo $mnGetModule=='salesman' ? ' selected' : '' ?>">
 			<?php echo __('Salesmen') ?>
 		</a>

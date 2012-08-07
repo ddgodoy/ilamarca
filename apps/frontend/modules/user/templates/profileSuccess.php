@@ -14,7 +14,7 @@
 				<th style="text-align:left;">Referencia</th>
 				<th style="text-align:left;">Criterios</th>
 			</tr>
-			<?php foreach ($searchs as $sch): $_infoFromDB = SearchProfile::getStringInfroFromDBObject($sch); ?>
+			<?php foreach ($searchs as $sch): $_infoFromDB = SearchProfile::getStringInfoFromDBObject($sch); ?>
 			<tr>
 				<td style="padding:5px;"><?php echo Common::getFormattedDate($sch->getCreatedAt(), 'd/m/Y H:i') ?></td>
 				<td>
