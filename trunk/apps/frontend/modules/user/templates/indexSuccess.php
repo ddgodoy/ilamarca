@@ -4,7 +4,7 @@
 	</div>
 	<?php if ($sf_user->getFlash('notice')): ?>
 		<div class="mensajeSistema ok">
-      Tu registro fue exitoso; te hemos enviado un Email para que puedas activar tu cuenta.
+      Tu registro fue exitoso. Te hemos enviado un Email para que puedas activar tu cuenta.
       <br />¡Muchas gracias!
     </div>
 		<br />

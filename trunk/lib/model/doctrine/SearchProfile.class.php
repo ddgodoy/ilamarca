@@ -18,7 +18,7 @@ class SearchProfile extends BaseSearchProfile
 	 * @param object $sObject
 	 * @return array
 	 */
-	public static function getStringInfroFromDBObject($sObject)
+	public static function getStringInfoFromDBObject($sObject)
 	{
 		$query_str = '?';
 		$criterios = '';
@@ -28,10 +28,6 @@ class SearchProfile extends BaseSearchProfile
 			$criterios .= $sObject->PropertyType->getName().' | ';
 			$query_str .= 'property_type='.$sObject->getPropertyTypeId().'&';
 			$st_for_db .= ' AND p.property_type_id = '.$sObject->getPropertyTypeId();
-		}
-		if ($sObject->getOperationId()) {
-			$criterios .= $sObject->Operation->getName().' | ';
-			$query_str .= 'operation='.$sObject->getOperationId().'&';
 		}
 		if ($sObject->getBedroomId()) {
 			$criterios .= $sObject->Bedroom->getName().' | ';
@@ -51,6 +47,11 @@ class SearchProfile extends BaseSearchProfile
 			$query_str .= 'city='.$sObject->getCityId().'&';
 			$st_for_db .= ' AND p.city_id = '.$sObject->getCityId();
 		}
+		//
+		if ($sObject->getOperationId()) {
+			$criterios .= $sObject->Operation->getName().' | ';
+			$query_str .= 'operation='.$sObject->getOperationId().'&';
+		}
 		if ($sObject->getCurrencyId()) {
 			$query_str .= 'currency='.$sObject->getCurrencyId().'&';
 		}
@@ -63,6 +64,24 @@ class SearchProfile extends BaseSearchProfile
 		if (!empty($_maxprice)) {
 			$query_str .= 'p_to='.$_maxprice.'&';
 		}
+		//
+		$add_to_filter = '';
+		$aProOperation = array();
+		$aDataCurrency = array(
+			'currency'  => $sObject->getCurrencyId(),
+			'p_desde'   => $sObject->getMinPrice(),
+			'p_hasta'   => $sObject->getMaxPrice(),
+			'operation' => $sObject->getOperationId()
+		);
+		if (array_sum($aDataCurrency) > 0) {
+      $aProOperation = OperationRealProperty::getArrayPropertyByOperation($aDataCurrency);
+
+      foreach ($aProOperation as $v_pro_ope) { $add_to_filter .= $v_pro_ope.','; }
+    }  	
+  	if (!empty($add_to_filter)) {
+  		$st_for_db .= ' AND p.id IN ('.substr($add_to_filter, 0, -1).')';
+  	}
+		//
 		return array(
 			'criterios'     => substr($criterios, 0, -3),
 			'query_string'  => substr($query_str, 0, -1),

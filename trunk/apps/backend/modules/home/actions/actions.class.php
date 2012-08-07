@@ -37,8 +37,9 @@ class homeActions extends sfActions
   	if (!$this->data) {
   		$this->redirect('home/index');
   	}
-  	$this->perfil = SearchProfile::getStringInfroFromDBObject($this->data);
-  	//$this->propts = SearchMatchTable::getInstance()->getPropertiesInProfile($this->perfil['filter_for_db'], $this->getUser()->getAttribute('user_id'));
+  	$this->perfil = SearchProfile::getStringInfoFromDBObject($this->data);
+  	$this->propts = SearchMatchTable::getInstance()->getPropertiesInProfile($this->perfil['filter_for_db'], $this->getUser()->getAttribute('user_id'));
+  	$this->hostname = $request->getHost();
   }
   
  /**

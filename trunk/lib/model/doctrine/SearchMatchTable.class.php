@@ -75,8 +75,10 @@ class SearchMatchTable extends Doctrine_Table
 
   	$q = Doctrine_Query::create()
   			 ->from('RealProperty p')
+  			 ->leftJoin('p.Neighborhood n')
+  			 ->leftJoin('p.PropertyType pt')
   			 ->where($filter)
-  			 ->orderBy('p.created_at DESC')
+  			 ->orderBy('p.updated DESC')
   			 ->limit(50);
 
 		return $q->count() > 0 ? $q->execute() : NULL;
