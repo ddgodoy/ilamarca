@@ -222,11 +222,13 @@
 			<?php endif; ?>
 			<li><strong>Cantidad dormitorios: </strong> <?php echo $property->getBedroom()->getName() ?></li>
 		</ul>
+        <?php if($property->getDetail()): ?>
 		<h2>DESCRIPCIÓN</h2>
 		<p style="text-align:justify">
 			<?php echo $property->getDetail() ?>
 		</p>
         <br/>
+        <?php endif; ?>
         <?php if($property->getPointsOfRef()): ?>
         <h2>PUNTOS DE REFERENCIA</h2>
 		<p style="text-align:justify">
