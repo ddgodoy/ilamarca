@@ -8,7 +8,7 @@ class ServiceOutgoingMessages
 	 * @param string $name
 	 * @param string $email
 	 * @param string $partial
-	 * @param string $data
+	 * @param array $data
 	 * @return boolean
 	 */
 	public static function sendToSingleAccount($name, $email, $partial, $data)
@@ -36,7 +36,7 @@ class ServiceOutgoingMessages
 	 *
 	 * @param array $accounts
 	 * @param string $partial
-	 * @param string $data
+	 * @param array $data
 	 * @return integer
 	 */
 	public static function sendToMultipleAccounts($accounts, $partial, $data)

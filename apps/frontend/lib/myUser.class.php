@@ -27,7 +27,6 @@ class myUser extends sfBasicSecurityUser
 	
 	/**
 	 * Clear session values for search
-	 *
 	 */
 	public static function clearSearchInSession()
 	{
@@ -43,6 +42,37 @@ class myUser extends sfBasicSecurityUser
 		$holder->remove('sch_currency');
 		$holder->remove('sch_p_from');
 		$holder->remove('sch_p_to');
+	}
+	
+	/**
+	 * Automatic notification to vendors on search_match
+	 *
+	 * @param array $vendors
+	 * @param string $host
+	 */
+	public static function notifyVendorsOnSearchMatch($vendors, $host)
+	{
+		if (count($vendors) > 0)
+		{
+			$mail_titulo = 'Aviso de usuario buscando propiedades en '.sfConfig::get('app_project_url_name');
+
+			foreach ($vendors as $val) {
+				$a_datos = explode('?', $val);
+				$to_send[$a_datos[0]] = $a_datos[1];
+			}
+			ServiceOutgoingMessages::sendToMultipleAccounts(
+				$to_send,
+				'search/notifyVendors',
+				array(
+	  			'subject'     => $mail_titulo,
+	  			'to_partial'  => array(
+	  				'titulo'    => $mail_titulo,
+	  				'url_sitio' => sfConfig::get('app_project_url_name'),
+	  				'backend'   => 'http://'.$host.'/admin'
+	  			)
+	  		)
+			);
+		}
 	}
 
 } // end class
