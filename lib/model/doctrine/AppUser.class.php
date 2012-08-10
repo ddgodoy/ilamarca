@@ -138,12 +138,9 @@ class AppUser extends BaseAppUser
   			'to_partial'  => array(
   				'email'     => $email,
   				'password'  => $password,
-  				'url'       => url_for('home/index', true)
-  			)
-  		)
-  	);
+  				'url'       => url_for('home/index', true))));
   }
-  
+
   /**
    * Get salesman array from designated zones
    *

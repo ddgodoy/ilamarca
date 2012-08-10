@@ -277,6 +277,7 @@ class propertyActions extends sfActions
     exit();
   }
 
+  //
   public function executeAjaxOutstanding(sfWebRequest $request)
   {
     $id_gallery  = $request->getParameter('id_gallery');
@@ -284,22 +285,18 @@ class propertyActions extends sfActions
     $gallery_all = GalleryTable::getInstance()->findBy('real_property_id', $id_property);
     $gallery     = GalleryTable::getInstance()->findOneById($id_gallery);
 
-    if($gallery_all)
-    {
-      foreach ($gallery_all as $value)
-      {
+    if ($gallery_all) {
+      foreach ($gallery_all as $value) {
         $value->setOutstanding(0);
         $value->save();
       }
     }
-
-    if($gallery)
-    {
+    if ($gallery) {
       $gallery->setOutstanding(1);
       $gallery->save();
     }
-
     return $this->renderComponent('property', 'gallery', array('id'=>$id_property));
     exit();
   }
+
 } // end class

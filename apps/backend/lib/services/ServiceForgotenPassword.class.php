@@ -2,7 +2,6 @@
 
 class ServiceForgotenPassword
 {
-
 	/**
 	 * Send token to user by email
 	 *
