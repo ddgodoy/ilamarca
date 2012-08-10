@@ -1,5 +1,4 @@
 <?php
-
 /**
  * home actions.
  *
@@ -33,12 +32,11 @@ class homeActions extends sfActions
     $culture = $request->getParameter('country', 'ar');
 
     $this->getUser()->setAttribute('true_culture', $culture);
-    
-    $culture = $culture=='ar'?'es':$culture;
 
+    $culture = $culture=='ar' ? 'es' : $culture;
     $culture = $request->getPreferredCulture(array($culture));
-    $this->getUser()->setCulture($culture);
-    
+
+    $this->getUser()->setCulture($culture);    
     $this->redirect('@homepage');
   }
 
@@ -49,11 +47,9 @@ class homeActions extends sfActions
    */
 	public function executeContact(sfWebRequest $request)
 	{
-        $this->type = $request->getParameter('type','');
-        $this->label =  $this->type != ''?'Propiedad':'Consulta';
-		$this->form = new ContacForm();
-
-
+    $this->type  = $request->getParameter('type','');
+    $this->label =  $this->type != ''?'Propiedad':'Consulta';
+		$this->form  = new ContacForm();
 
 		if ($request->isMethod('POST'))
 		{
@@ -62,22 +58,14 @@ class homeActions extends sfActions
 			if ($this->form->isValid())
 			{
 				$post_values = $this->form->getValues();
+        $post_values['type'];
 
-                $post_values['type'];
-
-                switch ($post_values['type']) {
-                  case 'alquila':
-                      $subject = 'Nueva consulta por Alquiler de propiedad';
-                    break;
-                  case 'vende':
-                      $subject = 'Nueva consulta por Venta de propiedad';
-                    break;
-                  default:
-                      $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
-                    break;
-                }
-
-				//
+        switch ($post_values['type']) {
+          case 'alquila': $subject = 'Nueva consulta por Alquiler de propiedad'; break;
+          case 'vende': $subject = 'Nueva consulta por Venta de propiedad'; break;
+          default:
+            $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
+        }
 				$destinatarios = array('matias@inmobiliarialamarca.com'=>'Matías', 'luciana@inmobiliarialamarca.com'=>'Luciana');
 				//
 				$sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
