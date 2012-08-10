@@ -9,10 +9,11 @@ class SearchMatchTable extends Doctrine_Table
    *
    * @param string $filter
    * @param integer $search_profile_id
+   * @param string $host
    */
-  public function recBySearchConditions($filter, $search_profile_id)
+  public function recBySearchConditions($filter, $search_profile_id, $host = '')
   {
-  	$q = Doctrine_Query::create()->select('p.app_user_id, p.neighborhood_id')->from('RealProperty p')->where($filter);
+  	$q = Doctrine_Query::create()->from('RealProperty p')->leftJoin('p.AppUser au')->where($filter);
 
 		if ($q->count() > 0) {
 			$u = array();
@@ -23,29 +24,35 @@ class SearchMatchTable extends Doctrine_Table
 				$user_id = $value->getAppUserId();
 				$zone_id = $value->getNeighborhoodId();
 
-				$u[$user_id] = $user_id;
+				$u[$user_id] = $value->AppUser->getEmail().'?'.$value->AppUser->getName().' '.$value->AppUser->getLastName();
 				$b[$zone_id] = $zone_id;
 			}
 			// get vendors by zone
 			if (count($b) > 0) {
 				$st_barrios = ''; foreach ($b as $barrio) { $st_barrios .= $barrio.','; }
-				$qr_vendors = Doctrine_Query::create()->from('VendorZone')->where('neighborhood_id IN ('.substr($st_barrios, 0, -1).')');
+				$qr_vendors = Doctrine_Query::create()
+										 ->from('VendorZone vz')
+										 ->leftJoin('vz.AppUser au')
+										 ->where('vz.neighborhood_id IN ('.substr($st_barrios, 0, -1).')');
 				
 				if ($qr_vendors->count() > 0) {
 					$d_vendors = $qr_vendors->execute();
-					
+
 					foreach ($d_vendors as $vendor) {
-						$v = $vendor->getAppUserId(); $u[$v] = $v;
+						$v = $vendor->getAppUserId();
+						$u[$v] = $vendor->AppUser->getEmail().'?'.$vendor->AppUser->getName().' '.$vendor->AppUser->getLastName();
 					}
 				}
 			}
 			// final rec in DB
-			foreach ($u as $u_to_rec) {
+			foreach ($u as $u_id => $u_info) {
 				$oMatch = new SearchMatch();
-				$oMatch->setVendorId($u_to_rec);
+				$oMatch->setVendorId($u_id);
 				$oMatch->setSearchProfileId($search_profile_id);
 				$oMatch->save();
 			}
+			// send automatic message to vendor
+			myUser::notifyVendorsOnSearchMatch($u, $host);
 		}
   }
   

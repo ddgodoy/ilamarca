@@ -125,7 +125,7 @@ class searchActions extends sfActions
   			$obj->save();
 
   			// rec in search_match table
-  			SearchMatchTable::getInstance()->recBySearchConditions($ss_user->getAttribute('sch_filter'), $obj->getId());
+  			SearchMatchTable::getInstance()->recBySearchConditions($ss_user->getAttribute('sch_filter'), $obj->getId(), $request->getHost());
 
   			// clear session values for search
   			myUser::clearSearchInSession();

@@ -1,12 +1,12 @@
 <html>
 	<head>
-		<title>Activa tu cuenta</title>
+		<title>Activación de cuenta</title>
 	</head>
 	<table>
 		<tr>
-			<td><strong>Email:</strong>&nbsp;<td>
-			<td><?php echo $data['email'] ?></td>
+			<td>Debes confirmar tu registro completando un último paso, según se indica a continuación.<td>
 		</tr>
+		<tr><td height="10"></td></tr>
 		<tr>
 			<td><strong>Para habilitar tu cuenta:</strong>&nbsp;<td>
       <td><a href="<?php echo url_for('user/activateAccount?tk='.$data['token'], true) ?>">click aquí</a></td>

@@ -54,7 +54,7 @@ class userActions extends sfActions
         $value['email'],
         'home/mailUserFrontend',
         array(
-        	'subject'    => 'Sus datos de acceso para '.sfConfig::get('app_project_url_name'),
+        	'subject'    => 'Activación de tu cuenta en '.sfConfig::get('app_project_url_name'),
           'to_partial' => array(
             'email' => $value['email'],
             'token' => $user->getRecoverToken()

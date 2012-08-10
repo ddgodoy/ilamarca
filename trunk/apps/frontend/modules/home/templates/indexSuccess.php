@@ -63,4 +63,4 @@
 
 <input type="hidden" id="ajax_url_city" value="<?php echo url_for('property/ajaxCity') ?>"/>
 <input type="hidden" id="ajax_url_neighborhood" value="<?php echo url_for('property/ajaxNeighborhood') ?>"/>
-<input type="hidden" id="lbl_neighborhood" value="<?php echo __('Neighborhood') ?>"/>
+<input type="hidden" id="lbl_neighborhood" value="<?php echo '-- '.__('Neighborhood').' --' ?>"/>
