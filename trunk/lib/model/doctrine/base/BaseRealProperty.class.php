@@ -34,6 +34,7 @@
  * @property integer $neighborhood_id
  * @property integer $app_user_id
  * @property datetime $updated
+ * @property boolean $enabled
  * @property Bedroom $Bedroom
  * @property PropertyType $PropertyType
  * @property GeoZone $GeoZone
@@ -73,6 +74,7 @@
  * @method integer             getNeighborhoodId()          Returns the current record's "neighborhood_id" value
  * @method integer             getAppUserId()               Returns the current record's "app_user_id" value
  * @method datetime            getUpdated()                 Returns the current record's "updated" value
+ * @method boolean             getEnabled()                 Returns the current record's "enabled" value
  * @method Bedroom             getBedroom()                 Returns the current record's "Bedroom" value
  * @method PropertyType        getPropertyType()            Returns the current record's "PropertyType" value
  * @method GeoZone             getGeoZone()                 Returns the current record's "GeoZone" value
@@ -111,6 +113,7 @@
  * @method RealProperty        setNeighborhoodId()          Sets the current record's "neighborhood_id" value
  * @method RealProperty        setAppUserId()               Sets the current record's "app_user_id" value
  * @method RealProperty        setUpdated()                 Sets the current record's "updated" value
+ * @method RealProperty        setEnabled()                 Sets the current record's "enabled" value
  * @method RealProperty        setBedroom()                 Sets the current record's "Bedroom" value
  * @method RealProperty        setPropertyType()            Sets the current record's "PropertyType" value
  * @method RealProperty        setGeoZone()                 Sets the current record's "GeoZone" value
@@ -253,6 +256,10 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              ));
         $this->hasColumn('updated', 'datetime', null, array(
              'type' => 'datetime',
+             ));
+        $this->hasColumn('enabled', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => true,
              ));
 
         $this->option('collate', 'utf8_general_ci');

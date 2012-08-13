@@ -36,7 +36,7 @@ class searchActions extends sfActions
    */
   protected function setFilter()
   {
-  	$sch_partial = 'p.id > 0';
+  	$sch_partial = 'p.enabled = 1';
   	$this->f_params = '';
 
   	$this->property_type = $this->getRequestParameter('property_type', 0);

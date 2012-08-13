@@ -4,7 +4,7 @@
 	</head>
 	<table>
 		<tr>
-			<td>Debes confirmar tu registro completando un último paso, según se indica a continuación.<td>
+			<td colspan="2">Debes confirmar tu registro completando un último paso según se indica a continuación.<td>
 		</tr>
 		<tr><td height="10"></td></tr>
 		<tr>

@@ -39,6 +39,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
       'neighborhood_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'add_empty' => false)),
       'app_user_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AppUser'), 'add_empty' => false)),
       'updated'            => new sfWidgetFormInputText(),
+      'enabled'            => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -66,6 +67,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
       'neighborhood_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'))),
       'app_user_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AppUser'))),
       'updated'            => new sfValidatorPass(array('required' => false)),
+      'enabled'            => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property[%s]');

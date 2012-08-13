@@ -970,6 +970,13 @@ h2.grupo {
 	cursor: pointer;
 }
 .linkPinika:hover { text-decoration: underline; }
+.ajax_img {
+	visibility: hidden;
+	padding-left: 10px;
+	padding-top: 8px;
+	float: right;
+	padding-right: 35px;
+}
 .div_cont_ytvideos {
 	background-color: #f4f6f6;
 	padding: 6px;
