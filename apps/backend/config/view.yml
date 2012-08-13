@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [main.css, admin.css, /js/alerts/jquery.alerts.css]
 
-  javascripts:    [/js/jquery.min.js, /js/functions.js, /js/alerts/jquery.alerts.js, /js/country.js]
+  javascripts:    [/js/jquery.min.js, /js/functions.js, /js/alerts/jquery.alerts.js, /js/country.js, /admin/js/numvalidate.js]
 
   has_layout:     true
   layout:         layout

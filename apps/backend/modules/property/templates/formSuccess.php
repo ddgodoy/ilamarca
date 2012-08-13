@@ -41,7 +41,12 @@
 				<tr>
 					<td width="10%" id="td_idioma_es" class="tab_idiomas_on" onclick="changeTabsOnclick('es');">Info en Español</td>
 					<td width="10%" id="td_idioma_en" class="tab_idiomas_off" onclick="changeTabsOnclick('en');">Info en Inglés</td>
-					<td width="80%">&nbsp;</td>
+					<td width="80%">
+						<div style="width:100%;">
+							<span style="padding-left:223px;font-size:13px;color:#333333;"><strong>Habilitada</strong></span>
+							<?php echo $form['enabled'] ?>
+						</div>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="3" class="tab_cont_borders">

@@ -34,7 +34,7 @@ class SearchMatchTable extends Doctrine_Table
 										 ->from('VendorZone vz')
 										 ->leftJoin('vz.AppUser au')
 										 ->where('vz.neighborhood_id IN ('.substr($st_barrios, 0, -1).')');
-				
+
 				if ($qr_vendors->count() > 0) {
 					$d_vendors = $qr_vendors->execute();
 
@@ -51,7 +51,7 @@ class SearchMatchTable extends Doctrine_Table
 				$oMatch->setSearchProfileId($search_profile_id);
 				$oMatch->save();
 			}
-			// send automatic message to vendor
+			// send automatic message to vendors
 			myUser::notifyVendorsOnSearchMatch($u, $host);
 		}
   }
@@ -89,6 +89,92 @@ class SearchMatchTable extends Doctrine_Table
   			 ->limit(50);
 
 		return $q->count() > 0 ? $q->execute() : NULL;
+  }
+  
+  /**
+   * Match property and customers search
+   *
+   * @param integer $real_property_id
+   * @return array
+   */
+  public function matchThisPropertyAndCustomersSearch($real_property_id)
+  {
+  	$a = array();
+  	$o = Doctrine_Query::create()->from('OperationRealProperty')->where("real_property_id = $real_property_id")->execute();
+
+  	$ope_filter = 'sp.operation_id IS NULL';
+  	$cur_filter = 'sp.currency_id IS NULL';
+  	$min_filter = 'sp.min_price = 0';
+  	$max_filter = 'sp.max_price = 0';
+
+  	foreach ($o as $value) {
+  		$ope_filter .= ' OR sp.operation_id = '.$value->getOperationId();
+  		$cur_filter .= ' OR sp.currency_id = '.$value->getCurrencyId();
+  		$min_filter .= ' OR sp.min_price <= '.$value->getPrice();
+  		$max_filter .= ' OR sp.max_price >= '.$value->getPrice();
+  	}
+  	$rProperty = RealPropertyTable::getInstance()->find($real_property_id);
+  	
+  	if ($rProperty) {
+  		$vendor_id   = $rProperty->getAppUserId();
+  		$bedroom_id  = $rProperty->getBedroomId();
+  		$pro_type_id = $rProperty->getPropertyTypeId();
+  		$geo_zone_id = $rProperty->getGeoZoneId();
+  		$city_id     = $rProperty->getCityId();
+  		$neighbor_id = $rProperty->getNeighborhoodId();
+  		
+  		$f = "(sp.bedroom_id IS NULL OR sp.bedroom_id = $bedroom_id) AND ".
+  				 "(sp.property_type_id IS NULL OR sp.property_type_id = $pro_type_id) AND ".
+  				 "(sp.geo_zone_id IS NULL OR sp.geo_zone_id = $geo_zone_id) AND ".
+  				 "(sp.city_id IS NULL OR sp.city_id = $city_id) AND ".
+  				 "(sp.neighborhood_id IS NULL OR sp.neighborhood_id = $neighbor_id) AND ".
+  				 "($ope_filter) AND ".
+  				 "($cur_filter) AND ".
+  				 "($min_filter) AND ".
+  				 "($max_filter)";
+
+  		$q = Doctrine_Query::create()->from('SearchProfile sp')->leftJoin('sp.AppUser u')->where($f);
+  		
+  		if ($q->count() > 0) {
+  			$d = $q->execute();
+  			
+  			foreach ($d as $res) {
+  				// upd search_match
+  				self::updSearchMatchOnRealPropertyReg($res->getId(), $vendor_id, $neighbor_id);
+
+  				// customer emails
+  				$a[$res->AppUser->getEmail()] = $res->AppUser->getName().' '.$res->AppUser->getLastName();
+  			}
+  		}
+  	}
+  	return $a;
+  }
+  
+  /**
+   * Update search match table on real_property registration
+   *
+   * @param integer $search_profile_id
+   * @param integer $vendor_id
+   * @param integer $neighborhood_id
+   */
+  public function updSearchMatchOnRealPropertyReg($search_profile_id, $vendor_id, $neighborhood_id)
+  {
+  	$a[$vendor_id] = $vendor_id;
+  	$v = Doctrine_Query::create()->from('VendorZone')->where("neighborhood_id = $neighborhood_id")->execute();
+  	
+  	foreach ($v as $value) {
+  		$a[$value->getAppUserId()] = $value->getAppUserId();
+  	}
+  	foreach ($a as $vendor) {
+  		$check = Doctrine_Query::create()->from('SearchMatch')->where("search_profile_id = $search_profile_id AND vendor_id = $vendor");
+  		
+  		if ($check->count() == 0) {
+  			$obj = new SearchMatch();
+  			$obj->setSearchProfileId($search_profile_id);
+  			$obj->setVendorId($vendor);
+  			$obj->save();
+  		}
+  	}
   }
   
 } // end class

@@ -32,6 +32,7 @@ class RealPropertyForm extends BaseRealPropertyForm
       'has_dep_of_service' => new sfWidgetFormInputCheckbox(),
       'has_balcony'        => new sfWidgetFormInputCheckbox(),
       'has_bbq'            => new sfWidgetFormInputCheckbox(),
+      'enabled'            => new sfWidgetFormInputCheckbox(array(), array('style'=>'vertical-align:middle;')),
       'owner_name'         => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:250px;')),
       'owner_phone'        => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:200px;')),
       'owner_email'        => new sfWidgetFormInputText(array(), array('class'=>'form_input', 'style'=>'width:310px;')),
@@ -58,6 +59,7 @@ class RealPropertyForm extends BaseRealPropertyForm
       'owner_name'         => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'owner_phone'        => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'owner_email'        => new sfValidatorString(array('max_length' => 250, 'required' => false)),
+      'enabled'            => new sfValidatorBoolean(array('required' => false)),
       'country_id'         => new sfValidatorChoice(array('choices' => array_keys($countrys)),array('required'=>$i18N->__('Enter the country', NULL, 'errors'), 'invalid'=>$i18N->__('Enter the country', NULL, 'errors')))
     ));
 		$this->embedI18n(array('es', 'en'));

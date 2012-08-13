@@ -37,4 +37,9 @@
 			<?php echo __('Properties') ?>
 		</a>
 	</li>
+	<li>
+		<a href="<?php echo url_for('search/index') ?>" class="first<?php echo $mnGetModule=='search' ? ' selected' : '' ?>">
+			Perfiles de búsqueda
+		</a>
+	</li>
 </ul>

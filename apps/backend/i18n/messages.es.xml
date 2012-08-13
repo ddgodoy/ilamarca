@@ -133,6 +133,8 @@
       <trans-unit id="123"><source>Register country</source><target>Registrar país</target></trans-unit>
       <trans-unit id="124"><source>Country</source><target>País</target></trans-unit>
       <trans-unit id="125"><source>By country</source><target>Por País</target></trans-unit>
+      <trans-unit id="126"><source>Place</source><target>Lugar</target></trans-unit>
+      <trans-unit id="127"><source>Town</source><target>Localidad</target></trans-unit>
     </body>
   </file>
 </xliff>

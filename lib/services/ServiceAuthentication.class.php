@@ -64,7 +64,7 @@ class ServiceAuthentication
 		$sessionUser->setAuthenticated(true);
 		$sessionUser->setAttribute('user_id'       , $oUser->getId());
 		$sessionUser->setAttribute('user_name'     , $oUser->getName());
-        $sessionUser->setAttribute('user_last_name', $oUser->getLastName());
+    $sessionUser->setAttribute('user_last_name', $oUser->getLastName());
 		$sessionUser->setAttribute('user_photo'    , $oUser->getPhoto());
 		$sessionUser->setAttribute('user_role'     , $oUser->UserRole->getCode());
 		$sessionUser->setAttribute('user_company'  , $oUser->getCompanyId());

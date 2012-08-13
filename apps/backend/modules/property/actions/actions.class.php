@@ -193,6 +193,9 @@ class propertyActions extends sfActions
   			// set qrcode
   			RealProperty::createPropertyQrCode($create_qrcode, $recorded);
 
+  			// send automatic message to customers
+				myUser::notifyCustomersAboutThis($create_qrcode, $recorded->getId(), $request->getHost());
+
         $this->getUser()->setFlash('notice',true);
 				$this->redirect('property/edit?id='.$recorded->getId());
 			}

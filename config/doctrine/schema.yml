@@ -197,6 +197,7 @@ RealProperty:
     neighborhood_id:    { type: integer(4), notnull: true }
     app_user_id:        { type: integer(4), notnull: true }
     updated:            { type: datetime }
+    enabled:            { type: boolean, default: true }
 
   relations:
     Bedroom:       { class: Bedroom, local: bedroom_id, foreign: id, foreignAlias: Bedroom, onDelete: CASCADE }

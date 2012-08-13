@@ -29,7 +29,6 @@
 					<tr>
 						<td width="6%"><label><?php echo __('Name') ?> *</label></td>
 						<td><?php echo select_country_tag('country[iso]', 'AR', array('class'=>'form_input')) ?></td>
-
 					</tr>
 				</table>
 			</fieldset>

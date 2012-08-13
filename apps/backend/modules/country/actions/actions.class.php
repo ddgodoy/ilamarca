@@ -76,7 +76,7 @@ class countryActions extends sfActions
   	}
   	$this->forward('country', 'process');
   }
-  
+
   /**
    * Process form action
    *
@@ -95,8 +95,10 @@ class countryActions extends sfActions
   	if ($request->getMethod() == 'POST')
   	{
 			$form_request = $request->getParameter($this->form->getName());
-            $form_request['name'] = $i18N = sfContext::getInstance()->getI18N()->getCountry($form_request['iso']);
-            $form_request['iso'] = strtolower($form_request['iso']);
+
+      $form_request['name'] = $i18N = sfContext::getInstance()->getI18N()->getCountry($form_request['iso']);
+      $form_request['iso']  = strtolower($form_request['iso']);
+
 			$this->form->bind($form_request);
 
   		if ($this->form->isValid()) {

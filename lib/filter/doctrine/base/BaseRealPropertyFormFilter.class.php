@@ -36,6 +36,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'neighborhood_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Neighborhood'), 'add_empty' => true)),
       'app_user_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AppUser'), 'add_empty' => true)),
       'updated'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'enabled'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -62,6 +63,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'neighborhood_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Neighborhood'), 'column' => 'id')),
       'app_user_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AppUser'), 'column' => 'id')),
       'updated'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'enabled'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('real_property_filters[%s]');
@@ -105,6 +107,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'neighborhood_id'    => 'ForeignKey',
       'app_user_id'        => 'ForeignKey',
       'updated'            => 'Date',
+      'enabled'            => 'Boolean',
     );
   }
 }
