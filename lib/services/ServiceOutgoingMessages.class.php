@@ -39,7 +39,7 @@ class ServiceOutgoingMessages
 	 * @param array $data
 	 * @return integer
 	 */
-	public static function sendToMultipleAccounts($accounts, $partial, $data)
+	public static function sendToMultipleAccounts($accounts, $partial, $data, $attach=False)
 	{
 		sfProjectConfiguration::getActive()->loadHelpers(array("Partial"));
 
@@ -60,9 +60,13 @@ class ServiceOutgoingMessages
 		$oMessage = Swift_Message::newInstance($data['subject'])
 			         ->setFrom(array(sfConfig::get('app_no_replay_email_account') => sfConfig::get('app_project_reference_name')))
 			         ->setBody($mailBody, 'text/html');
+        if($attach)
+        {
+          $oMessage->attach(Swift_Attachment::fromPath($attach));
+        }
 
-    $numSent = 0;
-    $failedRecipients = array();
+        $numSent = 0;
+        $failedRecipients = array();
 
 		foreach ($accounts as $address => $name)
 		{
