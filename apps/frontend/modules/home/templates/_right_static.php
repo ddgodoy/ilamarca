@@ -20,7 +20,7 @@
 			<div class="titulo"><img src="/images/tit_pertenece.png" alt="Pertenecé a la comunidad" /></div>
 			<p>Enviá tu <strong>CV</strong> o tu perfil de <strong>Facebook</strong>.</p>
 			<div class="boton">
-				<a href="<?php echo url_for('home/contact') ?>" class="enviar"></a>
+				<a href="<?php echo url_for('home/contact?perfil=comunidad') ?>" class="enviar"></a>
 			</div>
 		</div>
 	</div>

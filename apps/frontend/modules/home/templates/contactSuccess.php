@@ -13,8 +13,8 @@
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
-		<div class="search_box clearfix" style="padding-top:10px;">
-			<form action="<?php url_for('home/contact') ?>" method="post">
+		<div class="search_box clearfix" style="padding-top:10px;<?php if($perfil!=''): ?> padding-right: 50px<?php endif; ?>">
+            <form action="<?php url_for('home/contact') ?>" method="post" enctype="multipart/form-data">
 				<div class="rowElem">
 					<p><strong><?php echo $form['name']->renderLabel('* Nombre y Apellido:') ?></strong></p>
 					<?php
@@ -36,19 +36,30 @@
 						echo $form['phone']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_phone));
 					?>
 				</div>
+                <?php if($perfil==''): ?>
 				<div class="rowElem">
 					<p><strong><?php echo $form['address']->renderLabel('Dirección:') ?></strong></p>
 					<?php echo $form['address']->render(array('class'=>'et_input','style'=>'width:255px;')) ?>
 				</div>
+                <?php else: ?>
+                <div class="rowElem">
+                  <p <?php echo !empty($error_file)?'style="color: red;"':''; ?> ><strong>CV</strong> <em>(.doc / .pdf)</em></p>
+					<?php echo input_file_tag('cv', array('class'=>'et_input','style'=>'width:255px;')) ?>
+				</div>
+                <?php endif; ?>
 				<div class="rowElem">
-					<p><strong><?php echo $form['message']->renderLabel($label.':') ?></strong></p>
+					<p><strong><?php echo $form['message']->renderLabel($label.'*:') ?></strong></p>
 					<?php
 						$error_message = $form['message']->renderError() ? 'background-color:#FFCCCC;' : '';
 						echo $form['message']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_message));
 					?>
 				</div>
 				<?php echo $form->renderHiddenFields() ?>
+                <?php if(!empty($error_file)): ?>
+                <p style="color:red;">(*) Formato de archivo incorrecto</p>
+                <?php else: ?>
 				<p <?php if ($form->hasErrors()): ?>style="color:red;"<?php endif; ?>>Los campos con asterisco (*) son obligatorios</p>
+                <?php endif; ?>
 				<div class="boton" style="bottom: 20px;">
 					<input type="submit" value="ENVIAR" class="et_btn_vacio"/>
 				</div>
