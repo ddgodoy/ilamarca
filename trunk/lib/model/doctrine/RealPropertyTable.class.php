@@ -21,6 +21,7 @@ class RealPropertyTable extends Doctrine_Table
            ->from('RealProperty p')
            ->leftJoin('p.Translation t WITH t.lang = ?', $culture)
            ->leftJoin('p.Neighborhood n')
+           ->leftJoin('p.AppUser aus')
            ->leftJoin('p.PropertyType pt')
            ->where($filter)
            ->orderBy($order);
