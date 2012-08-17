@@ -30,6 +30,7 @@
 	        <th width="50%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
 	        <th width="20%"><?php echo __('Property type') ?></th>
 	        <th width="22%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
+            <th width="22%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
 	        <th width="4%"></th>
 	        <th width="4%"></th>
         <?php else: ?>
@@ -41,6 +42,7 @@
         <td><?php echo truncate_text($item->getName(), 85) ?></td>
         <td><?php echo $item->PropertyType->getName() ?></td>
         <td><?php echo truncate_text($item->Neighborhood->getName(), 35) ?></td>
+        <td><?php echo ucwords($item->AppUser->getName().' '.$item->AppUser->getLastName()) ?></td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">
         		<img border="0" src="/admin/images/editar.png" alt="<?php echo __('Edit') ?>" title="<?php echo __('Edit') ?>">
