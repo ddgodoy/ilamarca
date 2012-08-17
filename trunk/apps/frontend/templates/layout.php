@@ -38,13 +38,7 @@
     	</div>
     </div>
 		<div class="footer">
-			<p>
-				<span>Inmobiliaria Lamarca</span>
-				<span class="line">|</span>
-				Tel/Fax: 0351 4824473
-				<span class="line">|</span>
-				Av. Lamarca 3920 - Barrio Urca - (5009) Córdoba, Argentina
-			</p>
+			
 		</div>
   </body>
 </html>
