@@ -663,7 +663,7 @@
         var href_link = array_src[0]+'/'+array_src[1]+'/'+array_src[2]+'/'+array_src[3]+'/'+array_src[4]+'/g_'+array_src[5];
         $('#mas-imagen').attr('href',href_link);
         if(image.link) {
-          var link = $('<a href="'+ image.link +'" rel="lightbox"></a>');
+          var link = $('<a href="'+ image.link +'" rel="lightbox[$ID]"></a>');
           link.append(img);
           img_container.append(link);
         } else {
