@@ -15,7 +15,6 @@
 	position: absolute;
 	z-index: 9999;
 	overflow: hidden;
-	background-color: #fff;
 }
 
 .lbLoading {
@@ -26,7 +25,6 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	border: 10px solid #fff;
 	background-repeat: no-repeat;
 }
 
@@ -57,20 +55,18 @@
 #lbBottom {
 	font-family: Verdana, Arial, Geneva, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #666;
+	color: #FFF;
 	line-height: 1.4em;
 	text-align: left;
-	border: 10px solid #fff;
-	border-top-style: none;
+    padding-top: 5px;
 }
 
 #lbCloseLink {
 	display: block;
 	float: right;
-	width: 66px;
-	height: 27px;
+	width: 10px;
+	height: 10px;
 	background: transparent url(/images/lightbox/close.png) no-repeat center;
-	margin: 5px 0;
 	outline: none;
 }
 
