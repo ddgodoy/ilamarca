@@ -241,7 +241,7 @@ function validar_email(valor)
 			<div class="titulo"><img src="images/tit_datosvendedor.png" alt="Datos del vendedor" /></div>
             <div class="avatar" align="center" style="margin-left: 70px"><img src="<?php echo $property->AppUser->getPhoto() ? '/admin/uploads/user/'.$property->AppUser->getPhoto() : '/images/avatar.jpg' ?>" /></div>
             <br clear="all"/>
-			<div class="nombre" style="margin-left: 25px; width: 85%; padding-top: 15px;">Nombre: <?php echo ucwords($property->AppUser->getName().' '.$property->AppUser->getLastName()) ?></div>
+			<div class="nombre" style="margin-left: 25px; width: 85%; padding-top: 25px;">Nombre: <?php echo ucwords($property->AppUser->getName().' '.$property->AppUser->getLastName()) ?></div>
             <div class="nombre" style="margin-left: 25px; width: 85%">Teléfono: <?php echo $property->AppUser->getPhone()?$property->AppUser->getPhone():'---' ?></div>
             <div class="nombre" style="margin-left: 25px; width: 85%">Email: <?php echo $property->AppUser->getEmail() ?></div>
 			<div class="boton">
