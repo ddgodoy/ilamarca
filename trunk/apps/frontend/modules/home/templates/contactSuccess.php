@@ -43,7 +43,7 @@
 				</div>
                 <?php else: ?>
                 <div class="rowElem">
-                  <p <?php echo !empty($error_file)?'style="color: red;"':''; ?> ><strong>CV</strong> <em>(.doc / .pdf)</em></p>
+                  <p <?php echo !empty($error_file)?'style="color: red;"':''; ?> ><strong>* CV:</strong> <em>(.doc / .pdf)</em></p>
 					<?php echo input_file_tag('cv', array('class'=>'et_input','style'=>'width:255px;')) ?>
 				</div>
                 <?php endif; ?>
