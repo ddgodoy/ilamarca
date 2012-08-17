@@ -157,7 +157,7 @@ function validar_email(valor)
 		</div>
 		<div id="gallery" class="ad-gallery slider clearfix">
 		<?php if (count($images) > 0): ?>
-			<a href=""  rel="lightbox" id="mas-imagen" title="<?php echo $property->getName() ?>" class="ad-image-wrapper fotoBig"></a>
+			<a href=""  rel="lightbox[$ID]" id="mas-imagen" title="<?php echo $property->getName() ?>" class="ad-image-wrapper fotoBig"></a>
 			<div class="ad-nav">
 				<div class="ad-thumbs">
 					<ul class="ad-thumb-list">

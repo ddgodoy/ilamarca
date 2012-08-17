@@ -21,7 +21,7 @@
 					$_m2_terreno   = $p_val->getCoveredArea();
 			?>
 			<div class="preview<?php echo $set_css_middle ?>">
-				<a href="#" id="tt-<?php echo $p_val->getId() ?>" class="white" style="cursor:default;">
+				<a href="<?php echo url_for('property/index?id='.$p_val->getId()) ?>" id="tt-<?php echo $p_val->getId() ?>" class="white">
 					<div class="img">
 						<img src="<?php echo Gallery::getFirstGallery($p_val->getId()) ?>" alt="<?php echo $p_val->getName() ?>" />
 					</div>
