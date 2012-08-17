@@ -50,6 +50,7 @@ class homeActions extends sfActions
         $this->type  = $request->getParameter('type','');
         $this->label =  $this->type != ''?'Propiedad':'Consulta';
         $this->perfil = $request->getParameter('perfil','');
+        $dir_name_file = FALSE;
         if($this->perfil!='')
         {
           $this->label = 'Descripción';
