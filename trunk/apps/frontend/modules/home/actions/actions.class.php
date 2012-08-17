@@ -47,9 +47,15 @@ class homeActions extends sfActions
    */
 	public function executeContact(sfWebRequest $request)
 	{
-    $this->type  = $request->getParameter('type','');
-    $this->label =  $this->type != ''?'Propiedad':'Consulta';
+        $this->type  = $request->getParameter('type','');
+        $this->label =  $this->type != ''?'Propiedad':'Consulta';
+        $this->perfil = $request->getParameter('perfil','');
+        if($this->perfil!='')
+        {
+          $this->label = 'Descripción';
+        }
 		$this->form  = new ContacForm();
+        $redirect = 'home/contact';
 
 		if ($request->isMethod('POST'))
 		{
@@ -57,32 +63,56 @@ class homeActions extends sfActions
 
 			if ($this->form->isValid())
 			{
+                $file = $request->getFiles('cv', '');
 				$post_values = $this->form->getValues();
-        $post_values['type'];
+                $post_values['type'];
 
-        switch ($post_values['type']) {
-          case 'alquila': $subject = 'Nueva consulta por Alquiler de propiedad'; break;
-          case 'vende': $subject = 'Nueva consulta por Venta de propiedad'; break;
-          default:
-            $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
-        }
-				$destinatarios = array('matias@inmobiliarialamarca.com'=>'Matías', 'luciana@inmobiliarialamarca.com'=>'Luciana');
-				//
-				$sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
-		  		array(
-		  			'subject'     => $subject,
-		  			'to_partial'  => array(
-		  				'nombre'    => $post_values['name'],
-		  				'email'     => $post_values['email'],
-		  				'telefono'  => $post_values['phone'],
-		  				'direccion' => $post_values['address'],
-		  				'consulta'  => $post_values['message']
-		  			)
-		  		)
-		  	);
-				$this->getUSer()->setFlash('notice', true);
-				$this->redirect('home/contact');
-			}
+                if(!empty ($file))
+                {
+                    if($file['type']!='application/pdf' && $file['type']!='application/msword')
+                    {
+                      $this->error_file = true;
+                    }
+                    else
+                    {
+                      $uploadDir = sfConfig::get('sf_upload_dir') . '/assets';
+                      $dir_name_file = $uploadDir . "/" . $file["name"];
+                      move_uploaded_file($file["tmp_name"],  $dir_name_file);
+                      $redirect = 'home/contact?perfil=comunidad';
+                      $post_values['type'] = 'perfil';
+                      $post_values['address'] = '---';
+                    }
+                }
+                if(empty($this->error_file))
+                {
+                  switch ($post_values['type'])
+                  {
+                    case 'alquila': $subject = 'Nueva consulta por Alquiler de propiedad'; break;
+                    case 'vende': $subject = 'Nueva consulta por Venta de propiedad'; break;
+                    case 'perfil': $subject = 'Envío de CV para pertenecer a la comunidad '; break;
+                    default:
+                      $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
+                  }
+
+                  $destinatarios = array('matias@inmobiliarialamarca.com'=>'Matías', 'luciana@inmobiliarialamarca.com'=>'Luciana');
+                  //$destinatarios = array('mauro@icox.com'=>'Mauro',);
+                      //
+                      $sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
+                      array(
+                          'subject'     => $subject,
+                          'to_partial'  => array(
+                              'nombre'    => $post_values['name'],
+                              'email'     => $post_values['email'],
+                              'telefono'  => $post_values['phone'],
+                              'direccion' => $post_values['address'],
+                              'consulta'  => $post_values['message']
+                          )
+                      ),$dir_name_file
+                  );
+                      $this->getUSer()->setFlash('notice', true);
+                      $this->redirect($redirect);
+               }
+           }
 		}
 	}
 

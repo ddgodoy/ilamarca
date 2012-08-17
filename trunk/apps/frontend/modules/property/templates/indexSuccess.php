@@ -239,8 +239,11 @@ function validar_email(valor)
 	<div class="box clearfix wprofile">
 		<div class="inner clearfix">
 			<div class="titulo"><img src="images/tit_datosvendedor.png" alt="Datos del vendedor" /></div>
-			<div class="avatar"><img src="<?php echo $property->AppUser->getPhoto() ? '/admin/uploads/user/'.$property->AppUser->getPhoto() : '/images/avatar.jpg' ?>" /></div>
-			<div class="nombre"><?php echo $property->AppUser->getName().' '.$property->AppUser->getLastName() ?></div>
+            <div class="avatar" align="center" style="margin-left: 70px"><img src="<?php echo $property->AppUser->getPhoto() ? '/admin/uploads/user/'.$property->AppUser->getPhoto() : '/images/avatar.jpg' ?>" /></div>
+            <br clear="all"/>
+			<div class="nombre" style="margin-left: 25px; width: 85%">Nombre: <?php echo $property->AppUser->getName().' '.$property->AppUser->getLastName() ?></div>
+            <div class="nombre" style="margin-left: 25px; width: 85%">Teléfono: <?php echo $property->AppUser->getPhone()?$property->AppUser->getPhone():'---' ?></div>
+            <div class="nombre" style="margin-left: 25px; width: 85%">Email: <?php echo $property->AppUser->getEmail() ?></div>
 			<div class="boton">
 				<a href="<?php echo $sf_user->isAuthenticated() ? url_for('search/contact?pid='.$property->getId()) : url_for('user/index') ?>" class="contactar" style="margin-top:30px;"></a>
 			</div>
