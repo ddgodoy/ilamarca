@@ -49,7 +49,6 @@
 				$(document).ready(function() {$("#tt-<?php echo $p_val->getId() ?>").tooltip ({ effect: 'slide', position: "center right", offset: [20, -25]}); });
 			</script>
 		<?php endforeach; ?>
-        <?php exit();?>
 		<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params)) ?>
 
 		<?php else: ?>
