@@ -14,13 +14,16 @@ class Operation extends BaseOperation
 {
     public static function getPrices($property, $culture)
     {
+        $text_price = '0.00';
         $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, $culture);
 
-        if ($operation) {
-        	$text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
-        } else {
-        	$text_price = '';
+        if (!$operation)
+        {
+          $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, 'en');
         }
+        
+        $text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
+       
         return $text_price;
     }
 }
