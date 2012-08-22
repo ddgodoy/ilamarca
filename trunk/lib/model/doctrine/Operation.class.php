@@ -23,7 +23,7 @@ class Operation extends BaseOperation
         }
 
         echo $operation->getPrice();
-        exit();
+        
         
         $text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
        
