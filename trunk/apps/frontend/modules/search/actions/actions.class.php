@@ -153,12 +153,45 @@ class searchActions extends sfActions
   	
   	if ($request->isMethod('POST'))
 		{
-			if (!empty($this->commt)) {
-				$vendor_email = $this->obj->AppUser->getEmail();
-				$vendor_name  = $this->obj->AppUser->getName().' '.$this->obj->AppUser->getLastName();
+			if (!empty($this->commt))
+			{
 				$mail_titulo  = 'Contacto por una propiedad desde '.sfConfig::get('app_project_url_name');
-				
-				if ($vendor_email) {
+				$vendor_email = $this->obj->AppUser->getEmail();
+				$vendor_name  = $this->obj->AppUser->getName().' '.$this->obj->AppUser->getLastName();				
+				$zone_vendors = VendorZoneTable::getInstance()->getZoneVendorsForContact($this->obj->getNeighborhoodId(), $this->obj->AppUser->getId());
+
+				if (count($zone_vendors) > 0) {
+					// mail al vendedor owner
+					$mailToOwner = ServiceOutgoingMessages::sendToSingleAccount(
+						$vendor_name,
+						$vendor_email,
+						'search/mailToOwner',
+						array(
+			  			'subject'     => $mail_titulo,
+			  			'to_partial'  => array(
+			  				'titulo'    => $mail_titulo,
+			  				'vendedor'  => $vendor_name,
+			  				'zone_vnds' => $zone_vendors,
+			  				'pr_nombre' => $this->obj->getName(),
+			  				'pr_link'   => 'http://'.$request->getHost().'/property?id='.$this->pid,
+			  				'url_sitio' => sfConfig::get('app_project_url_name')
+	  			)));
+	  			// mail vendedores zona
+	  			ServiceOutgoingMessages::sendToMultipleAccounts(
+						$zone_vendors,
+						'search/mailToZoneVendors',
+						array(
+			  			'subject'     => $mail_titulo,
+			  			'to_partial'  => array(
+			  				'titulo'    => $mail_titulo,
+			  				'url_sitio' => sfConfig::get('app_project_url_name'),
+			  				'pr_nombre' => $this->obj->getName(),
+			  				'pr_link'   => 'http://'.$request->getHost().'/property?id='.$this->pid,
+			  				'backend'   => 'http://'.$request->getHost().'/admin'
+			  			)
+			  		)
+					);
+				} else {			
 					$sendEmail = ServiceOutgoingMessages::sendToSingleAccount(
 						$vendor_name,
 						$vendor_email,
@@ -171,17 +204,16 @@ class searchActions extends sfActions
 			  				'cliente'   => $this->getUser()->getAttribute('user_name').' '.$this->getUser()->getAttribute('user_last_name'),
 			  				'url_sitio' => sfConfig::get('app_project_url_name'),
 			  				'backend'   => 'http://'.$request->getHost().'/admin'
-			  			)
-			  		)
-					);
-					// rec contact in DB
-					$ctc = new SearchContact();
-					$ctc->setAppUserId     ($this->getUser()->getAttribute('user_id'));
-					$ctc->setRealPropertyId($this->pid);
-					$ctc->setVendorId      ($this->obj->AppUser->getId());
-					$ctc->setComments      ($this->commt);
-					$ctc->save();	
+	  			)));
 				}
+				// rec contact in DB
+				$ctc = new SearchContact();
+				$ctc->setAppUserId     ($this->getUser()->getAttribute('user_id'));
+				$ctc->setRealPropertyId($this->pid);
+				$ctc->setVendorId      ($this->obj->AppUser->getId());
+				$ctc->setComments      ($this->commt);
+				$ctc->save();
+				//
 				$this->messg = 'ok';
   			$this->commt = '';
 			} else {
