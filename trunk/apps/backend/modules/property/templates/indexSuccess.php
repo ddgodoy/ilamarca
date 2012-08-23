@@ -23,6 +23,11 @@
   	<?php echo __('List of Properties') ?>
   	<input type="button" value="<?php echo __('Register property') ?>" style="float:right;" class="boton" onclick="document.location='<?php echo url_for($str_module.'/register') ?>';"/>
   </h1>
+    <?php if ($sf_user->hasFlash('notice')): ?>
+    <div class="mensajeSistema ok">
+      <?php echo __($sf_user->getFlash('notice')) ?>
+    </div>
+    <?php endif; ?>
   	<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
@@ -31,6 +36,7 @@
 	        <th width="20%"><?php echo __('Property type') ?></th>
 	        <th width="22%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
             <th width="22%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
+            <th width="4%"></th>
 	        <th width="4%"></th>
 	        <th width="4%"></th>
         <?php else: ?>
@@ -43,6 +49,12 @@
         <td><?php echo $item->PropertyType->getName() ?></td>
         <td><?php echo truncate_text($item->Neighborhood->getName(), 35) ?></td>
         <td><?php echo ucwords($item->AppUser->getName().' '.$item->AppUser->getLastName()) ?></td>
+        <td align="center">
+        	<a href="<?php echo url_for($str_module.'/enable').'?id='.$item->getId().'&enable='.$item->getEnabled() ?>">
+            <?php if($item->getEnabled()==1): $imagen_enable = 'aceptada.png'; $title = 'Deshabilitar'; else: $imagen_enable = 'confirma.png'; $title = 'Habilitar'; endif; ?>
+        		<img border="0" src="/admin/images/<?php echo $imagen_enable ?>" alt="<?php echo __($title) ?>" title="<?php echo __($title) ?>">
+        	</a>
+        </td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">
         		<img border="0" src="/admin/images/editar.png" alt="<?php echo __('Edit') ?>" title="<?php echo __('Edit') ?>">
