@@ -27,10 +27,9 @@ class OperationRealPropertyTable extends Doctrine_Table
     $q = $this->createQuery('orp')
           ->leftJoin('orp.Currency c')
           ->where('real_property_id = ?', $property_id)
-          ->andWhere('c.culture = ?', $culture)
-          ->orWhere('c.culture = ?', 'es')
+          ->andWhere("(c.culture = '$culture' OR c.culture = 'es')")
           ->orderBy('operation_id');
-
+    
     return $q->fetchOne();
   }
 
