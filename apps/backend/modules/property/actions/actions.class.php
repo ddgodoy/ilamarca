@@ -302,4 +302,33 @@ class propertyActions extends sfActions
     exit();
   }
 
+  /**
+   * enable
+   * @param sfWebRequest $request 
+   */
+  public function executeEnable(sfWebRequest $request)
+  {
+    $id = $request->getParameter('id');
+    $enable = $request->getParameter('enable',0);
+
+    $oValue = RealPropertyTable::getInstance()->find($request->getParameter('id'));
+
+  	if ($oValue)
+    {
+        if($enable==0)
+        {
+          $oValue->setEnabled(1);
+          $notice = 'La propiedad fue habilitada ';
+        }
+        else
+        {
+          $oValue->setEnabled(0);
+          $notice = 'La propiedad fue deshabilitada ';
+        }
+        $oValue->save();
+  	}
+
+    $this->getUser()->setFlash('notice', $notice);
+  	$this->redirect('property/index');
+  }
 } // end class
