@@ -22,7 +22,7 @@
   <h1 class="titulos">
   	<?php echo __('Listado de Emails') ?><span style="padding-left:10px;font-size:16px;">(box enviar a un amigo)</span>
   </h1>
-  	<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+  	<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order, 'oCant'=>$oCant)) ?>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
       	<?php if (count($oList) > 0): ?>
@@ -55,7 +55,7 @@
       </tr>
       <?php endforeach; ?>
     </table>
-    <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+    <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order, 'oCant'=>$oCant)) ?>
   </div>
   <div class="clear"></div>
 </div>

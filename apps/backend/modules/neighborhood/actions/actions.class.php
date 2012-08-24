@@ -20,6 +20,7 @@ class neighborhoodActions extends sfActions
   	$this->iPage  = $request->getParameter('page', 1);
   	$this->oPager = NeighborhoodTable::getInstance()->getPager($this->iPage, 30, $this->setFilter(), $this->setOrderBy());
   	$this->oList  = $this->oPager->getResults();
+    $this->oCant  = $this->oPager->getNbResults();
   }
 
   /**

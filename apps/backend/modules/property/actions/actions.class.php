@@ -20,6 +20,7 @@ class propertyActions extends sfActions
   	$this->iPage  = $request->getParameter('page', 1);
   	$this->oPager = RealPropertyTable::getInstance()->getPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy(), $this->getUser()->getCulture());
   	$this->oList  = $this->oPager->getResults();
+    $this->oCant  = $this->oPager->getNbResults();
   }
 
   /**

@@ -26,7 +26,7 @@
   	Listado de Perfiles de búsqueda
   	<input type="button" value="Registrar un perfil" style="float:right;" class="boton" onclick="document.location='<?php echo url_for($str_module.'/register') ?>';"/>
   </h1>
-  	<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+  	<?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order, 'oCant'=>$oCant)) ?>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
       	<?php if (count($oList) > 0): ?>
@@ -57,7 +57,7 @@
       </tr>
       <?php endforeach; ?>
     </table>
-    <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order)) ?>
+    <?php include_partial('home/pager', array('pager'=>$oPager, 'url'=>$index_url, 'params'=>$f_params.$pager_order, 'oCant'=>$oCant)) ?>
   </div>
   <div class="clear"></div>
 </div>

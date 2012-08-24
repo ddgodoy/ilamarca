@@ -20,6 +20,7 @@ class email_shareActions extends sfActions
   	$this->iPage  = $request->getParameter('page', 1);
   	$this->oPager = EmailShareTable::getInstance()->getPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy());
   	$this->oList  = $this->oPager->getResults();
+    $this->oCant  = $this->oPager->getNbResults();
   }
   
   /**
