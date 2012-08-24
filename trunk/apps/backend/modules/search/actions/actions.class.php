@@ -19,6 +19,7 @@ class searchActions extends sfActions
   	$this->iPage  = $request->getParameter('page', 1);
   	$this->oPager = SearchContactTable::getInstance()->getSearchPager($this->iPage, 20, $this->setFilter(), $this->setOrderBy());
   	$this->oList  = $this->oPager->getResults();
+    $this->oCant  = $this->oPager->getNbResults();
   }
   
   /**
