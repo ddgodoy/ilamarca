@@ -103,6 +103,7 @@ class propertyActions extends sfActions
   	$this->prices        = array();
   	$this->pdf_file      = NULL;
   	$this->qrcode_img    = '';
+  	$this->watermark     = true;
 		$entity_object       = NULL;
 
 		$this->db_operations = OperationTable::getInstance()->getAllForSelect();
@@ -145,6 +146,7 @@ class propertyActions extends sfActions
 	  	$this->sl_operations = $request->getParameter('operations', array());
 	    $this->sl_currencies = $request->getParameter('currencies');
 	    $this->sl_prices     = $request->getParameter('prices');
+	    $this->watermark     = $request->getParameter('watermark');
 
 			if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
 			if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
@@ -186,7 +188,7 @@ class propertyActions extends sfActions
         VideoTable::getInstance()->setPropertyVideos($recorded->getId(), $this->videos);
 
         // set images
-				Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')));
+				Gallery::setPropertyGallery($recorded->getId(), stripslashes($request->getParameter('plupload_files')), $this->watermark);
 				
 				// set pdf file
   			RealProperty::uploadPdfFile($request->getFiles('pdf_file'), $recorded, $request->getParameter('reset_pdf_file'));

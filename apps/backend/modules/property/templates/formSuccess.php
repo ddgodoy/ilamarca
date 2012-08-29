@@ -286,6 +286,14 @@
 					<img src="/admin/images/loader.gif" id="img_updating_gallery" border="0" style="visibility:hidden;"/>
 				</div>
 				<label style="color:#333333;"><strong>Galería de imágenes</strong></label>
+				<div style="float:right;">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td style="padding-right:6px;"><input type="checkbox" name="watermark" <?php if ($watermark): ?>checked<?php endif; ?>/></td>
+							<td><label style="color:#333333;"><strong>Marca de agua activada</strong></label></td>
+						</tr>
+					</table>
+				</div>
 				<table cellpadding="0" cellspacing="0">
 					<tr>
 						<td valign="top">
