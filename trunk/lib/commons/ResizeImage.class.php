@@ -193,7 +193,7 @@ class ResizeImage
 				$colorTransparent = imagecolorallocatealpha($this->objeto_destino, 0, 0, 0, 127);
 	
 				imagefill($this->objeto_destino, 0, 0, $colorTransparent);
-				imagesavealpha($this->objeto_destino, true);	
+				imagesavealpha($this->objeto_destino, true);
 			}
 		} elseif ($this->extension_img == '.gif') {
 			$this->objeto_origen = imagecreatefromgif($this->ruta_origen.$this->nombre_img_origen);

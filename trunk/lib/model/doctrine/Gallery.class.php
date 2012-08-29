@@ -46,8 +46,9 @@ class Gallery extends BaseGallery
 	 *
 	 * @param integer $property
 	 * @param string $images
+	 * @param boolean $add_watermark
 	 */
-	public static function setPropertyGallery($property, $images)
+	public static function setPropertyGallery($property, $images, $add_watermark = true)
 	{
 		if (!empty($images))
 		{
@@ -67,16 +68,17 @@ class Gallery extends BaseGallery
 
 				## Create thumbnails
 				$oResize = new ResizeImage();
+				$mainImg = ServiceFileHandler::getThumbImage($upload_file, 'g');
+				$arOptns = $add_watermark ? array('watermark'=>'ilamarca.com') : array();
 
-				$with_watermark = ServiceFileHandler::getThumbImage($upload_file, 'g');
-				$oResize->setSimple($upload_file, $with_watermark, $destination, 1024, 768, 0, 0, '', array('watermark'=>'ilamarca.com'));
+				$oResize->setSimple($upload_file, $mainImg, $destination, 1024, 768, 0, 0, '', $arOptns);
 
 				$aThumbs = array(
 					ServiceFileHandler::getThumbImage($upload_file, 'c') => array('w'=>75,  'h' => 50),
 					ServiceFileHandler::getThumbImage($upload_file, 'm') => array('w'=>201, 'h' => 159),
 					$upload_file => array('w'=>600, 'h' => 350),
 				);
-				$oResize->setMultiple($with_watermark, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
+				$oResize->setMultiple($mainImg, $aThumbs, $destination, 0, 0, '', array('metodo' => 'full'));
 
 				GalleryTable::getInstance()->newGalleryProperty($property, $file->former_name, $internal_nm);
 			}
