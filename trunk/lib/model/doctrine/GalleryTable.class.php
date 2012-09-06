@@ -33,7 +33,7 @@ class GalleryTable extends Doctrine_Table
   {
     $q = $this->createQuery('g')
          ->where('g.real_property_id = ?', $id)
-         ->orderBy('g.outstanding DESC');
+         ->orderBy('g.outstanding DESC, g.id ASC');
 
     if ($one) {
       return $q->fetchOne();
