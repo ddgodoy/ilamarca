@@ -115,9 +115,10 @@
 
 			var obj_cell  = '';
 			var obj_table = document.getElementById('plupload_tb_list');
-			var obj_row   = obj_table.insertRow(obj_table.rows.length);
+			
 
 			for (var i in files) {
+                var obj_row   = obj_table.insertRow(obj_table.rows.length);
 				obj_cell = obj_row.insertCell(0); obj_cell.style.width = '300px'; obj_cell.innerHTML = files[i].name;
 				obj_cell = obj_row.insertCell(1); obj_cell.style.width = '100px'; obj_cell.innerHTML = plupload.formatSize(files[i].size);
 	
