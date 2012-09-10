@@ -312,7 +312,7 @@
       		include_component('property', 'gallery' , array('id'=>$id));
       	?>
 				<input type="hidden" name="plupload_files" id="plupload_hidden_files" class="plupload_none" />
-				<input type="hidden" id="plupload_filters" value="jpg,gif,png" />
+				<input type="hidden" id="plupload_filters" value="jpg,gif,png,JPG,GIF,PNG" />
 				<input type="hidden" id="plupload_get_folder" value="/admin/plupload/" />
 				<input type="hidden" id="plupload_max_size" value="10" />
 			</div>
