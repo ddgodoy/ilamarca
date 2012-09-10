@@ -20,3 +20,8 @@ Options +FollowSymLinks +ExecCGI
   # no, so we redirect to our front web controller
   RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
+
+php_value upload_max_filesize 5M
+php_value post_max_size 5M
+php_value max_execution_time 1800
+php_value max_input_time 1800
