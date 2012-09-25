@@ -31,7 +31,7 @@
 						<div class="boton"><a href="<?php echo url_for('@loging') ?>" class="login"></a></div>
 					<?php endif; ?>
             <div class="boton"><a href="<?php echo url_for('home/contact') ?>" class="contacto" ></a></div>
-					<a href="https://www.facebook.com/inmobiliaria.lamarca"  target="_blank" class="fb"></a>
+					<a href="https://www.facebook.com/pages/Inmobiliaria-Lamarca/127227613954322"  target="_blank" class="fb"></a>
 					</div>
 				</div>
     		<?php echo $sf_content ?>
