@@ -31,20 +31,22 @@
 		<div class="divider"></div>
 		<div class="info">
 			<p>
-				<strong>Inmobiliaria Lamarca</strong><br>
-				Av. Lamarca 3920 - Barrio Urca<br>
-				Córdoba (5009) Argentina. <br>
-				Tel/Fax: 0351- 4824473
+				<strong>ilamarca.com</strong><br />
+				Av. Lamarca 3920 Barrio Urca.<br/>
+                Córdoba (5009) Argentina.<br />
 			</p>
 			<p>
-				<strong>Matías</strong><br>
-				Cel: 0351- 153290796 <br>
-				E-mail: <a href="mailto:matias@inmobiliarialamarca.com">matias@inmobiliarialamarca.com</a>
+				<strong>Matías (Argentina)</strong><br />
+				Celular desde Argentina: 0351-153290796 <br />
+                Mobile from Outside: (+54) 9 351 3290796<br/>
+                Skype: inmobiliaria.lamarca<br/>
+                E-mail: <a href="mailto:matias@ilamarca.com">matias@ilamarca.com</a><br/>
 			</p>
 			<p>
-				<strong>Luciana</strong><br>
-				Cel: 0351- 153290794 <br>
-				E-mail: <a href="mailto:luciana@inmobiliarialamarca.com">luciana@inmobiliarialamarca.com</a>
+				<strong>Luciana (Estados Unidos)</strong><br />
+				Mobile: +1 6105974495 <br />
+                Skype: lucaballero26<br/>
+				E-mail: <a href="mailto:luciana@ilamarca.com">luciana@ilamarca.com</a>
 			</p>
 		</div>
 	</div>

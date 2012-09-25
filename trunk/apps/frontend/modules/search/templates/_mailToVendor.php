@@ -14,6 +14,13 @@
 				</p>
 			<td>
 		</tr>
+        <tr>
+          <td>
+            <p style="text-align:justify;">
+              Comentario del usuario: <?php echo $data['commt'] ?>
+            </p>
+          </td>
+        </tr>
 		<tr>
 			<td>
 				<p>Inicie sesión haciendo click <a href="<?php echo $data['backend'] ?>" target="_blank">aquí</a>.</p>

@@ -37,6 +37,13 @@
 				</table>
 			<td>
 		</tr>
+        <tr>
+          <td>
+            <p style="text-align:justify;">
+              Comentario del usuario: <?php echo $data['commt'] ?>
+            </p>
+          </td>
+        </tr>
 		<tr>
 			<td><p>Saludos cordiales<br /><?php echo $data['url_sitio'] ?></p><td>
 		</tr>
