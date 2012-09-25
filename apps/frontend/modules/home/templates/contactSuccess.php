@@ -77,7 +77,7 @@
 				Celular desde Argentina: 0351-153290796 <br />
                 Mobile from Outside: (+54) 9 351 3290796<br/>
                 Skype: inmobiliaria.lamarca<br/>
-                E-mail: <a href="mailto:matias@inmobiliarialamarca.com">matias@ilamarca.com</a><br/>
+                E-mail: <a href="mailto:matias@ialamarca.com">matias@ilamarca.com</a><br/>
 			</p>
 			<p>
 				<strong>Luciana (Estados Unidos)</strong><br />

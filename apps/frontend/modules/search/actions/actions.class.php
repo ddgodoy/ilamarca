@@ -160,50 +160,56 @@ class searchActions extends sfActions
 				$vendor_name  = $this->obj->AppUser->getName().' '.$this->obj->AppUser->getLastName();				
 				$zone_vendors = VendorZoneTable::getInstance()->getZoneVendorsForContact($this->obj->getNeighborhoodId(), $this->obj->AppUser->getId());
 
-				if (count($zone_vendors) > 0) {
+				if (count($zone_vendors) > 0)
+                {
 					// mail al vendedor owner
 					$mailToOwner = ServiceOutgoingMessages::sendToSingleAccount(
 						$vendor_name,
 						$vendor_email,
 						'search/mailToOwner',
 						array(
-			  			'subject'     => $mail_titulo,
-			  			'to_partial'  => array(
+                            'subject'   => $mail_titulo,
+                            'to_partial'=> array(
 			  				'titulo'    => $mail_titulo,
 			  				'vendedor'  => $vendor_name,
 			  				'zone_vnds' => $zone_vendors,
 			  				'pr_nombre' => $this->obj->getName(),
 			  				'pr_link'   => 'http://'.$request->getHost().'/property?id='.$this->pid,
-			  				'url_sitio' => sfConfig::get('app_project_url_name')
+			  				'url_sitio' => sfConfig::get('app_project_url_name'),
+                            'commt'     => $this->commt
 	  			)));
 	  			// mail vendedores zona
 	  			ServiceOutgoingMessages::sendToMultipleAccounts(
 						$zone_vendors,
 						'search/mailToZoneVendors',
 						array(
-			  			'subject'     => $mail_titulo,
-			  			'to_partial'  => array(
+                            'subject'   => $mail_titulo,
+                            'to_partial'=> array(
 			  				'titulo'    => $mail_titulo,
 			  				'url_sitio' => sfConfig::get('app_project_url_name'),
 			  				'pr_nombre' => $this->obj->getName(),
 			  				'pr_link'   => 'http://'.$request->getHost().'/property?id='.$this->pid,
-			  				'backend'   => 'http://'.$request->getHost().'/admin'
+			  				'backend'   => 'http://'.$request->getHost().'/admin',
+                            'commt'     => $this->commt
 			  			)
 			  		)
 					);
-				} else {			
+				} 
+                else
+                {
 					$sendEmail = ServiceOutgoingMessages::sendToSingleAccount(
 						$vendor_name,
 						$vendor_email,
 						'search/mailToVendor',
 						array(
-			  			'subject'     => $mail_titulo,
-			  			'to_partial'  => array(
+                            'subject'     => $mail_titulo,
+                            'to_partial'  => array(
 			  				'titulo'    => $mail_titulo,
 			  				'vendedor'  => $vendor_name,
 			  				'cliente'   => $this->getUser()->getAttribute('user_name').' '.$this->getUser()->getAttribute('user_last_name'),
 			  				'url_sitio' => sfConfig::get('app_project_url_name'),
-			  				'backend'   => 'http://'.$request->getHost().'/admin'
+			  				'backend'   => 'http://'.$request->getHost().'/admin',
+                            'commt'     => $this->commt
 	  			)));
 				}
 				// rec contact in DB
@@ -215,8 +221,10 @@ class searchActions extends sfActions
 				$ctc->save();
 				//
 				$this->messg = 'ok';
-  			$this->commt = '';
-			} else {
+  			    $this->commt = '';
+			}
+            else
+            {
 				$this->error = 'error';
 			}
 		}
