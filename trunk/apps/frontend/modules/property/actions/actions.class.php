@@ -22,12 +22,12 @@ class propertyActions extends sfActions
     $this->images   = GalleryTable::getInstance()->getGalleryByProperty($id);
     $this->videos   = VideoTable::getInstance()->findOneBy('real_property_id', $id);
 
-    $this->m2_sup_cubierta = $this->property->getSquareMeters();
-		$this->m2_sup_terreno  = $this->property->getCoveredArea();
+    $this->m2_sup_cubierta = $this->property->getCoveredArea();
+	$this->m2_sup_terreno  = $this->property->getSquareMeters();
     $this->years_antiquity = $this->property->getYearsAntiquity();
     $this->qty_bathrooms   = $this->property->getQtyBathrooms();
-		$this->get_google_map  = $this->property->getGoogleMap();
-		$this->_down_pdf_file  = $this->property->getPdfFile();
+	$this->get_google_map  = $this->property->getGoogleMap();
+	$this->_down_pdf_file  = $this->property->getPdfFile();
     $this->qrcode_img      = $this->property->getQrCode();
     $this->url_site        = 'http://'.$request->getHost().'/property?id='.$id;
 
