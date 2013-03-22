@@ -2,6 +2,7 @@
 	$str_module = $sf_params->get('module');
 	$index_url  = url_for($str_module.'/index');
 	$head_link  = $index_url.'?page='.$iPage.$f_params;
+	$propInCart = count($sf_user->getAttribute('properties_in_cart', array()));
 ?>
 <div class="content">
   <div class="rightside">
@@ -21,7 +22,14 @@
 	</div>
   <h1 class="titulos">
   	<?php echo __('List of Properties') ?>
-  	<input type="button" value="<?php echo __('Register property') ?>" style="float:right;" class="boton" onclick="document.location='<?php echo url_for($str_module.'/register') ?>';"/>
+  	<div style="float:right;width:410px;">
+  		<input type="button" value="<?php echo __('Register property') ?>" class="boton" onclick="document.location='<?php echo url_for($str_module.'/register') ?>';"/>
+  		<input type="button" id="btn_cant_news" value="Propiedades para newsletter [<?php echo $propInCart ?>]" class="boton" style="float:right;" onclick="gotoNewsletterList();"/>
+
+  		<input type="hidden" id="hidden_cant_incart" value="<?php echo $propInCart ?>" />
+  		<input type="hidden" id="cart_url" value="<?php echo url_for('newsletter/addToCart') ?>" />
+  		<input type="hidden" id="cart_list" value="<?php echo url_for('newsletter/cartList') ?>" />
+  	</div>
   </h1>
     <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="mensajeSistema ok">
@@ -32,11 +40,12 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
       	<?php if (count($oList) > 0): ?>
-	        <th width="50%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
+	        <th width="30%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
 	        <th width="20%"><?php echo __('Property type') ?></th>
-	        <th width="22%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
-            <th width="22%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
-            <th width="4%"></th>
+	        <th width="20%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
+          <th width="14%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
+          <th width="4%"></th>
+          <th width="4%"></th>
 	        <th width="4%"></th>
 	        <th width="4%"></th>
         <?php else: ?>
@@ -54,6 +63,9 @@
             <?php if($item->getEnabled()==1): $imagen_enable = 'aceptada.png'; $title = 'Deshabilitar'; else: $imagen_enable = 'confirma.png'; $title = 'Habilitar'; endif; ?>
         		<img border="0" src="/admin/images/<?php echo $imagen_enable ?>" alt="<?php echo __($title) ?>" title="<?php echo __($title) ?>">
         	</a>
+        </td>
+        <td align="center">
+      		<img border="0" src="/admin/images/crear_newsletter.jpg" alt="<?php echo __('Add to newsletter') ?>" title="<?php echo __('Add to newsletter') ?>" width="30" style="cursor:pointer;" onclick="addToNewsCart(<?php echo $item->getId(); ?>);">
         </td>
         <td align="center">
         	<a href="<?php echo url_for($str_module.'/edit').'?id='.$item->getId() ?>">
