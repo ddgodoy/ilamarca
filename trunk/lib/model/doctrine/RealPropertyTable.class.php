@@ -80,5 +80,25 @@ class RealPropertyTable extends Doctrine_Table
     //
     return $oPager;
   }
+  
+  /**
+   * Get db properties for newsletter
+   *
+   * @param string $filter
+   * @return object
+   */
+ 	public function getDbPropertyListaForNs($filter)
+  {
+  	$q = Doctrine_Query::create()
+  			 ->from('RealProperty p')
+         ->leftJoin('p.Translation t WITH t.lang = ?', 'es')
+         ->leftJoin('p.Neighborhood n')
+         ->leftJoin('p.AppUser aus')
+         ->leftJoin('p.PropertyType pt')
+         ->where('p.id IN ('.$filter.')')
+         ->orderBy('p.id');
+
+  	return $q->count() > 0 ? $q->execute() : NULL;
+  }
 
 } // end class

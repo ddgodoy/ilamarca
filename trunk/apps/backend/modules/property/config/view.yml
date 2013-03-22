@@ -1,3 +1,6 @@
 formSuccess:
   stylesheets: [/plupload/css/plupload.css]
   javascripts: [numvalidate.js, property.js, /plupload/js/jquery_json_min.js, /plupload/js/plupload.js, /plupload/js/plupload.flash.js, /plupload/js/plupload.html5.js, /plupload/js/custom_upload.js]
+
+indexSuccess:
+  javascripts: [newsletter.js]

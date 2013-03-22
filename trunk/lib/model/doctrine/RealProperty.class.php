@@ -71,5 +71,28 @@ class RealProperty extends BaseRealProperty
   		$property->save();
   	}
   }
+  
+  /**
+   * Get property list for newsletter
+   *
+   * @return object
+   */
+  public static function getListForNewsletter()
+  {
+  	$sUser   = sfContext::getInstance()->getUser();
+    $content = $sUser->getAttribute('properties_in_cart', array());
+    $sFilter = '';
+    
+    foreach ($content as $property) {
+    	$sFilter .= $property.',';
+    }
+    $sFilter .= substr($sFilter, 0, -1);
+    
+    if (!empty($sFilter)) {
+    	return RealPropertyTable::getInstance()->getDbPropertyListaForNs($sFilter);
+    } else {
+    	return array();
+    }
+  }
 
 } // end class
