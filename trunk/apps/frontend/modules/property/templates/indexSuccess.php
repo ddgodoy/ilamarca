@@ -197,7 +197,7 @@ function validar_email(valor)
 	<div class="info">
 		<h2>
 			DETALLES GENERALES
-			<div style="float:right;">#<?php echo sprintf("%09d", $property->getId()) ?></div>
+			<div style="float:right;"><span style="color:#666666;">Código de ficha:</span> #<?php echo sprintf("%09d", $property->getId()) ?></div>
 		</h2>
 		<ul>
 			<?php if (!empty($m2_sup_cubierta)): ?>

@@ -28,7 +28,7 @@
 
 		<h1 class="titulos">
 			<?php echo __(ucfirst($str_action)).' '.__('Property') ?>
-			<?php if (!empty($id)): ?><div style="float:right;">#<?php echo sprintf("%09d", $id) ?></div><?php endif; ?>
+			<?php if (!empty($id)): ?><div style="float:right;font-size:14px;">Código de ficha: #<?php echo sprintf("%09d", $id) ?></div><?php endif; ?>
 		</h1>
 		<?php if (!empty($qrcode_img)): ?>
     <div style="border:1px solid #CCCCCC;width:200px;height:200px;position:absolute;margin-left:1015px;margin-top:77px;">
