@@ -195,7 +195,10 @@ function validar_email(valor)
 		</div>
 	</div>
 	<div class="info">
-		<h2>DETALLES GENERALES</h2>
+		<h2>
+			DETALLES GENERALES
+			<div style="float:right;">#<?php echo sprintf("%09d", $property->getId()) ?></div>
+		</h2>
 		<ul>
 			<?php if (!empty($m2_sup_cubierta)): ?>
 				<li><strong>Superficie cubierta:</strong> <?php echo $m2_sup_cubierta ?> m2.</li>
