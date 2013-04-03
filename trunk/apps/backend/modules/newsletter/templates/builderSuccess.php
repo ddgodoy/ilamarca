@@ -83,7 +83,7 @@
 												<td height="30" colspan="2">
 													<p style="padding-top:10px;width:300px;margin:0pt;font-family:Arial;font-size:12px;color:#333;text-align:center;background-image:url(http://www.ilamarca.com/mails/imgs/fdotit.jpg);background-repeat:no-repeat;background-position:center;">
 														<b>
-															<?php echo $propiedad->getName() ?>&nbsp;-&nbsp;<?php echo $propiedad->getAddress() ?>
+															<?php echo truncate_text($propiedad->getName(), 80) ?>&nbsp;-&nbsp;<?php echo $propiedad->getAddress() ?>
 														</b>
 													</p>
 												</td>
@@ -106,10 +106,10 @@
 											<tr>
 												<td width="190" rowspan="2" valign="top">
 													<p style="padding-left:15px;margin-left:0pt;margin-bottom:25px;margin-right:0pt;margin-top: 0pt;font-family:Arial;font-size:12px;color:#3d4448;">
-														<span class="datosbold"><?php echo $propiedad->getDetail() ?></span>
+														<span class="datosbold"><?php echo truncate_text($propiedad->getDetail(), 165) ?></span>
 													</p>
 												</td>
-												<td width="143" align="left" valign="middle">
+												<td width="143" align="left" valign="top">
 													<a href="http://<?php echo $xhost.'/property?id='.$propiedad->getId() ?>">
 														<img src="http://clasico.ilamarca.com/mails/imgs/info.jpg" alt="Info" border="0">
 													</a>
