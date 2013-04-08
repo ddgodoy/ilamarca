@@ -12,18 +12,27 @@
  */
 class Operation extends BaseOperation
 {
-    public static function getPrices($property, $culture)
-    {
-        $text_price = '0.00';
-        $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, $culture);
+	/**
+	 * Get prices
+	 *
+	 * @param integer $property
+	 * @param string $culture
+	 * @param boolean $venta_o_alquiler
+	 * 
+	 * @return decimal
+	 */
+  public static function getPrices($property, $culture, $venta_o_alquiler = false)
+  {
+    $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, $culture);
 
-        if (!$operation)
-        {
-          $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, 'en');
-        }
-        
-        $text_price = $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
-       
-        return $text_price;
+    if (!$operation) {
+      $operation = OperationRealPropertyTable::getInstance()->getOperationsByPropertyIdAndCulture($property, 'en');
     }
-}
+    if ($venta_o_alquiler) {
+    	return $operation->getOperationId();
+    } else {
+    	return $operation->getCurrency()->getSymbol().' '. $operation->getPrice();
+    }
+  }
+
+} // end class

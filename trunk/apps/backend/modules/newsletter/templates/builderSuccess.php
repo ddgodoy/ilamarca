@@ -104,15 +104,26 @@
 												</td>
 											</tr>
 											<tr>
-												<td width="190" rowspan="2" valign="top">
+												<td width="190" valign="top">
 													<p style="padding-left:15px;margin-left:0pt;margin-bottom:25px;margin-right:0pt;margin-top: 0pt;font-family:Arial;font-size:12px;color:#3d4448;">
 														<span class="datosbold"><?php echo truncate_text($propiedad->getDetail(), 165) ?></span>
 													</p>
 												</td>
-												<td width="143" align="left" valign="top">
+												<td width="143" align="left" style="padding-top:35px;">
 													<a href="http://<?php echo $xhost.'/property?id='.$propiedad->getId() ?>">
 														<img src="http://clasico.ilamarca.com/mails/imgs/info.jpg" alt="Info" border="0">
 													</a>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align:right;">
+													<?php $operation_id = Operation::getPrices($propiedad->getId(), $sf_user->getCulture(), true) ?>
+													
+													<?php if ($operation_id == 1): ?>
+														<img src="http://clasico.ilamarca.com/mails/imgs/venta_1.jpg" alt="Propiedad en Venta" border="0">
+													<?php else: ?>
+														<img src="http://clasico.ilamarca.com/mails/imgs/alquiler_1.jpg" alt="Propiedad en Alquiler" border="0">
+													<?php endif; ?>
 												</td>
 											</tr>
 										</table>
@@ -140,4 +151,4 @@
 	$st_contenido = ob_get_contents();
   ob_end_flush();
 ?>
-<textarea style="width:100%;height:400px;border:1px solid #333333;"><?php echo htmlentities($st_contenido) ?></textarea>
+<textarea style="width:100%;height:400px;border:1px solid #333333;"><?php echo htmlentities(utf8_decode($st_contenido)) ?></textarea>
