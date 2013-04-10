@@ -84,9 +84,26 @@ class newsletterActions extends sfActions
    */
   public function executeBuilder(sfWebRequest $request)
   {
+  	$this->_temp = array();
+  	$this->lista = array();
   	$this->xhost = $request->getHost();
-  	$this->lista = RealProperty::getListForNewsletter();
+
+  	$obLista = RealProperty::getListForNewsletter();
   	
+  	foreach ($obLista as $olista)
+  	{
+  		$this->_temp[] = array(
+  			'id'      =>$olista->getId(),
+  			'name'    =>$olista->getName(),
+  			'address' =>$olista->getAddress(),
+  			'area'    =>$olista->getCoveredArea(),
+  			'square'  =>$olista->getSquareMeters(),
+  			'detail'  =>$olista->getDetail()
+  		);
+  	}
+  	if (count($this->_temp) > 0) {
+  		$this->lista = array_chunk($this->_temp, 2);
+  	}
   	$this->setLayout('layout_newsletter');
   }
 
