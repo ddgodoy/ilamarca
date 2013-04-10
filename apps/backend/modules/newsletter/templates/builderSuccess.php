@@ -70,67 +70,68 @@
 					</tr>
 					<tr>
 						<td>
-							<table width="780" border="0" cellpadding="0" cellspacing="0">
+						 <table width="780" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="left" valign="top">
+								<table width="100%" border="0" cellpadding="0" cellspacing="5">
+								<?php foreach ($lista as $p_key => $p_val): ?>
 								<tr>
-									<td align="left" valign="top">
-									<table width="100%" border="0" cellpadding="0" cellspacing="5">
-								<tr>
-									<td>
-									<?php foreach ($lista as $propiedad): ?>
-									<div style="margin-left:60px;margin-bottom:30px;float:left;">
-										<table width="280" border="0" align="center" cellpadding="0" cellspacing="0" >
-											<tr>
-												<td height="30" colspan="2">
-													<p style="padding-top:10px;width:300px;margin:0pt;font-family:Arial;font-size:12px;color:#333;text-align:center;background-image:url(http://www.ilamarca.com/mails/imgs/fdotit.jpg);background-repeat:no-repeat;background-position:center;">
-														<b>
-															<?php echo truncate_text($propiedad->getName(), 80) ?>&nbsp;-&nbsp;<?php echo $propiedad->getAddress() ?>
-														</b>
-													</p>
-												</td>
-											</tr>
-											<tr>
-												<td height="200" colspan="2" align="center" valign="middle">
-													<a href="http://<?php echo $xhost.'/property?id='.$propiedad->getId() ?>">
-														<img src="<?php echo 'http://'.$xhost.Gallery::getFirstGallery($propiedad->getId()) ?>" alt="<?php echo $propiedad->getName() ?>" vspace="8" border="0" />
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td height="50" colspan="2" align="center" valign="middle" style="color:#003366;font-weight:bold;font-size:12px;font-family:Arial;">
-													Sup. Cubierta: <?php echo $propiedad->getCoveredArea() ?> m2 
-													- 
-													Terreno: <?php echo $propiedad->getSquareMeters() ?> m2<br />
-													Precio: <?php echo Operation::getPrices($propiedad->getId(), $sf_user->getCulture()) ?>
-												</td>
-											</tr>
-											<tr>
-												<td width="190" valign="top">
-													<p style="padding-left:15px;margin-left:0pt;margin-bottom:25px;margin-right:0pt;margin-top: 0pt;font-family:Arial;font-size:12px;color:#3d4448;">
-														<span class="datosbold"><?php echo truncate_text($propiedad->getDetail(), 165) ?></span>
-													</p>
-												</td>
-												<td width="143" align="left" style="padding-top:35px;">
-													<a href="http://<?php echo $xhost.'/property?id='.$propiedad->getId() ?>">
-														<img src="http://clasico.ilamarca.com/mails/imgs/info.jpg" alt="Info" border="0">
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="2" style="text-align:right;">
-													<?php $operation_id = Operation::getPrices($propiedad->getId(), $sf_user->getCulture(), true) ?>
-													
-													<?php if ($operation_id == 1): ?>
-														<img src="http://clasico.ilamarca.com/mails/imgs/venta_1.jpg" alt="Propiedad en Venta" border="0">
-													<?php else: ?>
-														<img src="http://clasico.ilamarca.com/mails/imgs/alquiler_1.jpg" alt="Propiedad en Alquiler" border="0">
-													<?php endif; ?>
-												</td>
-											</tr>
-										</table>
-									</div>
+									<?php foreach ($lista[$p_key] as $propiedad): ?>
+										<td>
+											<table width="280" border="0" align="center" cellpadding="0" cellspacing="0" >
+												<tr>
+													<td height="30" colspan="2">
+														<p style="padding-top:10px;width:300px;margin:0pt;font-family:Arial;font-size:12px;color:#333;text-align:center;background-image:url(http://www.ilamarca.com/mails/imgs/fdotit.jpg);background-repeat:no-repeat;background-position:center;">
+															<b>
+																<?php echo truncate_text($propiedad['name'], 80) ?>&nbsp;-&nbsp;<?php echo $propiedad['address'] ?>
+															</b>
+														</p>
+													</td>
+												</tr>
+												<tr>
+													<td height="200" colspan="2" align="center" valign="middle">
+														<a href="http://<?php echo $xhost.'/property?id='.$propiedad['id'] ?>">
+															<img src="<?php echo 'http://'.$xhost.Gallery::getFirstGallery($propiedad['id']) ?>" alt="<?php echo $propiedad['name'] ?>" vspace="8" border="0" />
+														</a>
+													</td>
+												</tr>
+												<tr>
+													<td height="50" colspan="2" align="center" valign="middle" style="color:#003366;font-weight:bold;font-size:12px;font-family:Arial;">
+														Sup. Cubierta: <?php echo $propiedad['area'] ?> m2 
+														- 
+														Terreno: <?php echo $propiedad['square'] ?> m2<br />
+														Precio: <?php echo Operation::getPrices($propiedad['id'], $sf_user->getCulture()) ?>
+													</td>
+												</tr>
+												<tr>
+													<td width="190" valign="top">
+														<p style="padding-left:15px;margin-left:0pt;margin-bottom:25px;margin-right:0pt;margin-top: 0pt;font-family:Arial;font-size:12px;color:#3d4448;">
+															<span class="datosbold"><?php echo truncate_text($propiedad['detail'], 165) ?></span>
+														</p>
+													</td>
+													<td width="143" align="left" style="padding-top:35px;">
+														<a href="http://<?php echo $xhost.'/property?id='.$propiedad['id'] ?>">
+															<img src="http://clasico.ilamarca.com/mails/imgs/info.jpg" alt="Info" border="0">
+														</a>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" style="text-align:right;">
+														<?php $operation_id = Operation::getPrices($propiedad['id'], $sf_user->getCulture(), true) ?>
+														
+														<?php if ($operation_id == 1): ?>
+															<img src="http://clasico.ilamarca.com/mails/imgs/venta_1.jpg" alt="Propiedad en Venta" border="0">
+														<?php else: ?>
+															<img src="http://clasico.ilamarca.com/mails/imgs/alquiler_1.jpg" alt="Propiedad en Alquiler" border="0">
+														<?php endif; ?>
+													</td>
+												</tr>
+											</table>
+										</td>
 									<?php endforeach; ?>
-									</td>
 								</tr>
+								<tr><td height="15"></td></tr>
+								<?php endforeach; ?>
 							</table>
 						</td>
 					</tr>
