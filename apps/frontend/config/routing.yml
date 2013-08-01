@@ -16,7 +16,7 @@ logout:
 # default rules
 homepage:
   url:   /
-  param: { module: home, action: index }
+  param: { module: search, action: index }
 
 # generic rules
 default_index:
