@@ -33,20 +33,20 @@
 			<fieldset>
 				<table width="100%" cellspacing="4" cellpadding="0" border="0">
 					<tr>
-						<td width="7%"><label><?php echo __('Name') ?> *</label></td>
-						<td width="93%">
-							<table cellpadding="0" cellspacing="0">
-								<tr>
-									<td><?php echo $form['name'] ?></td>
-									<td style="padding-left:20px;"><label><?php echo __('Last name') ?> *</label>&nbsp;</td>
-									<td><?php echo $form['last_name'] ?></td>
-								</tr>
-							</table>
-						</td>
+						<td width="7%"><label><?php echo __('Email') ?> *</label></td>
+						<td width="93%"><input type="text" class="form_input" name="email" value="<?php echo $email ?>" style="width:400px;"/></td>
 					</tr>
 					<tr>
-						<td><label><?php echo __('Email') ?> *</label></td>
-						<td><input type="text" class="form_input" name="email" value="<?php echo $email ?>" style="width:485px;"/></td>
+						<td><label><?php echo __('Name') ?> *</label></td>
+						<td><?php echo $form['name'] ?></td>
+					</tr>
+					<tr>
+						<td><label><?php echo __('Last name') ?> *</label></td>
+						<td><?php echo $form['last_name'] ?></td>
+					</tr>
+					<tr>
+						<td><label><?php echo __('Phone') ?></label></td>
+						<td><input type="text" class="form_input" name="phone" value="<?php echo $phone ?>" style="width:400px;"/></td>
 					</tr>
 					<tr>
 						<td><label><?php echo __('Photo') ?></label></td>

@@ -93,6 +93,7 @@ class salesmanActions extends sfActions
   {
   	$this->id = $request->getParameter('id');
   	$this->email   = '';
+  	$this->phone   = '';
   	$this->error   = array();
   	$this->photo   = NULL;
   	$entity_object = NULL;
@@ -102,6 +103,7 @@ class salesmanActions extends sfActions
   	if ($this->id) {
   		$entity_object = AppUserTable::getInstance()->find($this->id);
 	  	$this->email   = $entity_object->getEmail();
+	  	$this->phone   = $entity_object->getPhone();
 	  	$this->photo   = $entity_object->getPhoto();
 	  	$this->selected_zones = AppUser::getArrayFromDesignatedZones($this->id);
   	}
@@ -112,6 +114,7 @@ class salesmanActions extends sfActions
   		$this->selected_zones = AppUserTable::getInstance()->getValuesFromZonesArray($designated_zones_ids);
 
   		$this->email = trim($request->getParameter('email'));
+  		$this->phone = trim($request->getParameter('phone'));
   		$x_password  = trim($request->getParameter('password'));
   		$r_password  = trim($request->getParameter('repeat_password'));
 
@@ -126,6 +129,7 @@ class salesmanActions extends sfActions
 			$form_request['company_id']   = 1;
 			$form_request['user_role_id'] = 3;
 			$form_request['email']        = $this->email;
+			$form_request['phone']        = $this->phone;
 
 			$this->form->bind($form_request);
 
