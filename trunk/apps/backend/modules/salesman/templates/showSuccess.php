@@ -20,6 +20,10 @@
 					<td class="text_detail"><?php echo $oValue->UserRole->getName() ?></td>
 				</tr>
 				<tr>
+					<td><label><strong><?php echo __('Email') ?>&nbsp;:&nbsp;</strong></label></td>
+					<td class="text_detail"><?php echo $oValue->getEmail() ?></td>
+				</tr>
+				<tr>
 					<td><label><strong><?php echo __('Name') ?>&nbsp;:&nbsp;</strong></label></td>
 					<td class="text_detail"><?php echo $oValue->getName() ?></td>
 				</tr>
@@ -28,8 +32,8 @@
 					<td class="text_detail"><?php echo $oValue->getLastName() ?></td>
 				</tr>
 				<tr>
-					<td><label><strong><?php echo __('Email') ?>&nbsp;:&nbsp;</strong></label></td>
-					<td class="text_detail"><?php echo $oValue->getEmail() ?></td>
+					<td><label><strong><?php echo __('Phone') ?>&nbsp;:&nbsp;</strong></label></td>
+					<td class="text_detail"><?php echo $oValue->getPhone() ?></td>
 				</tr>
 				<tr>
 					<td><label><strong><?php echo __('Enabled') ?>&nbsp;:&nbsp;</strong></label></td>
