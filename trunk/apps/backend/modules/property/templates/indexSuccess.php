@@ -40,10 +40,10 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="listados">
       <tr>
       	<?php if (count($oList) > 0): ?>
-	        <th width="30%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
-	        <th width="20%"><?php echo __('Property type') ?></th>
+	        <th width="40%"><a href="<?php echo $head_link.'&o=p.name&s='.$sort ?>"><?php echo __('Name') ?></a></th>
+	        <th width="14%"><?php echo __('Property type') ?></th>
 	        <th width="20%"><a href="<?php echo $head_link.'&o=n.name&s='.$sort ?>"><?php echo __('Neighborhood') ?></a></th>
-          <th width="14%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
+          <th width="10%"><a href="<?php echo $head_link.'&o=aus.id&s='.$sort ?>"><?php echo __('Salesman') ?></a></th>
           <th width="4%"></th>
           <th width="4%"></th>
 	        <th width="4%"></th>
@@ -54,7 +54,7 @@
       </tr>
       <?php foreach ($oList as $item): ?>
       <tr class="<?php if (!empty($odd)) { echo 'gris'; $odd=0; } else { echo 'blanco'; $odd=1; } ?>">
-        <td><?php echo truncate_text($item->getName(), 85) ?></td>
+        <td><?php echo truncate_text($item->getName(), 70) ?></td>
         <td><?php echo $item->PropertyType->getName() ?></td>
         <td><?php echo truncate_text($item->Neighborhood->getName(), 35) ?></td>
         <td><?php echo ucwords($item->AppUser->getName().' '.$item->AppUser->getLastName()) ?></td>
