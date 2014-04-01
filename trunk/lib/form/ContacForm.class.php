@@ -34,7 +34,7 @@ class ContacForm extends sfForm
       'address'     => new sfValidatorString(array('max_length' => 150, 'required' => FALSE), array('required' => 'this field is mandatory')),
       'message'     => new sfValidatorString(array('required' => true)),
       'type'        => new sfValidatorString(array('required' => FALSE)),
-      'captcha'     => new sfValidatorReCaptcha(array('private_key' => sfConfig::get('app_recaptcha_private_key')),array('captcha'=>'Ingrese las palabras que ve en la imagen')),  
+      'captcha'     => new sfValidatorReCaptcha(array('private_key' => sfConfig::get('app_recaptcha_private_key')),array('required' => 'Ingrese las palabras que ve en la imagen','captcha'=>'Ingrese las palabras que ve en la imagen')),  
     ));
 
 
