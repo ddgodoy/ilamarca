@@ -45,8 +45,8 @@ class homeActions extends sfActions
    *
    * @param sfRequest $request A request object
    */
-	public function executeContact(sfWebRequest $request)
-	{
+  public function executeContact(sfWebRequest $request)
+  {
         $this->type  = $request->getParameter('type','');
         $this->label =  $this->type != ''?'Propiedad':'Consulta';
         $this->perfil = $request->getParameter('perfil','');
@@ -55,15 +55,15 @@ class homeActions extends sfActions
         {
           $this->label = 'Descripción';
         }
-		$this->form  = new ContacForm();
+	$this->form  = new ContacForm();
         $redirect = 'home/contact';
 
-		if ($request->isMethod('POST'))
-		{
+        if ($request->isMethod('POST'))
+        {
 			$this->form->bind($request->getParameter($this->form->getName()));
 
-			if ($this->form->isValid())
-			{
+            if ($this->form->isValid())
+            {
                 $file = $request->getFiles('cv', '');
 				$post_values = $this->form->getValues();
                 $post_values['type'];
@@ -114,7 +114,7 @@ class homeActions extends sfActions
                       $this->redirect($redirect);
                }
            }
-		}
-	}
+        }
+  }
 
 } // end class
