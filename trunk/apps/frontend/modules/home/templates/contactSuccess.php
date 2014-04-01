@@ -13,7 +13,7 @@
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
-		<div class="search_box clearfix" style="padding-top:10px;<?php if($perfil!=''): ?> padding-right: 50px<?php endif; ?>">
+		<div class="clearfix" style="padding-top:10px;<?php if($perfil!=''): ?> padding-right: 50px<?php endif; ?>">
             <form action="<?php url_for('home/contact') ?>" method="post" enctype="multipart/form-data">
 				<div class="rowElem">
 					<p><strong><?php echo $form['name']->renderLabel('* Nombre y Apellido:') ?></strong></p>
@@ -55,7 +55,7 @@
 					?>
 				</div>
                                 <br/>
-                                <div class="rowElem">
+                                <div class="rowElem" style=" width: 320px">
                                     <?php  echo $form['captcha']->render(array('class'=>'et_input','style'=>'width:255px;'))  ?>
                                     <?php if ($form['captcha']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['captcha']->renderError()) ?></em></p><?php endif;?>
                                </div>
