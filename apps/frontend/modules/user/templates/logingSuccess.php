@@ -25,7 +25,6 @@
 						$error_password = $form['password']->renderError() ? 'background-color:#FFCCCC;' : '';
 						echo $form['password']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_password));
 					?>
-          <?php if ($form['password']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['password']->renderError()) ?></em></p><?php endif; ?>
 				</div>
 				<?php echo $form->renderHiddenFields() ?>
 				<p>Los campos con asterisco (*) son obligatorios</p>
@@ -42,7 +41,7 @@
 		<div class="info register" style="margin-top: 80px">
                     <p><strong>Regístrate</strong></p>
                     <p>Si todavía no creaste tu perfil ingresa aquí!</p>
-                    <div class="boton" style="top:200px;">
+                    <div class="boton" style="top:280px;">
                       <input type="button" value="REGISTRO" onclick="document.location='<?php echo url_for('user/index') ?>';" class="et_btn_vacio"/>
                     </div>
 		</div>
