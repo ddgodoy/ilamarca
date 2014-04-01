@@ -23,16 +23,18 @@ class ContacForm extends sfForm
       'phone'       => new sfWidgetFormInput(array()),
       'address'     => new sfWidgetFormInput(array()),
       'type'        => new sfWidgetFormInputHidden(array()),
-      'message'     => new sfWidgetFormTextarea()
+      'message'     => new sfWidgetFormTextarea(),
+      'captcha'     => new sfWidgetFormReCaptcha(array('public_key' => sfConfig::get('app_recaptcha_public_key'))),  
     ));
     
     $this->setValidators(array(
       'name'        => new sfValidatorString(array('max_length' => 150, 'required' => true), array('required' => 'this field is mandatory')),
       'email'       => new sfValidatorAnd(array(new sfValidatorEmail(array(),array('invalid'=>'Enter valid Email Address'))),array(),array('required' => 'this field is mandatory')),
-      'phone'     => new sfValidatorString(array('max_length' => 150, 'required' => true), array('required' => 'this field is mandatory')),
+      'phone'       => new sfValidatorString(array('max_length' => 150, 'required' => true), array('required' => 'this field is mandatory')),
       'address'     => new sfValidatorString(array('max_length' => 150, 'required' => FALSE), array('required' => 'this field is mandatory')),
       'message'     => new sfValidatorString(array('required' => true)),
       'type'        => new sfValidatorString(array('required' => FALSE)),
+      'captcha'     => new sfValidatorReCaptcha(array('private_key' => sfConfig::get('app_recaptcha_private_key')),array('captcha'=>'Ingrese las palabras que ve en la imagen')),  
     ));
 
 
