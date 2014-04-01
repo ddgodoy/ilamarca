@@ -33,7 +33,7 @@
         </div>
         <br clear="all"/>
 				<div class="header">
-					<div class="logo"><a href="<?php echo url_for('home/index') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
+					<div class="logo"><a href="<?php echo url_for('@homepage') ?>"><img src="/images/logo_ilamarca.png" alt="Inmobiliaria Lamarca" /></a></div>
 					<div class="submenu">
 					<?php if ($sf_user->isAuthenticated()): ?>
 						<div class="boton"><a href="<?php echo url_for('@profile') ?>" style="padding-top:5px;" class="et_link">Mi perfil</a></div>
