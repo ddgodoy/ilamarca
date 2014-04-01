@@ -65,7 +65,7 @@
                 <?php else: ?>
 				<p <?php if ($form->hasErrors()): ?>style="color:red;"<?php endif; ?>>Los campos con asterisco (*) son obligatorios</p>
                 <?php endif; ?>
-				<div class="boton">
+                                <div class="boton" style="bottom: 25px">
 					<input type="submit" value="ENVIAR" class="et_btn_vacio"/>
 				</div>
 			</form>
