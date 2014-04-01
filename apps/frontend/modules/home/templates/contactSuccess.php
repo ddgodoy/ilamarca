@@ -13,7 +13,7 @@
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
-		<div class="search_box clearfix" style="padding-top:10px;<?php if($perfil!=''): ?> padding-right: 38px<?php endif; ?>">
+		<div class="search_box_not_background clearfix" style="padding-top:10px;<?php if($perfil!=''): ?> padding-right: 38px<?php endif; ?>">
             <form action="<?php url_for('home/contact') ?>" method="post" enctype="multipart/form-data">
 				<div class="rowElem">
 					<p><strong><?php echo $form['name']->renderLabel('* Nombre y Apellido:') ?></strong></p>
