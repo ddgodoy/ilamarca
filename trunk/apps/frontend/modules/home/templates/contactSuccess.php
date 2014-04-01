@@ -54,6 +54,7 @@
 						echo $form['message']->render(array('class'=>'et_input','style'=>'width:255px;'.$error_message));
 					?>
 				</div>
+                                <br/>
                                 <div class="rowElem">
                                     <?php  echo $form['captcha']->render(array('class'=>'et_input','style'=>'width:255px;'))  ?>
                                     <?php if ($form['captcha']->renderError()): ?><p class="p-error"><em><?php echo '*'.strip_tags($form['captcha']->renderError()) ?></em></p><?php endif;?>
