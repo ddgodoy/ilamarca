@@ -55,12 +55,16 @@ class homeActions extends sfActions
         {
           $this->label = 'Descripción';
         }
+        $captcha = array(
+                'recaptcha_challenge_field' => $request->getParameter('recaptcha_challenge_field'),
+                'recaptcha_response_field'  => $request->getParameter('recaptcha_response_field'),
+		);
 	$this->form  = new ContacForm();
         $redirect = 'home/contact';
 
         if ($request->isMethod('POST'))
         {
-			$this->form->bind($request->getParameter($this->form->getName()));
+            $this->form->bind(array_merge($request->getParameter($this->form->getName()), array('captcha' => $captcha)));
 
             if ($this->form->isValid())
             {
