@@ -42,7 +42,7 @@
 		<div class="info register" style="margin-top: 80px">
                     <p><strong>Regístrate</strong></p>
                     <p>Si todavía no creaste tu perfil ingresa aquí!</p>
-                    <div class="boton" style="top:280px;">
+                    <div class="boton" style="top:200px;">
                       <input type="button" value="REGISTRO" onclick="document.location='<?php echo url_for('user/index') ?>';" class="et_btn_vacio"/>
                     </div>
 		</div>
