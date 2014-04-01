@@ -7,7 +7,7 @@
 		<br />
 	<?php endif; ?>
 	<div class="contacto">
-		<div class="search_box clearfix" style="padding-top:10px;">
+		<div class="search_box clearfix" style="padding-top:90px;">
 			<form action="<?php url_for('home/contact') ?>" method="post">
         <p><strong>Si ya creaste tu perfil ingresa tu datos!</strong></p>
         <br />
@@ -29,7 +29,7 @@
 				</div>
 				<?php echo $form->renderHiddenFields() ?>
 				<p>Los campos con asterisco (*) son obligatorios</p>
-				<div class="boton" style="top:200px;">
+				<div class="boton" style="top:280px;">
 					<input type="submit" value="INGRESAR" class="et_btn_vacio"/>
 				</div>
 			</form>
@@ -39,12 +39,12 @@
       </div>
 		</div>
 		<div class="divider"></div>
-		<div class="info register">
-      <p><strong>Regístrate</strong></p>
-      <p>Si todavía no creaste tu perfil ingresa aquí!</p>
-      <div class="boton" style="top:120px;">
-        <input type="button" value="REGISTRO" onclick="document.location='<?php echo url_for('user/index') ?>';" class="et_btn_vacio"/>
-      </div>
+		<div class="info register" style="margin-top: 80px">
+                    <p><strong>Regístrate</strong></p>
+                    <p>Si todavía no creaste tu perfil ingresa aquí!</p>
+                    <div class="boton" style="top:280px;">
+                      <input type="button" value="REGISTRO" onclick="document.location='<?php echo url_for('user/index') ?>';" class="et_btn_vacio"/>
+                    </div>
 		</div>
 	</div>
 </div>
