@@ -99,8 +99,8 @@ class homeActions extends sfActions
                       $subject = 'Nueva consulta desde '.sfConfig::get('app_project_url_name');
                   }
 
-                  //$destinatarios = array('matias@ilamarca.com'=>'Matías', 'luciana@ilamarca.com'=>'Luciana');
-                  $destinatarios = array('mauro@icox.com'=>'Mauro',);
+                  $destinatarios = array('matias@ilamarca.com'=>'Matías', 'luciana@ilamarca.com'=>'Luciana');
+                  //$destinatarios = array('mauro@icox.com'=>'Mauro',);
                       //
                       $sendEmail = ServiceOutgoingMessages::sendToMultipleAccounts($destinatarios, 'home/mailFromUser',
                       array(
