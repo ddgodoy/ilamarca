@@ -359,7 +359,11 @@ html[xmlns] .clearfix {
 
 .contacto .search_box { float:left; padding-left:25px; padding-top:20px;  background-image: url(/images/line-vertical.png);background-repeat: no-repeat;background-position: 100% 24%; padding-right:34px; height:100%;}
 
+.contacto .search_box_not_background { float:left; padding-left:25px; padding-top:20px; padding-right:34px; height:100%;}
+
 .contacto .search_box p { font-size:12px; margin-left:5px; margin-top:5px;}
+
+.contacto .search_box_not_background p { font-size:12px; margin-left:5px; margin-top:5px;}
 
 .contacto .info {float:right; padding-right:25px; padding-top:22px;}
 
