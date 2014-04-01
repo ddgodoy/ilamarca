@@ -74,7 +74,7 @@
         </div>
 				<?php echo $form->renderHiddenFields() ?>
 				<p>Los campos con asterisco (*) son obligatorios</p>
-				<div class="boton" style="bottom: 20px; float: right; text-align: right; position: relative">
+				<div class="boton" style="bottom: 150px; width: 540px">
 					<input type="submit" value="ENVIAR" class="et_btn_vacio"/>
 				</div>
 			</form>
