@@ -17,8 +17,8 @@
 				foreach ($oList as $p_val):
 					$set_css_middle = ''; if ($middle_counter == 3) { $middle_counter = 0; $set_css_middle = ' middle'; } $middle_counter++;
 
-					$_m2_cubiertos = $p_val->getSquareMeters();
-					$_m2_terreno   = $p_val->getCoveredArea();
+					$_m2_cubiertos = $p_val->getCoveredArea();
+					$_m2_terreno   = $p_val->getSquareMeters();
 			?>
 			<div class="preview<?php echo $set_css_middle ?>">
 				<a href="<?php echo url_for('property/index?id='.$p_val->getId()) ?>" id="tt-<?php echo $p_val->getId() ?>" class="white">
