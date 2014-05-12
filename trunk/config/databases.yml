@@ -2,7 +2,7 @@ prod:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=ilamarca_servidor'
+      dsn: 'mysql:host=localhost;dbname=ilamarca'
       username: root
       password: 123
 
@@ -10,7 +10,7 @@ stage:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=ilamarca_servidor'
+      dsn: 'mysql:host=localhost;dbname=ilamarca'
       username: root
       password: 123
 
@@ -18,6 +18,6 @@ dev:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=ilamarca_servidor'
+      dsn: 'mysql:host=localhost;dbname=ilamarca'
       username: root
       password: 123
