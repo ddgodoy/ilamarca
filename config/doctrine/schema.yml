@@ -198,6 +198,8 @@ RealProperty:
     app_user_id:        { type: integer(4), notnull: true }
     updated:            { type: datetime }
     enabled:            { type: boolean, default: true }
+    latitude:           { type: decimal(9), scale: 6}
+    longitude:          { type: decimal(9), scale: 6}
 
   relations:
     Bedroom:       { class: Bedroom, local: bedroom_id, foreign: id, foreignAlias: Bedroom, onDelete: CASCADE }

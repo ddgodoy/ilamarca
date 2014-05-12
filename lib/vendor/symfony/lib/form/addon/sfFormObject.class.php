@@ -241,8 +241,8 @@ abstract class sfFormObject extends BaseForm
     {
       if ($form instanceof sfFormObject)
       {
-        $form->saveEmbeddedForms($con);
         $form->getObject()->save($con);
+        $form->saveEmbeddedForms($con);
       }
       else
       {
@@ -278,6 +278,11 @@ abstract class sfFormObject extends BaseForm
 
   protected function camelize($text)
   {
-    return preg_replace(array('#/(.?)#e', '/(^|_|-)+(.)/e'), array("'::'.strtoupper('\\1')", "strtoupper('\\2')"), $text);
+    if (preg_match_all('#(?:/|_|-)+.#', $text, $matches)) {
+        foreach ($matches[0] as $match)
+            $text = str_replace($match, strtoupper($match), $text);
+        return ucfirst(strtr($text, array('/' => '::', '_' => '', '-' => '')));
   }
+    return ucfirst($text);
+}
 }

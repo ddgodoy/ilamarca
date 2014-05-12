@@ -1,3 +1,4 @@
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAHhzikxCQyRAS8ryQoB75mRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQiqBRnE1Iky5sZfKGxzYbUanZ0HA" type="text/javascript"></script>  
 <script type="text/javascript">
 $(document).ready(function () {
 	$('#fotos').click(function() {
@@ -31,6 +32,9 @@ $(document).ready(function () {
 		$('#videos').removeAttr('class');
 		$('#videos').attr('class', 'videos');
 		$('#gallery-videos').hide();
+                <?php if($latitude != '' || $longitude != ''): ?>
+                    $('#gallery-mapas').html(inicializar(<?php echo $latitude ?>,<?php echo $longitude ?>, '<?php echo $property->getName() ?>'));
+                <?php endif; ?>
 	})
   //
   $(window).resize(function () {
@@ -133,6 +137,34 @@ function validar_email(valor)
   else
     return false;
 }
+//
+function inicializar(lat, longt, name) {  
+    if (GBrowserIsCompatible()) 
+    {  
+
+        var map = new GMap2(document.getElementById("gallery-mapas"));  
+        map.setCenter(new GLatLng(lat,longt), 15);  
+        map.addControl(new GMapTypeControl());  
+        map.addControl(new GLargeMapControl());  
+        map.addControl(new GScaleControl());  
+        map.addControl(new GOverviewMapControl());  
+        //map.addOverlay(new GMarker(new GLatLng(-33.43795,-70.603627)));  
+
+        var show_descripcion = '<b>'+name+'</b><br />';
+        var point = new GPoint (longt,lat);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml(show_descripcion);
+
+        GEvent.addListener(map, "click", function (overlay,point){
+           if (point){
+               marker.setPoint(point);
+               map.addOverlay(marker);
+               marker.openInfoWindowHtml(show_descripcion);
+           }
+        });      
+    }    
+}  
 </script>
 <?php include_partial ('boxEmailSharer') ?>
 <div class="left ficha">
@@ -185,12 +217,8 @@ function validar_email(valor)
 			</div>
 		</div>
 		<div id="gallery-mapas" class="slider clearfix" style="display:none;">
-			<div class="fotoBig">
-				<?php if ($get_google_map): ?>
-					<?php echo html_entity_decode($get_google_map) ?>
-				<?php else: ?>
-					<div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
-				<?php endif; ?>
+			<div id="maps" class="fotoBig">
+                                <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
 			</div>
 		</div>
 	</div>
