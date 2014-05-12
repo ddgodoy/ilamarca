@@ -150,7 +150,7 @@
 						<td valign="top">
 							<table cellpadding="3" cellspacing="0">
                 <tr>
-                  <td width="6%"><label><?php echo __('Country') ?></label></td>
+                  <td width="26%"><label><?php echo __('Country') ?></label></td>
                   <td><?php echo $form['country_id'] ?></td>
                 </tr>
 								<tr>
