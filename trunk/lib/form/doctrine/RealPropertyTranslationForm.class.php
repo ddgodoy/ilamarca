@@ -19,7 +19,7 @@ class RealPropertyTranslationForm extends BaseRealPropertyTranslationForm
       'detail'     => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:500px;height:150px;')),
       'address'    => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:101px;')),
       'transports' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:50px;')),
-      'points_of_ref' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:500px;height:46px;')),
+        'points_of_ref' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:101px;')),
     ));
 
     $this->setValidators(array(

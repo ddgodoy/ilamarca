@@ -22,6 +22,10 @@ class propertyActions extends sfActions
     $this->images   = GalleryTable::getInstance()->getGalleryByProperty($id);
     $this->videos   = VideoTable::getInstance()->findOneBy('real_property_id', $id);
 
+    $this->latitude  =  $this->property->getLatitude();
+    $this->longitude =  $this->property->getLongitude();
+    
+    
     $this->m2_sup_cubierta = $this->property->getCoveredArea();
 	$this->m2_sup_terreno  = $this->property->getSquareMeters();
     $this->years_antiquity = $this->property->getYearsAntiquity();

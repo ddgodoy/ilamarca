@@ -1,3 +1,4 @@
+<?php include_partial('property/javaScript') ?> 
 <?php
 	$str_module = $sf_params->get('module');
 	$str_action = $sf_params->get('action');
@@ -62,19 +63,16 @@
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['es']['name']; echo $form['es']['name']->renderError(); ?></td></tr>
 											<tr><td height="10"></td></tr>
-											<tr><td><label>Dirección</label></td></tr>
-											<tr><td><?php echo $form['es']['address'] ?></td></tr>
-											<tr><td height="8"></td></tr>
 											<tr><td><label>Transportes</label></td></tr>
 											<tr><td><?php echo $form['es']['transports'] ?></td></tr>
+                                                                                        <tr><td height="10"></td></tr>
+											<tr><td><label>Puntos de referencia</label></td></tr>
+											<tr><td><?php echo $form['es']['points_of_ref'] ?></td></tr>
 										</table>
 									</td><td width="22"></td>
 									<td valign="top">
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['es']['detail'] ?></td></tr>
-											<tr><td height="10"></td></tr>
-											<tr><td><label>Puntos de referencia</label></td></tr>
-											<tr><td><?php echo $form['es']['points_of_ref'] ?></td></tr>
 										</table>
 									</td>
 								</tr>
@@ -91,19 +89,16 @@
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['en']['name'] ?></td></tr>
 											<tr><td height="10"></td></tr>
-											<tr><td><label>Address</label></td></tr>
-											<tr><td><?php echo $form['en']['address'] ?></td></tr>
-											<tr><td height="8"></td></tr>
 											<tr><td><label>Transports</label></td></tr>
 											<tr><td><?php echo $form['en']['transports'] ?></td></tr>
+                                                                                        <tr><td height="10"></td></tr>
+											<tr><td><label>Points of reference</label></td></tr>
+											<tr><td><?php echo $form['en']['points_of_ref'] ?></td></tr>
 										</table>
 									</td><td width="22"></td>
 									<td valign="top">
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['en']['detail'] ?></td></tr>
-											<tr><td height="10"></td></tr>
-											<tr><td><label>Points of reference</label></td></tr>
-											<tr><td><?php echo $form['en']['points_of_ref'] ?></td></tr>
 										</table>
 									</td>
 								</tr>
@@ -187,13 +182,32 @@
 										</div>
 									</td>
 								</tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <label style="padding-right: 30px;"><?php echo __('Address') ?> *</label>
+                                                    <input type="text" id="address" name="input_address" value="<?php echo $input_address ?>" class="form_input" style="margin-right: 50px;">
+                                                    <label>Nº</label>
+                                                    <input type="text" id="number" name="number_address" value="<?php echo $number_address ?>"  class="form_input" style="width: 35px">
+                                                </td>    
+                                            </tr>
+                                            <tr><td colspan="3" style="height: 15px;"></td></tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <input name="btn_google_maps" value="<?php echo __('Google Maps') ?>" class="boton" id="btn_google_maps" style="width: 100px; text-align: center" /> 
+                                                </td>
+                                            </tr>    
 							</table>
 						</td>
 						<td valign="top">
-							<table cellpadding="0" cellspacing="0">
-								<tr><td><label><?php echo __('Google map') ?></label></td></tr>
-								<tr><td><?php echo $form['google_map'] ?></td></tr>
-							</table>
+                                            <?php if($latitude == '' && $longitude == ''): ?>
+                                            <div id="map" style="width:600px; height:300px; display: none">
+                                            </div>  
+                                            <?php else: ?>
+                                            <div id="map" style="width:600px; height:300px;">
+                                                <script type="text/javascript">inicializar(<?php echo $latitude ?>,<?php echo $longitude ?>,'<?php echo $form['es']['name']->getValue() ?>');</script>  
+                                            </div>
+                                            <?php endif ?>
+                                            <img src="/admin/images/loader.gif" id="img_loading_google" border="0" style="visibility:hidden;"/>
 						</td>
 					</tr>
 				</table>
@@ -326,6 +340,8 @@
         <?php echo $form->renderHiddenFields() ?>
         <input type="hidden" value="<?php echo url_for('geo_zone/getGeoZone?is_neighborhood=1&is_property=300') ?>" id="geo_zone_url" />
         <input type="hidden" value="<?php echo __('Select') ?>" id="value-select" />
+        <input type="hidden" value="<?php echo $latitude ?>" name="latitude" id="latitude" />
+        <input type="hidden" value="<?php echo $longitude ?>" name="longitude" id="longitude" />
      </div>
 		</form>
 	</div>

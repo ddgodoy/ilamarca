@@ -104,8 +104,12 @@ class propertyActions extends sfActions
   	$this->pdf_file      = NULL;
   	$this->qrcode_img    = '';
   	$this->watermark     = true;
-		$entity_object       = NULL;
-
+        $this->input_address = '';
+        $this->number_address= '';
+        $entity_object       = NULL;
+        $this->latitude      = '';
+        $this->longitude     = '';
+        
 		$this->db_operations = OperationTable::getInstance()->getAllForSelect();
     $this->sl_operations = array();
     $this->sl_currencies = array();
@@ -123,6 +127,15 @@ class propertyActions extends sfActions
 			$this->bedroom       = $entity_object->getBedroomId();
 			$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
 			$this->qrcode_img    = $entity_object->getQrCode();
+                $this->latitude      = $entity_object->getLatitude();
+                $this->longitude     = $entity_object->getLongitude();
+                
+                
+                $array_data_address  = explode('%--%', $entity_object->getAddress());
+                
+                $this->input_address = $array_data_address[0];
+                $this->number_address= !empty($array_data_address[1])?$array_data_address[1]:'';
+                
 
 			$a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
@@ -147,10 +160,17 @@ class propertyActions extends sfActions
 	    $this->sl_currencies = $request->getParameter('currencies');
 	    $this->sl_prices     = $request->getParameter('prices');
 	    $this->watermark     = $request->getParameter('watermark');
-
+            
+            $this->input_address = $request->getParameter('input_address');
+            $this->number_address= $request->getParameter('number_address');
+            $this->latitude      = $request->getParameter('latitude');
+            $this->longitude     = $request->getParameter('longitude');
+            
 			if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
 			if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
 			if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
+            if ($this->input_address == ''){$this->error['address'] = 'Enter the address';}
+            if ($this->number_address == ''){$this->error['number_address'] = 'Enter the address number';}
 
       if (count($this->sl_prices) != 0 ) {
         foreach ($this->sl_prices as $k => $value) {
@@ -179,6 +199,9 @@ class propertyActions extends sfActions
 			{
 				$recorded = $this->form->save();					
 				$recorded->setUpdated(date('Y-m-d H:i:s'));
+                                $recorded->setAddress($this->input_address.'%--%'.$this->number_address);
+                                $recorded->setLatitude($this->latitude);
+                                $recorded->setLongitude($this->longitude);
 				$recorded->save();
 
 				// set operations
@@ -333,5 +356,30 @@ class propertyActions extends sfActions
 
     $this->getUser()->setFlash('notice', $notice);
   	$this->redirect('property/index');
+  }
+  
+  /**
+   * ajax location
+   * @param sfWebRequest $request
+   */
+  public function executeAjaxLocation(sfWebRequest $request)
+  {
+    $address_post = $request->getParameter('address');
+    $number       = $request->getParameter('number');
+    $geo_zone     = $request->getParameter('geo_zone');
+    $country      = $request->getParameter('country');  
+      
+    $address = "$address_post $number, $geo_zone, $country";
+    $address = str_replace(" ", "+", $address);
+
+    $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=$country");
+    $json = json_decode($json);
+
+    $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+    $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+    
+    echo json_encode(array('lat'=>$lat, 'longt'=>$long));
+    
+    exit();
   }
 } // end class
