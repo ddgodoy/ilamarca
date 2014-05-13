@@ -1,0 +1,11 @@
+host
+
+https://www.ilamarca.com:8443/
+usuario: ilamarca.com
+clave: rzHz73*5
+
+ftp 
+
+ftp.ilamarca.com
+usuario: lamarca
+clave: blancAs68
