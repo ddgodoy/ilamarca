@@ -143,7 +143,7 @@ function inicializar(lat, longt, name) {
     {  
 
         var map = new GMap2(document.getElementById("gallery-mapas"));  
-        map.setCenter(new GLatLng(lat,longt), 20);  
+        map.setCenter(new GLatLng(lat,longt), 17);  
         map.addControl(new GMapTypeControl());  
         map.addControl(new GLargeMapControl());  
         map.addControl(new GScaleControl());  
