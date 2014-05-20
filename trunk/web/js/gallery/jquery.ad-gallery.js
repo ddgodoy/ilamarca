@@ -611,7 +611,8 @@
       img_container.css('left', '0px');
       if(image_width < this.image_wrapper_width) {
         var dif = this.image_wrapper_width - image_width;
-        img_container.css('left', (dif / 2) +'px');
+        //img_container.css('left', (dif / 2) +'px');
+        img_container.css('left', '0px');
       };
     },
     _getDescription: function(image) {
@@ -671,9 +672,12 @@
         };
         this.image_wrapper.prepend(img_container);
         var size = this._getContainedImageSize(image.size.width, image.size.height);
-        img.attr('width', size.width);
-        img.attr('height', size.height);
-        img_container.css({width: size.width +'px', height: size.height +'px'});
+        //img.attr('width', size.width);
+        img.attr('width', 651);
+        //img.attr('height', size.height);
+        img.attr('height', 350);
+        //img_container.css({width: size.width +'px', height: size.height +'px'});
+        img_container.css({width: 651 +'px', height: 350 +'px'});
         this._centerImage(img_container, size.width, size.height);
         var desc = this._getDescription(image);
         if(desc) {
