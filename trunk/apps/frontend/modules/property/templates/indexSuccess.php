@@ -1,6 +1,12 @@
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAHhzikxCQyRAS8ryQoB75mRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQiqBRnE1Iky5sZfKGxzYbUanZ0HA" type="text/javascript"></script>  
 <script type="text/javascript">
 $(document).ready(function () {
+    
+        $('#mas-imagen').click(function(){
+           var id = $(this).attr('alt');
+           $(id).click();
+        });
+        
 	$('#fotos').click(function() {
 		$('#gallery').removeAttr('style');
 		$(this).attr('class', 'active-f');
@@ -189,14 +195,14 @@ function inicializar(lat, longt, name) {
 		</div>
 		<div id="gallery" class="ad-gallery slider clearfix">
 		<?php if (count($images) > 0): ?>
-			<a href=""  rel="lightbox[$ID]" id="mas-imagen" title="<?php echo $property->getName() ?>" class="ad-image-wrapper fotoBig"></a>
+			<a id="mas-imagen" title="<?php echo $property->getName() ?>" class="ad-image-wrapper fotoBig"></a>
 			<div class="ad-nav">
 				<div class="ad-thumbs">
 					<ul class="ad-thumb-list">
 						<?php $index = 0; foreach ($images as $value):  ?>
 						<li>
 							<a href="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>">
-	  						<img src="<?php echo Gallery::getPath($value->getRealPropertyId()).'c_'.$value->getInternalName() ?>" class="<?php echo 'image'.$index ?>">
+                                                            <img src="<?php echo Gallery::getPath($value->getRealPropertyId()).'c_'.$value->getInternalName() ?>" class="<?php echo 'image'.$index ?>">
 							</a>
 						</li>
 						<?php $index++; endforeach; ?>
@@ -304,3 +310,10 @@ function inicializar(lat, longt, name) {
 	<!--	-->
 	<?php include_partial('home/rateProperty') ?>
 </div>
+<?php if (count($images) > 0): ?>
+<div id="in_gallery">
+    <?php foreach ($images as $value):  ?>
+    <a rel="lightbox[$ID]" id="<?php  $id_img_arrary = explode('.', $value->getInternalName()); echo $id_img_arrary[0]; ?>" href="<?php echo Gallery::getPath($value->getRealPropertyId()).'g_'.$value->getInternalName() ?>"></a>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
