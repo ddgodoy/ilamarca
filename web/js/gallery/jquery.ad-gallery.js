@@ -662,14 +662,19 @@
         var img = $(new Image()).attr('src', image.image);
         var array_src = img.attr('src').split('/');
         var href_link = array_src[0]+'/'+array_src[1]+'/'+array_src[2]+'/'+array_src[3]+'/'+array_src[4]+'/g_'+array_src[5];
-        $('#mas-imagen').attr('href',href_link);
-        if(image.link) {
+        var a_id      = array_src[5].split('.');
+        var a_show    = '#'+a_id[0];
+        //$('#in_gallery a').show();
+        //$(a_remove).click();
+        $('#mas-imagen').attr('alt',a_show);
+        /*if(image.link) {
           var link = $('<a href="'+ image.link +'" rel="lightbox[$ID]"></a>');
           link.append(img);
           img_container.append(link);
         } else {
           img_container.append(img);
-        };
+        };*/
+        img_container.append(img);    
         this.image_wrapper.prepend(img_container);
         var size = this._getContainedImageSize(image.size.width, image.size.height);
         //img.attr('width', size.width);
