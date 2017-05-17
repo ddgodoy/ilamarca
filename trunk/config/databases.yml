@@ -2,22 +2,22 @@ prod:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=127.0.0.1;port=3310;dbname=ilamarca_com'
-      username: root
-      password: root
+      dsn: 'mysql:host=localhost;dbname=ilamarca_com'
+      username: lmarca
+      password: control007
 
 stage:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=127.0.0.1;port=3310;dbname=ilamarca_com'
-      username: root
-      password: root
+      dsn: 'mysql:host=localhost;dbname=ilamarca_com'
+      username: lmarca
+      password: control007
 
 dev:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=127.0.0.1;port=3310;dbname=ilamarca_com'
-      username: root
-      password: root
+      dsn: 'mysql:host=localhost;dbname=ilamarca_com'
+      username: lmarca
+      password: control007
