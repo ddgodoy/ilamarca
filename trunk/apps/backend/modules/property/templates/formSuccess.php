@@ -53,7 +53,7 @@
 				<tr>
 					<td colspan="3" class="tab_cont_borders">
 						<div id="div_content_info_es" style="display:block;">
-							<table cellpadding="0" cellspacing="0" style="padding:7px;" border="2">
+							<table cellpadding="0" cellspacing="0" style="padding:7px;">
 								<tr>
 									<td valign="top"><label>Nombre *</label></td><td width="22"></td>
 									<td valign="top"><label>Descripción</label></td>
