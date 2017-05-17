@@ -20,6 +20,7 @@
 			</div>
 		</div>
 		<div class="logo">
+			
 			<?php
 				$_company_logo = 'images/no_company_logo.png';
 				$_fixSize_logo = 'width="200"';

@@ -39,6 +39,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'enabled'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'latitude'           => new sfWidgetFormFilterInput(),
       'longitude'          => new sfWidgetFormFilterInput(),
+      'keywords'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -68,6 +69,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'enabled'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'latitude'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'longitude'          => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'keywords'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property_filters[%s]');
@@ -114,6 +116,7 @@ abstract class BaseRealPropertyFormFilter extends BaseFormFilterDoctrine
       'enabled'            => 'Boolean',
       'latitude'           => 'Number',
       'longitude'          => 'Number',
+      'keywords'           => 'Text',
     );
   }
 }

@@ -24,7 +24,7 @@ class propertyActions extends sfActions
 
     $this->latitude  =  $this->property->getLatitude()?$this->property->getLatitude():'';
     $this->longitude =  $this->property->getLongitude()?$this->property->getLongitude():'';
-    
+
     
     $this->m2_sup_cubierta = $this->property->getCoveredArea();
 	$this->m2_sup_terreno  = $this->property->getSquareMeters();
