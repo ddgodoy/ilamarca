@@ -53,7 +53,7 @@
 				<tr>
 					<td colspan="3" class="tab_cont_borders">
 						<div id="div_content_info_es" style="display:block;">
-							<table cellpadding="0" cellspacing="0" style="padding:7px;">
+							<table cellpadding="0" cellspacing="0" style="padding:7px;" border="2">
 								<tr>
 									<td valign="top"><label>Nombre *</label></td><td width="22"></td>
 									<td valign="top"><label>Descripción</label></td>
@@ -65,7 +65,7 @@
 											<tr><td height="10"></td></tr>
 											<tr><td><label>Transportes</label></td></tr>
 											<tr><td><?php echo $form['es']['transports'] ?></td></tr>
-                                                                                        <tr><td height="10"></td></tr>
+                                            <tr><td height="10"></td></tr>
 											<tr><td><label>Puntos de referencia</label></td></tr>
 											<tr><td><?php echo $form['es']['points_of_ref'] ?></td></tr>
 										</table>
@@ -73,7 +73,9 @@
 									<td valign="top">
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['es']['detail'] ?></td></tr>
-										</table>
+											<tr><td><label>Palabras Claves *</label></td></tr>
+                                            <tr><td><?php echo $form['es']['keywords'] ?></td></tr>
+                                        </table>
 									</td>
 								</tr>
 							</table>
@@ -99,6 +101,8 @@
 									<td valign="top">
 										<table cellpadding="0" cellspacing="0">
 											<tr><td><?php echo $form['en']['detail'] ?></td></tr>
+                                            <tr><td><label>Keywords *</label></td></tr>
+                                            <tr><td><?php echo $form['en']['keywords'] ?></td></tr>
 										</table>
 									</td>
 								</tr>

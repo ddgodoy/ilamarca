@@ -88,28 +88,28 @@ class propertyActions extends sfActions
    */
   public function executeProcess(sfWebRequest $request)
   {
-  	$create_qrcode = true;
-		$this->id = $request->getParameter('id');
+      $create_qrcode = true;
+      $this->id = $request->getParameter('id');
 
-		$this->geo_zone      = 0;
-		$this->city          = 0;
-		$this->neighborhood  = 0;
-		$this->property_type = 0;
-		$this->bedroom       = 1;
-		$this->error         = array();
-		$this->videos        = array();
-		$this->operations    = array();
-  	$this->currencies    = array();
-  	$this->prices        = array();
-  	$this->pdf_file      = NULL;
-  	$this->qrcode_img    = '';
-  	$this->watermark     = true;
-        $this->input_address = '';
-        $this->number_address= '';
-        $entity_object       = NULL;
-        $this->latitude      = '';
-        $this->longitude     = '';
-        
+      $this->geo_zone = 0;
+      $this->city = 0;
+      $this->neighborhood = 0;
+      $this->property_type = 0;
+      $this->bedroom = 1;
+      $this->error = array();
+      $this->videos = array();
+      $this->operations = array();
+      $this->currencies = array();
+      $this->prices = array();
+      $this->pdf_file = NULL;
+      $this->qrcode_img = '';
+      $this->watermark = true;
+      $this->input_address = '';
+      $this->number_address = '';
+      $entity_object = NULL;
+      $this->latitude = '';
+      $this->longitude = '';
+
 		$this->db_operations = OperationTable::getInstance()->getAllForSelect();
     $this->sl_operations = array();
     $this->sl_currencies = array();
@@ -127,15 +127,15 @@ class propertyActions extends sfActions
 			$this->bedroom       = $entity_object->getBedroomId();
 			$this->videos        = VideoTable::getInstance()->getPropertyVideos($this->id);
 			$this->qrcode_img    = $entity_object->getQrCode();
-                $this->latitude      = $entity_object->getLatitude();
-                $this->longitude     = $entity_object->getLongitude();
-                
-                
-                $array_data_address  = explode('%--%', $entity_object->getAddress());
-                
-                $this->input_address = $array_data_address[0];
-                $this->number_address= !empty($array_data_address[1])?$array_data_address[1]:'';
-                
+            $this->latitude      = $entity_object->getLatitude();
+            $this->longitude     = $entity_object->getLongitude();
+
+
+            $array_data_address  = explode('%--%', $entity_object->getAddress());
+
+            $this->input_address = $array_data_address[0];
+            $this->number_address= !empty($array_data_address[1])?$array_data_address[1]:'';
+
 
 			$a_operations_values = OperationRealProperty::getDataOperationsByPropertyId($this->id);
 
@@ -165,7 +165,6 @@ class propertyActions extends sfActions
             $this->number_address= $request->getParameter('number_address');
             $this->latitude      = $request->getParameter('latitude');
             $this->longitude     = $request->getParameter('longitude');
-            
 			if (empty($this->property_type)) { $this->error['property_type'] = 'Select the property type'; }
 			if (empty($this->neighborhood))  { $this->error['neighborhood']  = 'Select the neighborhood'; }
 			if (count($this->sl_operations)==0) { $this->error['operations'] = 'Select the operation'; }
@@ -197,6 +196,9 @@ class propertyActions extends sfActions
 			// continue
 			if (!$this->error && $this->form->isValid())
 			{
+//			    echo '->'.$form_request['es']['keywords'];
+//			    echo '->'.$form_request['en']['keywords'];
+//			    exit();
 				$recorded = $this->form->save();					
 				$recorded->setUpdated(date('Y-m-d H:i:s'));
                                 $recorded->setAddress($this->input_address.'%--%'.$this->number_address);

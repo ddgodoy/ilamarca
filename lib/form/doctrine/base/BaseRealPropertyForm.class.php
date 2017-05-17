@@ -42,6 +42,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
       'enabled'            => new sfWidgetFormInputCheckbox(),
       'latitude'           => new sfWidgetFormInputText(),
       'longitude'          => new sfWidgetFormInputText(),
+      'keywords'           => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -72,6 +73,7 @@ abstract class BaseRealPropertyForm extends BaseFormDoctrine
       'enabled'            => new sfValidatorBoolean(array('required' => false)),
       'latitude'           => new sfValidatorNumber(array('required' => false)),
       'longitude'          => new sfValidatorNumber(array('required' => false)),
+      'keywords'           => new sfValidatorString(array('max_length' => 250, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property[%s]');

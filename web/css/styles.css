@@ -285,7 +285,7 @@ html[xmlns] .clearfix {
 
 .cont-slider { width:652px; min-height:370px; margin-bottom:30px;}
 
-.slider { background-color: #FFF !important; background-image: url(/images/bg_ficha_slider.png)!important;	background-repeat: no-repeat !important;background-position: center bottom !important; min-height:370px; text-align:center; padding-top:12px !important; clear:both; border-top:1px solid #c3c3c3;}
+.slider { background-color: #FFF !important; background-image: url(/images/bg_ficha_slider.png)!important;	background-repeat: no-repeat !important;background-position: center bottom !important; min-height:300px; text-align:center; padding-top:12px !important; clear:both; border-top:1px solid #c3c3c3;}
 
 .slider .thumbs { margin-top:10px; margin-left:25px; margin-bottom:11px;}
 
@@ -535,4 +535,54 @@ html[xmlns] .clearfix {
 .sharer-property{
     margin-left: 30px !important;
     width: 92% !important;
+}
+
+.bg-full {
+	background-size: 100% 100% !important;
+}
+
+a .contactar {
+	background-image: url(/images/btn_contactar.png);
+	background-position: center top;
+	width: 123px;
+	height: 43px;
+	margin-top: 12px;
+	margin-bottom: 8px;
+	margin-left: 60px;
+	display: inline-block
+}
+
+a .contactar:hover {
+	background-image: url(/images/btn_contactar.png);
+	background-position: center bottom;
+}
+
+.ad-gallery .ad-back {
+	margin-top: -26%!important;
+	left: -8%;
+}
+
+.ad-gallery .ad-forward {
+	margin-top: -26%!important;
+	right: -18%!important;
+}
+
+.cont-slider {
+	width: 100%!important;
+}
+
+a.contactar {
+	background-image: url(/images/btn_contactar.png);
+	background-position: center top;
+	width: 123px;
+	height: 43px;
+	margin-top: 12px;
+	margin-bottom: 8px;
+	margin-left: 20px;
+	display: inline-block
+}
+
+a.contactar:hover {
+	background-image: url(/images/btn_contactar.png);
+	background-position: center bottom;
 }

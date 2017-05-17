@@ -20,14 +20,17 @@ class RealPropertyTranslationForm extends BaseRealPropertyTranslationForm
       'address'    => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:101px;')),
       'transports' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:50px;')),
         'points_of_ref' => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:450px;height:101px;')),
+        'keywords'     => new sfWidgetFormTextarea(array(), array('class'=>'form_input', 'style'=>'width:500px;height:150px;')),
+
     ));
 
     $this->setValidators(array(
       'name'       => new sfValidatorString(array('required' => true), array('required' => $i18N->__('Enter the name', NULL, 'errors'))),
       'detail'     => new sfValidatorPass(array('required' => false)),
       'address'    => new sfValidatorPass(array('required' => false)),
-      'transports' => new sfValidatorPass(array('required' => false)),
-      'points_of_ref' => new sfValidatorPass(array('required' => false)),
+        'transports' => new sfValidatorPass(array('required' => false)),
+        'points_of_ref' => new sfValidatorPass(array('required' => false)),
+        'keywords'     => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('real_property_translation[%s]');

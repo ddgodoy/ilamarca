@@ -37,6 +37,7 @@
  * @property boolean $enabled
  * @property decimal $latitude
  * @property decimal $longitude
+ * @property string $keywords
  * @property Bedroom $Bedroom
  * @property PropertyType $PropertyType
  * @property GeoZone $GeoZone
@@ -79,6 +80,7 @@
  * @method boolean             getEnabled()                 Returns the current record's "enabled" value
  * @method decimal             getLatitude()                Returns the current record's "latitude" value
  * @method decimal             getLongitude()               Returns the current record's "longitude" value
+ * @method string              getKeywords()                Returns the current record's "keywords" value
  * @method Bedroom             getBedroom()                 Returns the current record's "Bedroom" value
  * @method PropertyType        getPropertyType()            Returns the current record's "PropertyType" value
  * @method GeoZone             getGeoZone()                 Returns the current record's "GeoZone" value
@@ -120,6 +122,7 @@
  * @method RealProperty        setEnabled()                 Sets the current record's "enabled" value
  * @method RealProperty        setLatitude()                Sets the current record's "latitude" value
  * @method RealProperty        setLongitude()               Sets the current record's "longitude" value
+ * @method RealProperty        setKeywords()                Sets the current record's "keywords" value
  * @method RealProperty        setBedroom()                 Sets the current record's "Bedroom" value
  * @method RealProperty        setPropertyType()            Sets the current record's "PropertyType" value
  * @method RealProperty        setGeoZone()                 Sets the current record's "GeoZone" value
@@ -277,6 +280,10 @@ abstract class BaseRealProperty extends sfDoctrineRecord
              'scale' => 6,
              'length' => 9,
              ));
+        $this->hasColumn('keywords', 'string', 250, array(
+             'type' => 'string',
+             'length' => 250,
+             ));
 
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
@@ -336,6 +343,7 @@ abstract class BaseRealProperty extends sfDoctrineRecord
               2 => 'address',
               3 => 'points_of_ref',
               4 => 'transports',
+              5 => 'keywords',
              ),
              ));
         $this->actAs($i18n0);
