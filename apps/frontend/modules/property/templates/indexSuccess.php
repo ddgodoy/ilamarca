@@ -253,10 +253,15 @@
 
         $('body').keydown(function (e) {
             if (e.keyCode === 37){
+                /* Prev */
                 plusSlides(-1);
+                $('.bx-prev').click();
             }else if (e.keyCode === 39){
+                /* Next */
                 plusSlides(1);
+                $('.bx-next').click()
             }else if (e.keyCode === 27){
+                /* Close */
                 closeModal();
             }
         });
