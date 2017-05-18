@@ -273,7 +273,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         document.title = "<?php echo truncate_text($property->getName(), 55, '') ?>";
-        document.getElementsByTagName('head')[0].appendChild('<meta name="keywords" content="<?php echo truncate_text($property->getKeywords(), 55, '') ?>">');
 
         $('#mas-imagen').click(function(){
             var id = $(this).attr('alt');
