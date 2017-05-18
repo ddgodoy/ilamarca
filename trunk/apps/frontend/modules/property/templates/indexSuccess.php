@@ -10,7 +10,7 @@
 </style>
 <?php include_partial ('boxEmailSharer') ?>
 <div class="ficha">
-    <div class="fondo-titulo bg-full">
+    <div class="fondo-titulo bg-full" title="<?php echo truncate_text($property->getName(), 55, '') ?>">
         <h1><?php echo truncate_text($property->getName(), 55, '') ?></h1>
         <h3><?php echo Operation::getPrices($property->getId(), $sf_user->getCulture()) ?></h3>
     </div>
