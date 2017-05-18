@@ -34,7 +34,7 @@ class propertyActions extends sfActions
 	$this->_down_pdf_file  = $this->property->getPdfFile();
     $this->qrcode_img      = $this->property->getQrCode();
     $this->url_site        = 'http://'.$request->getHost().'/property?id='.$id;
-
+    $this->getResponse()->addMeta('keywords', $this->property->getKeywords());
     if ($request->isMethod('POST'))
     {
       $_parameter    = $request->getParameter('contac');
