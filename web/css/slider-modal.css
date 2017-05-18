@@ -75,6 +75,23 @@
     cursor: pointer
 }
 
+.prev-touch,
+.next-touch {
+    position: absolute;
+    top: 0%;
+    width: 50%;
+    height: 102%;
+}
+
+.next-touch {
+    float: right;
+    right: 0;
+}
+.prev-touch {
+    float: left;
+    left: 0;
+}
+
 /* Next & previous buttons */
 .prev,
 .next {

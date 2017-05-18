@@ -15,9 +15,9 @@ h1, h2, h3, h4, h5 { padding:0; margin:0; font-family:"Lucida Grande", Helvetica
 
 .content { width:970px; padding-left:10px; padding-right:10px; margin-left:auto; margin-right:auto; padding-top:15px;}
 
-.left { width:652px; float:left; margin-top:45px;}
+.left { width:652px; float:left;}
 
-.right { width:293px; float:right; margin-top:45px;}
+.right { width:293px; float:right;}
 
 .bg-content {background-color: #f8f8f8;background-image: url(/images/bg_site.jpg);background-repeat: repeat-x;background-position: left top;}
 
@@ -285,7 +285,7 @@ html[xmlns] .clearfix {
 
 .cont-slider { width:652px; min-height:370px; margin-bottom:30px;}
 
-.slider { background-color: #FFF !important; background-image: url(/images/bg_ficha_slider.png)!important;	background-repeat: no-repeat !important;background-position: center bottom !important; min-height:300px; text-align:center; padding-top:12px !important; clear:both; border-top:1px solid #c3c3c3;}
+.slider { background-color: #FFF !important; background-image: url(/images/bg_ficha_slider.png)!important;	background-repeat: no-repeat !important;background-position: center bottom !important; min-height:300px; text-align:center; clear:both; border-top:1px solid #c3c3c3;}
 
 .slider .thumbs { margin-top:10px; margin-left:25px; margin-bottom:11px;}
 

@@ -250,6 +250,19 @@
         $('#gallery-mapas-modal').html(inicializar(<?php echo $latitude ?>,<?php echo $longitude ?>, '<?php echo $property->getName() ?>', 'gallery-mapas-modal'));
         <?php endif; ?>
 
+
+        $('body').keydown(function (e) {
+            if (e.keyCode === 37){
+                plusSlides(-1);
+            }else if (e.keyCode === 39){
+                plusSlides(1);
+            }else if (e.keyCode === 27){
+                closeModal();
+            }
+        });
+
+        
+
     })
 </script>
 <script type="text/javascript">
@@ -410,21 +423,23 @@
 
             <?php
             $index = 1;
-            foreach ($images as $value){
+            foreach ($images as $value) {
 
                 if ($index === 1) { ?>
                     <div class="mySlides">
-                        <img class="img-mySlides" src="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>">
+                        <img class="img-mySlides"
+                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>">
                     </div>
                 <?php }
 
-                if (($videos) || ($latitude != '' || $longitude != '') && $index > 1 ){
-                    if ($videos && $index == 1 ) { ?>
+                if (($videos) || ($latitude != '' || $longitude != '') && $index > 1) {
+                    if ($videos && $index == 1) { ?>
 
                         <div class="mySlides">
                             <?php echo html_entity_decode($videos->getYoutube()) ?>
                         </div>
-                        <?php    $index++; }
+                        <?php $index++;
+                    }
 
                     if (!$videos && ($latitude != '' || $longitude != '') && ($index == 2)) { ?>
                         <div class="mySlides">
@@ -435,7 +450,7 @@
                             </div>
                         </div>
                         <?php $index++;
-                    }else if ( $videos && ($latitude != '' || $longitude != '') && ($index == 3 )) { ?>
+                    } else if ($videos && ($latitude != '' || $longitude != '') && ($index == 3)) { ?>
                         <div class="mySlides">
                             <div id="gallery-mapas-modal" class="slider clearfix">
                                 <div id="maps" class="fotoBig">
@@ -443,24 +458,29 @@
                                 </div>
                             </div>
                         </div>
-                        <?php $index++; }
+                        <?php $index++;
+                    }
                 }
 
                 if ($videos && ($latitude != '' || $longitude != '') && $index > 3) { ?>
                     <div class="mySlides">
-                        <img class="img-mySlides" src="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>" />
+                        <img class="img-mySlides"
+                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                     </div>
                 <?php } else if ($videos && $index > 2) { ?>
                     <div class="mySlides">
-                        <img class="img-mySlides" src="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>" />
+                        <img class="img-mySlides"
+                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                     </div>
-                <?php } else if (($latitude != '' || $longitude != '') && $index > 2) {?>
+                <?php } else if (($latitude != '' || $longitude != '') && $index > 2) { ?>
                     <div class="mySlides">
-                        <img class="img-mySlides" src="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>" />
+                        <img class="img-mySlides"
+                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                     </div>
-                <?php }else if (!$videos && ($latitude == '' || $longitude == '') && $index > 1 ){ ?>
+                <?php } else if (!$videos && ($latitude == '' || $longitude == '') && $index > 1) { ?>
                     <div class="mySlides">
-                        <img class="img-mySlides" src="<?php echo Gallery::getPath($value->getRealPropertyId()).$value->getInternalName() ?>" />
+                        <img class="img-mySlides"
+                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                     </div>
                 <?php }
 
@@ -468,18 +488,21 @@
             }
             ?>
         <?php else: ?>
-        <div class="mySlides">
-            <img src="/images/logo_ilamarca.png" />
-            </li>
-            <?php endif; ?>
+            <div class="mySlides">
+                <img src="/images/logo_ilamarca.png"/>
+            </div>
+        <?php endif; ?>
 
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <a class="prev-touch" onclick="plusSlides(-1)"></a>
+        <a class="next-touch" onclick="plusSlides(1)"></a>
 
-            <!--<div class="caption-container">
-                <p id="caption"></p>
-            </div>-->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-        </div>
+        <!--<div class="caption-container">
+            <p id="caption"></p>
+        </div>-->
+
     </div>
+</div>
