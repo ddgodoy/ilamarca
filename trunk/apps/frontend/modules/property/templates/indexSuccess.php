@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/slider-modal.css">
 <style>
     iframe {
-        height: 315px!important;
+        height: 301px!important;
         width: 475px!important;
     }
 </style>
