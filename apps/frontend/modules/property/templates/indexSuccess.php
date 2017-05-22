@@ -115,13 +115,13 @@
             </ul>
 
             <?php if ($videos): ?>
-                <div>
+                <div class="mobile-div">
                     <?php echo html_entity_decode($videos->getYoutube()) ?>
                 </div>
             <?php endif; ?>
 
             <?php if ($latitude != '' && $longitude != ''): ?>
-                <div id="gallery-mapas" class="slider clearfix">
+                <div id="gallery-mapas" class="slider clearfix mobile-div">
                     <div id="maps" class="fotoBig">
                         <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
                     </div>
@@ -234,8 +234,11 @@
 
                 <?php if ($getMobile === true): ?>
                     <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb" target="_blanck"></a>
-                    <a class="share-email" id="email-box"></a>
-                    <a href="whatsapp://send" class="share-whatsapp" data-text="Take a look at this awesome website:"></a>
+                    <a class="share-email" id="" title="<?php echo truncate_text($property->getName(), 55, '') ?>"
+                       href="mailto:?subject=I wanted you to see this site&amp;body=<?php echo $url_site.' '; echo truncate_text($property->getName(), 55, ''); ?>" ></a>
+                    <a href="whatsapp://send" class="share-whatsapp"
+                       data-text="<?php echo truncate_text($property->getName(), 55, ''); ?>"
+                       data-href=""></a>
                 <?php endif; ?>
 
             </div>
