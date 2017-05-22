@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="/css/styles-mobile.css">
 <style>
     iframe {
-        height: 301px!important;
-        width: 475px!important;
+        height: 297px;
+        width: 475px;
     }
 </style>
 <?php include_partial ('boxEmailSharer') ?>
@@ -22,6 +22,7 @@
             </div>
         <?php endif; ?>
 
+        <?php if ($getMobile === false): ?>
         <ul class="bxslider" style="">
 
             <?php if (count($images) > 0): ?>
@@ -41,7 +42,7 @@
                             <div onclick="openModal();currentSlide(<?php echo $index; ?>)">
                                 <?php echo html_entity_decode($videos->getYoutube()) ?>
                             </div>
-                            <?php    $index++; }
+                            <?php $index++; }
 
                         if (!$videos && ($latitude != '' || $longitude != '') && ($index == 2)) { ?>
                             <li onclick="openModal();currentSlide(<?php echo $index; ?>)">
@@ -85,10 +86,48 @@
                 }
                 ?>
             <?php else: ?>
-                <li onclick="openModal();currentSlide(1)"><img class="slider" src="/images/logo_ilamarca.png" /></li>
+                <li><img class="slider" src="/images/logo_ilamarca.png" /></li>
+            <?php endif; ?>
+        </ul>
+
+        <?php endif; ?>
+
+        <?php
+        if ($getMobile === true) { ?>
+
+            <ul class="bxslider-mobile">
+                <?php if (count($images) > 0) {
+
+                    $index = 1;
+                    foreach ($images as $value) {
+                        ?>
+                        <li onclick="openModal();currentSlide(<?php echo $index; ?>)">
+                            <img class="slider"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                        </li>
+                        <?php $index++;
+                    }
+
+                } else { ?>
+                    <li><img class="slider" src="/images/logo_ilamarca.png"/></li>
+                <?php }
+                ?>
+            </ul>
+
+            <?php if ($videos): ?>
+                <div>
+                    <?php echo html_entity_decode($videos->getYoutube()) ?>
+                </div>
             <?php endif; ?>
 
-        </ul>
+            <?php if ($latitude != '' && $longitude != ''): ?>
+                <div id="gallery-mapas" class="slider clearfix">
+                    <div id="maps" class="fotoBig">
+                        <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php } ?>
 
     </div>
 </div>
@@ -187,8 +226,18 @@
         <div class="inner clearfix">
             <div class="titulo"><img src="images/tit_compartir.png" alt="Compartir propiedad" /></div>
             <div class="boton">
-                <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb" target="_blanck">En Facebook</a>
-                <a class="share-email" id="email-box" >Por E-mail</a>
+                <?php if ($getMobile === false): ?>
+                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb"
+                       target="_blanck">En Facebook</a>
+                    <a class="share-email" id="email-box">Por E-mail</a>
+                <?php endif; ?>
+
+                <?php if ($getMobile === true): ?>
+                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb" target="_blanck"></a>
+                    <a class="share-email" id="email-box"></a>
+                    <a href="whatsapp://send" class="share-whatsapp" data-text="Take a look at this awesome website:"></a>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
@@ -210,6 +259,14 @@
         $('.bxslider').bxSlider({
             minSlides: 2,
             maxSlides: 4,
+            slideWidth: 600,
+            infiniteLoop: true,
+            slideMargin: 10
+        });
+
+        $('.bxslider-mobile').bxSlider({
+            minSlides: 1,
+            maxSlides: 1,
             slideWidth: 600,
             infiniteLoop: true,
             slideMargin: 10
