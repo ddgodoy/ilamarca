@@ -171,6 +171,15 @@
 		margin-right: 20px;
 	}
 
+	.compartir a.share-email:hover {
+		float: none;
+		background-image: url(/images/btn_share_email-mobile.png);
+		background-position: center top;
+		background-repeat: no-repeat;
+		width: 0px;
+		margin-right: 20px;
+	}
+
 	.compartir a.share-whatsapp {
 		float: none;
 		background-image: url(/images/btn_share_whatsapp-mobile.png);
@@ -207,5 +216,9 @@
 		max-width: 1024px;
 		height: auto;
 		margin-left: 0px;
+	}
+
+	.mobile-div {
+		margin-top: 30px;
 	}
 }
