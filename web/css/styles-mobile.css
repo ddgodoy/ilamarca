@@ -50,7 +50,7 @@
 	}*/
 
 	.bg-content {
-		min-width: 400px;
+		min-width: 300px;
 		width: 100%;
 		max-width: 1024px;
 	}
@@ -66,17 +66,17 @@
 	}
 
 	.content {
-		width: 90%;
+		width: 94%;
 		margin-left: auto;
 		margin-right: auto;
 		padding-top: 15px;
-		min-width: 350px;
+		min-width: 300px;
 		max-width: 1024px;
 	}
 
 	.ficha h1 {
 		float: left;
-		font-size: 14px;
+		font-size: 12px;
 		color: #393939;
 		/* padding-left: 16px; */
 		padding-top: 12px;
@@ -88,7 +88,7 @@
 		height: 110px;
 		margin-bottom: 28px;
 		margin-top: 10px;
-		min-width: 390px;
+		min-width: 300px;
 		width: 100%;
 		max-width: 1024px;
 	}
@@ -101,7 +101,7 @@
 
 	.ficha h3 {
 		float: left;
-		font-size: 16px;
+		font-size: 14px;
 		color: #393939;
 		font-weight: bold;
 		padding-left: 16px;
@@ -109,18 +109,18 @@
 	}
 
 	.left {
-		min-width: 390px;
+		min-width: 300px;
 		width: 100%;
 		max-width: 1024px;
 		margin-left: -15px;
 	}
 
 	.ficha .info h2 {
-		font-size: 14px;
+		font-size: 12px;
 		padding-left: 10px;
 		padding-right: 20px;
 		max-width: 1024px;
-		min-width: 370px;
+		min-width: 300px;
 		width: 83%;
 	}
 
@@ -130,17 +130,17 @@
 
 	.right {
 		margin-top: 20px;
-		min-width: 390px;
+		min-width: 300px;
 		width: 100%;
 		max-width: 1024px;
 	}
 
 	.box {
 		margin-top: 20px;
-		min-width: 390px;
+		min-width: 300px;
 		width: 100%;
 		max-width: 1024px;
-		margin-left: 10px;
+		margin-left: 0px;
 	}
 
 	.box .titulo {
@@ -156,10 +156,33 @@
 
 	.compartir a.share-fb {
 		float: none;
+		background-image: url(/images/btn_fb.png);
+		background-position: center top;
+		background-repeat: no-repeat;
+		width: 0px;
 	}
 
 	.compartir a.share-email {
 		float: none;
+		background-image: url(/images/btn_share_email-mobile.png);
+		background-position: center top;
+		background-repeat: no-repeat;
+		width: 0px;
+		margin-right: 20px;
+	}
+
+	.compartir a.share-whatsapp {
+		float: none;
+		background-image: url(/images/btn_share_whatsapp-mobile.png);
+		background-position: center top;
+		background-repeat: no-repeat;
+		width: 0px;
+		height: 23px;
+		margin-top: 12px;
+		margin-bottom: 8px;
+		display: inline-block;
+		padding-top: 3px;
+		padding-left: 36px;
 	}
 
 	.box .boton {
@@ -169,5 +192,20 @@
 
 	.boton {
 		text-align: center;
+	}
+
+	#gallery-mapas {
+		min-width: 300px;
+		width: 100%;
+		max-width: 1024px;
+	}
+
+	iframe {
+		margin-top: 20px;
+		min-width: 300px;
+		width: 100%!important;
+		max-width: 1024px;
+		height: auto;
+		margin-left: 0px;
 	}
 }
