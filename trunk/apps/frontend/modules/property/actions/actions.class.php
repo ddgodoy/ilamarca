@@ -16,6 +16,18 @@ class propertyActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
+      function getMobile(){
+          $useragent = $_SERVER['HTTP_USER_AGENT'];
+          if (preg_match("/mobile/i", $useragent) || preg_match("/tablet/i", $useragent)) {
+              return true;
+          }else {
+              return false;
+          }
+      }
+
+      if (getMobile() === true){
+          $this->getResponse()->addMeta('viewport', 'width=device-width, initial-scale=1');
+      }
     $id = $request->getParameter('id');
 
     $this->property = RealPropertyTable::getInstance()->findOneById($id);
@@ -25,7 +37,6 @@ class propertyActions extends sfActions
     $this->latitude  =  $this->property->getLatitude()?$this->property->getLatitude():'';
     $this->longitude =  $this->property->getLongitude()?$this->property->getLongitude():'';
 
-    
     $this->m2_sup_cubierta = $this->property->getCoveredArea();
 	$this->m2_sup_terreno  = $this->property->getSquareMeters();
     $this->years_antiquity = $this->property->getYearsAntiquity();
@@ -35,6 +46,8 @@ class propertyActions extends sfActions
     $this->qrcode_img      = $this->property->getQrCode();
     $this->url_site        = 'http://'.$request->getHost().'/property?id='.$id;
     $this->getResponse()->addMeta('keywords', $this->property->getKeywords());
+    $this->getMobile = getMobile();
+
     if ($request->isMethod('POST'))
     {
       $_parameter    = $request->getParameter('contac');

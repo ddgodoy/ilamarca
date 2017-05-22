@@ -1,0 +1,173 @@
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	/*body {
+		background-color: red!important;
+	}*/
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+	/*body {
+		background-color: green!important;
+	}*/
+
+	html[xmlns] .clearfix {
+		display: table;
+	}
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+	/*body {
+		background-color: deepskyblue!important;
+	}*/
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+	/*body {
+		background-color: purple!important;
+	}*/
+
+	.bg-content {
+		min-width: 400px;
+		width: 100%;
+		max-width: 1024px;
+	}
+
+	.header {
+		background-image: none;
+		border: 1px solid #BABABB;
+		border-radius: 5px;
+		box-shadow: 0px 4px 5px 0px rgba(186,186,187,0.75);
+		width: 100%;
+		height: 62px;
+		margin-top: 10px;
+	}
+
+	.content {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 15px;
+		min-width: 350px;
+		max-width: 1024px;
+	}
+
+	.ficha h1 {
+		float: left;
+		font-size: 14px;
+		color: #393939;
+		/* padding-left: 16px; */
+		padding-top: 12px;
+	}
+
+	.ficha .fondo-titulo {
+		background-image: url(/images/bg_title2.png);
+		padding-top: 0px;
+		height: 110px;
+		margin-bottom: 28px;
+		margin-top: 10px;
+		min-width: 390px;
+		width: 100%;
+		max-width: 1024px;
+	}
+
+	.submenu {
+		float: left;
+		margin-top: 20px;
+		padding-left: 16px;
+	}
+
+	.ficha h3 {
+		float: left;
+		font-size: 16px;
+		color: #393939;
+		font-weight: bold;
+		padding-left: 16px;
+		padding-top: 10px;
+	}
+
+	.left {
+		min-width: 390px;
+		width: 100%;
+		max-width: 1024px;
+		margin-left: -15px;
+	}
+
+	.ficha .info h2 {
+		font-size: 14px;
+		padding-left: 10px;
+		padding-right: 20px;
+		max-width: 1024px;
+		min-width: 370px;
+		width: 83%;
+	}
+
+	.logo {
+		margin-left: 0px;
+	}
+
+	.right {
+		margin-top: 20px;
+		min-width: 390px;
+		width: 100%;
+		max-width: 1024px;
+	}
+
+	.box {
+		margin-top: 20px;
+		min-width: 390px;
+		width: 100%;
+		max-width: 1024px;
+		margin-left: 10px;
+	}
+
+	.box .titulo {
+		text-align: center;
+	}
+
+	.box a.alquila {
+		float: none;
+	}
+	.box a.vende {
+		float: none;
+	}
+
+	.compartir a.share-fb {
+		float: none;
+	}
+
+	.compartir a.share-email {
+		float: none;
+	}
+
+	.box .boton {
+		text-align: center;
+		padding-left: 0px;
+	}
+
+	.boton {
+		text-align: center;
+	}
+}
