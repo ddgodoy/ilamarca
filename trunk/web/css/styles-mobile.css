@@ -236,7 +236,7 @@
 	}
 
 	.slider {
-		min-height: 200px;
+		min-width: 200px;
 		max-width: 1024px;
 	}
 
@@ -445,7 +445,7 @@
 	.img-lightbox {
 		min-width: 200px;
 		max-width: 1024px;
-		width: 100%;
+		width: 38%;
 	}
 
 	.close {
@@ -453,8 +453,11 @@
 	}
 
 	.slider {
-		min-height: 200px;
+		min-width: 200px;
 		max-width: 1024px;
+		min-height: 200px;
+		background-size: cover;
+
 	}
 
 	.modal {
