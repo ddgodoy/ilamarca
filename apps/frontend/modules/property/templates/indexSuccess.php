@@ -217,7 +217,7 @@
     </div>
     <div class="sombra"></div>-->
     <!-- -->
-    <?php if (!empty($qrcode_img)): ?>
+    <?php if ((!empty($qrcode_img)) && $getMobile === false): ?>
         <div class="box clearfix wprofile">
             <div align="center" style=" padding: 15px;">
                 <img src="/uploads/qr_codes/<?php echo $qrcode_img ?>" alt="qr" title="qr" />
@@ -279,18 +279,12 @@
         });
 
         $('.bxslider-mobile-lightbox').bxSlider({
-            mode: 'vertical',
             minSlides: 1,
             maxSlides: 1,
-            responsive: true,
             infiniteLoop: true,
-            touchEnabled: true,
-            preloadImages: visible
+            touchEnabled: true
         });
 
-        $('.close').click(function () {
-            alert('hola');
-        });
 
         /*var prevX = -1;
 
@@ -617,9 +611,26 @@
 <?php endif; ?>
 
 <?php if($getMobile === true): ?>
+    <style>
+        .bx-viewport {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: auto!important;
+            max-width: 1024px;
+        }
+
+        .bx-viewport > ul > li{
+            min-width: 200px!important;
+            max-width: 1024px!important;
+            width: 100%!important;
+        }
+    </style>
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-content">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+
                 <ul class="bxslider-mobile-lightbox">
                     <?php if (count($images) > 0) {
 
@@ -627,7 +638,6 @@
                         foreach ($images as $value) {
                             ?>
                             <li>
-                                <span class="close cursor" onclick="closeModal()">&times;</span>
                                 <img class="slider img-lightbox"
                                      src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                             </li>
