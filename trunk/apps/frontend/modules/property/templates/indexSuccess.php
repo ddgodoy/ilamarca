@@ -1,5 +1,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAHhzikxCQyRAS8ryQoB75mRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQiqBRnE1Iky5sZfKGxzYbUanZ0HA" type="text/javascript"></script>
+<?php if ($getMobile === true): ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<?php endif; ?>
 <link rel="stylesheet" href="/css/jquery.bxslider.css">
 <link rel="stylesheet" href="/css/slider-modal.css">
 <link rel="stylesheet" href="/css/styles-mobile.css">
@@ -101,7 +105,7 @@
                     $index = 1;
                     foreach ($images as $value) {
                         ?>
-                        <li onclick="openModal();currentSlide(<?php echo $index; ?>)">
+                        <li onclick="openModal();currentSlide(<?php echo $index; ?>);changeOrientation()">
                             <img class="slider"
                                  src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                         </li>
@@ -275,6 +279,44 @@
             slideMargin: 10
         });
 
+        $('.bxslider-mobile-lightbox').bxSlider({
+            mode: 'vertical',
+            minSlides: 1,
+            maxSlides: 1,
+            responsive: true,
+            infiniteLoop: true,
+            touchEnabled: true,
+            preloadImages: visible
+        });
+
+        $('.close').click(function () {
+            alert('hola');
+        });
+
+        /*var prevX = -1;
+
+        $('.modal-content').draggable({
+            drag: function (e) {
+                //console.log(e.pageX);
+                if (prevX == -1) {
+                    prevX = e.pageX;
+                    return false;
+                }
+                // dragged left
+                if (prevX > e.pageX) {
+                    if (e.pageX < 10){
+                        console.log('dragged left ===> ' + e.pageX);
+                        plusSlides(1);
+                        e.pageX = 196;
+                    }
+                }
+                else if (prevX < e.pageX) { // dragged right
+                    console.log('dragged right ===> ' + e.pageX);
+                }
+                prevX = e.pageX;
+            }
+        });*/
+
 
         function inicializar(lat, longt, name, id) {
             if (GBrowserIsCompatible())
@@ -327,7 +369,7 @@
             }
         });
 
-        
+
 
     })
 </script>
@@ -480,101 +522,130 @@
 
 </script>
 
-<?php if ($getMobile === true): ?>
-    <script type="text/javascript" src="/js/jquery.mobile.min.js"></script>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+<?php if($getMobile === false): ?>
+    <div id="myModal" class="modal">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+
+            <?php if (count($images) > 0): ?>
+
+                <?php
+                $index = 1;
+                foreach ($images as $value) {
+
+                    if ($index === 1) { ?>
+                        <div class="mySlides">
+                            <img class="img-mySlides"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>">
+                        </div>
+                    <?php }
+
+                    if (($videos) || ($latitude != '' || $longitude != '') && $index > 1) {
+                        if ($videos && $index == 1) { ?>
+
+                            <div class="mySlides">
+                                <?php echo html_entity_decode($videos->getYoutube()) ?>
+                            </div>
+                            <?php $index++;
+                        }
+
+                        if (!$videos && ($latitude != '' || $longitude != '') && ($index == 2)) { ?>
+                            <div class="mySlides">
+                                <div id="gallery-mapas-modal" class="slider clearfix">
+                                    <div id="maps" class="fotoBig">
+                                        <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php $index++;
+                        } else if ($videos && ($latitude != '' || $longitude != '') && ($index == 3)) { ?>
+                            <div class="mySlides">
+                                <div id="gallery-mapas-modal" class="slider clearfix">
+                                    <div id="maps" class="fotoBig">
+                                        <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php $index++;
+                        }
+                    }
+
+                    if ($videos && ($latitude != '' || $longitude != '') && $index > 3) { ?>
+                        <div class="mySlides">
+                            <img class="img-mySlides"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                        </div>
+                    <?php } else if ($videos && $index > 2) { ?>
+                        <div class="mySlides">
+                            <img class="img-mySlides"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                        </div>
+                    <?php } else if (($latitude != '' || $longitude != '') && $index > 2) { ?>
+                        <div class="mySlides">
+                            <img class="img-mySlides"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                        </div>
+                    <?php } else if (!$videos && ($latitude == '' || $longitude == '') && $index > 1) { ?>
+                        <div class="mySlides">
+                            <img class="img-mySlides"
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                        </div>
+                    <?php }
+
+                    $index++;
+                }
+                ?>
+            <?php else: ?>
+                <div class="mySlides">
+                    <img src="/images/logo_ilamarca.png"/>
+                </div>
+            <?php endif; ?>
+
+
+            <a class="prev-touch" onclick="plusSlides(-1)"></a>
+            <a class="next-touch" onclick="plusSlides(1)"></a>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <!--<div class="caption-container">
+                <p id="caption"></p>
+            </div>-->
+
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if($getMobile === true): ?>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-content">
+                <ul class="bxslider-mobile-lightbox">
+                    <?php if (count($images) > 0) {
+
+                        $index = 1;
+                        foreach ($images as $value) {
+                            ?>
+                            <li>
+                                <span class="close cursor" onclick="closeModal()">&times;</span>
+                                <img class="slider img-lightbox"
+                                     src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                            </li>
+                            <?php $index++;
+                        }
+
+                    } else { ?>
+                        <li>
+                            <span class="close cursor">&times;</span>
+                            <img class="slider" src="/images/logo_ilamarca.png"/>
+                        </li>
+                    <?php }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 <?php endif; ?>
 
-<div id="myModal" class="modal">
-    <span class="close cursor" onclick="closeModal()">&times;</span>
-    <div class="modal-content">
-
-        <?php if (count($images) > 0): ?>
-
-            <?php
-            $index = 1;
-            foreach ($images as $value) {
-
-                if ($index === 1) { ?>
-                    <div class="mySlides">
-                        <img class="img-mySlides"
-                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>">
-                    </div>
-                <?php }
-
-                if (($videos) || ($latitude != '' || $longitude != '') && $index > 1) {
-                    if ($videos && $index == 1) { ?>
-
-                        <div class="mySlides">
-                            <?php echo html_entity_decode($videos->getYoutube()) ?>
-                        </div>
-                        <?php $index++;
-                    }
-
-                    if (!$videos && ($latitude != '' || $longitude != '') && ($index == 2)) { ?>
-                        <div class="mySlides">
-                            <div id="gallery-mapas-modal" class="slider clearfix">
-                                <div id="maps" class="fotoBig">
-                                    <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php $index++;
-                    } else if ($videos && ($latitude != '' || $longitude != '') && ($index == 3)) { ?>
-                        <div class="mySlides">
-                            <div id="gallery-mapas-modal" class="slider clearfix">
-                                <div id="maps" class="fotoBig">
-                                    <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php $index++;
-                    }
-                }
-
-                if ($videos && ($latitude != '' || $longitude != '') && $index > 3) { ?>
-                    <div class="mySlides">
-                        <img class="img-mySlides"
-                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
-                    </div>
-                <?php } else if ($videos && $index > 2) { ?>
-                    <div class="mySlides">
-                        <img class="img-mySlides"
-                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
-                    </div>
-                <?php } else if (($latitude != '' || $longitude != '') && $index > 2) { ?>
-                    <div class="mySlides">
-                        <img class="img-mySlides"
-                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
-                    </div>
-                <?php } else if (!$videos && ($latitude == '' || $longitude == '') && $index > 1) { ?>
-                    <div class="mySlides">
-                        <img class="img-mySlides"
-                             src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
-                    </div>
-                <?php }
-
-                $index++;
-            }
-            ?>
-        <?php else: ?>
-            <div class="mySlides">
-                <img src="/images/logo_ilamarca.png"/>
-            </div>
-        <?php endif; ?>
-
-
-        <a class="prev-touch" onclick="plusSlides(-1)"></a>
-        <a class="next-touch" onclick="plusSlides(1)"></a>
-
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-        <!--<div class="caption-container">
-            <p id="caption"></p>
-        </div>-->
-
-    </div>
-</div>
