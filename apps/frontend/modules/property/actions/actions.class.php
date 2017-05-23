@@ -26,7 +26,7 @@ class propertyActions extends sfActions
       }
 
       if (getMobile() === true){
-          $this->getResponse()->addMeta('viewport', 'width=device-width, initial-scale=1');
+          $this->getResponse()->addMeta('viewport', 'width=device-width, initial-scale=1, user-scalable=no');
       }
     $id = $request->getParameter('id');
 
