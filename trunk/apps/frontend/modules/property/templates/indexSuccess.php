@@ -106,7 +106,7 @@
                     foreach ($images as $value) {
                         ?>
                         <li onclick="openModal();currentSlide(<?php echo $index; ?>);changeOrientation()">
-                            <img class="slider"
+                            <img class="slider img-lightbox"
                                  src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
                         </li>
                         <?php $index++;
