@@ -282,7 +282,8 @@
             minSlides: 1,
             maxSlides: 1,
             infiniteLoop: true,
-            touchEnabled: true
+            touchEnabled: true,
+            controls: false
         });
 
 
@@ -624,6 +625,11 @@
             min-width: 200px!important;
             max-width: 1024px!important;
             width: 100%!important;
+        }
+
+        #myModal > div > div > div {
+            border: none!important;
+            background: none!important;
         }
     </style>
     <div id="myModal" class="modal">
