@@ -240,9 +240,8 @@
                     <a href="http://www.facebook.com/sharer.php?u=<?php echo $url_site ?>" class="share-fb" target="_blanck"></a>
                     <a class="share-email" id="" title="<?php echo truncate_text($property->getName(), 55, '') ?>"
                        href="mailto:?subject=I wanted you to see this site&amp;body=<?php echo $url_site.' '; echo truncate_text($property->getName(), 55, ''); ?>" ></a>
-                    <a href="whatsapp://send" class="share-whatsapp"
-                       data-text="<?php echo truncate_text($property->getName(), 55, ''); ?>"
-                       data-href=""></a>
+                    <a href="whatsapp://send?text=<?php echo $url_site; ?>" class="share-whatsapp"
+                       data-action="share/whatsapp/share"></a>
                 <?php endif; ?>
 
             </div>
