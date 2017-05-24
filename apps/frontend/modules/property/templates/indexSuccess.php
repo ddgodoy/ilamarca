@@ -631,6 +631,10 @@
             border: none!important;
             background: none!important;
         }
+
+        #myModal > div > div > div > div.bx-controls.bx-has-pager > div {
+            display: none;
+        }
     </style>
     <div id="myModal" class="modal">
         <div class="modal-content">
