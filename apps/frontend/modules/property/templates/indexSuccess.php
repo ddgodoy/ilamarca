@@ -597,8 +597,8 @@
             <?php endif; ?>
 
 
-            <a class="prev-touch" onclick="plusSlides(-1)"></a>
-            <a class="next-touch" onclick="plusSlides(1)"></a>
+<!--            <a class="prev-touch" onclick="plusSlides(-1)"></a>-->
+<!--            <a class="next-touch" onclick="plusSlides(1)"></a>-->
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
