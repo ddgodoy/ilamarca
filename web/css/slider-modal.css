@@ -44,6 +44,7 @@
     right: 25px;
     font-size: 35px;
     font-weight: bold;
+    z-index: 111;
 }
 
 .close:hover,
