@@ -649,7 +649,7 @@
                             ?>
                             <li>
                                 <img class="slider img-lightbox"
-                                     src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                                     src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' .$value->getInternalName() ?>"/>
                             </li>
                             <?php $index++;
                         }
