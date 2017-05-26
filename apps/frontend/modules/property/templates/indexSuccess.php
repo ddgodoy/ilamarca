@@ -49,7 +49,7 @@
                             <?php $index++; }
 
                         if (!$videos && ($latitude != '' || $longitude != '') && ($index == 2)) { ?>
-                            <li onclick="openModal();currentSlide(<?php echo $index; ?>)">
+                            <li onclick="currentSlide(<?php echo $index; ?>)">
                                 <div id="gallery-mapas" class="slider clearfix">
                                     <div id="maps" class="fotoBig">
                                         <div style="margin-top:150px;color:#CCCCCC;">SIN MAPA DE GOOGLE</div>
