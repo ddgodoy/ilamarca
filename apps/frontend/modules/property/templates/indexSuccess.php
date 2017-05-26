@@ -531,7 +531,7 @@
                     if ($index === 1) { ?>
                         <div class="mySlides">
                             <img class="img-mySlides"
-                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>">
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' . $value->getInternalName() ?>">
                         </div>
                     <?php }
 
@@ -568,22 +568,22 @@
                     if ($videos && ($latitude != '' || $longitude != '') && $index > 3) { ?>
                         <div class="mySlides">
                             <img class="img-mySlides"
-                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' . $value->getInternalName() ?>"/>
                         </div>
                     <?php } else if ($videos && $index > 2) { ?>
                         <div class="mySlides">
                             <img class="img-mySlides"
-                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' . $value->getInternalName() ?>"/>
                         </div>
                     <?php } else if (($latitude != '' || $longitude != '') && $index > 2) { ?>
                         <div class="mySlides">
                             <img class="img-mySlides"
-                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' . $value->getInternalName() ?>"/>
                         </div>
                     <?php } else if (!$videos && ($latitude == '' || $longitude == '') && $index > 1) { ?>
                         <div class="mySlides">
                             <img class="img-mySlides"
-                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . $value->getInternalName() ?>"/>
+                                 src="<?php echo Gallery::getPath($value->getRealPropertyId()) . 'g_' . $value->getInternalName() ?>"/>
                         </div>
                     <?php }
 
