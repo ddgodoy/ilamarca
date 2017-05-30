@@ -217,12 +217,17 @@
     </div>
     <div class="sombra"></div>-->
     <!-- -->
-    <?php if ($_down_pdf_file && $getMobile === true): ?>
-        <div class="boton">
-            <a href="<?php echo '/admin/uploads/pdf_file/' . $_down_pdf_file ?>" target="_blank">
-                <img src="/images/btn_descargarpdf_mobile.png" alt="">
-            </a>
+    <?php if (/*$_down_pdf_file && */$getMobile === true): ?>
+        <div class="box clearfix  compartir" style="min-height: 55px;">
+            <div class="inner clearfix" style="min-height: 55px;text-align: center;">
+                <div class="boton" style="padding-left: 0px;margin-top: 4%;">
+                    <a href="<?php echo '/admin/uploads/pdf_file/' . $_down_pdf_file ?>" target="_blank">
+                        <img src="/images/btn_descargarpdf_mobile.png" alt="">
+                    </a>
+                </div>
+            </div>
         </div>
+        <div class="sombra"></div>
     <?php endif; ?>
 
     <?php if ($_down_pdf_file && $getMobile === false): ?>
