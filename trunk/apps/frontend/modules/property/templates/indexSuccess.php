@@ -21,11 +21,7 @@
     </div>
 
     <div id="container" class="cont-slider">
-        <?php if ($_down_pdf_file): ?>
-            <div class="pdf"><a href="<?php echo '/admin/uploads/pdf_file/' . $_down_pdf_file ?>" target="_blank"></a>
-            </div>
-        <?php endif; ?>
-
+        
         <?php if ($getMobile === false): ?>
         <ul class="bxslider" style="">
 
@@ -217,7 +213,7 @@
     </div>
     <div class="sombra"></div>-->
     <!-- -->
-    <?php if (/*$_down_pdf_file && */$getMobile === true): ?>
+    <?php if ($_down_pdf_file && $getMobile === true): ?>
         <div class="box clearfix  compartir" style="min-height: 55px;">
             <div class="inner clearfix" style="min-height: 55px;text-align: center;">
                 <div class="boton" style="padding-left: 0px;margin-top: 4%;">
